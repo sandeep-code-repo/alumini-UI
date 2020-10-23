@@ -1,0 +1,158 @@
+
+
+<div class="regristartion container-fluid top py-2">
+    <img class="logo" src="assets/images/cpcb.png"> 
+    <h1 class="text-center text-white">Assam Pollution Control Board </h1>
+ </div>
+ <div class="container uk-card uk-card-default uk-card-body my-3" >
+    <div class="text-center nbox" >
+       <h2>Industry Registration
+          <br><span>(Integration with Central Server for Real Time Monitoring)</span>
+       </h2>
+    </div>
+ </div>
+ <div class="container uk-card uk-card-default uk-card-body my-3">
+ <div class="div80">
+    <button type="button" tooltip="Goto Back " class=" float-left btn btny btn-default buttom-prim buttonsToShow"
+       ><i class="fa fa-arrow-circle-left"></i></button> 
+ </div>
+ <div class="clearfix"></div>
+ <div class="div80">
+    <div class="row py-3 px-3">
+       <div class="text-right">
+          <label class="control-label pl-0" 
+             style="padding: 5px; padding-bottom: 5px;">Industry Category :</label>
+       </div>
+       <div class="form-group  col-sm-3 smallpad opt" style="float:left;">
+          <select class="form-control texbsize">
+             <option>Select</option>
+             <option>Integrated Steel</option>
+             <option>Pulp & Paper</option>
+             <option>Coke Making</option>
+             <option>Almunium Smelter</option>
+             <option selected>Power Plant</option>
+             <option>Sugar </option>
+             <option>Chemical </option>
+             <option>Mines</option>
+          </select>
+       </div>
+       <div class="form-group col-sm-2 smallpad">
+          <button type="submit" style=""  class="btn btns btn-success  ml-1" (click)=displaydata()>
+          <i _ngcontent-hel-c18="" class="fas fa-user fa-fw"></i>
+          Show</button>
+       </div>
+       <div class="form-group ml-auto col-sm-2 p-0 ml-5">
+          <button type="submit" class="btn btns btn-success" (click)=regpage(1)>New Register</button>
+       </div>
+    </div>
+ </div>
+ </div>
+
+ <div class="container uk-card uk-card-default uk-card-body my-3">
+    <div class="div80">
+        <div class="row my-3">
+            <div class="col-sm-3 pl-0">
+                <span class="py-2">Showing 1 to 5 of 5 entries</span>
+            </div>
+            <div class="col-sm-3 ml-auto">
+            <input type="text" class="form-control" placeholder="Search">
+            </div>
+        </div>
+        <div class="table-responsive">
+        <table class="table21 table table-hover table-bordered  table-striped">
+            <thead>
+              <tr>
+                <th scope="col" >
+                    <div class="d-flex just"> No. <a class="sort"><i class="fa fa-sort"></i></a></div></th>
+                <th scope="col">
+                    <div class="d-flex just">  NAME <a class="sort"><i class="fa fa-sort"></i></a></div></th>
+                <th scope="col">
+                    <div class="d-flex just"> ADDRESS <a class="sort"><i class="fa fa-sort"></i></a></div></th>
+                <th scope="col">
+                    <div class="d-flex just"> CATEGORY <a class="sort"><i class="fa fa-sort"></i></a></div></th>
+                <th scope="col">
+                    <div class="d-flex just"> RegionalOfc  <a class="sort"><i class="fa fa-sort"></i></a></div></th>
+                <th scope="col">
+                    <div class="d-flex just"> Status <a class="sort"><i class="fa fa-sort"></i></a></div></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row">1</td>
+                <td>M/s Bhubaneswar Power Pvt. Limited</td>
+                <td>At-Anantapur,Po- Dhurusia, Cuttack, Pin-754027 </td>
+                <td>Power Plant</td>
+                <td>Cuttack </td>
+                <td><button class="btn btns btn-success d-block mx-auto" data-toggle="modal" data-target="#exampleModal" >Status</button></td>
+              </tr>
+              <tr>
+                <td scope="row">2</td>
+                <td>M/s. Bhusan Energy Ltd. </td>
+                <td>At- Ganthigadia, PO- Nuahat, Via- Banarpal, Dist - Angul -759128 </td>
+                <td>Power plant</td>
+                <td>Angul </td>
+                <td><button class="btn btns btn-success d-block mx-auto" data-toggle="modal" data-target="#exampleModal" >Register</button></td>
+              </tr>
+              <tr>
+                <td scope="row">3</td>
+                <td>M/s. FACOR Power Ltd. </td>
+                <td>At- D.P. nagar, Po - Randia, Dist - Bhadrak - 765135 </td>
+                <td>power plant</td>
+                <td>Balasore</td>
+                <td><button class="btn btns btn-success d-block mx-auto" data-toggle="modal" data-target="#exampleModal" >Status</button></td>
+              </tr>
+              
+              <tr>
+                <td scope="row">4</td>
+                <td>M/s. FACOR Power Ltd. </td>
+                <td>At- D.P. nagar, Po - Randia, Dist - Bhadrak - 765135 </td>
+                <td>power plant</td>
+                <td>Balasore</td>
+                <td><button class="btn btns btn-success d-block mx-auto" data-toggle="modal" data-target="#exampleModal" >Status</button></td>
+              </tr>
+              
+              <tr>
+                <td scope="row">5</td>
+                <td>M/s. FACOR Power Ltd. </td>
+                <td>At- D.P. nagar, Po - Randia, Dist - Bhadrak - 765135 </td>
+                <td>power plant</td>
+                <td>Balasore</td>
+                <td><button class="btn btns btn-success d-block mx-auto" data-toggle="modal" data-target="#exampleModal" >Register</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <ul class="pagination pagination-sm justify-content-end">
+            <li class="page-item"><a class="page-link" href="#">
+                <i class="fa fa-angle-left"></i>
+            </a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">
+                <i class="fa fa-angle-right"></i>
+            </a></li>
+          </ul> 
+
+    </div>
+ </div>
+ 
+ <div class="container uk-card uk-card-default uk-card-body my-3">
+     <img src="assets/images/data.svg" class="img-fluid">
+ </div>
+ <div class="clearfix"></div>
+ <!-- Modal -->
+ <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+       <div class="modal-content">
+          <div class="modal-body">
+             <h2 class="text-center">Already Registered Successfully...</h2>
+          </div>
+          <div class="modal-footer py-1" style="background-color: #f2f2f2;">
+             <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+          </div>
+       </div>
+    </div>
+ </div>
+ 
+ 

@@ -1,0 +1,60 @@
+<div class="limiter" style="background: url('assets/images/bg-201.jpg');">
+    <div class="fog-container">
+        <div class="fog-img fog-img-first"></div>
+        <div class="fog-img fog-img-first"></div>
+        <div class="fog-img fog-img-second"></div>
+    </div>
+    <div class="container">
+    <div class="row">
+      
+    <div class="container-login100" >
+    <div class="wrap-login100">
+    <form  [formGroup]="loginForm"  (ngSubmit)=homego()>
+        <div style="text-align: center;">
+            <img  _ngcontent-hle-c2="" alt="" style="width: 30mm; text-align: center;" src="assets/images/assam.svg">
+        </div><br>
+        
+        <h4 _ngcontent-ash-c2="" class="login-label">Sign In</h4>
+       
+   <hr>
+   <div class="fontpassword"> 
+    <div class="marbot">
+         
+        <div class="form-group">
+        <input class="form-control" formControlName="Username"  [(ngModel)]="login.username"  [ngClass]="{ 'is-invalid':submitted && f.Username.errors }"     type="text"  name="Username" id="Username" placeholder="Username">  
+        <div *ngIf="submitted && f.Username.errors" class="invalid-feedback">
+            <div *ngIf="f.Username.errors.required">*Username required</div>
+        </div>
+    </div> 
+
+    <div class="form-group mt-3">
+        <input class="form-control" formControlName="Password"  [(ngModel)]="login.password" [ngClass]="{ 'is-invalid':submitted && f.Password.errors }"  type="password" id="Password"  name="Password"    placeholder="Password" id="Password">   
+        <div *ngIf="submitted && f.Password.errors" class="invalid-feedback">
+            <div *ngIf="f.Password.errors.required">*Password required</div>
+        </div>
+        </div>
+        
+        <button  class="btn mt-3 btn-login btn-primary w-100" >Log in</button>  
+        </div>
+        <div><br>
+            <a class="txt1" (click)="help()"><em _ngcontent-ash-c2="" class="fa fa-info-circle" style="padding-right: 6px;" ></em>Help?</a>
+            <a _ngcontent-ash-c2="" href="javascript:void(0);" style="text-align: right;float:right" tooltip="Forgot Password" (click)="forgetpasswordpage()">Forgot Password</a><br><br>
+
+            <a class="txt1 d-block" (click)="regipage()"> Click here for Industry Registrations </a>
+            <a class="txt1 d-block" href="login/demo.pdf" target="_blank">Click here to view the API Document </a>
+        </div>
+
+    </div>
+    
+   
+    <div class="text-center">
+   
+    </div>
+    </form>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+    
