@@ -3,34 +3,43 @@
  */
 
 import { Injectable, Type } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HttpParams } from "@angular/common/http";
 import { getMaxListeners } from 'process';
 import { HttpHeaders } from '@angular/common/http';
 import {PlantInfoData} from 'src/app/plant-info-data';
 import { Login } from 'src/app/login';
+import { Industry } from 'src/app/model/industry.model';
 @Injectable()
 export class UserService {
 
 	constructor(private httpclient:HttpClient) { }
 
-	
+	//  headers = { 'content-type': 'application/json'}  
+   
 	
 
 	baseurl_login:string ="https://cors-anywhere.herokuapp.com/http://117.211.75.160:8086/alumini/login/}";
 	baseurl_show_list:string ="https://cors-anywhere.herokuapp.com/http://117.211.75.160:8086/alumini/show/power plant";
 	baseurl_insert:string ="https://cors-anywhere.herokuapp.com/http://117.211.75.160:8086/alumini/employees/";
-
-	
+baseurl_register:string="https://cors-anywhere.herokuapp.com/http://117.211.75.160:8086/rest/api/register"
+	registrationService(industry:Industry):Observable<any>{
+      const headers = { 'content-type': 'application/json'}  
+      const body=JSON.stringify(industry);
+     
+      return this.httpclient.post<any>(this.baseurl_register, body,{
+			'headers':headers
+		});
+    
+    
+     
+   }
 	login(login:Login) : Observable<any> {
 		
-	
-  
-  
   const headers = { 'content-type': 'application/json'}  
   const body=JSON.stringify(login);
-  console.log(body);
+  
   //alert(body);
 		
 		return this.httpclient.post<any>('https://cors-anywhere.herokuapp.com/http://117.211.75.160:8080/alumini/login/',body,

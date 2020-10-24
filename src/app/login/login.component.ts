@@ -79,7 +79,7 @@ if (this.loginForm.invalid) {
 	   }
 		
 		const login = this.userService.login(this.login).subscribe(data=>{
-			debugger;
+			
 	
 		//alert(data.apiStatus.message);
 			if(data.apiStatus.message === 'success') {
