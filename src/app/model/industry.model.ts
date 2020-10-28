@@ -27,7 +27,7 @@ export interface StationInfo{
     parameterInfo?:ParameterInfo[]
 }
 export interface PlantInfo{
-    
+    plantVendor?:string
     plantUserName:string,
     category:string,
     plantName:string,
@@ -53,7 +53,6 @@ secdEmail: string
 export interface UserInfo{
     userRole:Role[],
     password:string,
-   
     mobNo: number,
     department: string,
     userType?: string,
@@ -63,7 +62,7 @@ export interface UserInfo{
     reportto?: string,   
 }
 export interface Role{
-    roleid:number
+    roleid:string
 }
 export interface ParameterInfo{
    

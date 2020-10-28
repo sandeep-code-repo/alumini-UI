@@ -68,19 +68,21 @@ border-top-right-radius: 5px;
         font-size: 24px;
         color: #2d3188;
     }
-    .btny {
-        background: #a6a6ff;
+    .btny  {
+        background: #fff;
         color: #2d3188;
-        padding: 10px;
+        padding: 7px 15px;
         line-height: 15px;
-        margin: 0 0 5px 0px;
+        margin: 0;
         transition: .5s all linear;
+        position: absolute;
+        right: 90px;
+        top: 9px;
+        font-size: 14px;
     }
     .btny:hover {
         background: #2f2f91;
         color: #fff;
-        padding: 10px;
-        line-height: 15px;
         margin: 0 0 5px 0px;
     }
     .col
@@ -332,5 +334,16 @@ input:-moz-read-only { /* For Firefox */
     .nbox, .div80{
         width: 95%;
     }
-    
+    .btny{
+        position: static !important;
+        display: block;
+        margin: 8px auto 0 auto !important;
+    }
+    .top h1 {
+        margin: 5px 0;
+        font-size: 23px;
+    }
+    .headg{
+        padding: 15px !important;
+    }
 }
