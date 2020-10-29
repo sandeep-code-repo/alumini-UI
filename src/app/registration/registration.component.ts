@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule, Routes, Router } from '@angular/router';
 import { Validators, FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
-import { ValidationService } from '../services/config/config.service';
+
 import { routerTransition } from '../services/config/config.service';
-import { AgGridModule } from 'ag-grid-angular';
+
 import { UserService } from '../services/user/user.service';
 import { PlantInfoData } from 'src/app/plant-info-data';
-import { stringify } from '@angular/compiler/src/util';
+
 import { HttpClient } from '@angular/common/http';
-import { TooltipModule } from '@syncfusion/ej2-angular-popups';
+
 import { CustomValidators } from 'src/app/custom-validators';
 import { Industry, ParameterInfo, StationInfo, UserInfo } from '../model/industry.model';
-import { NgbPanelTitle } from '@ng-bootstrap/ng-bootstrap';
+
 
 
 
@@ -102,6 +102,10 @@ export class RegistrationComponent implements OnInit {
     //plantUserName: [this.plantInfo., [Validators.required]],
     password:['',[Validators.required]],
     roleId:[''],
+    //mobNo:[''],
+    //department:[''],
+    //category:[''],
+    //plantType:['']
    })
      
 
@@ -137,35 +141,7 @@ export class RegistrationComponent implements OnInit {
     })
 
   }
-  // addStationInfo():FormGroup {
-
-  //   this.formBuilder.group({
-  //     analyzerv2: ['', [Validators.required]],
-  //     stationId: ['', [Validators.required]],
-  //     location: ['', [Validators.required]],
-  //     stationVendor: ['', [Validators.required]],
-  //     //analyserMake: ['', [Validators.required]],
-  //     //analyserModel: ['', [Validators.required]],
-  //     //analyserSerialNo: ['', [Validators.required]],
-  //     //devidceIMEINo: ['', [Validators.required]],
-  //     //macId: ['', [Validators.required]],
-  //     //measurmentMin: ['', [Validators.required]],
-  //     //measurmentMax: ['', [Validators.required]],
-  //     parameterInfo: this.formBuilder.array([this.createParameterInfo()]),
-  //     //unit: ['', [Validators.required]],
-  //     certification: ['', [Validators.required]],
-  //     longitute: ['', [Validators.required]],
-  //     latitude: ['', [Validators.required]],
-  //     measurementPrinciple: ['', [Validators.required]],
-  //     stackHeight: ['', [Validators.required]],
-  //     stackDiameter: ['', [Validators.required]],
-  //     stackVelocity: ['', [Validators.required]],
-  //     gasDischargeRate: ['', [Validators.required]],
-  //     remarks: ['', [Validators.required]],
-
-
-  //   })
-  // }
+  
 
   editProcess(editProcessObj) {
     this.processForm.patchValue({
@@ -240,11 +216,19 @@ export class RegistrationComponent implements OnInit {
 
     this.industry = this.add_industry.value
     if(this.add_industry.get('userInfo').status=='INVALID')
-    this.industry.regstatus = "INACTIVE"
+    this.industry.regstatus = "register"
     else 
-    this.industry.regstatus = "ACTIVE"
+    this.industry.regstatus = "register"
     this.industry.stationInfo = this.stationInfo;
-    this.industry.userInfo.userRole=[{roleid:this.add_industry.get('userInfo.roleId').value}]
+    this.industry.userInfo =
+    {
+      password: this.add_industry.get('userInfo.password').value,
+      userRole: [{roleid:this.add_industry.get('userInfo.roleId').value}],
+      mobNo:this.add_industry.get('plantInfo.authoPerMob').value,
+      department: this.add_industry.get('plantInfo.authPersonDesig').value,
+      designation:     this.add_industry.get('plantInfo.authPersonDesig').value
+    }
+   
    //  this.industry.regstatus = "register";
     console.log(this.industry);
     //console.log(this.userService.registrationService( this.industry ));

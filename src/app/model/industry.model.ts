@@ -46,9 +46,9 @@ export interface PlantInfo{
     authoPerMob:string,
     authPersonDesig:string,
     secdPerson: string,
- secdPersonDesig: string,
-secdPersonMob:string,
-secdEmail: string
+    secdPersonDesig: string,
+    secdPersonMob:string,
+    secdEmail: string
 }
 export interface UserInfo{
     userRole:Role[],
