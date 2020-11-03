@@ -1,8 +1,17 @@
+
 export interface Industry{
-    stationInfo:StationInfo[],
+    stationInfoMapper:StationInfoMapper[],
+    userInfoMapper:UserInfoMapper,
     plantInfo:PlantInfo,
-    userInfo:UserInfo,
     regstatus?:string
+}
+export interface UserInfoMapper{
+    userInfo:UserInfo,
+    userRole?:Role[],
+}
+export interface StationInfoMapper{
+    stationInfo:StationInfo,
+    parameterInfo?:ParameterInfo[]
 }
 export interface StationInfo{
     stationId?:string,
@@ -24,45 +33,49 @@ export interface StationInfo{
     stackVelocity?:string,
     gasDischargeRate?:number,
     remarks?:string,
-    parameterInfo?:ParameterInfo[]
+   
 }
 export interface PlantInfo{
-    plantVendor?:string
-    plantUserName:string,
-    category:string,
+    
+   
+   
     plantName:string,
-    pin:number,
-    typ:string,
-    district:string,
-    town:string,
-    street:string,
-    state:string,
-    email:string,
+    plantVendor?:string,
+    plantType?:string,
+    category:string,
     roUser:string,
     caaqmsStation:number,
     cemsStation:number,
     ceqmsStation:number,
-    authPerson:string,
-    authoPerMob:string,
-    authPersonDesig:string,
-    secdPerson: string,
-    secdPersonDesig: string,
-    secdPersonMob:string,
-    secdEmail: string
+    
 }
 export interface UserInfo{
-    userRole:Role[],
+    userName:string,
+    email:string,
+   // mobNo:string,
+    pin:number,
+    district:string ,
+    town:string ,
+    street: string,
+   state: string,                      
+   authPerson: string,
+   authPersonDesig: string,
+    secdPerson?: string,
+    secdPersonDesig: string,
+        secdPersonMob:string ,
+        secdEmail:string ,
+    
     password:string,
     mobNo: number,
     department: string,
-    userType?: string,
-    plantType?: string,
-    category?: string,
-    designation: string,
-    reportto?: string,   
+    //userType?: string,
+    //plantType?: string,
+    //category?: string,
+    //designation: string,
+    //reportto?: string,   
 }
 export interface Role{
-    roleid:string
+    roleId?:number
 }
 export interface ParameterInfo{
    
@@ -75,5 +88,6 @@ export interface ParameterInfo{
     macId:string,
     measurmentMin:string,
     measurmentMax:string,
-    unit:string
+    unit:string,
+    certification:string
 }

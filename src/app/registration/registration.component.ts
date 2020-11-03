@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule, Routes, Router } from '@angular/router';
+import { RouterModule, Routes, Router, RouterLink } from '@angular/router';
 import { Validators, FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
 
 import { routerTransition } from '../services/config/config.service';
@@ -10,7 +10,7 @@ import { PlantInfoData } from 'src/app/plant-info-data';
 import { HttpClient } from '@angular/common/http';
 
 import { CustomValidators } from 'src/app/custom-validators';
-import { Industry, ParameterInfo, StationInfo, UserInfo } from '../model/industry.model';
+import { Industry, ParameterInfo, StationInfo, StationInfoMapper, UserInfo,Role } from '../model/industry.model';
 
 
 
@@ -30,17 +30,17 @@ export class RegistrationComponent implements OnInit {
   add_industry: FormGroup;
   processForm: FormGroup;
   plant: PlantInfoData;
-  stationInfo: StationInfo[] = [];
+  stationInfo: StationInfo;
   submitted: Boolean = false;
-  
+ stationinfomap: StationInfoMapper[]=[]
   userInfo: UserInfo;
   message: any;
   addProcesssubmitted: boolean;
-
-
+role:Role;
+userRole:Role[]=[]
 
   constructor(private route: Router, private userService: UserService, private formBuilder: FormBuilder, private HttpClient: HttpClient) {
-
+this.role={roleId:0}
   }
 
 
@@ -48,14 +48,12 @@ export class RegistrationComponent implements OnInit {
   ngOnInit(): void {
 
     this.processForm = this.formBuilder.group({
+      stationInfo:this.formBuilder.group({
       analyzerv2: ['', [Validators.required]],
       stationId: ['', [Validators.required]],
       location: ['', [Validators.required]],
       stationVendor: ['', [Validators.required]],
-      
-      parameterInfo: this.formBuilder.array([this.createParameterInfo()]),
      
-      certification: ['', [Validators.required]],
       longitute: ['', [Validators.required]],
       latitude: ['', [Validators.required]],
       measurementPrinciple: ['', [Validators.required]],
@@ -65,10 +63,13 @@ export class RegistrationComponent implements OnInit {
       gasDischargeRate: ['', [Validators.required]],
       remarks: ['', [Validators.required]],
 
-    })
+    }),
+    parameterInfo: this.formBuilder.array([this.createParameterInfo()],[Validators.required]),
+  })
     // this.parameterInfo.push(this.addParameter());
     // this.parameterinfo.push(this.createParameterInfo().value)
-    this.stationInfo.push(this.processForm.value)
+    
+    this.stationinfomap.push(this.processForm.value)
     
     this.add_industry = this.formBuilder.group({
       plantInfo:this.formBuilder.group({
@@ -76,46 +77,46 @@ export class RegistrationComponent implements OnInit {
         plantUserName: ['', [Validators.required]],
         category: ['', [Validators.required]],
         plantName: ['', [Validators.required]],
-        pin: ['', [Validators.required, Validators.minLength(7), CustomValidators.patternValidator(/\d/, { hasNumber: true })]],
-        typ:[''],
-        district: ['', [Validators.required]],
-        town: ['', [Validators.required]],
-        street: ['', [Validators.required]],
-        state: ['', [Validators.required]],
-        email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+        plantType:[],
         roUser: ['', [Validators.required]],
         caaqmsStation: ['', [Validators.required]],
         cemsStation: ['', [Validators.required]],
         ceqmsStation: ['', [Validators.required]],
-        authPerson: ['', [Validators.required]],
-        authoPerMob: ['', [Validators.required, Validators.minLength(10), CustomValidators.patternValidator(/\d/, { hasNumber: true })]],
-        authPersonDesig: ['', [Validators.required]],
-        secdPerson: ['', [Validators.required]],
-        secdPersonDesig: ['', [Validators.required]],
-        secdPersonMob: ['', [Validators.required, Validators.minLength(10), CustomValidators.patternValidator(/\d/, { hasNumber: true })]],
-        secdEmail: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+        
         
       }),
      
      // role: ['',],
+    userInfoMapper:this.formBuilder.group({
    userInfo:this.formBuilder.group({
-    //plantUserName: [this.plantInfo., [Validators.required]],
+    userName: ["", [Validators.required]],
     password:['',[Validators.required]],
     roleId:[''],
-    //mobNo:[''],
-    //department:[''],
-    //category:[''],
-    //plantType:['']
-   })
-     
+    pin: ['', [Validators.required, Validators.minLength(7), CustomValidators.patternValidator(/\d/, { hasNumber: true })]],
+    typ:[''],
+    district: ['', [Validators.required]],
+    town: ['', [Validators.required]],
+    street: ['', [Validators.required]],
+    state: ['', [Validators.required]],
+    email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+    authPerson: ['', [Validators.required]],
+    mobNo: ['', [Validators.required, Validators.minLength(10), CustomValidators.patternValidator(/\d/, { hasNumber: true })]],
+    authPersonDesig: ['', [Validators.required]],
+    secdPerson: ['', [Validators.required]],
+    secdPersonDesig: ['', [Validators.required]],
+    secdPersonMob: ['', [Validators.required, Validators.minLength(10), CustomValidators.patternValidator(/\d/, { hasNumber: true })]],
+    secdEmail: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+   }),
 
-     
 
-    });
+    })
+  });
 
 
   }
-
+  // get stationInfo() {
+  //   return this.processForm.get('stationInfo') as FormGroup;
+  // }
   get parameterInfo() {
     return this.processForm.get('parameterInfo') as FormArray;
   }
@@ -137,36 +138,21 @@ export class RegistrationComponent implements OnInit {
       'macId': new FormControl('', Validators.required),
       'measurmentMin': new FormControl('', Validators.required),
       'measurmentMax': new FormControl('', Validators.required),
-      'unit': new FormControl('', Validators.required)
+      'unit': new FormControl('', Validators.required),
+      'certification': new FormControl('', Validators.required),
     })
 
   }
   
 
   editProcess(editProcessObj) {
+   
     this.processForm.patchValue({
-      analyzerv2: editProcessObj.analyzerv2,
-      stationId: editProcessObj.stationId,
-      location: editProcessObj.location,
-      stationVendor: editProcessObj.stationVendor,
-      //analyserMake: editProcessObj.analyserMake,
-      //analyserModel: editProcessObj.analayserModel,
-      //analyserSerialNo: editProcessObj.analyserSerialNo,
-      //devidceIMEINo: editProcessObj.devidceIMEINo,
-      //macId: editProcessObj.macId,
-      //measurmentMin: editProcessObj.measurmentMin,
-      //measurmentMax: editProcessObj.measurmentMax,
+     
+      stationInfo:editProcessObj.stationInfo,
       parameterInfo: editProcessObj.parameterInfo,
-      //unit: editProcessObj.unit,
-      certification: editProcessObj.certification,
-      longitute: editProcessObj.longitute,
-      latitude: editProcessObj.lattitude,
-      measurementPrinciple: editProcessObj.measurementPrinciple,
-      stackHeight: editProcessObj.stackHeight,
-      stackDiameter: editProcessObj.stackDiameter,
-      stackVelocity: editProcessObj.stackVelocity,
-      gasDischargeRate: editProcessObj.gasDischargeRate,
-      remarks: editProcessObj.remarks
+     
+     
     })
   }
 
@@ -179,29 +165,30 @@ export class RegistrationComponent implements OnInit {
   get processf() { return this.processForm.controls }
  
   addProcess() {
-
+  console.log(this.processForm.controls)
+// console.log(this.processForm.get('parameterInfo'))
     
-    // this.addProcesssubmitted=true;
-    // if (this.processForm.invalid) {
+//     this.addProcesssubmitted=true;
+//     if (this.processForm.invalid) {
 
-    //      return;
-    //    }
-    let index = this.stationInfo.findIndex(item => {
-      return item.stationId == this.processForm.controls.stationId.value;
+//          return;
+//        }
+    let index = this.stationinfomap.findIndex(item => {
+      return item.stationInfo.stationId == this.processForm.get('stationInfo.stationId').value;
     });
 
 
-    if (this.stationInfo.length == 1 && this.stationInfo[0].stationId === "") {
+    if (this.stationinfomap.length == 1 && this.stationinfomap[0].stationInfo.stationId === "") {
 
-      this.stationInfo = [];
-      this.stationInfo.push(this.processForm.value);
+      this.stationinfomap = [];
+      this.stationinfomap.push(this.processForm.value);
     }
     else if (index > -1) {
 
-      this.stationInfo.splice(index, 1, this.processForm.value)
+      this.stationinfomap.splice(index, 1, this.processForm.value)
       
     } else {
-      this.stationInfo.push(this.processForm.value);
+      this.stationinfomap.push(this.processForm.value);
     }
     this.processForm.reset();
   }
@@ -215,29 +202,23 @@ export class RegistrationComponent implements OnInit {
 
 
     this.industry = this.add_industry.value
-    if(this.add_industry.get('userInfo').status=='INVALID')
+    if(this.add_industry.get('userInfoMapper.userInfo').status=='INVALID')
     this.industry.regstatus = "register"
     else 
     this.industry.regstatus = "register"
-    this.industry.stationInfo = this.stationInfo;
-    this.industry.userInfo =
-    {
-      password: this.add_industry.get('userInfo.password').value,
-      userRole: [{roleid:this.add_industry.get('userInfo.roleId').value}],
-      mobNo:this.add_industry.get('plantInfo.authoPerMob').value,
-      department: this.add_industry.get('plantInfo.authPersonDesig').value,
-      designation:     this.add_industry.get('plantInfo.authPersonDesig').value
-    }
-   
-   //  this.industry.regstatus = "register";
+    this.industry.stationInfoMapper = this.stationinfomap;
+    this.role.roleId=this.add_industry.get('userInfoMapper.userInfo.roleId').value
+    this.userRole.push(this.role)
+    Object.assign(this.industry.userInfoMapper, { userRole: this.userRole })
+    
     console.log(this.industry);
-    //console.log(this.userService.registrationService( this.industry ));
+    
     const register = this.userService.registrationService(this.industry).subscribe(data => {
 
 
 
       if (data.apiStatus.message === 'success') {
-        this.message = "Registration Successfully"
+        this.message = "Registration Successfull"
         console.log(data.apiStatus.message);
         // this.route.navigate(['/home']);
 
@@ -248,4 +229,6 @@ export class RegistrationComponent implements OnInit {
 
     });
   }
+
+  
 }
