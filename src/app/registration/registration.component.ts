@@ -12,7 +12,7 @@ import { HttpClient } from '@angular/common/http';
 import { CustomValidators } from 'src/app/custom-validators';
 import { Industry, ParameterInfo, StationInfo, StationInfoMapper, UserInfo,Role } from '../model/industry.model';
 
-
+import * as $ from "jquery";
 
 
 @Component({
@@ -38,7 +38,8 @@ export class RegistrationComponent implements OnInit {
   addProcesssubmitted: boolean;
 role:Role;
 userRole:Role[]=[]
-
+  types$: { Category: string; }[];
+stackDisplay:Boolean=false
   constructor(private route: Router, private userService: UserService, private formBuilder: FormBuilder, private HttpClient: HttpClient) {
 this.role={roleId:0}
   }
@@ -165,7 +166,7 @@ this.role={roleId:0}
   get processf() { return this.processForm.controls }
  
   addProcess() {
-  console.log(this.processForm.controls)
+ 
 // console.log(this.processForm.get('parameterInfo'))
     
 //     this.addProcesssubmitted=true;
@@ -173,6 +174,9 @@ this.role={roleId:0}
 
 //          return;
 //        }
+// if(this.processForm.get('stationInfo.analyzerv2').value=='Emission'){this.stackDisplay=true;}
+// else
+// this.stackDisplay=false;
     let index = this.stationinfomap.findIndex(item => {
       return item.stationInfo.stationId == this.processForm.get('stationInfo.stationId').value;
     });
@@ -229,6 +233,48 @@ this.role={roleId:0}
 
     });
   }
+  stack(str:string)
+  {
+    
+   
+    if(str=="Ambient")
+    {
+      //this.stackDisplay=false;
+      
+      $('#stack_123').css('display','none');
+      this.types$=[{"Category":"PM10"},{"Category":"PM2.5"},
+      {"Category":"SOx"},
+      {"Category":"NOx"},{"Category":"NO"},{"Category":"NO2"},{"Category":"CO"},{"Category":"CO2"},{"Category":"Others"
+      }];
+    }
+   else
+    if(str=="Emission")
+    {
+    // this.stackDisplay=true;
+      this.addProcesssubmitted=true;
+      // $('.stackDisplay').css('display','block');
+      $('#stack_123').css('display','block');
 
+      this.types$=[{"Category":"PM"},{"Category":"SO2"},
+      {"Category":"NOx"},
+      {"Category":"NO"},{"Category":"NO2"},{"Category":"SOx"},{"Category":"HF"},{"Category":"Others"
+      }];
+    }
+else
+    if(str=="Effluent")
+    {
+      
+      //this.stackDisplay=false;
+      $('#stack_123').css('display','none');
+      this.types$=[{"Category":"BOD"},{"Category":"COD"},
+      {"Category":"TSS"},
+      {"Category":"PH"},{"Category":"Flow"},{"Category":"Fluoride"},{"Category":"Cr6+"},{"Category":"NH3"},{"Category":"Others"
+      }];
+    }
+
+
+
+    
+  }
   
 }

@@ -1,8 +1,8 @@
 <div class="regristartion container-fluid top py-2">
    <img class="logo" src="assets/images/cpcb.png">
    <h1 class="text-center text-white">Assam Pollution Control Board </h1>
-   <button type="button" tooltip="Goto Back " class="mr-3 btn btny btn-default buttom-prim buttonsToShow"
-   id="backbtn" (click)="goback()"><i class="fa fa-arrow-circle-left"></i> BACK</button>
+   <button type="button" tooltip="Goto Back " class="mr-3 btn btny btn-default buttom-prim buttonsToShow" id="backbtn"
+      (click)="goback()"><i class="fa fa-arrow-circle-left"></i> BACK</button>
 </div>
 <div class="container uk-card uk-card-default uk-card-body my-3">
    <div class="text-center nbox">
@@ -13,30 +13,13 @@
 </div>
 
 <form [formGroup]="add_industry">
-   <!-- <div class="container uk-card uk-card-default uk-card-body my-3">
-      <div class="div80">
 
-         <div class="row">
-            <button type="button" tooltip="Goto Back "
-               class="mr-3 float-left btn btny btn-default buttom-prim buttonsToShow" id="backbtn" (click)="goback()"><i
-                  class="fa fa-arrow-circle-left"></i></button>
-         </div>
-         <div class="row">
-
-            <h2 class="lighter d-block blue blued mt-2 headg">
-               General Details
-            </h2>
-
-         </div>
-
-      </div>
-   </div> -->
    <div class="container  px-0">
       <h2 class="lighter blue mt-4 headg">
          General Details
       </h2>
-      </div>
-   <div class="mt-3" >
+   </div>
+   <div class="mt-3">
       <div class="container forms  p-4">
 
          <div class="form2">
@@ -145,10 +128,97 @@
                      placeholder="No. of CEMES" [ngClass]="{  }">
                </div>
             </div>
+            <div class="row" formGroupName="userInfoMapper">
+               <div class="form-group col-sm-3 smallpad" formGroupName="userInfo">
+                  <label class="name1">Plant Id(User Name) <span>*</span></label>
+                  <input class="form-control texbsize" class="form-control"
+                     [ngClass]="{ 'is-invalid':submitted && f.userName.errors }" type="text" placeholder="Enter Vender"
+                     formControlName="userName">
+                  <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
+                     <div *ngIf="f.userName.errors.required">*UserId required
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group col-sm-3 smallpad" formGroupName="userInfo">
+                  <label class="name1">Password <span>*</span></label>
+                  <input class="form-control texbsize" class="form-control"
+                     [ngClass]="{ 'is-invalid':submitted && f.password.errors }" type="text"
+                     placeholder="Enter password" formControlName="password">
+                  <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                     <div *ngIf="f.password.errors.required"> *Password is Required
+                     </div>
+                     <label class="col"
+                        [ngClass]="add_industry.controls['password'].hasError('required') || add_industry.controls['password'].hasError('minlength')  ? 'text-danger' : 'text-success'">
+                        <i class="material-icons">
+                           {{ add_industry.controls['password'].hasError('required') ||
+add_industry.controls['password'].hasError('minlength') ? 'cancel' :
+'check_circle' }}
+                        </i>
+                        Must be at least 8 characters!
+                     </label>
+                     <label class="col"
+                        [ngClass]="add_industry.controls['password'].hasError('required') || add_industry.controls['password'].hasError('hasNumber')  ? 'text-danger' : 'text-success'">
+                        <i class="material-icons">
+                           {{ add_industry.controls['password'].hasError('required') ||
+add_industry.controls['password'].hasError('hasNumber') ? 'cancel' :
+'check_circle' }}
+                        </i>
+                        Must contain at least 1 number!
+                     </label>
+                     <label class="col"
+                        [ngClass]="add_industry.controls['password'].hasError('required') || add_industry.controls['password'].hasError('hasCapitalCase')  ? 'text-danger' : 'text-success'">
+                        <i class="material-icons">
+                           {{ add_industry.controls['password'].hasError('required') ||
+add_industry.controls['password'].hasError('hasCapitalCase') ? 'cancel' :
+'check_circle' }}
+                        </i>
+                        Must contain at least 1 in Capital Case!
+                     </label>
+                     <label class="col"
+                        [ngClass]="add_industry.controls['password'].hasError('required') || add_industry.controls['password'].hasError('hasSmallCase')  ? 'text-danger' : 'text-success'">
+                        <i class="material-icons">
+                           {{ add_industry.controls['password'].hasError('required') ||
+add_industry.controls['password'].hasError('hasSmallCase') ? 'cancel' :
+'check_circle' }}
+                        </i>
+                        Must contain at least 1 Letter in Small Case!
+                     </label>
+                     <label class="col"
+                        [ngClass]="add_industry.controls['password'].hasError('required') || add_industry.controls['password'].hasError('hasSpecialCharacters') ? 'text-danger' : 'text-success'">
+                        <i class="material-icons">
+                           {{ add_industry.controls['password'].hasError('required') ||
+add_industry.controls['password'].hasError('hasSpecialCharacters') ? 'cancel' :
+'check_circle' }}
+                        </i>
+                        Must contain at least 1 Special Character!
+                     </label>
+                  </div>
 
+
+               </div>
+
+
+               <div class="form-group col-sm-3 smallpad" formGroupName="userInfo">
+                  <label class="name1">Role <span>*</span></label>
+                  <select class="form-control texbsize" formControlName="roleId">
+
+                     <option value="select" selected>Select</option>
+                     <option value="3">
+                        User
+                     </option>
+                     <option value="1">
+                        SuperAdmin
+                     </option>
+                     <option value="2">
+                        Admin
+                     </option>
+
+                  </select>
+               </div>
+            </div>
             <div class="row mt-3" formGroupName="userInfoMapper">
-              
-               <div class="form-group col-sm-6 ml-auto smallpad "formGroupName="userInfo">
+
+               <div class="form-group col-sm-6 ml-auto smallpad " formGroupName="userInfo">
                   <label style="float: none;">Primary Contact <span style="color:red;">*</span></label>
                   <div class="row">
                      <div class="col-sm-6">
@@ -278,84 +348,84 @@
                   </div>
                </div>
             </div>
+         </div>
       </div>
-      </div>
-      <div class="mt-3" >
-      <div class="container  px-0">
-         <h2 class="lighter blue mt-4 headg">
-            Address
-         </h2>
-      </div>
+      <div class="mt-3">
+         <div class="container  px-0">
+            <h2 class="lighter blue mt-4 headg">
+               Address
+            </h2>
+         </div>
 
-      <div class="container forms" formGroupName="userInfoMapper">
-         <div   formGroupName="userInfo" class="row d-flex justify-content-between">
-            <div class="form-group col-md-2 smallpad">
-               <label class="name1">Street <span style="color:red;">*</span></label>
-               <input class="form-control" rows="3" type="text" formControlName="street" placeholder="Street"
-                  [ngClass]="{ 'is-invalid': submitted && f.street.errors }">
-               <div *ngIf="submitted && f.street.errors" class="invalid-feedback">
-                  <div *ngIf="f.street.errors.required">*Address is Required</div>
+         <div class="container forms" formGroupName="userInfoMapper">
+            <div formGroupName="userInfo" class="row d-flex justify-content-between">
+               <div class="form-group col-md-2 smallpad">
+                  <label class="name1">Street <span style="color:red;">*</span></label>
+                  <input class="form-control" rows="3" type="text" formControlName="street" placeholder="Street"
+                     [ngClass]="{ 'is-invalid': submitted && f.street.errors }">
+                  <div *ngIf="submitted && f.street.errors" class="invalid-feedback">
+                     <div *ngIf="f.street.errors.required">*Address is Required</div>
+                  </div>
                </div>
-            </div>
-            <div class="form-group col-md-2 smallpad">
-               <label class="name1">Town
-                  <span style="color:red;">*</span></label>
-               <input class="form-control" rows="3" type="text" formControlName="town" placeholder="Town"
-                  [ngClass]="{ 'is-invalid': submitted && f.town.errors }">
-               <div *ngIf="submitted && f.town.errors" class="invalid-feedback">
-                  <div *ngIf="f.town.errors.required">*Data is Required</div>
+               <div class="form-group col-md-2 smallpad">
+                  <label class="name1">Town
+                     <span style="color:red;">*</span></label>
+                  <input class="form-control" rows="3" type="text" formControlName="town" placeholder="Town"
+                     [ngClass]="{ 'is-invalid': submitted && f.town.errors }">
+                  <div *ngIf="submitted && f.town.errors" class="invalid-feedback">
+                     <div *ngIf="f.town.errors.required">*Data is Required</div>
+                  </div>
                </div>
-            </div>
-            <div class="form-group col-md-2 smallpad">
-               <label class="name1">District
-                  <span style="color:red;">*</span></label>
-               <input class="form-control" rows="3" type="text" formControlName="district" placeholder="District"
-                  [ngClass]="{ 'is-invalid': submitted && f.district.errors }">
-               <div *ngIf="submitted && f.district.errors" class="invalid-feedback">
-                  <div *ngIf="f.district.errors.required">*Data is Required</div>
+               <div class="form-group col-md-2 smallpad">
+                  <label class="name1">District
+                     <span style="color:red;">*</span></label>
+                  <input class="form-control" rows="3" type="text" formControlName="district" placeholder="District"
+                     [ngClass]="{ 'is-invalid': submitted && f.district.errors }">
+                  <div *ngIf="submitted && f.district.errors" class="invalid-feedback">
+                     <div *ngIf="f.district.errors.required">*Data is Required</div>
+                  </div>
                </div>
-            </div>
-            <div class="form-group col-md-2 smallpad">
-               <label class="name1">State
-                  <span style="color:red;">*</span></label>
-               <input class="form-control" rows="3" type="text" formControlName="state" placeholder="State"
-                  [ngClass]="{ 'is-invalid': submitted && f.state.errors }">
-               <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
-                  <div *ngIf="f.state.errors.required">*Data is Required</div>
+               <div class="form-group col-md-2 smallpad">
+                  <label class="name1">State
+                     <span style="color:red;">*</span></label>
+                  <input class="form-control" rows="3" type="text" formControlName="state" placeholder="State"
+                     [ngClass]="{ 'is-invalid': submitted && f.state.errors }">
+                  <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+                     <div *ngIf="f.state.errors.required">*Data is Required</div>
+                  </div>
                </div>
-            </div>
-            <div class="form-group col-md-2 smallpad">
-               <label class="name1">Pincode
-                  <span style="color:red;">*</span></label>
-               <input class="form-control" rows="3" type="text" formControlName="pin" placeholder="Pincode"
-                  [ngClass]="{ 'is-invalid': submitted && f.pin.errors }">
-               <div *ngIf="submitted && f.pin.errors" class="invalid-feedback">
-                  <div *ngIf="f.pin.errors.required">*Data is Required</div>
-                  <label class="col"
-                     [ngClass]="add_industry.controls['pin'].hasError('hasNumber')  ? 'text-danger' : 'text-success'">
-                     <i class="material-icons">
-                        {{ add_industry.controls['pin'].hasError('hasNumber') ? 'cancel' :
+               <div class="form-group col-md-2 smallpad">
+                  <label class="name1">Pincode
+                     <span style="color:red;">*</span></label>
+                  <input class="form-control" rows="3" type="text" formControlName="pin" placeholder="Pincode"
+                     [ngClass]="{ 'is-invalid': submitted && f.pin.errors }">
+                  <div *ngIf="submitted && f.pin.errors" class="invalid-feedback">
+                     <div *ngIf="f.pin.errors.required">*Data is Required</div>
+                     <label class="col"
+                        [ngClass]="add_industry.controls['pin'].hasError('hasNumber')  ? 'text-danger' : 'text-success'">
+                        <i class="material-icons">
+                           {{ add_industry.controls['pin'].hasError('hasNumber') ? 'cancel' :
          'check_circle' }}
-                     </i>
-                     Must be at Number
-                  </label>
-                  <label class="col"
-                     [ngClass]="add_industry.controls['pin'].hasError('minlength')  ? 'text-danger' : 'text-success'">
-                     <i class="material-icons">
-                        {{ add_industry.controls['pin'].hasError('minlength') ? 'cancel' :
+                        </i>
+                        Must be at Number
+                     </label>
+                     <label class="col"
+                        [ngClass]="add_industry.controls['pin'].hasError('minlength')  ? 'text-danger' : 'text-success'">
+                        <i class="material-icons">
+                           {{ add_industry.controls['pin'].hasError('minlength') ? 'cancel' :
          'check_circle' }}
-                     </i>
-                     Must be at 10 Digit
-                  </label>
+                        </i>
+                        Must be at 10 Digit
+                     </label>
+                  </div>
                </div>
             </div>
          </div>
       </div>
-   </div>
 
 
 
-   <div class="mt-3" >
+      <!-- <div class="mt-3" >
       <div class="container  px-0">
          <h2 class="lighter blue mt-4 headg">
             User Info
@@ -452,8 +522,8 @@
          </div>
       </div>
 
+   </div> -->
    </div>
-</div>
    <div class="container px-0">
       <h2 class="lighter blue mt-4 headg">
          Process Details
@@ -475,35 +545,35 @@
 
 
          </div>
-          <div class="form-group col-md-2 smallpad">
+         <div class="form-group col-md-2 smallpad">
             <label class="name1">Station Name<span style="color:red;">*</span></label>
-            <input type="text" class="form-control texbsize" placeholder="Station Name" value="{{station.stationInfo.stationId}}"
-               readonly>
+            <input type="text" class="form-control texbsize" placeholder="Station Name"
+               value="{{station.stationInfo.stationId}}" readonly>
 
          </div>
          <div class="form-group col-md-2 smallpad">
             <label class="name1">Process Attached<span style="color:red;">*</span></label>
-            <input type="text" class="form-control texbsize" placeholder="Process Attached" value="{{station.stationInfo.location}}"
-               readonly>
+            <input type="text" class="form-control texbsize" placeholder="Process Attached"
+               value="{{station.stationInfo.location}}" readonly>
 
          </div>
          <div class="form-group col-md-2 smallpad">
             <label class="name1">Vendor<span style="color:red;">*</span></label>
-            <input type="text" class="form-control texbsize" placeholder="Vendor" value="{{station.stationInfo.stationVendor}}"
-               readonly>
+            <input type="text" class="form-control texbsize" placeholder="Vendor"
+               value="{{station.stationInfo.stationVendor}}" readonly>
 
          </div>
-        
+
          <div class="form-group col-md-2 smallpad">
             <label class="name1">Latitude<span style="color:red;">*</span></label>
-            <input type="text" class="form-control texbsize" placeholder="Latitude" value="{{station.stationInfo.latitude}}"
-               readonly>
+            <input type="text" class="form-control texbsize" placeholder="Latitude"
+               value="{{station.stationInfo.latitude}}" readonly>
 
          </div>
          <div class="form-group col-md-2 smallpad">
             <label class="name1">Longitude<span style="color:red;">*</span></label>
-            <input type="text" class="form-control texbsize" placeholder="Longitude" value="{{station.stationInfo.longitute}}"
-               readonly>
+            <input type="text" class="form-control texbsize" placeholder="Longitude"
+               value="{{station.stationInfo.longitute}}" readonly>
 
          </div>
          <div class="form-group col-md-2 smallpad">
@@ -511,14 +581,15 @@
             <input type="text" class="form-control texbsize" placeholder="Measurment Principle"
                value="{{station.stationInfo.measurementPrinciple}}" readonly>
 
-         </div> 
+         </div>
          <div class="form-group col-md-3 smallpad">
             <label class="name1">Remark<span style="color:red;">*</span></label>
             <textarea class="form-control texbsize tarea" placeholder="Remark" value="{{station.stationInfo.remarks}}"
                readonly>  </textarea>
          </div>
       </div>
-      <!-- <div class="row">
+      <div *ngIf="station.stationInfo.analyzerv2==='Emission'" class="stackDisplay">
+     <div class="row">
          <h4 class=" header  lighter blue inb" style="margin: 0 0 18px 0;">Stack</h4>
       </div>
       <div class="row">
@@ -547,7 +618,8 @@
 
          </div>
          
-      </div> -->
+      </div> 
+   </div>
       <div class="row">
          <h4 class=" header  lighter blue inb" style="margin: 0 0 18px 0; ">Parameter</h4>
       </div>
@@ -619,8 +691,8 @@
             </select>
 
          </div>
-      <!-- </div> -->
-   </div>
+         <!-- </div> -->
+      </div>
 
 
 
@@ -628,11 +700,7 @@
 
 
    <div class="container mt-5">
-      <div class="row mb-2">
-         <!-- <div class="form-group col-md-2 ml-auto">
-      <button type="submit" class="btn btns btn-success" tooltip="Add Process" >Add Process</button>
-   </div> -->
-      </div>
+     
 
       <div class="row">
          <!-- <div class=" form-group col-md-2 ml-auto alert alert-success" *ngIf=message>{{message}}</div> -->
@@ -643,7 +711,8 @@
          <div class="form-group col-md-2 ml-2">
             <button type="button" mat-raised-button matTooltip="Register Data"
                aria-label="Button that displays a tooltip when focused or hovered over" tooltip="Register "
-               (click)=register() class="btn btns btn-success " data-toggle="modal" data-target="#modalMessage">Register</button>
+               (click)=register() class="btn btns btn-success " data-toggle="modal"
+               data-target="#modalMessage">Register</button>
          </div>
       </div>
    </div>
@@ -651,27 +720,29 @@
 
 </form>
 <!--Message Modal-->
-<div class="modal fade" id="modalMessage" style="background-color: lightblue;" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-   <div class="modal-dialog"  role="document">
-     <div class="modal-content" style="background-color: grey;color: white;width: 70%;">
-       <div class="modal-header">
-         <h5 class="modal-title" id="exampleModalLabel"></h5>
-         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-           <span aria-hidden="true">&times;</span>
-         </button>
-       </div>
-       <div class="modal-body" style="font-size: large;text-align: center;">
-        
-         {{message}}
-        
-       </div>
-       <div class="modal-footer">
-         <button type="button" class="btn btn-success" style="text-align: center;" data-dismiss="modal">CLOSE</button>
-        
-       </div>
-     </div>
+<div class="modal fade" id="modalMessage" style="background-color: lightblue;" tabindex="-1" role="dialog"
+   aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content" style="background-color: grey;color: white;width: 70%;">
+         <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body" style="font-size: large;text-align: center;">
+
+            {{message}}
+
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-success" style="text-align: center;"
+               data-dismiss="modal">CLOSE</button>
+
+         </div>
+      </div>
    </div>
- </div>
+</div>
 
 
 
@@ -694,120 +765,123 @@
          <div class="modal-body">
             <form [formGroup]="processForm">
                <div formGroupName="stationInfo">
-               <div class="row px-3">
-                  <div class="form-group col-md-4 smallpad opt">
-                     <label class="name1">Monitoring Type<span style="color:red;">*</span></label>
-                     <select class="form-control texbsize" formControlName="analyzerv2"
-                        [ngClass]="{'is-invalid':addProcesssubmitted}" required>
-                        <option value="">Select</option>
-                        <option selected>Ambient</option>
-                        <option>Emission</option>
-                        <option>Effluent</option>
-                     </select>
-                     <!-- <div *ngIf="addProcesssubmitted && stationInfo.analyzerv2.errors" class="invalid-feedback">
+                  <div class="row px-3">
+                     <div class="form-group col-md-4 smallpad opt">
+                        <label class="name1">Monitoring Type<span style="color:red;">*</span></label>
+                        <select class="form-control texbsize" formControlName="analyzerv2"
+                           [ngClass]="{'is-invalid':addProcesssubmitted}" (change)="stack($event.target.value) ">
+                           <option value="">Select</option>
+                           <option selected>Ambient</option>
+                           <option>Emission</option>
+                           <option>Effluent</option>
+                        </select>
+                        <!-- <div *ngIf="addProcesssubmitted && stationInfo.analyzerv2.errors" class="invalid-feedback">
                         <div *ngIf="stationInfo.analyzerv2.errors">*Monitoring Type Required</div>
                      </div> -->
-                  </div>
+                     </div>
 
-                  <div class="form-group col-md-4 smallpad">
-                     <label class="name1">Station Name<span style="color:red;">*</span></label>
-                     <input type="text" class="form-control texbsize" placeholder="Station Name"
-                        formControlName="stationId" [ngClass]="{'is-invalid':addProcesssubmitted }" required>
-                     <!-- <div *ngIf="addProcesssubmitted && processf.stationId.errors" class="invalid-feedback">
+                     <div class="form-group col-md-4 smallpad">
+                        <label class="name1">Station Name<span style="color:red;">*</span></label>
+                        <input type="text" class="form-control texbsize" placeholder="Station Name"
+                           formControlName="stationId" [ngClass]="{'is-invalid':addProcesssubmitted }" required>
+                        <!-- <div *ngIf="addProcesssubmitted && processf.stationId.errors" class="invalid-feedback">
                         <div *ngIf="processf.stationId.errors.required">*Station Name Required</div>
                      </div> -->
-                  </div>
+                     </div>
 
-                  <div class="form-group col-md-4 smallpad">
-                     <label class="name1">Process Attached<span style="color:red;">*</span></label>
-                     <input type="text" class="form-control texbsize" placeholder="Process Attached"
-                        formControlName="location" [ngClass]="{'is-invalid':addProcesssubmitted && processf.location.errors}" required>
-                     <!-- <div *ngIf="addProcesssubmitted && processf.location.errors" class="invalid-feedback">
+                     <div class="form-group col-md-4 smallpad">
+                        <label class="name1">Process Attached<span style="color:red;">*</span></label>
+                        <input type="text" class="form-control texbsize" placeholder="Process Attached"
+                           formControlName="location"
+                           [ngClass]="{'is-invalid':addProcesssubmitted }" required>
+                        <!-- <div *ngIf="addProcesssubmitted && processf.location.errors" class="invalid-feedback">
                         <div *ngIf="processf.location.errors.required">*Process Attached Required</div>
                      </div> -->
-                  </div>
+                     </div>
 
-                  <div class="form-group col-md-4 smallpad">
-                     <label class="name1">Vendor<span style="color:red;">*</span></label>
-                     <input type="text" class="form-control texbsize" placeholder="Vendor"
-                        formControlName="stationVendor" [ngClass]="{'is-invalid':addProcesssubmitted && processf.stationVendor.errors}"
-                        required>
-                     <!-- <div *ngIf="addProcesssubmitted && f.stationVendor.errors" class="invalid-feedback">
+                     <div class="form-group col-md-4 smallpad">
+                        <label class="name1">Vendor<span style="color:red;">*</span></label>
+                        <input type="text" class="form-control texbsize" placeholder="Vendor"
+                           formControlName="stationVendor"
+                           [ngClass]="{'is-invalid':addProcesssubmitted}" required>
+                        <!-- <div *ngIf="addProcesssubmitted && f.stationVendor.errors" class="invalid-feedback">
                         <div *ngIf="processf.stationVendor.errors.required">*vendor Required</div>
                      </div> -->
-                  </div>
+                     </div>
 
-                 
-                  <div class="form-group col-md-4 smallpad">
-                     <label class="name1">Latitude<span style="color:red;">*</span></label>
-                     <input type="text" class="form-control texbsize" placeholder="Latitude" formControlName="latitude"
-                        [ngClass]="{'is-invalid':addProcesssubmitted && f.latitude.errors}">
-                     <!-- <div *ngIf="addProcesssubmitted && processf.latitude.errors" class="invalid-feedback">
+
+                     <div class="form-group col-md-4 smallpad">
+                        <label class="name1">Latitude<span style="color:red;">*</span></label>
+                        <input type="text" class="form-control texbsize" placeholder="Latitude"
+                           formControlName="latitude"
+                           [ngClass]="{'is-invalid':addProcesssubmitted }">
+                        <!-- <div *ngIf="addProcesssubmitted && processf.latitude.errors" class="invalid-feedback">
                         <div *ngIf="processf.latitude.errors.required">*Latitude Required</div>
                      </div> -->
-                  </div>
-                  <div class="form-group col-md-4 smallpad">
-                     <label class="name1">Longitude<span style="color:red;">*</span></label>
-                     <input type="text" class="form-control texbsize" placeholder="Longitude"
-                        formControlName="longitute" [ngClass]="{'is-invalid':submitted && f.longitute.errors}">
-                     <div *ngIf="submitted && f.longitute.errors" class="invalid-feedback">
-                        <div *ngIf="f.longitute.errors.required">*Longitude Required</div>
                      </div>
-                  </div>
-                  <div class="form-group col-md-4 smallpad">
-                     <label class="name1">Measurment Principle</label>
-                     <input type="text" class="form-control texbsize" placeholder="Measurment Principle"
-                        formControlName="measurementPrinciple" [ngClass]="{}">
-                     <div *ngIf="submitted && f.measurementPrinciple.errors" class="invalid-feedback">
-                        <div *ngIf="f.measurementPrinciple.errors.required">*Measurement Principle Required</div>
+                     <div class="form-group col-md-4 smallpad">
+                        <label class="name1">Longitude<span style="color:red;">*</span></label>
+                        <input type="text" class="form-control texbsize" placeholder="Longitude"
+                           formControlName="longitute" [ngClass]="{'is-invalid':submitted && f.longitute.errors}">
+                        <div *ngIf="submitted && f.longitute.errors" class="invalid-feedback">
+                           <div *ngIf="f.longitute.errors.required">*Longitude Required</div>
+                        </div>
+                     </div>
+                     <div class="form-group col-md-4 smallpad">
+                        <label class="name1">Measurment Principle</label>
+                        <input type="text" class="form-control texbsize" placeholder="Measurment Principle"
+                           formControlName="measurementPrinciple" [ngClass]="{}">
+                        <div *ngIf="submitted && f.measurementPrinciple.errors" class="invalid-feedback">
+                           <div *ngIf="f.measurementPrinciple.errors.required">*Measurement Principle Required</div>
+                        </div>
+                     </div>
+
+                     <div class="form-group col-md-6 smallpad">
+                        <label class="name1">Remark<span style="color:red;">*</span></label>
+                        <textarea class="form-control tarea texbsize" placeholder="Remark"
+                           formControlName="remarks">  </textarea>
                      </div>
                   </div>
 
-                  <div class="form-group col-md-6 smallpad">
-                     <label class="name1">Remark<span style="color:red;">*</span></label>
-                     <textarea class="form-control tarea texbsize" placeholder="Remark"
-                        formControlName="remarks">  </textarea>
+<div id="stack_123" style="display: none;">
+                  <h2 class="header lighter blue">Stack</h2>
+                  <div class="row px-3">
+                     <div class="form-group col-md-4 smallpad">
+                        <label class="name1">Stack Height</label>
+                        <input type="text" class="form-control texbsize" placeholder="Stack Height"
+                           formControlName="stackHeight" [ngClass]="{}">
+                        <div *ngIf="submitted && f.stackHeight.errors" class="invalid-feedback">
+                           <div *ngIf="f.stackHeight.errors.required">*Stack Height Required</div>
+                        </div>
+                     </div>
+                     <div class="form-group col-md-4 smallpad">
+                        <label class="name1">Stack Diameter<span style="color:red;">*</span></label>
+                        <input type="text" class="form-control texbsize" placeholder="Stack Diameter"
+                           formControlName="stackDiameter" [ngClass]="{}">
+                        <div *ngIf="submitted && f.stackDiameter.errors" class="invalid-feedback">
+                           <div *ngIf="f.stackDiameter.errors.required">*Stack Diameter Required</div>
+                        </div>
+                     </div>
+                     <div class="form-group col-md-4 smallpad">
+                        <label class="name1">Stack Velocity<span style="color:red;">*</span></label>
+                        <input type="text" class="form-control texbsize" placeholder="Stack Velocity"
+                           formControlName="stackVelocity" [ngClass]="{}">
+                        <div *ngIf="submitted && f.stackVelocity.errors" class="invalid-feedback">
+                           <div *ngIf="f.stackVelocity.errors.required">*Stack Velocity Required</div>
+                        </div>
+                     </div>
+                     <div class="form-group col-md-6 smallpad">
+                        <label class="name1">Flue Gas Discharge Rate M3/Hr<span style="color:red;">*</span></label>
+                        <input type="text" class="form-control texbsize" placeholder="Flue Gas Discharge Rate M3/Hr"
+                           formControlName="gasDischargeRate" [ngClass]="{}">
+                        <div *ngIf="submitted && f.gasDischargeRate.errors" class="invalid-feedback">
+                           <div *ngIf="f.gasDischargeRate.errors.required">*Flue Gas Discharge Rate M3/Hr Required</div>
+                        </div>
+                     </div>
+
                   </div>
                </div>
-
-
-               <h2 class="header lighter blue">Stack</h2>
-               <div class="row px-3">
-                  <div class="form-group col-md-4 smallpad">
-                     <label class="name1">Stack Height</label>
-                     <input type="text" class="form-control texbsize" placeholder="Stack Height"
-                        formControlName="stackHeight" [ngClass]="{}">
-                     <div *ngIf="submitted && f.stackHeight.errors" class="invalid-feedback">
-                        <div *ngIf="f.stackHeight.errors.required">*Stack Height Required</div>
-                     </div>
-                  </div>
-                  <div class="form-group col-md-4 smallpad">
-                     <label class="name1">Stack Diameter<span style="color:red;">*</span></label>
-                     <input type="text" class="form-control texbsize" placeholder="Stack Diameter"
-                        formControlName="stackDiameter" [ngClass]="{}">
-                     <div *ngIf="submitted && f.stackDiameter.errors" class="invalid-feedback">
-                        <div *ngIf="f.stackDiameter.errors.required">*Stack Diameter Required</div>
-                     </div>
-                  </div>
-                  <div class="form-group col-md-4 smallpad">
-                     <label class="name1">Stack Velocity<span style="color:red;">*</span></label>
-                     <input type="text" class="form-control texbsize" placeholder="Stack Velocity"
-                        formControlName="stackVelocity" [ngClass]="{}">
-                     <div *ngIf="submitted && f.stackVelocity.errors" class="invalid-feedback">
-                        <div *ngIf="f.stackVelocity.errors.required">*Stack Velocity Required</div>
-                     </div>
-                  </div>
-                  <div class="form-group col-md-6 smallpad">
-                     <label class="name1">Flue Gas Discharge Rate M3/Hr<span style="color:red;">*</span></label>
-                     <input type="text" class="form-control texbsize" placeholder="Flue Gas Discharge Rate M3/Hr"
-                        formControlName="gasDischargeRate" [ngClass]="{}">
-                     <div *ngIf="submitted && f.gasDischargeRate.errors" class="invalid-feedback">
-                        <div *ngIf="f.gasDischargeRate.errors.required">*Flue Gas Discharge Rate M3/Hr Required</div>
-                     </div>
-                  </div>
-                 
                </div>
-            </div>
                <h4 class=" header  lighter blue" style="margin: 0 0 18px 0; ">Parameter
                   <button type="submit" class="btn-mini btn-success" tooltip="Add Parameter" (click)=addParameter()
                      autoPlacement="true"><i class="fa fa-plus"></i></button></h4>
@@ -821,81 +895,57 @@
                            <button type="submit" class="btn-mini btn-success" tooltip="Remove Parameter"
                               (click)=removeParameter(i) autoPlacement="true"><i class="fa fa-minus"></i></button>
                            <select class="form-control texbsize1" formControlName="paramter"
-                              [ngClass]="{'is-invalid':addProcesssubmitted && processf.param.paramter.errors}">
-                              <option value="" >Select an Option</option>
+                              [ngClass]="{'is-invalid':addProcesssubmitted }">
+                              <option value="">Select an Option</option>
                               <!-- <option value=""></option> -->
-                              <option value="pH">pH</option>
-                              <option value="Water_Temperature">Water_Temperature</option>
-                              <option value="tss">tss</option>
-                              <option value="Totalizer Flow">Totalizer Flow</option>
-                              <option value="Phenol">Phenol</option>
-                              <option value="Water_Flow">Water_Flow</option>
-                              <option value="Conductivity">Conductivity</option>
-                              <option value="COD">COD</option>
-                              <option value="Ammonia">Ammonia</option>
-                              <option value="Camera">Camera</option>
-                              <option value="Temperature">Temperature</option>
-                              <option value="PM">PM</option>
-                              <option value="Nickel">Nickel</option>
-                              <option value="NH3">NH3</option>
-                              <option value="BOD">BOD</option>
-                              <option value="Ammonical Nitrogen">Ammonical Nitrogen</option>
-                              <option value="TOC">TOC</option>
-                              <option value="TURBIDITY">TURBIDITY</option>
-                              <option value="Effluent">Effluent</option>
-                              <option value="TSS">TSS</option>
-                              <option value="water_Flow_2_HortiCulture">water_Flow_2_HortiCulture</option>
-                              <option value="bod">bod</option>
-                              <option value="TDS">TDS</option>
-                              <option value="Arsenic">Arsenic</option>
-                              <option value="Flow">Flow</option>
+                              <option *ngFor="let parameterType of types$" [value]="parameterType.Category">{{parameterType.Category}}</option>
                            </select>
-                           <div *ngIf="addProcesssubmitted && f.paramter.errors" class="invalid-feedback">
+                           <!-- <div *ngIf="addProcesssubmitted " class="invalid-feedback">
                               <div *ngIf="processf.i.paramter.errors.required">*Parameter Required</div>
-                           </div>
+                           </div> -->
                         </div>
                         <div class="form-group col-md-4 smallpad">
                            <label class="name1">Analyser Make<span style="color:red;">*</span></label>
                            <input type="text" class="form-control texbsize" placeholder="Analyser Make"
                               formControlName="analyserMake"
-                              [ngClass]="{'is-invalid':submitted && f.analyserMake.errors}">
-                           <div *ngIf="submitted && f.analyserMake.errors" class="invalid-feedback">
-                              <div *ngIf="f.analyserMake.errors.required">*Analyser Make Required</div>
-                           </div>
+                              [ngClass]="{'is-invalid':submitted }">
+                           <!-- <div *ngIf="submitted " class="invalid-feedback">
+                               <div *ngIf="f.analyserMake.errors.required">*Analyser Make Required</div> 
+                           </div> -->
                         </div>
                         <div class="form-group col-md-4 smallpad">
                            <label class="name1">Analyser Model<span style="color:red;">*</span></label>
                            <input type="text" class="form-control texbsize" placeholder="Analyser Model"
                               formControlName="analyserModel"
-                              [ngClass]="{'is-invalid':submitted && f.analyserModel.errors}">
-                           <div *ngIf="submitted && f.analyserModel.errors" class="invalid-feedback">
-                              <div *ngIf="f.analyserModel.errors.required">*Analyzer Model Required</div>
-                           </div>
+                              [ngClass]="{'is-invalid':submitted }">
+                          <!-- <div *ngIf="submitted " class="invalid-feedback">
+                              <div *ngIf="f.analyserModel.errors.required">*Analyzer Model Required</div> 
+                           </div> -->
                         </div>
                         <div class="form-group col-md-4 smallpad">
                            <label class="name1">Analyser Serial Number<span style="color:red;">*</span></label>
                            <input type="text" class="form-control texbsize" placeholder="Analyser Serial Number"
                               formControlName="analyserSerialNo"
-                              [ngClass]="{'is-invalid':submitted && f.analyserSerialNo.errors}">
-                           <div *ngIf="submitted && f.analyserSerialNo.errors" class="invalid-feedback">
-                              <div *ngIf="f.analyserSerialNo.errors.required">*Analyser Serial Number Required</div>
+                              [ngClass]="{'is-invalid':submitted }">
+                           <div *ngIf="submitted " class="invalid-feedback">
+                              <!-- <div *ngIf="f.analyserSerialNo.errors.required">*Analyser Serial Number Required</div> -->
                            </div>
                         </div>
                         <div class="form-group col-md-4 smallpad">
                            <label class="name1">Device IMEI Number</label>
                            <input type="text" class="form-control texbsize" placeholder="Device IMEI Number"
                               formControlName="devidceIMEINo" [ngClass]="{}">
-                           <div *ngIf="submitted && f.devidceIMEINo.errors" class="invalid-feedback">
+                           <!-- <div *ngIf="submitted && f.devidceIMEINo.errors" class="invalid-feedback">
                               <div *ngIf="f.devidceIMEINo.errors.required">*Device IMEI Number Required</div>
-                           </div>
+                           </div> -->
                         </div>
                         <div class="form-group col-md-4 smallpad">
                            <label class="name1">Mac Id</label>
                            <input type="text" class="form-control texbsize" placeholder="Mac Id" formControlName="macId"
                               [ngClass]="{}">
-                           <div *ngIf="submitted && f.macId.errors" class="invalid-feedback">
+                           <!-- <div *ngIf="submitted && f.macId.errors" class="invalid-feedback">
                               <div *ngIf="f.macId.errors.required">*MAC Id Required</div>
-                           </div>
+                           </div> -->
                         </div>
                         <div class="form-group col-md-4 smallpad">
                            <label class="name1">Measurment Range<span style="color:red;">*</span></label>
@@ -903,48 +953,48 @@
                               <div>
                                  <input type="number" class="form-control" placeholder="min"
                                     formControlName="measurmentMin"
-                                    [ngClass]="{'is-invalid':submitted && f.measurmentMin.errors}">
-                                 <div *ngIf="submitted && f.measurmentMin.errors" class="invalid-feedback">
+                                    [ngClass]="{'is-invalid':submitted }">
+                                 <!-- <div *ngIf="submitted && f.measurmentMin.errors" class="invalid-feedback">
                                     <div *ngIf="f.measurmentMin.errors.required">*Measurment MIN Range Required</div>
-                                 </div>
+                                 </div> -->
                               </div>
                            </div>
                         </div>
                         <div class="form-group col-md-4 smallpad">
                            <input type="number" class="form-control" style="margin-top: 28px;" placeholder="max"
                               formControlName="measurmentMax"
-                              [ngClass]="{'is-invalid':submitted && f.measurmentMax.errors}">
-                           <div *ngIf="submitted && f.measurmentMax.errors" class="invalid-feedback">
+                              [ngClass]="{'is-invalid':submitted }">
+                           <!-- <div *ngIf="submitted && f.measurmentMax.errors" class="invalid-feedback">
                               <div *ngIf="f.measurmentMax.errors.required">*Measurment Max Range Required</div>
-                           </div>
+                           </div> -->
                         </div>
                         <div class="form-group col-md-4 smallpad opt">
                            <label class="name1">Unit<span style="color:red;">*</span></label>
                            <select class="form-control texbsize" formControlName="unit"
-                              [ngClass]="{'is-invalid':submitted && f.unit.errors}">
+                              [ngClass]="{'is-invalid':submitted}">
                               <option value="" selected>Select</option>
                               <option>Nm3/sec</option>
                               <option>LPH</option>
                               <option>Degree</option>
                               <option>W/m2</option>
                            </select>
-                           <div *ngIf="submitted && f.unit.errors" class="invalid-feedback">
+                           <!-- <div *ngIf="submitted && f.unit.errors" class="invalid-feedback">
                               <div *ngIf="f.unit.errors.required">*Unit Required</div>
-                           </div>
+                           </div> -->
                         </div>
                         <div class="form-group col-md-4 smallpad opt">
                            <label class="name1">Certification<span style="color:red;">*</span></label>
                            <select class="form-control texbsize" formControlName="certification"
-                              [ngClass]="{'is-invalid':addProcesssubmitted && processf.certification.errors}" required>
+                              [ngClass]="{'is-invalid':addProcesssubmitted }" required>
                               <option value="" selected>--Select Certification--</option>
                               <option value="TUV">TUV</option>
                               <option value="MCERTS">MCERTS</option>
                               <option value="USEPA">USEPA</option>
                               <option value="Others">Others</option>
                            </select>
-                           <div *ngIf="addProcesssubmitted && processf.certification.errors" class="invalid-feedback">
+                           <!-- <div *ngIf="addProcesssubmitted && processf.certification.errors" class="invalid-feedback">
                               <div *ngIf="processf.certification.errors.required">*certification Required</div>
-                           </div>
+                           </div> -->
                         </div>
                      </div>
                   </div>
@@ -955,8 +1005,8 @@
 
          <!-- Modal footer -->
          <div class="modal-footer">
-            <button type="button" class="btn btn-success btns col-sm-3" (click)="addProcess()" >
-               <i class="fa fa-plus"></i> ADD PROCESS</button>
+            <button type="button" class="btn btn-success btns col-sm-3" data-dismiss="modal" (click)="addProcess()">
+               <i class="fa fa-check"></i> Done</button>
          </div>
 
       </div>
