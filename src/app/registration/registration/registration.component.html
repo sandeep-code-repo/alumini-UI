@@ -38,7 +38,7 @@
                <div class="form-group col-sm-3 smallpad opt">
                   <label class="name1">Industry Category</label>
                   <select class="form-control texbsize" formControlName="category" [ngClass]="{  }">
-                     <option value="" selected>Select</option>
+                     <option selected>Select</option>
                      <option value="Non 17 categories">Non 17 categories</option>
                      <option value="Public Location">Public Location</option>
                      <option value="Rivers">Rivers</option>
@@ -78,7 +78,7 @@
                      <option value="Iron Ore Mines">Iron Ore Mines</option>
                      <option value="Aluminium Smelter">Aluminium Smelter</option>
                   </select>
-                  <!-- <div *ngIf="submitted && plantInfof.category.errors" class="invalid-feedback">
+                 <!-- <div *ngIf="submitted && plantInfof.category.errors" class="invalid-feedback">
                      <div *ngIf="plantInfof.category.errors.required">Select Any One</div>
                   </div> -->
                </div>
@@ -96,54 +96,50 @@
                <div class="form-group col-sm-3 smallpad">
                   <label class="name1">Regional Office<span>*</span></label>
                   <input class="form-control texbsize" type="text" formControlName="roUser"
-                     placeholder="Enter Regional Office"
-                     [ngClass]="{ 'is-invalid':submitted && plantInfof.roUser.errors }">
-                  <div *ngIf="submitted && plantInfof.roUser.errors" class="invalid-feedback">
-                     <div *ngIf="plantInfof.roUser.errors.required">*Regional Office required
+                     placeholder="Enter Regional Office" [ngClass]="{}">
+                     <div *ngIf="submitted && plantInfof.roUser.errors" class="invalid-feedback">
+                        <div *ngIf="plantInfof.roUser.errors.required">*roUser required
+                        </div>
                      </div>
-                  </div>
                </div>
 
                <div class="form-group col-sm-3 smallpad">
                   <label class="name1">No.of CAAQMS stations</label>
                   <input class="form-control texbsize" type="text" formControlName="caaqmsStation"
-                     placeholder="No. of CAAQME Structure"
-                     [ngClass]="{'is-invalid':submitted && plantInfof.caaqmsStation.errors}">
-                  <div *ngIf="submitted && plantInfof.caaqmsStation.errors" class="invalid-feedback">
-                     <div *ngIf="plantInfof.caaqmsStation.errors.pattern">*Invalid Input
-                     </div>
-                  </div>
+                     placeholder="No. of CAAQME Structure" [ngClass]="{}">
+                     <!-- <div *ngIf="submitted && plantInfof.caaqmsStation.errors" class="invalid-feedback">
+                        <div *ngIf="plantInfof.caaqmsStation.errors.required">*caaqmsStation required
+                        </div>
+                     </div> -->
                </div>
 
                <div class="form-group col-md-3 smallpad">
                   <label class="name1">No. of CEMS stations</label>
                   <input class="form-control texbsize" type="text" formControlName="cemsStation"
-                     placeholder="No. of CEMS Structure"
-                     [ngClass]="{ 'is-invalid':submitted && plantInfof.cemsStation.errors}">
-                  <div *ngIf="submitted && plantInfof.cemsStation.errors" class="invalid-feedback">
-                     <div *ngIf="plantInfof.cemsStation.errors.pattern">*Invalid Input
-                     </div>
-                  </div>
+                     placeholder="No. of CEMC Structure" [ngClass]="{ }">
+                     <!-- <div *ngIf="submitted && plantInfof.cemsStation.errors" class="invalid-feedback">
+                        <div *ngIf="plantInfof.cemsStation.errors.required">*cemsStation required
+                        </div>
+                     </div> -->
                </div>
                <div class="form-group col-sm-3 smallpad">
                   <label class="name1">No. of CEQMS stations </label>
                   <input class="form-control texbsize" type="text" formControlName="ceqmsStation"
-                     placeholder="No. of CEMES"
-                     [ngClass]="{  'is-invalid':submitted && plantInfof.ceqmsStation.errors }">
-                  <div *ngIf="submitted && plantInfof.ceqmsStation.errors" class="invalid-feedback">
-                     <div *ngIf="plantInfof.ceqmsStation.errors.pattern">*Invalid Input
-                     </div>
-                  </div>
+                     placeholder="No. of CEMES" [ngClass]="{  }">
+                   <!-- <div *ngIf="submitted && plantInfof.ceqmsStation.errors" class="invalid-feedback">
+                        <div *ngIf="plantInfof.ceqmsStation.errors.required">*ceqmsStation required
+                        </div>
+                     </div> -->
                </div>
             </div>
             <div class="row" formGroupName="userInfoMapper">
                <div class="form-group col-sm-3 smallpad" formGroupName="userInfo">
                   <label class="name1">Plant Id(User Name) <span>*</span></label>
                   <input class="form-control texbsize" class="form-control"
-                     [ngClass]="{ 'is-invalid':submitted && userInfof.userName.errors }" type="text"
-                     placeholder="Enter UserName" formControlName="userName">
+                     [ngClass]="{ 'is-invalid':submitted && userInfof.userName.errors }" type="text" placeholder="Enter UserName"
+                     formControlName="userName">
                   <div *ngIf="submitted && userInfof.userName.errors" class="invalid-feedback">
-                     <div *ngIf="userInfof.userName.errors.required">*UserName required
+                     <div *ngIf="userInfof.userName.errors.required">*userName required
                      </div>
                   </div>
                </div>
@@ -155,9 +151,13 @@
                   <div *ngIf="submitted && userInfof.password.errors" class="invalid-feedback">
                      <div *ngIf="userInfof.password.errors.required"> *Password Required
                      </div>
-                     <div *ngIf="userInfof.password.errors.pattern">*Must be at least 8 characters,contain at least 1
-                        number,1 Letter in capital case,1 Letter in small case,1 special Character</div>
-
+                     <div *ngIf="userInfof.password.errors.pattern">*Must be at least 8 characters</div>
+                     <div *ngIf="userInfof.password.errors.pattern">*Must contain at least 1 number</div>
+                     <div *ngIf="userInfof.password.errors.pattern">*Must contain at least  1 Letter in capital case</div>
+                     <div *ngIf="userInfof.password.errors.pattern">*Must contain at least 1 Letter in small case </div>
+                     <div *ngIf="userInfof.password.errors.pat">*Must contain at least 1 special Character</div>
+                     
+                    
                   </div>
 
 
@@ -168,7 +168,7 @@
                   <label class="name1">Role </label>
                   <select class="form-control texbsize" formControlName="roleId">
 
-                     <option value="" selected>Select</option>
+                     <option value="select" selected>Select</option>
                      <option value="3">
                         User
                      </option>
@@ -197,8 +197,7 @@
                               placeholder="Enter Person Name"
                               [ngClass]="{ 'is-invalid': submitted && userInfof.authPerson.errors }">
                            <i _ngcontent-hel-c18="" class="fas fa-user fa-fw"></i>
-                           <div style="top: 28px;" *ngIf="submitted && userInfof.authPerson.errors"
-                              class="invalid-feedback">
+                           <div style="top: 28px;" *ngIf="submitted && userInfof.authPerson.errors" class="invalid-feedback">
                               <div *ngIf="userInfof.authPerson.errors.required">*person Name Required</div>
                            </div>
                         </div>
@@ -224,8 +223,8 @@
                            <div style="top: 28px;" *ngIf="submitted && userInfof.mobNo.errors" class="invalid-feedback">
                               <div *ngIf="userInfof.mobNo.errors.required">*Mobile Number Required</div>
                               <div *ngIf="userInfof.mobNo.errors.pattern">*Mobile Number should be 10 digit</div>
-
-
+                              <div *ngIf="userInfof.mobNo.errors.pattern">* Valid Mobile Number Required</div>
+                              
                            </div>
                            <i _ngcontent-hel-c18="" class="fas fa-phone-alt fa-fw" style="color:grey;"></i>
                         </div>
@@ -233,8 +232,7 @@
                      <div class="col-sm-6 nopad">
                         <div class="fontpassword ">
                            <input class="form-control mb-2  texbsize1" type="text" formControlName="email"
-                              placeholder="Enter Email"
-                              [ngClass]="{ 'is-invalid': submitted  && userInfof.email.errors }">
+                              placeholder="Enter Email" [ngClass]="{ 'is-invalid': submitted  && userInfof.email.errors }">
                            <div style="top: 28px;" *ngIf="submitted && userInfof.email.errors" class="invalid-feedback">
                               <div *ngIf="submitted && userInfof.email.errors" class="is-invalid">
                                  <div *ngIf="userInfof.email.errors.required">*Email equired </div>
@@ -253,7 +251,7 @@
                         <div class="fontpassword ">
                            <input class="form-control texbsize1 mb-2" type="text" formControlName="secdPerson"
                               placeholder="Enter Person Name">
-                           <!---- <div *ngIf="submitted && userInfof.secdPerson.errors" class="invalid-feedback">
+                             <!---- <div *ngIf="submitted && userInfof.secdPerson.errors" class="invalid-feedback">
                                  <div *ngIf="userInfof.secdPerson.errors.required">*person Name required
                                  </div>
                               </div> -->
@@ -266,7 +264,7 @@
                      <div class="col-sm-6 nopad">
                         <input class="form-control texbsize mb-2" type="text" formControlName="secdPersonDesig"
                            placeholder="Enter Designation">
-                        <!----  <div style="top: 28px;" *ngIf="submitted && userInfof.secdPersonDesig.errors" class="invalid-feedback">
+                      <!----  <div style="top: 28px;" *ngIf="submitted && userInfof.secdPersonDesig.errors" class="invalid-feedback">
 
                           <div *ngIf="submitted && userInfof.secdPersonDesig.errors" class="invalid-feedback">
                               <div *ngIf="userInfof.secdPersonDesig.errors.required">*Designation required
@@ -282,24 +280,20 @@
                            <input class="form-control mb-2  texbsize1" type="text" formControlName="secdPersonMob"
                               placeholder="Enter Phone No"
                               [ngClass]="{ 'is-invalid': submitted && userInfof.secdPersonMob.errors }">
-                           <div style="top: 28px;" *ngIf="submitted && userInfof.secdPersonMob.errors"
-                              class="invalid-feedback">
-                              <div *ngIf="userInfof.secdPersonMob.errors.required">*Mobile Number Required</div>
-                              <div *ngIf="userInfof.secdPersonMob.errors.pattern">*Mobile Number should be 10 digit
+                              <div style="top: 28px;" *ngIf="submitted && userInfof.secdPersonMob.errors" class="invalid-feedback">
+                                 <div *ngIf="userInfof.secdPersonMob.errors.required">*Mobile Number Required</div>
+                                 <div *ngIf="userInfof.secdPersonMob.errors.pattern">*Mobile Number should be 10 digit</div>
+                                 <div *ngIf="userInfof.secdPersonMob.errors.pattern">* Valid Mobile Number Required</div>
+                                 
                               </div>
-
-
-                           </div>
                            <i _ngcontent-hel-c18="" class="fas fa-phone-alt fa-fw" style="color:grey;"></i>
                         </div>
                      </div>
                      <div class="col-sm-6 nopad">
                         <div class="fontpassword">
                            <input class="form-control mb-2 texbsize1" type="text" formControlName="secdEmail"
-                              placeholder="Enter Email"
-                              [ngClass]="{ 'is-invalid': submitted && userInfof.secdEmail.errors }">
-                           <div style="top: 28px;" *ngIf="submitted && userInfof.secdEmail.errors"
-                              class="invalid-feedback">
+                              placeholder="Enter Email" [ngClass]="{ 'is-invalid': submitted && userInfof.secdEmail.errors }">
+                           <div style="top: 28px;" *ngIf="submitted && userInfof.secdEmail.errors" class="invalid-feedback">
                               <div *ngIf="userInfof.secdEmail.errors.required">* Email Required</div>
                               <div *ngIf="userInfof.secdEmail.errors.pattern">*Valid Email Required</div>
                            </div>
@@ -363,8 +357,8 @@
                   <div *ngIf="submitted && userInfof.pin.errors" class="invalid-feedback">
                      <div *ngIf="userInfof.pin.errors.required">*Pin Required</div>
                      <div *ngIf="userInfof.pin.errors.pattern">*Pin Number should be 6 digit</div>
-                     <!-- <div *ngIf="userInfof.pin.errors.pattern">* Valid Pin Number Required</div> -->
-
+                     <div *ngIf="userInfof.pin.errors.pattern">* Valid Pin Number Required</div>
+                     
                   </div>
                </div>
             </div>
@@ -372,6 +366,105 @@
       </div>
 
 
+
+      <!-- <div class="mt-3" >
+      <div class="container  px-0">
+         <h2 class="lighter blue mt-4 headg">
+            User Info
+         </h2>
+      </div>
+
+      <div class="container forms" formGroupName="userInfoMapper">
+         <div class="row d-flex justify-content-between" formGroupName="userInfo">
+            <div class="form-group col-sm-3 smallpad">
+               <label class="name1">Plant Id(User Name) <span>*</span></label>
+               <input class="form-control texbsize" class="form-control" type="text" placeholder="Enter Vender"
+                   formControlName="userName" >
+            </div>
+
+            <div class="form-group col-sm-3 smallpad">
+               <label class="name1">Password <span style="color:red;">*</span></label>
+               <input class="form-control texbsize" class="form-control"
+                  [ngClass]="{ 'is-invalid':submitted && f.password.errors }" type="text" placeholder="Enter password"
+                  formControlName="password">
+               <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                  <div *ngIf="f.password.errors.required"> *Password is Required
+                  </div>
+                  <label class="col"
+                     [ngClass]="add_industry.controls['password'].hasError('required') || add_industry.controls['password'].hasError('minlength')  ? 'text-danger' : 'text-success'">
+                     <i class="material-icons">
+                        {{ add_industry.controls['password'].hasError('required') ||
+  add_industry.controls['password'].hasError('minlength') ? 'cancel' :
+  'check_circle' }}
+                     </i>
+                     Must be at least 8 characters!
+                  </label>
+                  <label class="col"
+                     [ngClass]="add_industry.controls['password'].hasError('required') || add_industry.controls['password'].hasError('hasNumber')  ? 'text-danger' : 'text-success'">
+                     <i class="material-icons">
+                        {{ add_industry.controls['password'].hasError('required') ||
+  add_industry.controls['password'].hasError('hasNumber') ? 'cancel' :
+  'check_circle' }}
+                     </i>
+                     Must contain at least 1 number!
+                  </label>
+                  <label class="col"
+                     [ngClass]="add_industry.controls['password'].hasError('required') || add_industry.controls['password'].hasError('hasCapitalCase')  ? 'text-danger' : 'text-success'">
+                     <i class="material-icons">
+                        {{ add_industry.controls['password'].hasError('required') ||
+  add_industry.controls['password'].hasError('hasCapitalCase') ? 'cancel' :
+  'check_circle' }}
+                     </i>
+                     Must contain at least 1 in Capital Case!
+                  </label>
+                  <label class="col"
+                     [ngClass]="add_industry.controls['password'].hasError('required') || add_industry.controls['password'].hasError('hasSmallCase')  ? 'text-danger' : 'text-success'">
+                     <i class="material-icons">
+                        {{ add_industry.controls['password'].hasError('required') ||
+  add_industry.controls['password'].hasError('hasSmallCase') ? 'cancel' :
+  'check_circle' }}
+                     </i>
+                     Must contain at least 1 Letter in Small Case!
+                  </label>
+                  <label class="col"
+                     [ngClass]="add_industry.controls['password'].hasError('required') || add_industry.controls['password'].hasError('hasSpecialCharacters') ? 'text-danger' : 'text-success'">
+                     <i class="material-icons">
+                        {{ add_industry.controls['password'].hasError('required') ||
+  add_industry.controls['password'].hasError('hasSpecialCharacters') ? 'cancel' :
+  'check_circle' }}
+                     </i>
+                     Must contain at least 1 Special Character!
+                  </label>
+               </div>
+            </div>
+
+            <div class="form-group col-sm-3 smallpad opt">
+               <label class="name1">Role</label>
+               <select class="form-control texbsize" formControlName="roleId" [ngClass]="{}">
+
+                  <option selected>Select</option>
+                  <option value="3">
+                     User
+                  </option>
+                  <option value="1">
+                     SuperAdmin
+                  </option>
+                  <option value="2">
+                     Admin
+                  </option>
+
+               </select>
+               <div *ngIf="submitted && f.role.errors" class="invalid-feedback">
+                  <div *ngIf="f.district.errors.required">*Role Required</div>
+               </div>
+            </div>
+
+
+
+         </div>
+      </div>
+
+   </div> -->
    </div>
    <div class="container px-0">
       <h2 class="lighter blue mt-4 headg">
@@ -438,37 +531,37 @@
          </div>
       </div>
       <div *ngIf="station.stationInfo.analyzerv2==='Emission'" class="stackDisplay">
-         <div class="row">
-            <h4 class=" header  lighter blue inb" style="margin: 0 0 18px 0;">Stack</h4>
-         </div>
-         <div class="row">
-            <div class="form-group col-md-2 smallpad">
-               <label class="name1">Stack Height</label>
-               <input type="text" class="form-control texbsize" placeholder="Stack Height"
-                  value="{{station.stationInfo.stackHeight}}" readonly>
-
-            </div>
-            <div class="form-group col-md-2 smallpad">
-               <label class="name1">Stack Diameter<span style="color:red;">*</span></label>
-               <input type="text" class="form-control texbsize" placeholder="Stack Diameter"
-                  value="{{station.stationInfo.stackDiameter}}" readonly>
-
-            </div>
-            <div class="form-group col-md-2 smallpad">
-               <label class="name1">Stack Velocity<span style="color:red;">*</span></label>
-               <input type="text" class="form-control texbsize" placeholder="Stack Velocity"
-                  value="{{station.stationInfo.stackVelocity}}" readonly>
-
-            </div>
-            <div class="form-group col-md-3 smallpad">
-               <label class="name1">Flue Gas Discharge Rate M3/Hr<span style="color:red;">*</span></label>
-               <input type="text" class="form-control texbsize" placeholder="Flue Gas Discharge Rate M3/Hr"
-                  value="{{station.stationInfo.gasDischargeRate}}" readonly>
-
-            </div>
-
-         </div>
+     <div class="row">
+         <h4 class=" header  lighter blue inb" style="margin: 0 0 18px 0;">Stack</h4>
       </div>
+      <div class="row">
+         <div class="form-group col-md-2 smallpad">
+            <label class="name1">Stack Height</label>
+            <input type="text" class="form-control texbsize" placeholder="Stack Height" value="{{station.stationInfo.stackHeight}}"
+               readonly>
+
+         </div>
+         <div class="form-group col-md-2 smallpad">
+            <label class="name1">Stack Diameter<span style="color:red;">*</span></label>
+            <input type="text" class="form-control texbsize" placeholder="Stack Diameter"
+               value="{{station.stationInfo.stackDiameter}}" readonly>
+
+         </div>
+         <div class="form-group col-md-2 smallpad">
+            <label class="name1">Stack Velocity<span style="color:red;">*</span></label>
+            <input type="text" class="form-control texbsize" placeholder="Stack Velocity"
+               value="{{station.stationInfo.stackVelocity}}" readonly>
+
+         </div>
+         <div class="form-group col-md-3 smallpad">
+            <label class="name1">Flue Gas Discharge Rate M3/Hr<span style="color:red;">*</span></label>
+            <input type="text" class="form-control texbsize" placeholder="Flue Gas Discharge Rate M3/Hr"
+               value="{{station.stationInfo.gasDischargeRate}}" readonly>
+
+         </div>
+         
+      </div> 
+   </div>
       <div class="row">
          <h4 class=" header  lighter blue inb" style="margin: 0 0 18px 0; ">Parameter</h4>
       </div>
@@ -549,7 +642,7 @@
 
 
    <div class="container mt-5">
-
+     
 
       <div class="row">
          <!-- <div class=" form-group col-md-2 ml-auto alert alert-success" *ngIf=message>{{message}}</div> -->
@@ -618,46 +711,44 @@
                      <div class="form-group col-md-4 smallpad opt">
                         <label class="name1">Monitoring Type<span style="color:red;">*</span></label>
                         <select class="form-control texbsize" formControlName="analyzerv2"
-                           [ngClass]="{'is-invalid':addProcesssubmitted && stationinfoV.analyzerv2.errors}"
-                           (change)="stack($event.target.value)" required>
+                           [ngClass]="{'is-invalid':addProcesssubmitted && stationinfoV.analyzerv2.errors}" (change)="stack($event.target.value)" required>
                            <option value="">Select</option>
                            <option selected>Ambient</option>
                            <option>Emission</option>
                            <option>Effluent</option>
                         </select>
-                        <div *ngIf="addProcesssubmitted && stationinfoV.analyzerv2.errors" class="invalid-feedback">
-                           <div *ngIf="stationinfoV.analyzerv2.errors">*Monitoring Type Required</div>
-                        </div>
+                         <div *ngIf="addProcesssubmitted && stationinfoV.analyzerv2.errors" class="invalid-feedback">
+                        <div *ngIf="stationinfoV.analyzerv2.errors">*Monitoring Type Required</div>
+                     </div> 
                      </div>
 
                      <div class="form-group col-md-4 smallpad">
                         <label class="name1">Station Name<span style="color:red;">*</span></label>
                         <input type="text" class="form-control texbsize" placeholder="Station Name"
-                           formControlName="stationId"
-                           [ngClass]="{'is-invalid':addProcesssubmitted && stationinfoV.stationId.errors }" required>
+                           formControlName="stationId" [ngClass]="{'is-invalid':addProcesssubmitted && stationinfoV.stationId.errors }" required>
                         <div *ngIf="addProcesssubmitted && stationinfoV.stationId.errors" class="invalid-feedback">
-                           <div *ngIf="stationinfoV.stationId.errors.required">*Station Name Required</div>
-                        </div>
+                        <div *ngIf="stationinfoV.stationId.errors.required">*Station Name Required</div>
                      </div>
-                     <div class="form-group col-md-4 smallpad">
+                     </div>
+                      <div class="form-group col-md-4 smallpad">
                         <label class="name1">Process Attached<span style="color:red;">*</span></label>
                         <input type="text" class="form-control texbsize" placeholder="Process Attached"
                            formControlName="location"
                            [ngClass]="{'is-invalid':addProcesssubmitted && stationinfoV.location.errors }" required>
                         <div *ngIf="addProcesssubmitted && stationinfoV.location.errors" class="invalid-feedback">
-                           <div *ngIf="stationinfoV.location.errors.required">*Process Attached Required</div>
-                        </div>
+                        <div *ngIf="stationinfoV.location.errors.required">*Process Attached Required</div>
                      </div>
+                     </div> 
 
-                     <div class="form-group col-md-4 smallpad">
+                      <div class="form-group col-md-4 smallpad">
                         <label class="name1">Vendor<span style="color:red;">*</span></label>
                         <input type="text" class="form-control texbsize" placeholder="Vendor"
                            formControlName="stationVendor"
                            [ngClass]="{'is-invalid':addProcesssubmitted && stationinfoV.stationVendor.errors}" required>
                         <div *ngIf="addProcesssubmitted && stationinfoV.stationVendor.errors" class="invalid-feedback">
-                           <div *ngIf="stationinfoV.stationVendor.errors.required">*vendor Required</div>
-                        </div>
+                        <div *ngIf="stationinfoV.stationVendor.errors.required">*vendor Required</div>
                      </div>
+                     </div> 
 
                      <div class="form-group col-md-4 smallpad">
                         <label class="name1">Latitude<span style="color:red;">*</span></label>
@@ -665,15 +756,14 @@
                            formControlName="latitude"
                            [ngClass]="{'is-invalid':addProcesssubmitted && stationinfoV.latitude.errors}" required>
                         <div *ngIf="addProcesssubmitted && stationinfoV.latitude.errors" class="invalid-feedback">
-                           <div *ngIf="stationinfoV.latitude.errors.required">*Latitude Required</div>
-                        </div>
+                        <div *ngIf="stationinfoV.latitude.errors.required">*Latitude Required</div>
+                     </div>
                      </div>
 
                      <div class="form-group col-md-4 smallpad">
                         <label class="name1">Longitude<span style="color:red;">*</span></label>
                         <input type="number" class="form-control texbsize" placeholder="Longitude"
-                           formControlName="longitute"
-                           [ngClass]="{'is-invalid':addProcesssubmitted && stationinfoV.longitute.errors}">
+                           formControlName="longitute" [ngClass]="{'is-invalid':addProcesssubmitted && stationinfoV.longitute.errors}">
                         <div *ngIf="addProcesssubmitted && stationinfoV.longitute.errors" class="invalid-feedback">
                            <div *ngIf="stationinfoV.longitute.errors.required">*Longitude Required</div>
                         </div>
@@ -683,18 +773,18 @@
                         <label class="name1">Measurment Principle</label>
                         <input type="text" class="form-control texbsize" placeholder="Measurment Principle"
                            formControlName="measurementPrinciple" [ngClass]="{'is-invalid':addProcesssubmitted && stationinfoV.measurementPrinciple.errors}" required>
-                        <!-- <div *ngIf="addProcesssubmitted && stationinfoV.measurementPrinciple.errors" class="invalid-feedback">
+                        <div *ngIf="addProcesssubmitted && stationinfoV.measurementPrinciple.errors" class="invalid-feedback">
                            <div *ngIf="stationinfoV.measurementPrinciple.errors.required">*Measurement Principle Required</div>
-                        </div> -->
+                        </div>
                      </div>
 
                      <div class="form-group col-md-6 smallpad">
-                        <label class="name1">Remark</label>
+                        <label class="name1">Remark<span style="color:red;">*</span></label>
                         <textarea class="form-control tarea texbsize" placeholder="Remark"
                            formControlName="remarks" [ngClass]="{'is-invalid':addProcesssubmitted && stationinfoV.remarks.errors}" required></textarea>
-                           <!-- <div *ngIf="addProcesssubmitted && stationinfoV.remarks.errors" class="invalid-feedback">
+                           <div *ngIf="addProcesssubmitted && stationinfoV.remarks.errors" class="invalid-feedback">
                               <div *ngIf="stationinfoV.remarks.errors.required">*Remark Required</div>
-                           </div> -->
+                           </div>
                      </div> 
                   </div> 
 
@@ -702,47 +792,47 @@
                   <h2 class="header lighter blue">Stack</h2>
                   <div class="row px-3">
                      <div class="form-group col-md-4 smallpad">
-                        <label class="number">Stack Height</label>
-                        <input type="number" class="form-control texbsize" placeholder="Stack Height"
+                        <label class="name1">Stack Height</label>
+                        <input type="text" class="form-control texbsize" placeholder="Stack Height"
                            formControlName="stackHeight" [ngClass]="{'is-invalid':addProcesssubmitted && stationinfoV.stackHeight.errors}" required>
-                        <!-- <div *ngIf="addProcesssubmitted && stationinfoV.stackHeight.errors" class="invalid-feedback">
+                        <div *ngIf="addProcesssubmitted && stationinfoV.stackHeight.errors" class="invalid-feedback">
                            <div *ngIf="stationinfoV.stackHeight.errors.required">*Stack Height Required</div>
-                        </div> -->
+                        </div>
                      </div>
                      <div class="form-group col-md-4 smallpad">
-                        <label class="name1">Stack Diameter</label>
-                        <input type="number" class="form-control texbsize" placeholder="Stack Diameter"
+                        <label class="name1">Stack Diameter<span style="color:red;">*</span></label>
+                        <input type="text" class="form-control texbsize" placeholder="Stack Diameter"
                            formControlName="stackDiameter" [ngClass]="{'is-invalid':addProcesssubmitted && stationinfoV.stackDiameter.errors}" required>
-                        <!-- <div *ngIf="addProcesssubmitted && stationinfoV.stackDiameter.errors" class="invalid-feedback">
+                        <div *ngIf="addProcesssubmitted && stationinfoV.stackDiameter.errors" class="invalid-feedback">
                            <div *ngIf="stationinfoV.stackDiameter.errors.required">*Stack Diameter Required</div>
-                        </div> -->
+                        </div>
                      </div>
                      <div class="form-group col-md-4 smallpad">
-                        <label class="name1">Stack Velocity</label>
-                        <input type="number" class="form-control texbsize" placeholder="Stack Velocity"
+                        <label class="name1">Stack Velocity<span style="color:red;">*</span></label>
+                        <input type="text" class="form-control texbsize" placeholder="Stack Velocity"
                            formControlName="stackVelocity" [ngClass]="{'is-invalid':addProcesssubmitted && stationinfoV.stackVelocity.errors}" required>
-                        <!-- <div *ngIf="addProcesssubmitted && stationinfoV.stackVelocity.errors" class="invalid-feedback">
+                        <div *ngIf="addProcesssubmitted && stationinfoV.stackVelocity.errors" class="invalid-feedback">
                            <div *ngIf="stationinfoV.stackVelocity.errors.required">*Stack Velocity Required</div>
-                        </div> -->
+                        </div>
                      </div>
                      <div class="form-group col-md-6 smallpad">
-                        <label class="name1">Flue Gas Discharge Rate M3/Hr</label>
+                        <label class="name1">Flue Gas Discharge Rate M3/Hr<span style="color:red;">*</span></label>
                         <input type="text" class="form-control texbsize" placeholder="Flue Gas Discharge Rate M3/Hr"
                            formControlName="gasDischargeRate" [ngClass]="{'is-invalid':addProcesssubmitted && stationinfoV.gasDischargeRate.errors}" required>
-                        <!-- <div *ngIf="addProcesssubmitted && stationinfoV.gasDischargeRate.errors" class="invalid-feedback">
+                        <div *ngIf="addProcesssubmitted && stationinfoV.gasDischargeRate.errors" class="invalid-feedback">
                            <div *ngIf="stationinfoV.gasDischargeRate.errors.required">*Flue Gas Discharge Rate M3/Hr Required</div>
-                        </div> -->
+                        </div>
                      </div>
 
-                     </div>
                   </div>
+         </div> 
                </div>
                <h4 class=" header  lighter blue" style="margin: 0 0 18px 0; ">Parameter
                   <button type="submit" class="btn-mini btn-success" tooltip="Add Parameter" (click)=addParameter()
                      autoPlacement="true"><i class="fa fa-plus"></i></button></h4>
-               <div formArrayName="parameterInfo" *ngFor="let param of parameterInfo.controls; let i=index">
+                <div formArrayName="parameterInfo" *ngFor="let param of parameterInfo.controls; let i=index">
                   <div [formGroupName]="i">
-                     <div class="row px-3">
+                     <div class="row px-3"> 
                         <div class="form-group col-md-4 smallpad opt">
                            <label class="name1">Parameter<span style="color:red;">*</span></label>
                            <button type="submit" class="btn-mini btn-success" tooltip="Remove Parameter"
@@ -788,17 +878,17 @@
                            <label class="name1">Device IMEI Number</label>
                            <input type="text" min="16" class="form-control texbsize" placeholder="Device IMEI Number"
                               formControlName="devidceIMEINo" [ngClass]="{'is-invalid':addProcesssubmitted && addProcesssubmitted && parameterInfo.controls[i].get('devidceIMEINo').errors}" required>
-                           <!-- <div *ngIf="addProcesssubmitted && parameterInfo.controls[i].get('devidceIMEINo').errors" class="invalid-feedback">
+                           <div *ngIf="addProcesssubmitted && parameterInfo.controls[i].get('devidceIMEINo').errors" class="invalid-feedback">
                               <div *ngIf="parameterInfo.controls[i].get('devidceIMEINo').errors.required">*Device IMEI Number Required</div>
-                           </div> -->
+                           </div>
                         </div>
                         <div class="form-group col-md-4 smallpad">
                            <label class="name1">Mac Id</label>
                            <input type="text" class="form-control texbsize" placeholder="Mac Id" formControlName="macId"
                               [ngClass]="{'is-invalid':addProcesssubmitted && addProcesssubmitted && parameterInfo.controls[i].get('macId').errors}" required>
-                           <!-- <div *ngIf="addProcesssubmitted && parameterInfo.controls[i].get('macId').errors" class="invalid-feedback">
+                           <div *ngIf="addProcesssubmitted && parameterInfo.controls[i].get('macId').errors" class="invalid-feedback">
                               <div *ngIf="parameterInfo.controls[i].get('macId').errors.required">*MAC Id Required</div>
-                           </div> -->
+                           </div>
                         </div>
                         <div class="form-group col-md-4 smallpad">
                            <label class="name1">Measurment Range<span style="color:red;">*</span></label>
@@ -835,7 +925,7 @@
                               <div *ngIf="parameterInfo.controls[i].get('unit').errors.required">*Unit Required</div>
                            </div>
                         </div>
-                        <div class="form-group col-md-4 smallpad opt">
+                         <div class="form-group col-md-4 smallpad opt">
                            <label class="name1">Certification<span style="color:red;">*</span></label>
                            <select class="form-control texbsize" formControlName="certification"
                               [ngClass]="{'is-invalid':addProcesssubmitted && addProcesssubmitted && parameterInfo.controls[i].get('certification').errors}" required>
@@ -848,10 +938,10 @@
                            <div *ngIf="addProcesssubmitted && parameterInfo.controls[i].get('certification').errors" class="invalid-feedback">
                               <div *ngIf="parameterInfo.controls[i].get('certification').errors.required">*certification Required</div>
                            </div>
-                        </div>
+                         </div> 
                      </div>
                   </div>
-               </div>
+               </div> 
 
             </form>
          </div>
@@ -862,7 +952,7 @@
                <i class="fa fa-plus"></i> ADD PROCESS</button>
          </div> -->
          <div class="modal-footer">
-            <button type="button" class="btn btn-success btns col-sm-3" (click)="addProcess()">
+            <button type="button" class="btn btn-success btns col-sm-3"  (click)="addProcess()">
                <i class="fa fa-check"></i> Done</button>
          </div>
 
