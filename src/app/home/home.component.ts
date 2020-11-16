@@ -12,8 +12,13 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  adm_emp_excel()
+  {
+    this.router.navigate(['/Admin_emp_excel'])
+  }
   logout()
   {
+    
     this.router.navigate(['/login']);
   }
 }

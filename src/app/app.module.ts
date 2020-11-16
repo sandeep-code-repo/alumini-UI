@@ -11,14 +11,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 // Services
-import { AuthService } from './services/auth/auth.service';
+import { AuthService, } from './services/auth/auth.service';
 import { UserService } from './services/user/user.service';
 import { StudentService } from './services/student/student.service';
-
-
-// Pipes
-//import { FilterPipe } from './pipes/filter.pipe';
-//import { PhonePipe } from './pipes/phone.pipe';
+import {IndustryService} from './services/user/industry.service'
 
 // Components
 import { AppComponent } from './index/app.component';
@@ -74,7 +70,7 @@ import {MatButtonModule} from '@angular/material/button';
 		
 		
 	],
-	providers: [AuthService, UserService, StudentService],
+	providers: [AuthService, UserService, StudentService,IndustryService],
 	bootstrap: [AppComponent],
 	
 })

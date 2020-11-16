@@ -72,7 +72,8 @@ export interface UserInfo{
     //plantType?: string,
     //category?: string,
     //designation: string,
-    //reportto?: string,   
+    //reportto?: string, 
+    regStatus?:Boolean  
 }
 export interface Role{
     roleId?:number

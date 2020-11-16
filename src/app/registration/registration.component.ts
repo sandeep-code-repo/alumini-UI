@@ -9,10 +9,11 @@ import { PlantInfoData } from 'src/app/plant-info-data';
 
 import { HttpClient } from '@angular/common/http';
 
-import { CustomValidators } from 'src/app/custom-validators';
-import { Industry, ParameterInfo, StationInfo, StationInfoMapper, UserInfo, Role } from '../model/industry.model';
+
+import { Industry,StationInfo, StationInfoMapper, UserInfo, Role } from '../model/industry.model';
 
 import * as $ from "jquery";
+import { IndustryService } from '../services/user/industry.service';
 
 
 @Component({
@@ -41,14 +42,15 @@ export class RegistrationComponent implements OnInit {
   userRole: Role[] = []
   types$: { Category: string; }[];
   stackDisplay: Boolean = false
-  constructor(private route: Router, private userService: UserService, private formBuilder: FormBuilder, private HttpClient: HttpClient) {
+  constructor(private route: Router, private userService: UserService,private industryService: IndustryService, private formBuilder: FormBuilder, private HttpClient: HttpClient) {
     this.role = { roleId: 0 }
   }
 
 
 
   ngOnInit(): void {
-
+this.industry= this.industryService.getIndustryData()
+console.log(this.industry);
     this.processForm = this.formBuilder.group({
       stationInfo: this.formBuilder.group({
         analyzerv2: ['', [Validators.required]],
@@ -75,7 +77,7 @@ export class RegistrationComponent implements OnInit {
 
     this.add_industry = this.formBuilder.group({
       plantInfo: this.formBuilder.group({
-        plantVendor: ['', [Validators.required]],
+        plantVendor: [this.industry.plantInfo.plantVendor||'', [Validators.required]],
         plantUserName: ['', [Validators.required]],
         category: ['', [Validators.required]],
         plantName: ['', [Validators.required]],
@@ -173,8 +175,7 @@ export class RegistrationComponent implements OnInit {
 
   get processf() { return this.processForm.controls }
   get stationinfoV() { return (this.processForm.get('stationInfo') as FormGroup).controls }
-  // get parameterinfoV(){return (this.processForm.get('i') as FormGroup).control}
-
+  
   addProcess() {
 
     this.addProcesssubmitted = true;
@@ -182,10 +183,7 @@ export class RegistrationComponent implements OnInit {
 
                return;
              }
-    //    
-    // if(this.processForm.get('stationInfo.analyzerv2').value=='Emission'){this.stackDisplay=true;}
-    // else
-    // this.stackDisplay=false;
+    
     let index = this.stationinfomap.findIndex(item => {
       return item.stationInfo.stationId == this.processForm.get('stationInfo.stationId').value;
     });
@@ -209,14 +207,10 @@ export class RegistrationComponent implements OnInit {
     
     this.submitted = true;
 
-    if (this.add_industry.invalid) {
-
-      return;
-    }
 
 
     this.industry = this.add_industry.value
-    if (this.add_industry.get('userInfoMapper.userInfo').status == 'INVALID')
+    if (this.add_industry.get('userInfoMapper.userInfo').status == 'VALID')
       this.industry.regstatus = "register"
     else
       this.industry.regstatus = "register"
@@ -227,22 +221,31 @@ export class RegistrationComponent implements OnInit {
 
     console.log(this.industry);
 
-    const register = this.userService.registrationService(this.industry).subscribe(data => {
+  
 
 
 
-      if (data.apiStatus.message === 'success') {
-        this.message = "Registration Successfull"
-        console.log(data.apiStatus.message);
-        // this.route.navigate(['/home']);
-        this.add_industry.reset();
-      } else {
-        this.message = "Registration Failed"
-        console.log(data);
-      }
+    // const register = this.userService.registrationService(this.industry).subscribe(data => {
 
-    });
+
+
+    //   if (data.apiStatus.message === 'success') {
+    //     this.message = "Registration Successfull"
+    //     console.log(data.apiStatus.message);
+    //     // this.route.navigate(['/home']);
+    //     this.add_industry.reset();
+    //   } else {
+    //     this.message = "Registration Failed"
+    //     console.log(data);
+    //   }
+
+    // });
   }
+
+
+
+
+
   stack(str: string) {
 
 

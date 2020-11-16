@@ -1,0 +1,112 @@
+
+
+
+<div class="limiter" style="background-image: url('assets/images/bg-201.jpg');">
+
+    <div class="fog-container">
+      <div class="fog-img fog-img-first"></div>
+      <div class="fog-img fog-img-first"></div>
+      <div class="fog-img fog-img-second"></div>
+  </div>
+  
+      <div class="container">
+      <div class="row">      
+      <div class="container-login100" >
+      <div class="wrap-login100">
+      <form>
+        
+        <button type="button" tooltip="Goto Back " class="btn btny btn-default buttom-prim buttonsToShow" 
+        id="backbtn" (click)="goback()"><i class="fa fa-arrow-circle-left"></i> </button>     
+            <div style="text-align: center;color:blue;font-style:normal;">
+             
+          Browse   Emp Data (Excel Format)
+              <br>
+            </div>  
+            <hr> 
+            <div style="text-align: center;color:blue;font-style:normal;">
+             
+          <input type="file"  (change)="upload($event)" [multiple]="true" #fileInput>
+
+           
+
+
+           
+                    <br>
+                  </div>
+                  <hr>
+        <div style="text-align: center;">
+        
+          <button class="btn btn-primary" (click)="exportexcel()">Upload </button>
+        </div>
+       
+
+        
+        <table id="excel-table" hidden> 
+          <tr>       
+             <th>EMPNAME</th> 
+             <th>MOBILENO</th>  
+             <th> ADDRESS</th> 
+            
+          </tr>    
+          <tr>
+          // This is the binding part. 
+             <td>RAJIV </td>  
+             <td>XXX9999921</td> 
+             <td>BBSR</td> 
+             
+          </tr> 
+          <tr>
+              // This is the binding part. 
+                 <td>KAMLESH </td>  
+                 <td>XXX9999999</td> 
+                 <td>CTC</td> 
+                 
+              </tr> 
+              <tr>
+                  // This is the binding part. 
+                     <td>HITANSHU </td>  
+                     <td>XXX9999944</td> 
+                     <td>BBSR</td> 
+                     
+                  </tr> 
+                  <tr>
+                      // This is the binding part. 
+                         <td>RAMESH </td>  
+                         <td>98888888</td> 
+                         <td>BBSR</td> 
+                         
+                      </tr> 
+                      <tr>
+                          // This is the binding part. 
+                             <td>RAMESH </td>  
+                             <td>98888888</td> 
+                             <td>BBSR</td> 
+                             
+                          </tr> 
+        </table>
+        
+        
+  
+      </form>
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+  
+      
+  
+      <div  class="modal_invalid">
+
+        <!-- Modal content -->
+        <div class="modal-content1">
+          
+          <i class="close fa fa-times-circle" style="font-size:30px;color:red;text-align: right;"></i>
+         
+          <p style="text-align: center;">
+            {{message}}
+          </p>
+          <div style="text-align: center;" ><br>
+            <button class="btn btn-success close_modal">CLOSE</button>
+          </div>
+        </div>

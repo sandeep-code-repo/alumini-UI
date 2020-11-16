@@ -1,6 +1,4 @@
-/**
- * Created By : Sangwin Gawande (http://sangw.in)
- */
+
 
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
@@ -9,8 +7,9 @@ import { ValidationService } from '../services/config/config.service';
 import { UserService } from '../services/user/user.service';
 import {Login} from 'src/app/login';
 import { routerTransition } from '../services/config/config.service';
-import { stringify } from '@angular/compiler/src/util';
-import { TooltipModule } from '@syncfusion/ej2-angular-popups';
+import { Industry } from '../model/industry.model';
+import { IndustryService } from '../services/user/industry.service';
+
 @Component({
 	selector: 'app-login',
 	templateUrl: './login.component.html',
@@ -22,16 +21,14 @@ export class LoginComponent implements OnInit {
 	loginForm: FormGroup;
 	login=new Login();
 
-	
-
-
-	Username:string="";
-	Password:string="";
+	industrydata: Industry;
+	username:string=null;
+	password:string=null;
 
 	cleardata:FormGroup;
 	submitted = false;
 
-	constructor(private formBuilder: FormBuilder, private router: Router, private userService: UserService) {
+	constructor(private formBuilder: FormBuilder, private router: Router, private userService: UserService,private industryService: IndustryService) {
 	
 	}
 	clear(input: HTMLInputElement){
@@ -43,11 +40,31 @@ export class LoginComponent implements OnInit {
 
 	// Check if user already logged in
 	ngOnInit():void {
+		
+		$( document ).ready(function() {
+			$('#password').val('');
+			});	
+
 		this.loginForm = this.formBuilder.group({     
-			Username: ['', [Validators.required]],
-			Password: ['', [Validators.required]],
+			username: ['', [Validators.required]],
+			password: ['', [Validators.required]],
 		});
+
+		$(".close").click(function(){
+			$(".modal_invalid").css("display","none");
+			$(".modal").css("display","none");
+			  });
+		
+			
+// close button show
+$(".close_modal").click(function(){
+	$(".modal_invalid").css("display","none");
+	$(".modal").css("display","none");
+	  });
+
 	}
+
+	
 
 	help()
 	{		
@@ -55,42 +72,85 @@ export class LoginComponent implements OnInit {
 	}
 	forgetpasswordpage()
 	{
-		this.router.navigate(['/forgetpassword']);
+		this.router.navigate(['/forgetpassword'])
+  .then(() => {
+    location.reload();
+  });
+		
+	//	this.router.navigate(['/forgetpassword'], { queryParams: { order: 'popular' }});
+	}
+	forgetpasswordpage123()
+	{
+		
+		this.router.navigate(['/password']);
 	}
 	regipage()
 	{
 		this.router.navigate(['/regdetails']);
 	}
+
+	api()
+	{
+		
+		this.router.navigate(['/apidoc']);
+	}
+
+	excel()
+	{
+		this.router.navigate(['/empexcel']);
+	}
+
+
 	// Initicate login
 	homego() {
-this.submitted = true;
-if (this.loginForm.invalid) {
-		//alert(this.login.username+this.login.password);
-		if(this.Username=="hindalco"&& this.Password=="hindalco@123")
-		{
-		//	this.router.navigate(['/home']);
-
-		}
-	   else
-	   {
-		   
-		   alert('Wrong Username And Password');
-		   return false;
-	   }
+		//---loading image 
 		
-		const login = this.userService.login(this.login).subscribe(data=>{
-			
+		$(".modal").css("display","none");
+		
+this.submitted = true;
+
+//--for validation page
+if(this.loginForm.invalid)
+{
+
+}
+if (this.loginForm.valid) {
 	
-		//alert(data.apiStatus.message);
-			if(data.apiStatus.message === 'success') {
-			
-			//	window.localStorage.setItem('token', data.result.token);
-				this.router.navigate(['/home']);
-				//alert(data.status);
+	$(".modal").css("display","block");
+		const login = this.userService.login(this.loginForm.value).subscribe(data=>{
+			if(data.apiStatus.message === 'success') 
+			{
+				console.log(data)
+				
+					this.industrydata=data.data;
+					console.log(this.industrydata);
+					this.industryService.addIndustryData(this.industrydata);
+					this.industrydata.userInfoMapper.userInfo.regStatus=false;
+					if(this.industrydata.userInfoMapper.userInfo.regStatus==true)
+					this.router.navigate(['/regdetails']);
+				else
+				this.router.navigate(['/registration']);
+				// if(data.apiStatus.userRole === true) {
+				// 	this.router.navigate(['/regdetails'],{ queryParams: { status: 'active',username:this.loginForm.get('username').value }});
+				// }
+				// else
+				// {
+				// 	this.router.navigate(['/registration'],{ queryParams: { status: 'Register',username:this.loginForm.get('username').value}});
+				// }
+			    // //	this.router.navigate(['/registration'],{ queryParams: { status: 'Register'}});
+				// this.router.navigate(['/regdetails'],{ queryParams: { status: 'active',username:'umakanta' }});
+				
+
+				$(".modal").css("display","none");
+			 //	window.localStorage.setItem('token', data.result.token);
+			//	this.router.navigate(['/home']);
+				
 			  }else {
-				//this.invalidLogin = true;
-				//alert('data is'+stringify(data.data));
+				$(".modal").css("display","none");
+				$(".modal_invalid").css("display","block");
 				console.log(data);
+
+		
 			  }
 			  
 			});

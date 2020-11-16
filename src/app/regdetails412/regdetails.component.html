@@ -1,0 +1,147 @@
+
+
+<div class="regristartion container-fluid top py-2">
+  <img class="logo" src="assets/images/cpcb.png"> 
+  <h1 class="text-center text-white">Assam Pollution Control Board </h1>
+</div>
+<div class="container uk-card uk-card-default uk-card-body my-3" >
+  <div class="text-center nbox" >
+     <h2>Industry Registration
+        <br><span>(Integration with Central Server for Real Time Monitoring)</span>
+     </h2>
+  </div>
+</div>
+
+
+
+<div class="container uk-card uk-card-default uk-card-body my-3">
+<div class="div80">
+  <button type="button" tooltip="Goto Back " class=" float-left btn btny btn-default buttom-prim buttonsToShow" (click)="goback()"
+     ><i class="fa fa-arrow-circle-left"></i></button> 
+</div>
+
+
+<div class="clearfix"></div>
+
+<div class="div80">
+  <div class="row py-3 px-3">
+     <div class="text-right">
+        <label class="control-label pl-0" 
+           style="padding: 5px; padding-bottom: 5px;">Industry Category :</label>
+     </div>
+     <div class="form-group  col-sm-3 smallpad opt"  style="float:left;">
+
+       <label style="color: red;"></label>
+        <select   class="form-control texbsize" (change)="filterForeIndustry($event.target.value)">
+          <option>select</option>
+         <option>power plant</option>
+         <option>Integrated Steels</option>
+        
+        <!-- <option *ngFor="let citizen of types$" [value]="citizen.category" [innerHTML]="citizen.category"></option>
+        -->
+        </select>
+
+        <p *ngIf="!get_industry"><em>Loading...</em></p>
+
+     </div>
+     <div class="form-group col-sm-2 smallpad">
+        <button type="submit" style=""  class="btn btns btn-success  ml-1" (click)=displaydata()>
+        <i _ngcontent-hel-c18="" class="fas fa-user fa-fw"></i>
+        Show</button>
+     </div>
+     <div class="form-group ml-auto col-sm-2 p-0 ml-5">
+        <button type="submit" class="btn btns btn-success" (click)=regpage(1)>New Register</button>
+     </div>
+  </div>
+</div>
+</div>
+
+
+
+<p *ngIf="!dataSource"><em>Loading...</em></p>
+
+<div *ngIf="div1" class="container uk-card uk-card-default uk-card-body my-3 ">
+
+ <div class='row panel-body'>  
+
+  
+
+    <div class='test1 table-responsive'>      
+        <div class="dataTables_info"  id="sample-table-1_info" role="status" aria-live="polite">Showing 1 to {{count}} of {{count}} entries</div><div id="sample-table-1_filter" style="float:right;" class="dataTables_filter"></div>
+
+       
+
+        <div class="wrapper">
+
+          <div>
+
+         
+            <div class="spinner-container"  *ngIf="dataSource.loading$ | async">
+                <mat-spinner></mat-spinner>
+            </div>
+                <div class="thead mb-4">
+                    <label for="Table"></label>
+                    <input type="text"  style="float:right" (keyup)="applyFilter($event.target.value)" placeholder="search for" class="form-control col-sm-3 top-margin">
+                </div>
+
+            <table   mat-table [dataSource]="dataSource" matSort  matSortActive="id" matSortDirection="asc" matSortDisableClear class="table22 table table-striped table-bordered table-sm table table-striped table-bordered table-hover dataTable no-footer">
+
+                <!-- Position Column -->
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header >No</th>
+                    <td mat-cell *matCellDef="let element;">{{element.id}} </td>
+                  <!--
+<td mat-cell *matCellDef="let element; let i = index;"> {{i+1}}</td>
+                  -->  
+                </ng-container>
+              
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                  <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+                <!-- Name Column -->
+                <ng-container matColumnDef="address">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Address </th>
+                    <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+                  </ng-container>
+                <!-- Name Column -->
+                <ng-container matColumnDef="category">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
+                    <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+                  </ng-container>
+                <!-- Name Column -->
+                <ng-container matColumnDef="regionalOfc">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> RegionalOfc </th>
+                    <td mat-cell *matCellDef="let element"> {{element.regionalOfc}} </td>
+                  </ng-container>
+
+                 
+                    
+                
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+              <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+</div>
+        </div>
+</div>
+<div  class="modal">
+
+     
+ <p style="text-align: center;">
+<!--  <img style="text-align: center;" src="../../assets/images/04-spinner.gif" height="200px" width="200px"><hr>
+--> </p> 
+
+ <div class="d-flex justify-content-center">
+    <div class="spinner-border" role="status" >
+      <span class="sr-only" id="loading"></span>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
