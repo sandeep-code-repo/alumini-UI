@@ -1,0 +1,94 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~bootstrap/dist/css/bootstrap.css";
+*{
+    box-sizing: border-box;
+}
+body{margin:0;padding:0;font-family: Open Sans;}
+html, body { height: 100%; }
+body { margin: 0;
+     font-family: Roboto, "Helvetica Neue", sans-serif;
+     overflow-x: hidden; 
+     background:url(./assets/images/bg-222.png);
+     background-size: cover;
+	background-attachment: fixed;
+    background-position: bottom center;
+    height: auto;
+    }
+em{
+    color: #007bff !important;
+}
+.form-control:valid {
+    padding: 15px;
+    font-size: 14px;
+    color: #1f1717;
+    /* margin: 15px auto; */
+    background: transparent !important;
+}
+.table21{
+    border-bottom: 3px solid #5bc45b !important;
+}
+.table21 thead{
+    background: #5bc45b;
+    color: #fff;
+    text-align: center;
+}
+.table21 thead tr th{
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.table21 tbody tr td{
+    font-size: 14px;
+    font-weight: 300;
+}
+.form-group{
+    position: relative;
+}
+
+    .invalid-feedback {
+        display: block;
+        position: absolute;
+        top: 25px;
+        background: #fd7272;
+        padding: 3px;
+        color: #fff;
+        box-shadow: 1px 1px 3px 2px #ccc;
+        z-index: 1;
+        left: 10px;
+        width: 90%;
+    
+}
+    .invalid-feedback::before {
+        content: "";
+        width: 15px;
+        height: 15px;
+        background: #fd7272;
+        transform: rotate(45deg);
+        position: absolute;
+        right: 15px;
+        top: -6px;
+    }
+    .invalid-feedback label.text-danger{
+        color: #fff !important;
+    }
+    .invalid-feedback label.text-success{
+        color: #fdff00 !important;
+    }
+    .invalid-feedback label{
+        margin: 0;
+        
+        padding: 0 2px;
+    }
+    .invalid-feedback label i {
+        color: white;
+        font-size: 12px;
+    }
+.just{
+    justify-content: space-between;
+}
+.just a{transition: .5s all linear;}
+.just a:hover{
+    color: #026034 !important;
+}

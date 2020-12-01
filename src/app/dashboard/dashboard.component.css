@@ -1,0 +1,316 @@
+
+.scroll-to-top {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    display: none;
+    width: 2.75rem;
+    height: 2.75rem;
+    text-align: center;
+    color: #fff;
+    background: rgba(90, 92, 105, 0.5);
+    line-height: 46px;
+}
+.sidebar .nav-item .nav-link .img-profile, .topbar .nav-item .nav-link .img-profile {
+    height: 2rem;
+    width: 2rem;
+}
+.bg-light {
+    background-color: #f8f9fc !important;
+}
+.mobile-menu {
+    display: none;
+}
+
+@media (max-width: 576px) {
+    .mobile-menu {
+        display: block;
+    }
+}
+
+@media (max-width: 768px) {
+    .mobile-menu {
+        display: block;
+    }
+}
+
+.bbx p {
+    font-size: 0.8rem;
+    margin: 0;
+    padding: 15px 0 10px 0;
+    color: var(--blue);
+}
+
+.wdth {
+    width: 25px;
+    text-align: center;
+}
+
+.list {
+    list-style: none;
+    margin: 0 0 30px 0;
+    padding: 0;
+}
+
+.list li {
+    display: inline-block;
+    font-size: 13px;
+    border-right: 1px solid #ccc;
+    padding: 3px 10px;
+}
+
+.list li:last-child {
+    border-right: none;
+}
+
+.blink {
+    animation: blink 2s steps(5, start) infinite;
+    -webkit-animation: blink 1s steps(5, start) infinite;
+}
+
+@keyframes blink {
+    to {
+        visibility: hidden;
+    }
+}
+
+@-webkit-keyframes blink {
+    to {
+        visibility: hidden;
+    }
+}
+
+.box22 h5 {
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+    padding-bottom: 5px;
+    color: #6d6d71;
+}
+
+.box22 p {
+    margin: 0;
+    padding: 0;
+    font-weight: 300;
+    color: #6d6d71;
+}
+
+.box22 a {
+    text-decoration: none;
+}
+
+.tab li a {
+    padding: 7px 15px;
+    background: #4e73df;
+    color: #fff;
+    border-radius: 2px;
+    text-decoration: none;
+    box-shadow: 0 0.125rem 0.25rem 0 rgba(58, 59, 69, 0.2) !important;
+}
+
+.circles {
+    width: 150px;
+    height: 150px;
+    border: 10px solid #d0dbee;
+    text-align: center;
+    padding: 21px 0;
+    position: relative;
+}
+
+.circles::before {
+    content: "";
+    position: absolute;
+    border-top: 10px solid cornflowerblue;
+    width: 150px;
+    height: 150px;
+    top: -10px;
+    left: -10px;
+    border-radius: 50%;
+    z-index: 1;
+    transition: .5s;
+    filter: drop-shadow(0px 1px 2px #0000006e);
+    animation: rot 7.5s infinite linear;
+}
+
+@keyframes rot {
+    from {
+        transform: rotate(0deg);
+        filter: hue-rotate(0deg)
+    }
+    to {
+        transform: rotate(360deg);
+        filter: hue-rotate(45deg);
+    }
+}
+
+.scrolls {
+    max-height: 250px;
+    overflow-y: scroll;
+    padding: 5px 10px;
+    scrollbar-color: #4e73df #e4effb;
+    -moz-scrollbar-color: #4e73df #e4effb;
+    -ms-scrollbar-color: #4e73df #e4effb;
+    -webkit-scrollbar-color: #4e73df #e4effb;
+    scrollbar-width: thin;
+    -webkit-scrollbar-width: thin;
+    -moz-scrollbar-width: thin;
+    -ms-scrollbar-width: thin;
+}
+
+.multiselect-container {
+    position: absolute;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 360px;
+    height: 160px;
+    overflow-y: scroll;
+}
+
+.multiselect-container .input-group {
+    margin: 4px
+}
+
+.multiselect-container>li {
+    padding: 0
+}
+
+.multiselect-container>li>a.multiselect-all label {
+    font-weight: 700
+}
+
+.multiselect-container>li.multiselect-group label {
+    margin: 0;
+    padding: 3px 20px;
+    height: 100%;
+    font-weight: 700
+}
+
+.multiselect-container>li.multiselect-group-clickable label {
+    cursor: pointer
+}
+
+.multiselect-container>li>a {
+    padding: 0
+}
+
+.multiselect-container>li>a>label {
+    margin: 0;
+    height: 100%;
+    cursor: pointer;
+    font-weight: 400;
+    padding: 3px 20px 3px 40px
+}
+
+.multiselect-container>li>a>label.radio,
+.multiselect-container>li>a>label.checkbox {
+    margin: 0
+}
+
+.multiselect-container>li>a>label>input[type=checkbox] {
+    margin-bottom: 5px
+}
+
+.filter .btn {
+    padding: 6px 3px
+}
+
+.btn-group>.btn-group:nth-child(2)>.multiselect.btn {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px
+}
+
+.form-inline .multiselect-container label.checkbox,
+.form-inline .multiselect-container label.radio {
+    padding: 3px 20px 3px 40px
+}
+
+.form-inline .multiselect-container li a label.checkbox input[type=checkbox],
+.form-inline .multiselect-container li a label.radio input[type=radio] {
+    margin-left: -20px;
+    margin-right: 0
+}
+
+.btn-default {
+    background: #fff;
+    border: 1px solid #ccc;
+    width: 450px;
+    text-align: left;
+    position: relative;
+}
+thead {
+    background: #406ca4;
+    color: #fff;
+}
+.table th, .table td {
+    padding: 5px 5px !important;
+    vertical-align: top;
+    border-top: 1px solid #e3e6f0;
+}
+.btny {
+    padding: 5px;
+    line-height: 10px;
+}
+.form-control:focus {
+    color: #6e707e;
+    background-color: #fff;
+    border-color: #406ca4 !important;
+    outline: 0;
+    box-shadow: none !important;
+    color: #406ca4;
+}
+.table-responsive{
+    scrollbar-color: #4e73df #e4effb;
+-moz-scrollbar-color: #4e73df #e4effb;
+-ms-scrollbar-color: #4e73df #e4effb;
+-webkit-scrollbar-color: #4e73df #e4effb;
+
+}
+a{
+    text-decoration: none !important;
+}
+
+
+
+.ParameterNameColor{
+    color: blue;
+    cursor: pointer;
+}
+
+.PcodeTextColor{
+    color: var(--danger);
+    cursor: pointer;
+} 
+.UnitTextColor{
+    color:#6e707e;
+    cursor: pointer;
+}
+
+desi{border: 1px solid #f1f1f1;
+    border-radius: 2px;width: 100%;}
+    .heighf{height: 48vh;overflow-y: auto;
+      border: 1px solid rgba(169, 166, 166, 0.25);border-radius: 3px;}
+      .heighf .card-body.desi{padding:0px;margin: 0px;transition: 1s ease-in-out;}
+      .heighf .card-body.active.desi:hover{background:#1cc88a;color:#fff;cursor:pointer;}
+      .sear{margin-bottom:10px;}
+      .innbox h2{font-size:14px;font-weight: bold;}
+      .innbox p{font-size:14px;margin: 0;}
+
+footer.sticky-footer {
+        padding: 2rem 0;
+        flex-shrink: 0;
+      }
+      
+footer.sticky-footer .copyright {
+        line-height: 1;
+        font-size: 0.8rem;
+      }
+      
+body.sidebar-toggled footer.sticky-footer {
+        width: 100%;
+      }
+ h6, .h6 {
+        font-size: 1rem;
+      }
+      
+      
