@@ -34,6 +34,7 @@
 
            
             <li class="nav-item dropdown no-arrow">
+             
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Dashboard</span>
                 
@@ -197,21 +198,15 @@
             </li>
            
             <li class="nav-item">
-              <a class="nav-link" href="#"></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"></a>
-            </li>
+              
 
-            <li class="nav-item">
-              <a class="nav-link" href="#"></a>
+               
+                  <a class="nav-link dropdown-toggle" (click)="adm_emp_excel()">Excel Upload</a>
+                  
+              
+              
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"></a>
-            </li>
+            
           
 
             <!-- Nav Item - Alerts -->
@@ -366,15 +361,16 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav ml-auto">
+        
                 
                 <li class="nav-item">
-                  <a class="fa fa-map-marker"> </a>Hirakud
+                  <a class="fa fa-map-marker"> </a>{{stationName}}
                 </li>
                 <li class="nav-item">
-                  <a class="fa fa-globe shutdown" href="#"> </a>Odisha
+                  <a class="fa fa-globe shutdown" href="#"> </a>{{stateName}}
                 </li>
                 <li class="nav-item">
-                  <a class="fa fa-calendar purple" href="#"> </a>POWER PLANT
+                  <a class="fa fa-calendar purple" href="#"> </a>{{plantName}}
                 </li>
                 <li class="nav-item">
                   <a class="fa fa-hourglass-start fa-spin pink" href="#"> </a>Data fetched at: 28-Sep-2020 07:55
@@ -404,7 +400,7 @@
                     <div class="col mr-6 text-center">
                       <div class="roundbox">
                           <p>COD</p>
-                          <h2><strong>16.95</strong>  </h2>
+                          <h2><strong>{{cod}}</strong>  </h2>
                           <p>mg/i</p>
                       </div>
                       <div class="roundbox2">
@@ -418,9 +414,9 @@
                         
                        
                       </div>
-                      <div>
-                        
-                      </div>
+
+                     
+                      
                       
                       
                      
@@ -430,6 +426,18 @@
                   </div>
                 </div>
               </div>
+            </div>
+
+            <div style="display: block;">
+              <canvas baseChart width="2000" height="800"
+                [datasets]="lineChartData"
+                [labels]="lineChartLabels"
+              
+                [colors]="lineChartColors"
+                [legend]="lineChartLegend"
+                [chartType]="lineChartType"
+                [plugins]="lineChartPlugins">
+              </canvas>
             </div>
 
             <!-- Earnings (Monthly) Card Example -->
@@ -474,7 +482,7 @@
                 <form style="margin-left: 0 !important;width: 100%;border: 1px solid #ccc;
                 border-radius: 5px;" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                   <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" (keyup)="applyFilter($event.target.value)">
                     <div class="input-group-append">
                       <button class="btn btn-primary" type="button">
                         <i class="fas fa-search fa-sm"></i>
@@ -484,89 +492,43 @@
                 </form>
               </div>
               <div class="heighf">
-                <div class="card-body bg1 desi">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="innbox">
-                        <h2>EQMS_1   BOD</h2>
-                        <p>
-                          6.66 mg/l
-                        </p>                            
-                        <h2> Standard - </h2>
-                        <p>
-                          100mg/l
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-body bg1 desi">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="innbox">
-                      <h2>  NearAdminBuilding   CO</h2>
-                        <p>0.31 mg/m3</p>
-
-                       <h2>Standard - </h2>
-                       <p>
-                        2mg/m3
-                       </p>
-                      </div>
-                    </div>
-                   
-                  </div>
-                </div>
-                <div class="card-body bg1 desi">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="innbox">
-                        Near_132KVSwitchyard_Unit_4-5   CO
-                        1.26 mg/m3
-                        
-                        Standard - 2mg/m3
-                      </div>
-                    </div>
-                   
-                  </div>
-                </div>
-                <div class="card-body bg1 desi">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="innbox">
-                        Near_132KVSwitchyardUnit_1-2-3   CO
-                        0.25 mg/m3
-                        
-                        Standard - 2mg/m3
-                      </div>
-                    </div>
-                   
-                  </div>
-                </div>
-                <div class="card-body bg1 desi">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="innbox">
-                        <h2>EQMS 1 BOD</h2>
-                        <p>b41mg</p>
-                        <p>Standard - 10mg</p>
-                      </div>
-                    </div>
-                   
-                  </div>
-                </div>
-                <div class="card-body bg1 desi">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="innbox">
-                        <h2>EQMS 1 BOD</h2>
-                        <p>b41mg</p>
-                        <p>Standard - 10mg</p>
-                      </div>
-                    </div>
-                   
-                  </div>
-                </div>
+                <div class="d-flex mb-4">
+                  <p><span style="width: 10px;height: 10px; background: #1cc88a;display: block;float: left;padding: 4 2 0 2;margin: 5px 8px 0 8px;"></span> Active</p>  
+                  <p><span style="width: 10px;height: 10px; background: #e74a3b;display: block;float: left;padding: 4 2 0 2;margin: 5px 8px 0 15px;"></span> Inactive</p>
               </div>
+                <div *ngFor="let x of parameter">
+
+               
+                <div class="card-body bg1 desi" >
+                  
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="innbox">
+                      
+                      <div id="{{x.recordedLevel}}" (click)="standard($event.target.id)">
+                        {{x.parameterName}}
+                      </div> 
+                        
+                      <div> {{x.parameterCode}}</div>
+                       
+                      <div>
+                      Standard - {{x.recordedLevel}} {{x.unit}}
+                      </div>  
+                      </div>
+
+                      
+                    </div>
+                  </div>
+                
+                </div> 
+
+              </div>
+                
+                
+              </div>
+
+
+
             </div>
             </div>
             </div>

@@ -20,6 +20,110 @@
     width: 300vw;
     z-index: 2;
   }
+ 
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    border: 2px solid white;
+  }
+  
+  .modal_invalid {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      padding-top: 100px; /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+      border: 2px solid white;
+    }
+  
+  
+    .modal_error {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      padding-top: 100px; /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+      border: 2px solid white;
+    }
+  
+  /* Modal Content */
+  .modal-content {
+    background-color: gray;
+    margin: auto;
+    padding: 10px;
+    border: 2px solid white;
+    width: 20%;
+    height: 20%;
+    color:white;
+    }
+    .modal-content1 {
+      background-color: gray;
+      margin: auto;
+      padding: 10px;
+      border: 2px solid white;
+      width: 20%;
+      height: 20%;
+      color: white;
+    }
+  .close {
+    background:gray;
+    color :red;
+    
+}
+    .close:hover {
+      
+    background:gray;
+    color: red;
+   
+}
+  .close_modal
+  {
+      width: 40%;
+      height: 40px;
+      text-align: center;
+  }
+  .modal-content1 {
+      background-color:gray;
+      margin: auto;
+      padding: 10px;
+      border: 2px solid white(236, 233, 55);
+      width: 20%;
+      height: 20%;
+      color: white;
+    }
+    
+  
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    font-size: large;
+  }
+
+  
 .fog-img-first {
     background: url("../../assets/images/fog-1.png");
     background-repeat: repeat-x;
@@ -213,13 +317,3 @@ a.txt1{
 a:hover.txt1{
     color:#0c0c0c;
 }
-.fontpassword { 
-    position: relative; 
-} 
-  
-.fontpassword i{ 
-    position: absolute; 
-    left: 15px; 
-    top:46px; 
-    color: gray; 
-} 

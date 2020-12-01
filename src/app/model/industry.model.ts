@@ -16,6 +16,7 @@ export interface StationInfoMapper{
 export interface StationInfo{
     stationId?:string,
     analyzer?:string,
+    analyzerv2?:string,
     location?:string,
     installDt?:string,
     token?:string,
@@ -42,7 +43,7 @@ export interface PlantInfo{
     plantVendor?:string,
     plantType?:string,
     category:string,
-    zonal:string,
+    roUser:string,
     caaqmsStation:number,
     cemsStation:number,
     ceqmsStation:number,
@@ -66,12 +67,12 @@ export interface UserInfo{
     password:string,
     mobNo: number,
     department: string,
+    regStatus?:Boolean
     //userType?: string,
     //plantType?: string,
     //category?: string,
     //designation: string,
-    //reportto?: string, 
-    regStatus?:Boolean  
+    //reportto?: string,   
 }
 export interface Role{
     roleId?:number

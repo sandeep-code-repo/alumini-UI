@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! F:\Sunjray-Alumina\alumina\src\polyfills.ts */"hN/g");
+module.exports = __webpack_require__(/*! F:\Sunjray-New-Git\alumini-UI\src\polyfills.ts */"hN/g");
 
 
 /***/ }),

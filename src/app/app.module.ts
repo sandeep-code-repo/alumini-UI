@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { enableProdMode } from '@angular/core';
 // Modules
@@ -8,25 +8,26 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //import { ToastrModule } from 'ngx-toastr';
-
-
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
 // Services
 import { AuthService } from './services/auth/auth.service';
 import { UserService } from './services/user/user.service';
 import { StudentService } from './services/student/student.service';
-import {IndustryDropDown} from './services/common/dropdown.service'
-import {LocalServiceService} from './services/common/local-service.service'
+
+
+
 // Pipes
 //import { FilterPipe } from './pipes/filter.pipe';
 //import { PhonePipe } from './pipes/phone.pipe';
 
 // Components
-import { AppComponent } from './index/app.component';
+import { AppComponent } from './app.component';
 
 import { LoginComponent } from './login/login.component';
 import { HomeComponent, } from './home/home.component';
-import { AppRoutingModule } from './app-routing.module';
-import{RegistrationComponent} from './registration/registration.component';
+//import { AppRoutingModule } from './app-routing.module';
+import { RegistrationComponent } from './registration/registration.component';
 import { RegdetailsComponent } from './regdetails/regdetails.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
@@ -36,31 +37,65 @@ import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.compone
 import { HelpComponent } from './help/help.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {MatButtonModule} from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { AlertComponent } from './alert/alert.component';
+import { EmployeeExcelComponent } from './employee-excel/employee-excel.component';
+import { ApidocComponent } from './apidoc/apidoc.component';
+
+import { PdfJsViewerModule } from 'ng2-pdfjs-viewer';
+import { AdminEmpExcelComponent } from './admin-emp-excel/admin-emp-excel.component';
+import { PasswordComponent } from './password/password.component';
+import { MatCardModule } from '@angular/material/card';
+
+import { MatSelectModule } from '@angular/material/select';
+
+import { ChartsModule } from 'ng2-charts';
+import { FilterParentPipe } from './pipes/filter-parent.pipe';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { IndustryDropDown } from './services/common/dropdown.service';
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
 	declarations: [
 		AppComponent,
+
 		LoginComponent,
 		HomeComponent,
+
 		RegistrationComponent,
+
 		RegdetailsComponent,
-		
+
 		PlantInfoComponent,
-		
+
 		ForgetpasswordComponent,
-		
+
 		HelpComponent,
-		
-	
+
+		AlertComponent,
+
+		EmployeeExcelComponent,
+
+		ApidocComponent,
+
+		AdminEmpExcelComponent,
+
+		PasswordComponent,
+
+		FilterParentPipe,
+
+		DashboardComponent,
+
+
 	],
 	imports: [
+		AppRoutingModule,
 		BrowserModule,
-		RouterModule,
+
 		AppRoutingModule,
 		FormsModule,
 		HttpClientModule,
@@ -71,15 +106,21 @@ import {MatButtonModule} from '@angular/material/button';
 		TooltipModule,
 		NgbModule,
 		MatPaginatorModule,
+		PdfJsViewerModule,
+		MatInputModule,
 		MatFormFieldModule,
-		MatProgressSpinnerModule,
-		MatInputModule
-		
-		
+		MatCardModule,
+		MatFormFieldModule, MatSelectModule,
+		MatIconModule,
+		MatDividerModule,
+		MatButtonModule,
+		ChartsModule,
+		MatProgressSpinnerModule
+
+
 	],
-	providers: [AuthService, UserService, StudentService,IndustryDropDown,LocalServiceService],
-	bootstrap: [AppComponent],
-	
+	providers: [AuthService, UserService, StudentService, IndustryDropDown],
+	bootstrap: [AppComponent]
 })
 
 // enableProdMode();

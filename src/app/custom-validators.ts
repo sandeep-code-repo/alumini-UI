@@ -1,4 +1,5 @@
-import { AbstractControl,ValidationErrors,ValidatorFn,Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { AbstractControl,ValidationErrors,ValidatorFn,Validators,FormControl, FormBuilder, FormGroup } from '@angular/forms';
+
 
 export class CustomValidators {
 
@@ -26,7 +27,14 @@ export class CustomValidators {
           control.get('confirmPassword').setErrors({ NoPassswordMatch: true });
         }
       }
-    
+
+      
+      static confirmPassword(control: FormControl, group: FormGroup, matchPassword: string) {
+        if (!control.value || group.controls[matchPassword].value !== null || group.controls[matchPassword].value === control.value) {
+            return null;
+        }
+        return { 'mismatch': true }
+    }
 }
 
 

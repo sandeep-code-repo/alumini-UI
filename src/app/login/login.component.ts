@@ -87,7 +87,7 @@ $(".close_modal").click(function(){
 	}
 	regipage()
 	{
-		this.router.navigate(['/regdetails']);
+		this.router.navigate(['/registration']);
 	}
 
 	api()
