@@ -120,9 +120,9 @@ if (this.loginForm.valid) {
 	$(".modal").css("display","block");
 		const login = this.userService.login(this.loginForm.value).subscribe(data=>{
 			if(data.apiStatus.message === 'success') 
-			{
+			{	
 					this.industrydata=data.data;
-					this.storageService.setJsonValue("loggedInUserData",data.data);
+					this.storageService.setJsonValue("loggedInUserData",data.data.userInfoMapper.userInfo);
 					this.storageService.setJsonValue("isLogin",true)
 					this.industryService.addIndustryData(this.industrydata);
 					//this.industrydata.userInfoMapper.userInfo.regStatus=true;

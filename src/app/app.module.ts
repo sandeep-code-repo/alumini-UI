@@ -1,6 +1,6 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
 
 // Modules
 //import { RouterModule, Routes } from '@angular/router';
@@ -57,6 +57,7 @@ import { FilterParentPipe } from './pipes/filter-parent.pipe';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { IndustryDropDown } from './services/common/dropdown.service';
 import { AppRoutingModule } from './app-routing.module';
+import { RealtimeReportComponent } from './realtime-report/realtime-report.component';
 
 
 @NgModule({
@@ -76,6 +77,7 @@ import { AppRoutingModule } from './app-routing.module';
 		PasswordComponent,
 		FilterParentPipe,
 		DashboardComponent,
+		RealtimeReportComponent
 	],
 	imports: [
 		AppRoutingModule,
@@ -99,7 +101,8 @@ import { AppRoutingModule } from './app-routing.module';
 		MatDividerModule,
 		MatButtonModule,
 		ChartsModule,
-		MatProgressSpinnerModule
+		MatProgressSpinnerModule,
+		CommonModule
 	],
 	providers: [AuthService, UserService, StudentService, IndustryDropDown],
 	bootstrap: [AppComponent]
@@ -107,4 +110,4 @@ import { AppRoutingModule } from './app-routing.module';
 
 // enableProdMode();
 
-export class AppModule {}
+export class AppModule { }

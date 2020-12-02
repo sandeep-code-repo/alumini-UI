@@ -91,3 +91,41 @@ export interface ParameterInfo{
     unit:string,
     certification:string
 }
+
+//Added by Jitendra
+
+export interface PolutionStationInfo {
+    plantName?: string;
+    industryCategory?: string;
+    city?: string;
+    district?: string;
+    state?: string;
+    countStation?: number;
+    countParameter?: number,
+    realTimeStationParamMapper: ParamMapper;
+    listStationName:string[];
+}
+
+export interface ParamMapper {
+    emissionList: ListData[];
+    effluentList: ListData[];
+    ambientList: ListData[];
+    emissionListSize?: number;
+    effluentListSize?: number;
+    ambientListSize?: number;
+}
+
+export interface ListData {
+    parameter?: string,
+    unit?: string,
+    limit?: string,
+    range?: string,
+    recordedTime?: string,
+    recordedLevel?: string,
+    thresholdLevel?: string,
+    aggregation?: string,
+    stationName?: string,
+    analyzer?: string,
+    parameterStatus: boolean;
+}
+
