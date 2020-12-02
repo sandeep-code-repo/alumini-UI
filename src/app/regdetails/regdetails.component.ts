@@ -24,7 +24,7 @@ export interface IndustryDetails {
   styleUrls: ['./regdetails.component.css']
 })
 
-export class RegdetailsComponent implements OnInit,AfterViewInit {
+export class RegdetailsComponent implements OnInit{
   //regdetails: FormGroup;
  
   dataSource: MatTableDataSource<IndustryDetails>;
@@ -33,16 +33,13 @@ export class RegdetailsComponent implements OnInit,AfterViewInit {
   displayedColumns: string[] 
   isLoading:Boolean
   isLogin:Boolean;
-   //baseUrl:string ="https://cors-anywhere.herokuapp.com/http://117.211.75.160:8086/rest/api/industry/dropdownIndustryList";
+   
    
     types$;
     @ViewChild(MatSort, {static: false}) sort: MatSort;
      
     @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
-    ngAfterViewInit() {
-     // this.dataSource.paginator = this.paginator;
-      
-    }
+   
     
 	constructor(private router: Router, private storageService:LocalServiceService,private http:HttpClient,private industryDropDownService:IndustryDropDown) {
   //this.userName=""
