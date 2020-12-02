@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 
-import { enableProdMode } from '@angular/core';
+
 // Modules
-import { RouterModule, Routes } from '@angular/router';
+//import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -62,40 +62,24 @@ import { AppRoutingModule } from './app-routing.module';
 @NgModule({
 	declarations: [
 		AppComponent,
-
 		LoginComponent,
 		HomeComponent,
-
 		RegistrationComponent,
-
 		RegdetailsComponent,
-
 		PlantInfoComponent,
-
 		ForgetpasswordComponent,
-
 		HelpComponent,
-
 		AlertComponent,
-
 		EmployeeExcelComponent,
-
 		ApidocComponent,
-
 		AdminEmpExcelComponent,
-
 		PasswordComponent,
-
 		FilterParentPipe,
-
 		DashboardComponent,
-
-
 	],
 	imports: [
 		AppRoutingModule,
 		BrowserModule,
-
 		AppRoutingModule,
 		FormsModule,
 		HttpClientModule,
@@ -116,8 +100,6 @@ import { AppRoutingModule } from './app-routing.module';
 		MatButtonModule,
 		ChartsModule,
 		MatProgressSpinnerModule
-
-
 	],
 	providers: [AuthService, UserService, StudentService, IndustryDropDown],
 	bootstrap: [AppComponent]
@@ -125,4 +107,4 @@ import { AppRoutingModule } from './app-routing.module';
 
 // enableProdMode();
 
-export class AppModule { }
+export class AppModule {}

@@ -1,3 +1,20 @@
+
+.limiter {
+    width: 100%;
+    margin: 0 auto;
+    /* The image used */
+    background:url(../../assets/images/bg-201.jpg);
+  
+  /* Full height */
+  /* height: 100%; */
+   height: auto;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  }
+
 h2.heading{font-size: 25px;
     text-align: center;
     color: #333;

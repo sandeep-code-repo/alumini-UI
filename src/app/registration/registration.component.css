@@ -1,6 +1,22 @@
 body{
     overflow-x: hidden !important;
+    /* background:url(../../assets/images/bg-222.png) !important; */
 }
+.limiter {
+    width: 100%;
+    margin: 0 auto;
+    /* The image used */
+    background:url(../../assets/images/bg-201.jpg);
+  
+  /* Full height */
+  /* height: 100%; */
+   height: auto;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  }
 h2.heading{font-size: 25px;
     text-align: center;
     color: #333;
@@ -11,7 +27,7 @@ h2.heading{font-size: 25px;
     margin-top: 40px;
 }
     h4.heading1{
-        color: #fff;
+color: #fff;
 border-bottom: 7px solid #5B5959;
 padding: 10px 25px;
 font-size: 18px;
@@ -314,7 +330,6 @@ input:-moz-read-only { /* For Firefox */
     border-color: #9ae3b5;
     cursor: not-allowed;
   }
-
 
 @media only screen and (max-width: 768px){
     .logo {
