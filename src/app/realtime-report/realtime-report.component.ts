@@ -45,10 +45,10 @@ export class RealtimeReportComponent implements OnInit {
 
       if (res.apiStatus.message === 'success') {
         this.polutionStationInfo = res.data;
+        this.listData = this.polutionStationInfo.realTimeStationParamMapper.emissionList;
+        this.selectedTab = 'emission';
       }
     });
-
-
   }
 
   ngOnInit(): void {
@@ -66,9 +66,6 @@ export class RealtimeReportComponent implements OnInit {
         alert('ERROR ON PAGE' + data.apiStatus.message);
       }
     });
-
-
-
   }
   monitoring_type(id) {
     this.type = id;
