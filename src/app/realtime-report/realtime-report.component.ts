@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user/user.service';
+import { Router } from '@angular/router';
 import { PolutionStationInfo, ListData } from '../model/industry.model';
 import { LocalServiceService } from '../services/common/local-service.service';
 
@@ -32,7 +33,7 @@ export class RealtimeReportComponent implements OnInit {
   public selectedTab: string;
   public userData: any;
 
-  constructor(private UserService: UserService, private localService: LocalServiceService) {
+  constructor(private UserService: UserService,private router:Router, private localService: LocalServiceService) {
     this.userData = this.localService.getJsonValue('loggedInUserData');
 
     console.log(this.userData);
@@ -95,6 +96,11 @@ export class RealtimeReportComponent implements OnInit {
 
     }
 
+  }
+
+
+  logout() {
+    window.location.href = '/login';
   }
 
 }

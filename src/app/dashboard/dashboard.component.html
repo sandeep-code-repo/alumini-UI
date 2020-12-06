@@ -1,13 +1,4 @@
- 
-  <!-- Custom fonts for this template-->
-  <!-- <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="../../assetscss/sb-admin-2.css" rel="stylesheet">
-    <link href="../../assets/style.css" rel="stylesheet"> -->
- 
- <div id="page-top">  
 <div id="wrapper">
-
-   
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -20,60 +11,62 @@
 
                 <!-- Sidebar Toggle (Topbar) -->
                 <!-- <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                    <i class="fa fa-bars"></i>
-                </button> -->
+                <i class="fa fa-bars"></i>
+            </button> -->
 
                 <!-- Topbar Search -->
                 <!-- <form
-                    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                    <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                            aria-label="Search" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">
-                                <i class="fas fa-search fa-sm"></i>
-                            </button>
-                        </div>
+                class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                        aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">
+                            <i class="fas fa-search fa-sm"></i>
+                        </button>
                     </div>
-                </form> -->
+                </div>
+            </form> -->
                 <!-- Brand -->
-                <a class="navbar-brand" href="#"><img src="assets/images/assam.svg" width="50"></a>
+                <img src="assets/images/assam.svg" width="50" />
 
                 <!-- Links -->
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link">
-                            <i class="fas fa-fw fa-tachometer-alt pr-2 text-primary"></i> Dashboard</a>
-                     </li>
-                    
+                        <a class="nav-link" routerLink="/dashboard" id="navbardrop" data-toggle="dropdown">
+                            <i class="fas fa-fw fa-tachometer-alt pr-2 text-primary"></i>
+                            Dashboard</a>
+
+                    </li>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">
-                          <i class="fa fa-industry pr-2 text-primary"></i> Industry Reports
+                            <i class="fa fa-industry pr-2 text-primary"></i> Industry Reports
                         </a>
                         <div class="dropdown-menu">
-                          <a class="dropdown-item" href="#/realtime-report">Real Time Report</a>
-                          <a class="dropdown-item">Exceedance Report</a>
+                            <a class="dropdown-item" routerLink="/realtime-report">Real Time Report</a>
+                            <a class="dropdown-item">Exceedance Report</a>
                         </div>
-                      </li>
+                    </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">
-                            <i class="fa fa-sticky-note pr-2 text-warning"></i> Regulator
+                        <a class="nav-link dropdown-toggle" id="navbardrop">
+                            <i class="pr-2 text-warning  fa fa-sticky-note"></i> Regulator
                             Reports</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item">Analyzer Parameter & Diagnostics Page</a>
-                                <a class="dropdown-item">Data Availability Stringent Report</a>
-                              </div>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item">Analyzer Parameter & Diagnostics Page</a>
+                            <a class="dropdown-item">Data Availability Stringent Report</a>
+                        </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbardrop">
                             <i class="fa fa-eye text-danger blink pr-2"></i> Live Status</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item">Site Status</a>
-                                <a class="dropdown-item">Map View</a>
-                              </div>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item">Site Status</a>
+                            <a class="dropdown-item">Map View</a>
+                        </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbardrop">
                             <i class="fa fa-flask text-primary pr-2"></i> Calibration</a>
                     </li>
 
@@ -85,11 +78,10 @@
                         <div class="dropdown-menu">
                             <a class="dropdown-item">Work Flow</a>
                             <a class="dropdown-item">Completed Workflow</a>
-                            
+
                         </div>
                     </li>
                 </ul>
-
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
 
@@ -180,60 +172,60 @@
                         </a>
                         <!-- Dropdown - Messages -->
                         <!-- <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                            aria-labelledby="messagesDropdown">
-                            <h6 class="dropdown-header">
-                                Message Center
-                            </h6>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="img/undraw_profile_1.svg"
-                                        alt="">
-                                    <div class="status-indicator bg-success"></div>
-                                </div>
-                                <div class="font-weight-bold">
-                                    <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                        problem I've been having.</div>
-                                    <div class="small text-gray-500">Emily Fowler · 58m</div>
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="img/undraw_profile_2.svg"
-                                        alt="">
-                                    <div class="status-indicator"></div>
-                                </div>
-                                <div>
-                                    <div class="text-truncate">I have the photos that you ordered last month, how
-                                        would you like them sent to you?</div>
-                                    <div class="small text-gray-500">Jae Chun · 1d</div>
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="img/undraw_profile_3.svg"
-                                        alt="">
-                                    <div class="status-indicator bg-warning"></div>
-                                </div>
-                                <div>
-                                    <div class="text-truncate">Last month's report looks great, I am very happy with
-                                        the progress so far, keep up the good work!</div>
-                                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                        alt="">
-                                    <div class="status-indicator bg-success"></div>
-                                </div>
-                                <div>
-                                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                        told me that people say this to all dogs, even if they aren't good...</div>
-                                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                                </div>
-                            </a>
-                            <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-                        </div> -->
+                        aria-labelledby="messagesDropdown">
+                        <h6 class="dropdown-header">
+                            Message Center
+                        </h6>
+                        <a class="dropdown-item d-flex align-items-center" href="#">
+                            <div class="dropdown-list-image mr-3">
+                                <img class="rounded-circle" src="img/undraw_profile_1.svg"
+                                    alt="">
+                                <div class="status-indicator bg-success"></div>
+                            </div>
+                            <div class="font-weight-bold">
+                                <div class="text-truncate">Hi there! I am wondering if you can help me with a
+                                    problem I've been having.</div>
+                                <div class="small text-gray-500">Emily Fowler · 58m</div>
+                            </div>
+                        </a>
+                        <a class="dropdown-item d-flex align-items-center" href="#">
+                            <div class="dropdown-list-image mr-3">
+                                <img class="rounded-circle" src="img/undraw_profile_2.svg"
+                                    alt="">
+                                <div class="status-indicator"></div>
+                            </div>
+                            <div>
+                                <div class="text-truncate">I have the photos that you ordered last month, how
+                                    would you like them sent to you?</div>
+                                <div class="small text-gray-500">Jae Chun · 1d</div>
+                            </div>
+                        </a>
+                        <a class="dropdown-item d-flex align-items-center" href="#">
+                            <div class="dropdown-list-image mr-3">
+                                <img class="rounded-circle" src="img/undraw_profile_3.svg"
+                                    alt="">
+                                <div class="status-indicator bg-warning"></div>
+                            </div>
+                            <div>
+                                <div class="text-truncate">Last month's report looks great, I am very happy with
+                                    the progress so far, keep up the good work!</div>
+                                <div class="small text-gray-500">Morgan Alvarez · 2d</div>
+                            </div>
+                        </a>
+                        <a class="dropdown-item d-flex align-items-center" href="#">
+                            <div class="dropdown-list-image mr-3">
+                                <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
+                                    alt="">
+                                <div class="status-indicator bg-success"></div>
+                            </div>
+                            <div>
+                                <div class="text-truncate">Am I a good boy? The reason I ask is because someone
+                                    told me that people say this to all dogs, even if they aren't good...</div>
+                                <div class="small text-gray-500">Chicken the Dog · 2w</div>
+                            </div>
+                        </a>
+                        <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+                    </div> -->
                     </li>
 
                     <div class="topbar-divider d-none d-sm-block"></div>
@@ -274,19 +266,18 @@
             <!-- End of Topbar -->
 
             <!-- Begin Page Content -->
-            <div class="container-fluid">
+            <div class="container-fluid dashboard">
                 <!-- Page Heading -->
-                <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h4 mb-0 text-gray-800">{{powerplant}} </h1>
-                </div>
 
+                <h1 class="h4 text-gray-800">{{powerplant}} </h1>
 
-                <ul class="nav list">
+                <ul class="nav list mb-5">
                     <li class="nav-item">
-                        <i class="fa fa-industry text-secondary shutdown wdth"></i> {{company}}
+                        <i class="fa fa-industry text-secondary shutdown wdth"></i> {{stationname}}
+                        <input id="hdn_staion" type="hidden" value="{{stationname}}">
                     </li>
                     <li class="nav-item">
-                        <i class="fa fa-map-marker text-warning wdth"></i> {{city}},{{district}}
+                        <i class="fa fa-map-marker text-warning wdth"></i> {{city}},{{company}}
                     </li>
                     <li class="nav-item">
                         <i class="fa fa-globe text-secondary wdth"></i> {{stateName}}
@@ -295,59 +286,65 @@
                         <i class="fa fa-podcast text-primary wdth"></i> {{industryCategory}}
                     </li>
                     <li class="nav-item">
-                        <i class="fa fa-calendar text-info wdth"></i>Data fetched at:<div *ngFor="let x of calendar;let i= index">
-                          <div *ngIf="i==0">
-                            {{x.recordedTime}}
-                          </div>  
-                        </div>
+                        <i class="fa fa-calendar text-info wdth"></i>Data fetched at:<span
+                            *ngFor="let x of calendar;let i= index">
+                            <i *ngIf="i==0">
+                                {{x.recordedTime}}
+                            </i>
+                        </span>
                     </li>
                     <li class="nav-item">
-                        <i class="fa fa-sitemap text-success wdth"></i>Monitoring Stations : {{monitoringStation}}
+                        <i class="fa fa-sitemap text-success wdth"></i>Total Monitoring Stations : {{monitoringStation}}
                     </li>
                     <li class="nav-item">
-                        <i class="fa fa-tv text-danger wdth"></i>Total Parameters Monitored:{{parameterMoniter}}
+                        <i class="fa fa-tv text-danger wdth"></i>Total Parameters Monitored : {{parameterMoniter}}
                     </li>
                 </ul>
+
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
                     <!-- Content Row -->
                     <div class="row">
-
-
                         <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-4 col-md-6 mb-4 sticky-top" style="max-height: 255px;">
-                            <div class="card border-left-primary bbx shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="rounded-circle circles">
-                                                <p>{{parametername}}</p>
-                                                <h2><strong>{{parameterCode}}</strong> <br><sub>mg/Nm3 </sub></h2>
-                                            </div>
-                                            <p>Standard:{{standardNg}} mg/Nm3
-                                                <br>(15 minutes Average) </p>
+                        <div class="col-xl-4 mb-4 sticky-top" style="max-height: 200px;">
+                            <div class="row">
+                                <div class="col-12 card border-left-primary bbx shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="rounded-circle circles">
+                                                    <p style="padding: 3px 0 0 0;">{{parametername}}</p>
+                                                    <h2 style="margin: 0 0 8px;
+                                                    font-size: 15px;
+                                                    line-height: 16px;"><strong>{{parameterCode}}</strong> </h2>
+                                                    <sub>mg/Nm3 </sub>
+                                                </div>
+                                                <p>Standard:{{standardNg}} mg/Nm3
+                                                    <br>(15 minutes Average) </p>
 
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-3x text-gray-300"></i>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-clipboard-list fa-3x text-gray-300"></i>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
 
                         </div>
 
 
-                        <div class="col-xl-4 col-md-6 mb-4 ml-auto">
-                            <div class="card bbx shadow h-100 py-2">
+                        <div class="col-xl-6 col-md-6 mb-4 ml-auto">
+                            <div class="card bbx shadow right-panel py-2 pading">
                                 <div class="sear">
-                                     <form style="margin-left:0 !important;width: 100%;border: 0px solid #ccc;
+                                    <form style="margin-left: 0 !important;width: 100%;border: 1px solid #ccc;
                                 border-radius: 5px;"
                                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                                         <div class="input-group">
-                                            <input type="text" class="form-control bg-light border-1 small"
-                                                placeholder="Search by Parameter..." aria-label="Search"
+                                            <input type="text" class="form-control bg-light border-0 small"
+                                                placeholder="Search for Parameter..." aria-label="Search"
                                                 aria-describedby="basic-addon2"
                                                 (keyup)="applyFilter($event.target.value)">
                                             <div class="input-group-append">
@@ -358,42 +355,72 @@
                                         </div>
                                     </form>
                                 </div>
-                                <div class="heighf" >
+                                <div class="heighf">
                                     <div class="d-flex mb-4">
                                         <p id='true' (click)="active($event.target.id)"><span
                                                 style="width: 10px;height: 10px; background: #1cc88a;display: block;float: left;padding: 0 2 0 2;margin: 5px 8px 0 8px;"></span>
                                             Active</p>
-                                        <p id='false'  (click)="Inactive($event.target.id)"><span
+                                        <p id='false' (click)="Inactive($event.target.id)"><span
                                                 style="width: 10px;height: 10px; background: #e74a3b;display: block;float: left;padding: 0 2 0 2;margin: 5px 8px 0 15px;"></span>
                                             Inactive</p>
                                     </div>
 
-                                    <div *ngFor="let x of parameter">
-                                        <div class="card-body bg1 desi active">
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col mr-2">
-                                                    <div class="innbox">
+                                    <div *ngFor="let x of parameter;let i=index;">
+
+                                        <div id="{{i}}" class="card-body bg1 desi box1">
+
+                                            <div class="row no-gutters align-items-center" id="{{x.recordedLevel}}"
+                                                name="{{x.parameter}}"
+                                                (click)="standard($event.target.id,$event.target.name,x.range[2]+x.range[3]+x.range[4]+x.range[5],i,x.stationName)"
+                                                (mouseover)="mouse_standard($event.target.id,$event.target.name,x.range[2]+x.range[3]+x.range[4]+x.range[5],i,x.stationName)">
+                                                <div class="col mr-2" id="{{x.recordedLevel}}" name="{{x.parameter}}"
+                                                    (click)="standard($event.target.id,$event.target.name,x.range[2]+x.range[3]+x.range[4]+x.range[5],i+1-1,x.stationName)"
+                                                    (mouseover)="mouse_standard($event.target.id,$event.target.name,x.range[2]+x.range[3]+x.range[4]+x.range[5],i,x.stationName)">
+                                                    <div class="innbox" id="{{x.recordedLevel}}" name="{{x.parameter}}"
+                                                        (click)="standard($event.target.id,$event.target.name,x.range[2]+x.range[3]+x.range[4]+x.range[5],i+1-1,x.stationName)"
+                                                        (mouseover)="mouse_standard($event.target.id,$event.target.name,x.range[2]+x.range[3]+x.range[4]+x.range[5],i,x.stationName)">
                                                         <div class="scrollbar-primary">
-                                                            <div class="col-sm-12 ml-0 mb-3 p-2 border-left-success box22">
-                                                                <div id="{{x.recordedLevel}}" name="{{x.parameter}}"
-                                                                    (click)="standard($event.target.id,$event.target.name,x.range[2]+x.range[3]+x.range[4])"
-                                                                    class="ParameterNameColor">
-                                                                    {{ x.stationName}}  {{ x.parameter}}
+                                                            <div class="col-sm-12 border-left-success ">
+                                                                <div class="ParameterNameColor" id="{{x.recordedLevel}}"
+                                                                    name="{{x.parameter}}"
+                                                                    (mouseover)="mouse_standard($event.target.id,$event.target.name,x.range[2]+x.range[3]+x.range[4]+x.range[5],i,x.stationName)"
+                                                                    (click)="standard($event.target.id,$event.target.name,x.range[2]+x.range[3]+x.range[4]+x.range[5],i+1-1,x.stationName)">
+                                                                    {{ x.stationName}} {{ x.parameter}}
                                                                 </div>
                                                                 <div class="PcodeTextColor" id="{{x.recordedLevel}}"
-                                                                    (click)="standard($event.target.id)">
+                                                                    name="{{x.parameter}}"
+                                                                    (mouseover)="mouse_standard($event.target.id,$event.target.name,x.range[2]+x.range[3]+x.range[4]+x.range[5],i,x.stationName)"
+                                                                    (click)="standard($event.target.id,$event.target.name,x.range[2]+x.range[3]+x.range[4]+x.range[5],i+1-1,x.stationName)">
+
+
                                                                     {{x.recordedLevel}}{{x.unit}}
                                                                 </div>
                                                                 <div class="UnitTextColor" id="{{x.recordedLevel}}"
-                                                                    (click)="standard($event.target.id)">
+                                                                    name="{{x.parameter}}"
+                                                                    (mouseover)="mouse_standard($event.target.id,$event.target.name,x.range[2]+x.range[3]+x.range[4]+x.range[5],i,x.stationName)"
+                                                                    (click)="standard($event.target.id,$event.target.name,x.range[2]+x.range[3]+x.range[4]+x.range[5],i+1-1,x.stationName)">
                                                                     Standard - {{x.range}}{{x.unit}}
                                                                 </div>
+
+                                                                <div *ngFor="let y of parameter;let j=index;">
+                                                                    <div *ngIf="j==0">
+                                                                        {{standard(y.recordedLevel,y.parameter,y.range[2]+x.range[3]+y.range[4]+x.range[5],k,y.stationName)}}
+
+
+                                                                    </div>
+
+
+
+
+                                                                </div>
+
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
 
@@ -407,84 +434,549 @@
 
 
             <!-- Content Row -->
-            <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <ul class="tab list">
-                    <li><a href="#"><i class="fa fa-arrow-left text-white-50 pr-2"></i> Previous Day</a></li>
-                    <li><a href="#">Current Day <i class="fa fa-flash text-white-50 pl-2"></i></a></li>
-                </ul>
+            <div class="container-fluid">
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
 
-                <div class="dropdown">
-                    <button type="button"
-                        class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mb-4 dropdown-toggle"
-                        data-toggle="dropdown">
-                        <i class="fas fa-download fa-sm text-white-50"></i> Download Reports
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#"><i class="fa fa-file-excel-o"></i> As EXCEL</a>
-                        <a class="dropdown-item" href="#"><i class="fa fa-file-pdf-o"></i> As PDF</a>
-                        <a class="dropdown-item" href="#"><i class="fa fa-file-word-o"></i> As Word</a>
+
+                    <ul class="btn-list">
+                        <li><a id="prev" class="btn btn-sm btn-primary shadow-sm"
+                                (click)="previous($event.target.id)"><i
+                                    class="fa fa-arrow-left  text-white-50 pr-2"></i> Previous Day</a></li>
+                        <li><a class="btn btn-sm btn-primary shadow-sm" (click)="current()">Current Day <i
+                                    class="fa fa-flash text-white-50 pl-2"></i></a></li>
+                    </ul>
+
+                    <div class="dropdown">
+                        <button type="button"
+                            class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mb-4 dropdown-toggle"
+                            data-toggle="dropdown">
+                            <i class="fas fa-download fa-sm text-white-50"></i> Download Report:
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" (click)="printCanvas('excel')"><i class="fa fa-file-excel-o"></i>
+                                As Excel</a>
+                            <a class="dropdown-item" (click)="printCanvas('chartContainer')"><i
+                                    class="fa fa-file-pdf-o"></i> As Pdf</a>
+                            <a class="dropdown-item" (click)="printCanvas('print')"><i class="fa fa-file-pdf-o"></i> As
+                                Print</a>
+
+                        </div>
+                        &nbsp; &nbsp; &nbsp; &nbsp;
                     </div>
                 </div>
-            </div>
+                <!-- Area Chart -->
+                <div id="canvas_data" style="margin-bottom: 100px;">
+                    <div class="col-xl-8 col-lg-8">
+                        <div class="card shadow mb-6">
+                            <!-- Card Header - Dropdown -->
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h5 class="m-0 font-weight-bold text-primary">{{stationname}} </h5>
 
-        </div>
-
-
-
-
-
-
-
-        <!-- Area Chart -->
-        <div class="row">
-            <div class="col-xl-12 col-lg-12">
-                <div class="card shadow mb-4">
-                    <!-- Card Header - Dropdown -->
-                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">AAQMS-1 NO2</h6>
-                        <!-- <div class="dropdown no-arrow">
-                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                aria-labelledby="dropdownMenuLink">
-                                <div class="dropdown-header">Dropdown Header:</div>
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
                             </div>
-                        </div> -->
-                    </div>
 
-                    <div style="display: block;">
-                        <canvas baseChart width="300" height="80" [datasets]="lineChartData"
-                            [labels]="lineChartLabels" [colors]="lineChartColors" [legend]="lineChartLegend"
-                            [chartType]="lineChartType" [plugins]="lineChartPlugins">
-                        </canvas>
-                    </div>
+                            <div>
+                                <canvas id="random-chart" baseChart width="400" height="65" [datasets]="lineChartData"
+                                    [labels]="lineChartLabels" [colors]="lineChartColors" [chartType]="lineChartType"
+                                    chart-options="options" hidden>
+                                </canvas>
+                                <div id="chartContainer" style="height: 250px; width: 100%; margin:auto;"></div>
+                            </div>
+                            <div hidden>
+                                <svg width="1226.6624755859375" height="320" style="overflow: hidden;">
+                                    <defs>
+                                        <clipPath id="c3-1606804110017-clip">
+                                            <rect width="1125.6624755859375" height="216"></rect>
+                                        </clipPath>
+                                        <clipPath id="c3-1606804110017-clip-xaxis">
+                                            <rect x="-71" y="-20" width="1228.6624755859375" height="100"></rect>
+                                        </clipPath>
+                                        <clipPath id="c3-1606804110017-clip-yaxis">
+                                            <rect x="-69" y="-24" width="90" height="260"></rect>
+                                        </clipPath>
+                                        <clipPath id="c3-1606804110017-clip-grid">
+                                            <rect width="1125.6624755859375" height="216"></rect>
+                                        </clipPath>
+                                        <clipPath id="c3-1606804110017-clip-subchart">
+                                            <rect width="1125.6624755859375" height="0"></rect>
+                                        </clipPath>
+                                    </defs>
+                                    <g transform="translate(70.5,24.5)"><text class="c3-text c3-empty"
+                                            text-anchor="middle" dominant-baseline="middle" x="562.8312377929688"
+                                            y="108" style="opacity: 0;"></text>
+                                        <g clip-path="url(https://ospcb-rtdas.com/#c3-1606804110017-clip)"
+                                            class="c3-regions" style="visibility: visible;"></g>
+                                        <g clip-path="url(https://ospcb-rtdas.com/#c3-1606804110017-clip-grid)"
+                                            class="c3-grid" style="visibility: visible;">
+                                            <g class="c3-xgrid-focus">
+                                                <line class="c3-xgrid-focus" x1="-10" x2="-10" y1="0" y2="216"
+                                                    style="visibility: hidden;"></line>
+                                            </g>
+                                        </g>
+                                        <g clip-path="url(https://ospcb-rtdas.com/#c3-1606804110017-clip)"
+                                            class="c3-chart">
+                                            <g class="c3-stanford-elements">
+                                                <g class="c3-stanford-lines"
+                                                    style="shape-rendering: geometricprecision;"></g>
+                                                <g class="c3-stanford-texts"></g>
+                                                <g class="c3-stanford-regions"></g>
+                                            </g>
+                                            <g class="c3-event-rects" style="fill-opacity: 0;">
+                                                <rect class="c3-event-rect" x="0" y="0" width="1125.6624755859375"
+                                                    height="216" style=""></rect>
+                                            </g>
+                                            <g class="c3-chart-bars">
+                                                <g class="c3-chart-bar c3-target c3-target-SO2-CEMS2_DRI-KILN-3-4"
+                                                    style="pointer-events: none;">
+                                                    <g class=" c3-shapes c3-shapes-SO2-CEMS2_DRI-KILN-3-4 c3-bars c3-bars-SO2-CEMS2_DRI-KILN-3-4"
+                                                        style="cursor: pointer;"></g>
+                                                </g>
+                                            </g>
+                                            <g class="c3-chart-lines">
+                                                <g class="c3-chart-line c3-target c3-target-SO2-CEMS2_DRI-KILN-3-4"
+                                                    style="opacity: 1; pointer-events: none;">
+                                                    <g
+                                                        class=" c3-shapes c3-shapes-SO2-CEMS2_DRI-KILN-3-4 c3-lines c3-lines-SO2-CEMS2_DRI-KILN-3-4">
+                                                        <path
+                                                            class=" c3-shape c3-shape c3-line c3-line-SO2-CEMS2_DRI-KILN-3-4"
+                                                            d="M12,48.002164502164504L46,48.002164502164504L69,48.002164502164504L115,48.002164502164504L126,48.002164502164504L161,48.002164502164504L172,48.002164502164504L184,48.002164502164504L195,48.002164502164504L264,48.002164502164504L287,48.002164502164504L310,48.002164502164504L333,48.002164502164504L356,48.002164502164504L368,48.002164502164504L402,48.002164502164504L414,48.002164502164504L448,48.002164502164504L494,48.002164502164504L517,48.002164502164504L540,48.002164502164504L552,48.002164502164504L575,48.002164502164504L598,48.002164502164504L621,48.002164502164504L632,48.002164502164504L667,48.002164502164504L701,48.002164502164504L736,48.002164502164504L759,48.002164502164504L770,48.002164502164504L885,48.002164502164504L943,48.002164502164504L977,48.002164502164504L1000,48.002164502164504L1012,48.002164502164504L1058,48.002164502164504L1069,48.002164502164504L1081,48.002164502164504L1092,48.002164502164504L1104,48.002164502164504L1115,48.002164502164504"
+                                                            style="stroke: rgb(31, 119, 180); opacity: 1;"></path>
+                                                    </g>
+                                                    <g
+                                                        class=" c3-shapes c3-shapes-SO2-CEMS2_DRI-KILN-3-4 c3-areas c3-areas-SO2-CEMS2_DRI-KILN-3-4">
+                                                        <path
+                                                            class=" c3-shape c3-shape c3-area c3-area-SO2-CEMS2_DRI-KILN-3-4"
+                                                            d="M 12 48.002164502164504"
+                                                            style="fill: rgb(31, 119, 180); opacity: 0.2;"></path>
+                                                    </g>
+                                                    <g
+                                                        class=" c3-selected-circles c3-selected-circles-SO2-CEMS2_DRI-KILN-3-4">
+                                                    </g>
+                                                    <g class=" c3-shapes c3-shapes-SO2-CEMS2_DRI-KILN-3-4 c3-circles c3-circles-SO2-CEMS2_DRI-KILN-3-4"
+                                                        style="cursor: pointer;">
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-0 c3-circle c3-circle-0" cx="12"
+                                                            cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-1 c3-circle c3-circle-1" cx="46"
+                                                            cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-2 c3-circle c3-circle-2" cx="69"
+                                                            cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-3 c3-circle c3-circle-3" cx="115"
+                                                            cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-4 c3-circle c3-circle-4" cx="126"
+                                                            cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-5 c3-circle c3-circle-5" cx="161"
+                                                            cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-6 c3-circle c3-circle-6" cx="172"
+                                                            cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-7 c3-circle c3-circle-7" cx="184"
+                                                            cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-8 c3-circle c3-circle-8" cx="195"
+                                                            cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-9 c3-circle c3-circle-9" cx="264"
+                                                            cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-10 c3-circle c3-circle-10"
+                                                            cx="287" cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-11 c3-circle c3-circle-11"
+                                                            cx="310" cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-12 c3-circle c3-circle-12"
+                                                            cx="333" cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-13 c3-circle c3-circle-13"
+                                                            cx="356" cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-14 c3-circle c3-circle-14"
+                                                            cx="368" cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-15 c3-circle c3-circle-15"
+                                                            cx="402" cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-16 c3-circle c3-circle-16"
+                                                            cx="414" cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-17 c3-circle c3-circle-17"
+                                                            cx="448" cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-18 c3-circle c3-circle-18"
+                                                            cx="494" cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-19 c3-circle c3-circle-19"
+                                                            cx="517" cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-20 c3-circle c3-circle-20"
+                                                            cx="540" cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-21 c3-circle c3-circle-21"
+                                                            cx="552" cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-22 c3-circle c3-circle-22"
+                                                            cx="575" cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-23 c3-circle c3-circle-23"
+                                                            cx="598" cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-24 c3-circle c3-circle-24"
+                                                            cx="621" cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-25 c3-circle c3-circle-25"
+                                                            cx="632" cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class="c3-shape c3-shape-26 c3-circle c3-circle-26" cx="667"
+                                                            cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-27 c3-circle c3-circle-27"
+                                                            cx="701" cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-28 c3-circle c3-circle-28"
+                                                            cx="736" cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-29 c3-circle c3-circle-29"
+                                                            cx="759" cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-30 c3-circle c3-circle-30"
+                                                            cx="770" cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-31 c3-circle c3-circle-31"
+                                                            cx="885" cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-32 c3-circle c3-circle-32"
+                                                            cx="943" cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-33 c3-circle c3-circle-33"
+                                                            cx="977" cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-34 c3-circle c3-circle-34"
+                                                            cx="1000" cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-35 c3-circle c3-circle-35"
+                                                            cx="1012" cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-36 c3-circle c3-circle-36"
+                                                            cx="1058" cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-37 c3-circle c3-circle-37"
+                                                            cx="1069" cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-38 c3-circle c3-circle-38"
+                                                            cx="1081" cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-39 c3-circle c3-circle-39"
+                                                            cx="1092" cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class="c3-shape c3-shape-40 c3-circle c3-circle-40"
+                                                            cx="1104" cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                        <circle shape-rendering="crispEdges"
+                                                            class=" c3-shape c3-shape-41 c3-circle c3-circle-41"
+                                                            cx="1115" cy="48.002164502164504" r="2.5"
+                                                            style="fill: rgb(31, 119, 180); opacity: 1;"></circle>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                            <g class="c3-chart-arcs" transform="translate(562.8312377929688,103)"><text
+                                                    class="c3-chart-arcs-title"
+                                                    style="text-anchor: middle; opacity: 0;"></text>
+                                            </g>
+                                            <g class="c3-chart-texts">
+                                                <g class="c3-chart-text c3-target c3-target-SO2-CEMS2_DRI-KILN-3-4"
+                                                    style="opacity: 1; pointer-events: none;">
+                                                    <g class=" c3-texts c3-texts-SO2-CEMS2_DRI-KILN-3-4"></g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                        <g clip-path="url(https://ospcb-rtdas.com/#c3-1606804110017-clip-grid)"
+                                            class="c3-grid c3-grid-lines">
+                                            <g class="c3-xgrid-lines"></g>
+                                            <g class="c3-ygrid-lines">
+                                                <g class="c3-ygrid-line thresholdRed">
+                                                    <line x1="0" x2="1125.6624755859375" y1="199" y2="199"
+                                                        style="opacity: 1;">
+                                                    </line><text text-anchor="start" transform="" x="0" y="199" dx="4"
+                                                        dy="10" style="opacity: 1;">Prescribed Standard (0
+                                                        mg/Nm3)</text>
+                                                </g>
+                                            </g>
+                                        </g>
+                                        <g class="c3-axis c3-axis-x"
+                                            clip-path="url(https://ospcb-rtdas.com/#c3-1606804110017-clip-xaxis)"
+                                            transform="translate(0,216)" style="visibility: visible; opacity: 1;"><text
+                                                class="c3-axis-x-label" transform="" style="text-anchor: middle;"
+                                                x="562.8312377929688" dx="0" dy="3em">Date Time</text>
+                                            <g class="tick" transform="translate(12, 0)" style="opacity: 1;">
+                                                <line x1="0" x2="0" y2="6"></line><text x="0" y="9" transform=""
+                                                    style="text-anchor: middle; display: block;">
+                                                    <tspan x="0" dy=".71em" dx="0">30/11 11:56</tspan>
+                                                </text>
+                                            </g>
+                                            <g class="tick" transform="translate(287, 0)" style="opacity: 1;">
+                                                <line x1="0" x2="0" y2="6"></line><text x="0" y="9" transform=""
+                                                    style="text-anchor: middle; display: block;">
+                                                    <tspan x="0" dy=".71em" dx="0">30/11 17:56</tspan>
+                                                </text>
+                                            </g>
+                                            <g class="tick" transform="translate(563, 0)" style="opacity: 1;">
+                                                <line x1="0" x2="0" y2="6"></line><text x="0" y="9" transform=""
+                                                    style="text-anchor: middle; display: block;">
+                                                    <tspan x="0" dy=".71em" dx="0">30/11 23:56</tspan>
+                                                </text>
+                                            </g>
+                                            <g class="tick" transform="translate(839, 0)" style="opacity: 1;">
+                                                <line x1="0" x2="0" y2="6"></line><text x="0" y="9" transform=""
+                                                    style="text-anchor: middle; display: block;">
+                                                    <tspan x="0" dy=".71em" dx="0">01/12 05:56</tspan>
+                                                </text>
+                                            </g>
+                                            <g class="tick" transform="translate(1115, 0)" style="opacity: 1;">
+                                                <line x1="0" x2="0" y2="6"></line><text x="0" y="9" transform=""
+                                                    style="text-anchor: middle; display: block;">
+                                                    <tspan x="0" dy=".71em" dx="0">01/12 11:56</tspan>
+                                                </text>
+                                            </g>
+                                            <path class="domain" d="M0,6V0H1125.6624755859375V6"></path>
+                                        </g>
+                                        <g class="c3-axis c3-axis-y"
+                                            clip-path="url(https://ospcb-rtdas.com/#c3-1606804110017-clip-yaxis)"
+                                            transform="translate(0,0)" style="visibility: visible; opacity: 1;"><text
+                                                class="c3-axis-y-label" transform="rotate(-90)"
+                                                style="text-anchor: middle;" x="-108" dx="0"
+                                                dy="-45.078125">mg/Nm3</text>
+                                            <g class="tick" transform="translate(0,199)" style="opacity: 1;">
+                                                <line x2="-6"></line><text x="-9" y="0" style="text-anchor: end;">
+                                                    <tspan x="-9" dy="3">0.00</tspan>
+                                                </text>
+                                            </g>
+                                            <g class="tick" transform="translate(0,169)" style="opacity: 1;">
+                                                <line x2="-6"></line><text x="-9" y="0" style="text-anchor: end;">
+                                                    <tspan x="-9" dy="3">2.00</tspan>
+                                                </text>
+                                            </g>
+                                            <g class="tick" transform="translate(0,140)" style="opacity: 1;">
+                                                <line x2="-6"></line><text x="-9" y="0" style="text-anchor: end;">
+                                                    <tspan x="-9" dy="3">4.00</tspan>
+                                                </text>
+                                            </g>
+                                            <g class="tick" transform="translate(0,111)" style="opacity: 1;">
+                                                <line x2="-6"></line><text x="-9" y="0" style="text-anchor: end;">
+                                                    <tspan x="-9" dy="3">6.00</tspan>
+                                                </text>
+                                            </g>
+                                            <g class="tick" transform="translate(0,82)" style="opacity: 1;">
+                                                <line x2="-6"></line><text x="-9" y="0" style="text-anchor: end;">
+                                                    <tspan x="-9" dy="3">8.00</tspan>
+                                                </text>
+                                            </g>
+                                            <g class="tick" transform="translate(0,53)" style="opacity: 1;">
+                                                <line x2="-6"></line><text x="-9" y="0" style="text-anchor: end;">
+                                                    <tspan x="-9" dy="3">10.00</tspan>
+                                                </text>
+                                            </g>
+                                            <g class="tick" transform="translate(0,24)" style="opacity: 1;">
+                                                <line x2="-6"></line><text x="-9" y="0" style="text-anchor: end;">
+                                                    <tspan x="-9" dy="3">12.00</tspan>
+                                                </text>
+                                            </g>
+                                            <path class="domain" d="M-6,1H0V216H-6"></path>
+                                        </g>
+                                        <g class="c3-axis c3-axis-y2" transform="translate(1125.6624755859375,0)"
+                                            style="visibility: hidden; opacity: 1;"><text class="c3-axis-y2-label"
+                                                transform="rotate(-90)" style="text-anchor: end;" x="0" dx="-0.5em"
+                                                dy="-0.5em"></text>
+                                            <g class="tick" transform="translate(0,216)" style="opacity: 1;">
+                                                <line x2="6"></line><text x="9" y="0" style="text-anchor: start;">
+                                                    <tspan x="9" dy="3">0</tspan>
+                                                </text>
+                                            </g>
+                                            <g class="tick" transform="translate(0,195)" style="opacity: 1;">
+                                                <line x2="6"></line><text x="9" y="0" style="text-anchor: start;">
+                                                    <tspan x="9" dy="3">0.1</tspan>
+                                                </text>
+                                            </g>
+                                            <g class="tick" transform="translate(0,173)" style="opacity: 1;">
+                                                <line x2="6"></line><text x="9" y="0" style="text-anchor: start;">
+                                                    <tspan x="9" dy="3">0.2</tspan>
+                                                </text>
+                                            </g>
+                                            <g class="tick" transform="translate(0,152)" style="opacity: 1;">
+                                                <line x2="6"></line><text x="9" y="0" style="text-anchor: start;">
+                                                    <tspan x="9" dy="3">0.3</tspan>
+                                                </text>
+                                            </g>
+                                            <g class="tick" transform="translate(0,130)" style="opacity: 1;">
+                                                <line x2="6"></line><text x="9" y="0" style="text-anchor: start;">
+                                                    <tspan x="9" dy="3">0.4</tspan>
+                                                </text>
+                                            </g>
+                                            <g class="tick" transform="translate(0,109)" style="opacity: 1;">
+                                                <line x2="6"></line><text x="9" y="0" style="text-anchor: start;">
+                                                    <tspan x="9" dy="3">0.5</tspan>
+                                                </text>
+                                            </g>
+                                            <g class="tick" transform="translate(0,87)" style="opacity: 1;">
+                                                <line x2="6"></line><text x="9" y="0" style="text-anchor: start;">
+                                                    <tspan x="9" dy="3">0.6</tspan>
+                                                </text>
+                                            </g>
+                                            <g class="tick" transform="translate(0,66)" style="opacity: 1;">
+                                                <line x2="6"></line><text x="9" y="0" style="text-anchor: start;">
+                                                    <tspan x="9" dy="3">0.7</tspan>
+                                                </text>
+                                            </g>
+                                            <g class="tick" transform="translate(0,44)" style="opacity: 1;">
+                                                <line x2="6"></line><text x="9" y="0" style="text-anchor: start;">
+                                                    <tspan x="9" dy="3">0.8</tspan>
+                                                </text>
+                                            </g>
+                                            <g class="tick" transform="translate(0,23)" style="opacity: 1;">
+                                                <line x2="6"></line><text x="9" y="0" style="text-anchor: start;">
+                                                    <tspan x="9" dy="3">0.9</tspan>
+                                                </text>
+                                            </g>
+                                            <g class="tick" transform="translate(0,1)" style="opacity: 1;">
+                                                <line x2="6"></line><text x="9" y="0" style="text-anchor: start;">
+                                                    <tspan x="9" dy="3">1</tspan>
+                                                </text>
+                                            </g>
+                                            <path class="domain" d="M6,1H0V216H6"></path>
+                                        </g>
+                                    </g>
+                                    <g transform="translate(70.5,320.5)" style="visibility: hidden;">
+                                        <g clip-path="url(https://ospcb-rtdas.com/#c3-1606804110017-clip-subchart)"
+                                            class="c3-chart">
+                                            <g class="c3-chart-bars"></g>
+                                            <g class="c3-chart-lines"></g>
+                                        </g>
+                                        <g clip-path="url(https://ospcb-rtdas.com/#c3-1606804110017-clip)"
+                                            class="c3-brush" fill="none" pointer-events="all"
+                                            style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                                            <rect class="overlay" pointer-events="all" cursor="crosshair" x="0" y="0"
+                                                width="1125.6624755859375" height="0"></rect>
+                                            <rect class="selection" cursor="move" fill="#777" fill-opacity="0.3"
+                                                stroke="#fff" shape-rendering="crispEdges" style="display: none;">
+                                            </rect>
+                                            <rect class="handle handle--e" cursor="ew-resize" style="display: none;">
+                                            </rect>
+                                            <rect class="handle handle--w" cursor="ew-resize" style="display: none;">
+                                            </rect>
+                                        </g>
+                                        <g class="c3-axis-x" transform="translate(0,0)"
+                                            clip-path="url(https://ospcb-rtdas.com/#c3-1606804110017-clip-xaxis)"
+                                            style="opacity: 1;">
+                                            <g class="tick" transform="translate(12, 0)" style="opacity: 1;">
+                                                <line x1="0" x2="0" y2="6"></line><text x="0" y="9" transform=""
+                                                    style="text-anchor: middle; display: block;">
+                                                    <tspan x="0" dy=".71em" dx="0">30/11 11:56</tspan>
+                                                </text>
+                                            </g>
+                                            <g class="tick" transform="translate(287, 0)" style="opacity: 1;">
+                                                <line x1="0" x2="0" y2="6"></line><text x="0" y="9" transform=""
+                                                    style="text-anchor: middle; display: block;">
+                                                    <tspan x="0" dy=".71em" dx="0">30/11 17:56</tspan>
+                                                </text>
+                                            </g>
+                                            <g class="tick" transform="translate(563, 0)" style="opacity: 1;">
+                                                <line x1="0" x2="0" y2="6"></line><text x="0" y="9" transform=""
+                                                    style="text-anchor: middle; display: block;">
+                                                    <tspan x="0" dy=".71em" dx="0">30/11 23:56</tspan>
+                                                </text>
+                                            </g>
+                                            <g class="tick" transform="translate(839, 0)" style="opacity: 1;">
+                                                <line x1="0" x2="0" y2="6"></line><text x="0" y="9" transform=""
+                                                    style="text-anchor: middle; display: block;">
+                                                    <tspan x="0" dy=".71em" dx="0">01/12 05:56</tspan>
+                                                </text>
+                                            </g>
+                                            <g class="tick" transform="translate(1115, 0)" style="opacity: 1;">
+                                                <line x1="0" x2="0" y2="6"></line><text x="0" y="9" transform=""
+                                                    style="text-anchor: middle; display: block;">
+                                                    <tspan x="0" dy=".71em" dx="0">01/12 11:56</tspan>
+                                                </text>
+                                            </g>
+                                            <path class="domain" d="M0,6V0H1125.6624755859375V6"></path>
+                                        </g>
+                                    </g>
+                                    <g transform="translate(0,300)">
+                                        <g class="c3-legend-item c3-legend-item-SO2-CEMS2_DRI-KILN-3-4"
+                                            style="visibility: visible; cursor: pointer; opacity: 1;"><text
+                                                x="546.4874877929688" y="9" style="pointer-events: none;">SO2-CEMS2_DRI
+                                                KILN
+                                                3-4</text>
+                                            <rect class="c3-legend-item-event" x="532.4874877929688" y="-5"
+                                                width="161.6875" height="19.203125" style="fill-opacity: 0;"></rect>
+                                            <line class="c3-legend-item-tile" x1="530.4874877929688" y1="4"
+                                                x2="540.4874877929688" y2="4" stroke-width="10"
+                                                style="stroke: rgb(31, 119, 180); pointer-events: none;"></line>
+                                        </g>
+                                    </g><text class="c3-title" x="613.3312377929688" y="0"></text>
+                                </svg>
+                            </div>
 
+                            <!-- Card Body -->
 
-                    <!-- Card Body -->
-                    <div class="card-body">
-                        <div class="chart-area">
-                            <canvas id="myAreaChart"></canvas>
                         </div>
                     </div>
                 </div>
             </div>
+
+
         </div>
 
 
 
         <!-- /.container-fluid -->
-        
     </div>
 
     <!-- End of Main Content -->
-    
-</div>
 </div>
 <!-- Footer -->
 <footer class="sticky-footer bg-white">
@@ -506,10 +998,8 @@
 <!-- <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
 </a> -->
-<a class="scroll-to-top rounded" href="#page-top" style="display: inline;">
-    <i class="fas fa-angle-up"></i>
-</a>
- <!-- </body> -->
+
+
 <!-- Logout Modal-->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -524,7 +1014,7 @@
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
+                <a class="btn btn-primary" href="" (click)="logout();">Logout</a>
             </div>
         </div>
     </div>
