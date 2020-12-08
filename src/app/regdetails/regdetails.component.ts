@@ -86,8 +86,8 @@ filterForIndustry(filterVal: any) {
   error => this.isLoading = false
  ); 
  if(localStorage.isLogin)
- this.userName=this.storageService.getJsonValue('loggedInUserData').userInfoMapper.userInfo.userName;
- console.log(this.userName)
+ this.userName=this.storageService.getJsonValue('loggedInUserData').userName;
+ //console.log(this.userName)
 }
 
 

@@ -20,6 +20,6 @@ getJsonValue(key: string) {
 }
 // Clear the local storage
 clearToken() {
- // return this.storageService.secureStorage.clear();
+ return localStorage.clear();
 }
 }

@@ -4,14 +4,15 @@ import { RouterModule, Routes, Router } from '@angular/router';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 import { UserService } from '../services/user/user.service';
-import { Pipe, PipeTransform } from '@angular/core';
-import { isEmpty } from 'rxjs/operators';
+
 import { jsPDF } from "jspdf";
 import * as XLSX from 'xlsx';
-import * as CanvasJS from './canvas.min';
+import * as CanvasJS from '../../assets/js/canvas.min.js';
+//import { StorageServiceService } from '../services/common/storage-service.service';
+import { LocalServiceService } from '../services/common/local-service.service';
 //import{GlobalConstants} from '../common/global'
 
-import { dateInputsHaveChanged } from '@angular/material/datepicker/datepicker-input-base';
+//import { dateInputsHaveChanged } from '@angular/material/datepicker/datepicker-input-base';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -275,10 +276,11 @@ export class DashboardComponent implements OnInit {
     //a.click();
   }
 
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private router: Router,private storageService:LocalServiceService,private localService: LocalServiceService, private userService: UserService) { }
 
   ngOnInit(): void {
-
+    if(localStorage.isLogin)
+    this.profilename=this.storageService.getJsonValue('loggedInUserData').userName;
     // this.profilename=GlobalConstants.siteTitle;
 
     // this.data=this.parameter;
@@ -528,6 +530,7 @@ export class DashboardComponent implements OnInit {
   }
 
   logout() {
+    this.localService.clearToken();
     window.location.href = '/login';
   }
 
