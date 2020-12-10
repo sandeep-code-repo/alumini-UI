@@ -33,9 +33,7 @@ export class RegdetailsComponent implements OnInit{
   displayedColumns: string[] 
   isLoading:Boolean
   isLogin:Boolean;
-   
-   
-    types$;
+   // types$;
     @ViewChild(MatSort, {static: false}) sort: MatSort;
      
     @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
@@ -43,11 +41,13 @@ export class RegdetailsComponent implements OnInit{
     
 	constructor(private router: Router, private storageService:LocalServiceService,private http:HttpClient,private industryDropDownService:IndustryDropDown) {
   //this.userName=""
+  //this.dataSource.data=[];
 }
 
 
 
   ngOnInit(){
+    console.log(this.dataSource)
     this. industryDropDownService.getIndustryCategory().subscribe(res =>
        {
        
@@ -57,8 +57,6 @@ export class RegdetailsComponent implements OnInit{
    );
    if(localStorage.isLogin){
    this.isLogin= this.storageService.getJsonValue('isLogin')
-  
-  // console.log(this.userInfo);
   }
   
   //  if(this.industryData!=null) 
@@ -79,6 +77,7 @@ filterForIndustry(filterVal: any) {
     this.dataSource.paginator=this.paginator;}
     else {
       this.displayedColumns=  [];
+     this.dataSource=null;
     //this.dataSource.sort = this.sort;
     //this.dataSource.paginator=this.paginator;
     }
@@ -87,7 +86,7 @@ filterForIndustry(filterVal: any) {
  ); 
  if(localStorage.isLogin)
  this.userName=this.storageService.getJsonValue('loggedInUserData').userName;
- //console.log(this.userName)
+ 
 }
 
 

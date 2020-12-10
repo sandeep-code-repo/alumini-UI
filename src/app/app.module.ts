@@ -44,7 +44,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { AlertComponent } from './alert/alert.component';
 import { EmployeeExcelComponent } from './employee-excel/employee-excel.component';
 import { ApidocComponent } from './apidoc/apidoc.component';
-
 import { PdfJsViewerModule } from 'ng2-pdfjs-viewer';
 import { AdminEmpExcelComponent } from './admin-emp-excel/admin-emp-excel.component';
 import { PasswordComponent } from './password/password.component';
@@ -58,7 +57,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { IndustryDropDown } from './services/common/dropdown.service';
 import { AppRoutingModule } from './app-routing.module';
 import { RealtimeReportComponent } from './realtime-report/realtime-report.component';
-
+import { TrendsComponent } from './trends/trends.component';
 
 @NgModule({
 	declarations: [
@@ -77,7 +76,8 @@ import { RealtimeReportComponent } from './realtime-report/realtime-report.compo
 		PasswordComponent,
 		FilterParentPipe,
 		DashboardComponent,
-		RealtimeReportComponent
+		RealtimeReportComponent,
+		TrendsComponent
 	],
 	imports: [
 		AppRoutingModule,

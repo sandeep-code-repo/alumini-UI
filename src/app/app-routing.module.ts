@@ -14,6 +14,7 @@ import{PasswordComponent} from './password/password.component';
 import{DashboardComponent} from './dashboard/dashboard.component';
 import { from } from 'rxjs';
 import{RealtimeReportComponent} from './realtime-report/realtime-report.component';
+import { TrendsComponent } from './trends/trends.component';
 // Parent Routes
 const routes: Routes = [
   {
@@ -79,6 +80,10 @@ const routes: Routes = [
   {
     path:'realtime-report',
     component:RealtimeReportComponent
+  },
+  {
+    path:'trends',
+    component:TrendsComponent
   }
   
 ];

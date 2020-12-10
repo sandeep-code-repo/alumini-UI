@@ -61,7 +61,7 @@
          </div>
          <div class="row my-3">
 
-            <mat-form-field *ngIf=dataSource>
+            <mat-form-field *ngIf="dataSource">
                <mat-label>Filter</mat-label>
                <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
             </mat-form-field>

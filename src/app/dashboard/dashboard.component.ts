@@ -276,11 +276,11 @@ export class DashboardComponent implements OnInit {
     //a.click();
   }
 
-  constructor(private router: Router,private storageService:LocalServiceService,private localService: LocalServiceService, private userService: UserService) { }
+  constructor(private router: Router, private storageService: LocalServiceService, private localService: LocalServiceService, private userService: UserService) { }
 
   ngOnInit(): void {
-    if(localStorage.isLogin)
-    this.profilename=this.storageService.getJsonValue('loggedInUserData').userName;
+    if (localStorage.isLogin)
+      this.profilename = this.storageService.getJsonValue('loggedInUserData').userName;
     // this.profilename=GlobalConstants.siteTitle;
 
     // this.data=this.parameter;
@@ -511,21 +511,12 @@ export class DashboardComponent implements OnInit {
       this.sortedData = this.parameter.filter((val) => val['recordedLevel'].includes(Value.toString().toUpperCase()))
     }
 
-
-
-
-
-
     this.parameter = this.sortedData;
-
-
-
 
     if (Value == '') {
 
       this.parameter = this.data;
     }
-
 
   }
 
