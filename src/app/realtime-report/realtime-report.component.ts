@@ -3,6 +3,7 @@ import { UserService } from '../services/user/user.service';
 import { Router } from '@angular/router';
 import { PolutionStationInfo, ListData } from '../model/industry.model';
 import { LocalServiceService } from '../services/common/local-service.service';
+//import { GlobalConstants } from '../common/global';
 
 @Component({
   selector: 'app-realtime-report',
@@ -32,6 +33,9 @@ export class RealtimeReportComponent implements OnInit {
   public listData: ListData[];
   public selectedTab: string;
   public userData: any;
+  profilename: string;
+  powerplant: any;
+  company: any;
 
   constructor(private UserService: UserService,private router:Router, private localService: LocalServiceService) {
     this.userData = this.localService.getJsonValue('loggedInUserData');
@@ -51,8 +55,9 @@ export class RealtimeReportComponent implements OnInit {
       }
     });
   }
-
   ngOnInit(): void {
+
+    //this.profilename=GlobalConstants.siteTitle;
     this.UserService.realtimereport().subscribe(data => {
 
       if (data.apiStatus.message === 'success') {
@@ -60,7 +65,35 @@ export class RealtimeReportComponent implements OnInit {
         this.cems = data.data.plantInfo.cemsStation;
         this.aaqms = data.data.plantInfo.caaqmsStation;
         this.ceqms = data.data.plantInfo.ceqmsStation;
-        this.totalms = Number(this.cems) + Number(this.aaqms) + Number(this.ceqms)
+        this.totalms = Number(this.cems) + Number(this.aaqms) + Number(this.ceqms);
+
+ //alert(JSON.stringify(data.data.plantName));
+ this.company = data.data.district;
+
+ this.powerplant = data.data.plantName;
+
+ //alert(JSON.stringify(data.data.city));
+ this.city = data.data.city;
+
+ //alert(JSON.stringify(data.data.state));
+ this.stateName = data.data.state;
+
+ //alert(JSON.stringify(data.data.industryCategory));
+ this.industryCategory = data.data.industryCategory;
+
+
+ //alert(JSON.stringify(data.data.calendar));
+ this.calendar = data.data.realParameterInfo;
+
+
+
+ //alert(JSON.stringify(data.data.monitoringStation));
+ this.monitoringStation = data.data.countStation;
+
+ //alert(JSON.stringify(data.data.parameterMoniter));
+ this.parameterMoniter = data.data.countParameter;
+
+
 
       }
       else {
@@ -102,5 +135,9 @@ export class RealtimeReportComponent implements OnInit {
   logout() {
     window.location.href = '/login';
   }
+  goback() {
+    this.router.navigateByUrl("/regdetails");
+  }
+  
 
 }

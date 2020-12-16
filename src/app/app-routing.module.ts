@@ -15,6 +15,7 @@ import{DashboardComponent} from './dashboard/dashboard.component';
 import { from } from 'rxjs';
 import{RealtimeReportComponent} from './realtime-report/realtime-report.component';
 import { TrendsComponent } from './trends/trends.component';
+import { ExcedenceReportComponent } from './excedence-report/excedence-report.component';
 // Parent Routes
 const routes: Routes = [
   {
@@ -84,8 +85,11 @@ const routes: Routes = [
   {
     path:'trends',
     component:TrendsComponent
+  },
+  {
+    path:'excedence-report',
+    component:ExcedenceReportComponent
   }
-  
 ];
 
 @NgModule({

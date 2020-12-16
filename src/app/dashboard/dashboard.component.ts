@@ -4,22 +4,22 @@ import { RouterModule, Routes, Router } from '@angular/router';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 import { UserService } from '../services/user/user.service';
-
+import { Pipe, PipeTransform } from '@angular/core';
+import { isEmpty } from 'rxjs/operators';
 import { jsPDF } from "jspdf";
 import * as XLSX from 'xlsx';
-import * as CanvasJS from '../../assets/js/canvas.min.js';
-//import { StorageServiceService } from '../services/common/storage-service.service';
-import { LocalServiceService } from '../services/common/local-service.service';
+import * as CanvasJS from '../../../src/assets/js/canvas.min';
 //import{GlobalConstants} from '../common/global'
 
-//import { dateInputsHaveChanged } from '@angular/material/datepicker/datepicker-input-base';
+import { dateInputsHaveChanged } from '@angular/material/datepicker/datepicker-input-base';
+//import { GlobalConstants } from '../common/global';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  profilename;
+  profilename:string;
   fileName = 'ExcelSheet.xlsx';
   blob: any;
   k = 0;
@@ -276,12 +276,11 @@ export class DashboardComponent implements OnInit {
     //a.click();
   }
 
-  constructor(private router: Router, private storageService: LocalServiceService, private localService: LocalServiceService, private userService: UserService) { }
+  constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
-    if (localStorage.isLogin)
-      this.profilename = this.storageService.getJsonValue('loggedInUserData').userName;
-    // this.profilename=GlobalConstants.siteTitle;
+
+    //this.profilename=GlobalConstants.siteTitle;
 
     // this.data=this.parameter;
     this.userService.homepage().subscribe(data => {
@@ -511,18 +510,27 @@ export class DashboardComponent implements OnInit {
       this.sortedData = this.parameter.filter((val) => val['recordedLevel'].includes(Value.toString().toUpperCase()))
     }
 
+
+
+
+
+
     this.parameter = this.sortedData;
+
+
+
 
     if (Value == '') {
 
       this.parameter = this.data;
     }
 
+
   }
 
-  logout() {
-    this.localService.clearToken();
-    window.location.href = '/login';
+  
+  goback() {
+    this.router.navigateByUrl("/regdetails");
   }
 
 }

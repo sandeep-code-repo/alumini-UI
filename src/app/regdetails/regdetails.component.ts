@@ -57,7 +57,9 @@ export class RegdetailsComponent implements OnInit{
    );
    if(localStorage.isLogin){
    this.isLogin= this.storageService.getJsonValue('isLogin')
+   this.userName=this.storageService.getJsonValue('loggedInUserData').userName;
   }
+ 
   
   //  if(this.industryData!=null) 
   //  this.isLogin=true;
@@ -84,8 +86,7 @@ filterForIndustry(filterVal: any) {
   }, 
   error => this.isLoading = false
  ); 
- if(localStorage.isLogin)
- this.userName=this.storageService.getJsonValue('loggedInUserData').userName;
+
  
 }
 

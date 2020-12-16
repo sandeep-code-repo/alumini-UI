@@ -36,6 +36,7 @@ import { TooltipModule } from 'ng2-tooltip-directive';
 import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
 import { HelpComponent } from './help/help.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import{MatNativeDateModule } from '@angular/material/core'
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -48,9 +49,8 @@ import { PdfJsViewerModule } from 'ng2-pdfjs-viewer';
 import { AdminEmpExcelComponent } from './admin-emp-excel/admin-emp-excel.component';
 import { PasswordComponent } from './password/password.component';
 import { MatCardModule } from '@angular/material/card';
-
 import { MatSelectModule } from '@angular/material/select';
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
 import { ChartsModule } from 'ng2-charts';
 import { FilterParentPipe } from './pipes/filter-parent.pipe';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -58,7 +58,8 @@ import { IndustryDropDown } from './services/common/dropdown.service';
 import { AppRoutingModule } from './app-routing.module';
 import { RealtimeReportComponent } from './realtime-report/realtime-report.component';
 import { TrendsComponent } from './trends/trends.component';
-
+import { HeaderComponent } from './header/header.component';
+import {ExcedenceReportComponent} from './excedence-report/excedence-report.component'
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -77,7 +78,9 @@ import { TrendsComponent } from './trends/trends.component';
 		FilterParentPipe,
 		DashboardComponent,
 		RealtimeReportComponent,
-		TrendsComponent
+		TrendsComponent,
+		HeaderComponent,
+		ExcedenceReportComponent
 	],
 	imports: [
 		AppRoutingModule,
@@ -102,7 +105,9 @@ import { TrendsComponent } from './trends/trends.component';
 		MatButtonModule,
 		ChartsModule,
 		MatProgressSpinnerModule,
-		CommonModule
+		CommonModule,
+		MatDatepickerModule,
+		MatNativeDateModule 
 	],
 	providers: [AuthService, UserService, StudentService, IndustryDropDown],
 	bootstrap: [AppComponent]

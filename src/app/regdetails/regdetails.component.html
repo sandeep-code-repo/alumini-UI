@@ -1,21 +1,56 @@
 <div class="limiter">
-   <div class="regristartion container-fluid top py-2">
-      <img class="logo" src="assets/images/cpcb.png">
-      <h1 class="text-center text-white">Assam Pollution Control Board </h1>
+   <div class="container-fluid top py-2">
+      <div class="row">
+         <div class="col-xs-12 col-sm-6 col-md-8"> 
+            <img class="logo" src="assets/images/cpcb.png">
+            <h1 class="text-right text-white">Assam Pollution Control Board </h1></div>
+            <ul class="navbar-nav ml-auto">
+               <li class="nav-item dropdown no-arrow ml-auto">
+                  <a class="nav-link" href="#" id="userDropdown" role="button"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i style='font-size:24px' class='fas'>&#xf2bd;</i>
+                      <span class="mr-2 d-none d-lg-inline text-white">{{userName}}</span>
+                      <i style="font-size:24px" class="fa">&#xf150;</i>
+                      <!-- <img class="img-profile rounded-circle" src="assets/images/undraw_profile.svg"> -->
+                  </a>
+                  <!-- Dropdown - User Information -->
+                  <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                      aria-labelledby="userDropdown">
+                     
+                      <!-- <div class="dropdown-divider"></div> -->
+                      <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal" [routerLink]="['/login']">
+                          <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                          Logout
+                      </a>
+                  </div>
+              </li>
+               </ul>
+      <!-- <div class="py-3 px-3"> -->
+ <!-- <div class="col-md-4">
+           
+            </div> -->
+      </div>
+      
+            <!-- <label class="control-label pl-0" style="padding: 5px; padding-bottom: 5px;">Industry Category :</label> -->
+         <!-- </div> -->
+      <!-- </div> -->
    </div>
+   
    <div class="container uk-card uk-card-default uk-card-body my-3">
       <div class="text-center nbox">
          <h2>Industry Registration
             <br><span>(Integration with Central Server for Real Time Monitoring)</span>
          </h2>
       </div>
+     
+     
    </div>
    <div class="container uk-card uk-card-default uk-card-body my-3">
-      <div class="div80">
+      <!-- <div class="div80">
          <button type="button" tooltip="Goto Back "
             class=" float-left btn btny btn-default buttom-prim buttonsToShow"><i
                class="fa fa-arrow-circle-left"></i></button>
-      </div>
+      </div> -->
       <div class="clearfix"></div>
       <div class="div80">
          <div class="row py-3 px-3">
