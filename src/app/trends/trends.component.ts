@@ -45,12 +45,12 @@ export class TrendsComponent implements OnInit {
 
   const dashboard = this.userService.homepage().subscribe(data=>{
     debugger;
-   // alert(data.regstatus);
+   
     if(data.apiStatus.message === 'success') 
     {
   //call graph
       
-      this.fetch();
+    //this.fetch();
   
      
      this.parameter=data.data.realParameterInfo;
@@ -61,7 +61,6 @@ export class TrendsComponent implements OnInit {
 
      //alert(JSON.stringify(data.data.plantName));
      this.company=data.data.district;
-  
      this.powerplant=data.data.plantName;
 
     //alert(JSON.stringify(data.data.city));
@@ -123,7 +122,7 @@ var strDate1 = d.getFullYear() + "/" + (d.getMonth()+1) + "/" + d.getDate();
 $("#fromdate").val(strDate);
 
 $("#todate").val(strDate1);
-alert(strDate1);
+//alert(strDate1);
    
     $(".card-body").css("display","block")  
     this.chart = new CanvasJS.Chart("chartContainer",{

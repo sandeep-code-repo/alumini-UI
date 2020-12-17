@@ -60,79 +60,8 @@
               
                     <!-- Earnings (Monthly) Card Example -->
 
-              <!----      <div class="row">
-                    <div class="col-xl-3 col-md-6 mb-4 sticky-top">
-                        <div class="card border-left-primary bbx shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters">
-                                    <div class="col mr-2">
-
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                            <i class="fa fa-clock-o"></i>
-                                            Data Last Received On </div>
-
-
-                                        <p class="text-success">about an hour ago </p>
-
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-clipboard-list fa-3x text-gray-300"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div> -->
-                    <!-- Earnings (Monthly) Card Example -->
-                 <!----   <div class="col-xl-3 col-md-6 mb-4 sticky-top">
-                        <div class="card border-left-success bbx shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters">
-                                    <div class="col mr-2">
-
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                            <i class="fa fa-clock-o"></i>
-                                            Configuration Updated On </div>
-
-
-                                        <p class="text-success">about an Year ago </p>
-
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-clipboard-list fa-3x text-gray-300"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div> -->
-                    <!-- Earnings (Monthly) Card Example -->
-               <!----     <div class="col-xl-3 col-md-6 mb-4 sticky-top">
-                        <div class="card border-left-warning bbx shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters">
-                                    <div class="col mr-2">
-
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                            <i class="fa fa-clock-o"></i>
-                                            Calibration at </div>
-
-
-                                        <p class="text-warning">5 Years ago </p>
-
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-clipboard-list fa-3x text-gray-300"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div> -->
-
                 <ng-container *ngIf="userData">
-                    <div class="row">
+                    <div class="rowflex">
                         <div class="d-flex col-sm-9 justify-content-between" *ngIf="polutionStationInfo">
                             <div class="text-white p-3 text-center bg-info bbn">
                                 CEMS <br>
@@ -152,10 +81,10 @@
                                 {{polutionStationInfo.realTimeStationParamMapper.emissionListSize+polutionStationInfo.realTimeStationParamMapper.effluentListSize+polutionStationInfo.realTimeStationParamMapper.ambientListSize}}
                             </div>
                         </div>
-                    </div>
+                    </div><br><br><br>
 
-                    <section class="pollution-info-bar ">
-                        <div class="col-12 row my-5">
+                    <section class="pollution-info-bar">
+                        <div class="col-12 row my-5" id="polutioninfobar">
                             <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                                 <button [ngClass]="selectedTab == 'emission' ? 'active-btn':''" (click)="getPollutionData('emission');" type="button"
                                     class="btn btn-primary"><img src="assets/images/emission.svg" width="20" />
@@ -178,7 +107,7 @@
                             </div>
                         </div>
 
-                        <div class="row listData mb-5">
+                        <div class="row listData mb-5" id="listdata">
                             <ng-container *ngIf="listData">
 
                                 <div class="col-4" *ngFor="let data of listData">

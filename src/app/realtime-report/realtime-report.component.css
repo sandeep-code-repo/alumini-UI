@@ -334,7 +334,7 @@ html {
 }
 
 .bbn {
-    width: 190px;
+    width: 300px;
     font-weight: 600;
 }
 
@@ -369,4 +369,15 @@ html {
 }
 .breadcrumb{                  
     padding-right: 10%;
+}
+.rowflex{
+    float: left;
+    padding-left: 5px;
+}
+#polutioninfobar{
+    padding-top: 40px;
+    padding-left: 30px;
+}
+#listdata{
+    padding-left: 20px;
 }
