@@ -30,16 +30,16 @@
        </div>      
 <ul class="nav list mb-5" style="float: left;">
     <li class="nav-item">
-        <i class="fa fa-map-marker text-warning wdth"></i> {{city}},{{company}}
+        <i class="fa fa-map-marker text-warning wdth"></i>Bhubaneswar, Khorda
     </li>
     <li class="nav-item">
-        <i class="fa fa-globe text-secondary wdth"></i> {{stateName}}
+        <i class="fa fa-globe text-secondary wdth"></i> Odisha
     </li>
     <li class="nav-item">
-        <i class="fa fa-podcast text-primary wdth"></i> {{industryCategory}}
+        <i class="fa fa-podcast text-primary wdth"></i> Power Plant
     </li>
     <li class="nav-item">
-        <i class="fa fa-calendar text-info wdth"></i>Data fetched at :<span
+        <i class="fa fa-calendar text-info wdth"></i>Data fetched at :  28-Sep-2020 07:55<span
             *ngFor="let x of calendar;let i= index">
             <i *ngIf="i==0">
                 {{x.recordedTime}}
@@ -47,21 +47,74 @@
         </span>
     </li>
     <li class="nav-item">
-        <i class="fa fa-sitemap text-success wdth"></i>Total Monitoring Stations : {{monitoringStation}}
+        <i class="fa fa-sitemap text-success wdth"></i>Total Monitoring Stations :8
     </li>
     <li class="nav-item">
-        <i class="fa fa-tv text-danger wdth"></i>Total Parameters Monitored : {{parameterMoniter}}
+        <i class="fa fa-tv text-danger wdth"></i>Total Parameters Monitored : 38
     </li>
 </ul>     
 
 
-<div class="row mb-4" style="float:left;padding-left: 500px;">
-<div class="col-sm-4">
+<div class="row mb-6" style="float:left;padding-right: 500px;">
+<div class="col-sm-6">
                            
 </div>
-<div class="col-sm-12">
+
+<div class="col-xl-12">
+
     <div class="row">
-     <div class="col-sm-4">
+
+        <div class="col-md-2 pt-2 stndrop">
+            <div class="form-group">
+           <label>Site Name</label>
+           
+          <select class="form-control">
+                   <option>Grewal Associates (p) Ltd.</option>
+                 
+               </select> 
+        </div>
+               
+       </div>
+
+       <div class="col-md-2 pt-2 stndrop">
+        <div class="form-group">
+       <label>Station</label>
+       
+      <select class="form-control">
+               <option>CEMS1_DRI KILN 1-2</option>
+               <option>CEMS1_DRI KILN 3-4</option>
+               <option>All Stations</option>
+           </select> 
+    </div>
+           
+   </div>
+   <div class="col-md-2 pt-2 stndrop">
+    <div class="form-group">
+        <label>Parameter</label>
+        
+       <select class="form-control">
+                <option>CEMS1_DRI KILN 1-2</option>
+                <option>CEMS1_DRI KILN 3-4</option>
+                <option>All Stations</option>
+            </select> 
+     </div>
+</div>
+
+<div class="col-md-2 pt-2 stndrop">
+    <div class="form-group">
+        <label>Frequency</label>
+   <select class="form-control">
+       <option>1 Minute</option>
+       <option>15 Minutes</option>
+       <option>Daily</option>
+       <option>Monthly</option>
+   </select>
+</div>
+</div>
+
+
+
+     <div class="col-md-2 pt-2 stndrop">
         <div class="form-group">
             
             <label>From Date <span class="text-danger">*</span></label>
@@ -73,7 +126,7 @@
          
      </div>
      
-     <div class="col-sm-4">
+     <div class="col-md-2 pt-2 stndrop">
          <div class="form-group">
             <label>To Date <span class="text-danger">*</span></label>
             <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
@@ -84,62 +137,19 @@
         
      </div>
 
-     <div class="col-sm-4 stndrop">
-         <div class="form-group">
-        <label>Station</label>
-        
-       <select class="form-control">
-                <option>CEMS1_DRI KILN 1-2</option>
-                <option>CEMS1_DRI KILN 3-4</option>
-                <option>All Stations</option>
-            </select> 
-     </div>
-            
+
     </div>
-    </div>
-    <div class="col-sm-12">
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <label>Parameter Name</label>
-                    
-                   <select class="form-control">
-                            <option>CEMS1_DRI KILN 1-2</option>
-                            <option>CEMS1_DRI KILN 3-4</option>
-                            <option>All Stations</option>
-                        </select> 
-                 </div>
-            </div>
-
-
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <label>Frequency</label>
-               <select class="form-control">
-                   <option>1 Minute</option>
-                   <option>15 Minutes</option>
-                   <option>Daily</option>
-                   <option>Weekly</option>
-                   <option>Monthly</option>
-               </select>
-            </div>
-        </div>
-
-        <div class="col-sm-6">
-            <div class="form-group">
-           <button class="btn btn-info mt-6" (click)="fetch()">FETCH</button>
-        </div>
-        </div>
-    </div>
-        
-
-    
-         
-
-
 </div>
 
-   </div>
+
+        <div class="col-sm-4">
+            <div class="row">
+            <div class="form-group">
+           <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mb-4" (click)="fetch()">FETCH</button>
+        </div>
+        </div>
+    
+        </div>
    
 
     
@@ -173,19 +183,21 @@
 
 <div class="col-sm-12" style="padding-left:2px;">
 
+
+
 <!-- Area Chart -->
-                    <div class="col-xl-12 col-lg-12">
-                        <div class="card shadow mb-4">
+                <!---- <div class="col-xl-12 col-lg-12">
+                        <div class="card shadow mb-4">-->
                             <!-- Card Header - Dropdown -->
-                            <div
+                     <!---- <div
                                 class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                 <h6 class="m-0 font-weight-bold text-primary">{{stationname}} </h6>
                                 
-                            </div>
+                            </div> -->
                             <!-- Card Body -->
-                            <div class="card-body">
+                     <!----      <div class="card-body">-->
                                
-                               <!--- <div style="display: block;">
+                           <!----     <div style="display: block;">
                                     <canvas baseChart width="2000" height="800"
                                       [datasets]="lineChartData"
                                       [labels]="lineChartLabels"
@@ -198,7 +210,7 @@
                                   </div> -->
 
 
-                                  <div id="chartContainer" style="height: 190px; width: 100%; margin:auto;" ></div><br><br>
+                            <!----   <div id="chartContainer" style="height: 190px; width: 100%; margin:auto;" ></div><br><br>
                                   <div class="legend"><button id="PM"  style="background-color: rgb(31, 119, 180); padding: 3px 10px; margin-left: 15px; margin-bottom: 8px;" (click)="PM()">PM(mg/Nm3)</button><button id="SO2"  style="background-color: rgb(255, 127, 14); padding: 3px 10px; margin-left: 15px; margin-bottom: 5px;" (click)="SO2()">SO2(mg/Nm3)</button></div>
 
                                 
@@ -208,7 +220,7 @@
                             
                         </div>
                        
-                    </div>
+                    </div> -->
                    
 </div>                             
 

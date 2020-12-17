@@ -9,6 +9,7 @@ import {Pipe, PipeTransform} from '@angular/core';
 import * as CanvasJS from '../../assets/js/canvas.min';
 import * as XLSX from 'xlsx'; 
 import { jsPDF } from "jspdf";
+import { ExcelService } from '../services/common/excel.service';
 @Component({
   selector: 'app-trends',
   templateUrl: './trends.component.html',
@@ -372,6 +373,7 @@ pdf()
 }
 
   downloadAsExcel(args) {
+    //this.excelService.generateExcel();
     var dataPoints, filename;  
     filename = args.filename || 'chart-data';
   

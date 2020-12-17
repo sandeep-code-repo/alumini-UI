@@ -1,11 +1,8 @@
 import { Component, OnInit, ElementRef, Input, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import * as XLSX from 'xlsx'; 
-import { Observable } from 'rxjs';
 import { UserService } from '../services/user/user.service';
 import { HttpClient } from '@angular/common/http';
-import { parseHTML } from 'jquery';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 @Component({
   selector: 'app-admin-emp-excel',
   templateUrl: './admin-emp-excel.component.html',
@@ -66,7 +63,7 @@ incomingfile(event)
 
     
     this.http.post<any>('https://cors-anywhere.herokuapp.com/http://117.211.75.160:8086/rest/api/saveExcelRegistration/', formData).subscribe(data=>{
-             debugger;
+            
              
              if(data.apiStatus.message =="success")
              {

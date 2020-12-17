@@ -94,14 +94,15 @@
          <div *ngIf="isLoading" class="row my-3">
             <mat-spinner [diameter]="30"></mat-spinner>
          </div>
-         <div class="row my-3">
+        
+         <div class="table-responsive" *ngIf="dataSource;else nodataTemplate">
+            <div class="row my-3">
 
-            <mat-form-field *ngIf="dataSource">
-               <mat-label>Filter</mat-label>
-               <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
-            </mat-form-field>
-         </div>
-         <div class="table-responsive">
+               <mat-form-field>
+                  <mat-label>Filter</mat-label>
+                  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+               </mat-form-field>
+            </div>
             <table mat-table [dataSource]="dataSource" matSort
                class="table22  table-striped table-bordered table-sm table  dataTable no-footer">
                <!-- Position Column -->
@@ -210,10 +211,11 @@
 
       </div>
    </div>
-
+   <ng-template #nodataTemplate>
    <div class="container uk-card uk-card-default uk-card-body my-3">
       <img src="assets/images/data.svg" class="img-fluid">
    </div>
+   </ng-template>
    <div class="clearfix"></div>
 </div>
 <!-- Modal -->

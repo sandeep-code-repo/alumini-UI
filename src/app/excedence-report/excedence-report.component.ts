@@ -21,6 +21,8 @@ export class ExcedenceReportComponent implements OnInit {
   public lineChartLegend = true;
   public lineChartType = 'line';
   public lineChartPlugins = [];
+  dataSource:any;
+  displayedColumns:any;
   public lineChartData: ChartDataSets[] = [
     { data: [100,97,88,10,78,33,10,0], label: 'Series A' },
   ];
@@ -123,7 +125,7 @@ var strDate1 = d.getFullYear() + "/" + (d.getMonth()+1) + "/" + d.getDate();
 $("#fromdate").val(strDate);
 
 $("#todate").val(strDate1);
-alert(strDate1);
+//alert(strDate1);
    
     $(".card-body").css("display","block")  
     this.chart = new CanvasJS.Chart("chartContainer",{

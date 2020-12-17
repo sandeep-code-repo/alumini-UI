@@ -15,15 +15,12 @@ export class ApidocComponent implements OnInit {
   fileName= '1349.xlsx';  
   constructor(private router: Router) { }
 
-  
+  pdfSrc = "../../assets/documents/1349.pdf";
   ngOnInit(): void {
 
     ////////alert('page under construction');
   
-    $( document ).ready(function() {
    
-      this.pdfsrc="a.pdf";
-})
 
   }
  

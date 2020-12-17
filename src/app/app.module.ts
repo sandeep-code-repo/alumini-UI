@@ -14,7 +14,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { AuthService } from './services/auth/auth.service';
 import { UserService } from './services/user/user.service';
 import { StudentService } from './services/student/student.service';
-
+import {ExcelService} from './services/common/excel.service'
 
 
 // Pipes
@@ -109,7 +109,7 @@ import {ExcedenceReportComponent} from './excedence-report/excedence-report.comp
 		MatDatepickerModule,
 		MatNativeDateModule 
 	],
-	providers: [AuthService, UserService, StudentService, IndustryDropDown],
+	providers: [AuthService, UserService, StudentService, IndustryDropDown,ExcelService],
 	bootstrap: [AppComponent]
 })
 
