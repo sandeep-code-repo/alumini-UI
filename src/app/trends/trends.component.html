@@ -1,0 +1,252 @@
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <app-header></app-header>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid" style="position: relative; height: 100vh;">
+                 <!-- Page Heading -->
+                 <div>
+                    <span><button type="button" tooltip="Goto Back " class="mr-3 btn btny btn-default buttom-prim buttonsToShow" id="backbtn"
+                        (click)="goback()" style="float: left;">
+                        <i class="fa fa-arrow-circle-left"></i></button>
+                    </span>
+                <span>
+                    <ol class="breadcrumb" style="float: left;">
+                            
+                        <li class="breadcrumb-item active" aria-current="page"><a href="#/realtime-report">Real Time Reports</a></li>
+                        <li class="breadcrumb-item active"><a>Trends</a></li> 
+                    </ol><br>
+                </span></div>
+                       <!-- Sidebar -->
+<div style="float: left;padding-left: 10px;">
+    <h1 class="h4 text-gray-800">Power Plant India Ltd.
+    </h1>
+        <ul class="nav list">
+                
+            <li class="nav-item">
+                <i class="fa fa-map-marker text-warning wdth"></i>Bhubaneswar,Khorda
+            </li>
+            <li class="nav-item">
+                <i class="fa fa-globe text-secondary wdth"></i>Odisha
+            </li>
+            <li class="nav-item">
+                <i class="fa fa-podcast text-primary wdth"></i> Power Plant
+            </li>
+            <li class="nav-item">
+                <i class="fa fa-calendar text-info wdth"></i>Data fetched at : 28-Sep-2020 07:55
+            </li>
+            <li class="nav-item">
+                <i class="fa fa-sitemap text-success wdth"></i> Monitoring Stations : 9
+            </li>
+            <li class="nav-item">
+                <i class="fa fa-tv text-danger wdth"></i> Total Parameters Monitored : 38
+            </li>
+        </ul> 
+</div> 
+                       
+    
+
+<!--<div> 
+    <h3 class="mb-4"style="float:none;">{{powerplant}}</h3>
+</div>
+
+          
+            <ul class="nav list" style="float: left;">
+                
+                <li class="nav-item">
+                  <i class="fa fa-map-marker text-warning wdth"></i>{{city}},{{company}}
+                </li>
+                <li class="nav-item">
+                  <i class="fa fa-globe text-secondary wdth"></i>{{stateName}}
+                </li>  
+                <li class="nav-item">
+                  <i class="fa fa-podcast text-primary wdth"></i> {{industryCategory}}
+                </li>   
+                <li class="nav-item">
+                    <i class="fa fa-calendar text-info wdth"></i>Data fetched at : <span *ngFor="let x of calendar;let i= index">
+                      <i *ngIf="i==0">
+                        {{x.recordedTime}}
+                      </i> 
+                     
+                    </span> 
+                </li>  
+                <li class="nav-item">
+                  <i class="fa fa-sitemap text-success wdth"></i>Total Monitoring Stations : {{monitoringStation}}
+                </li>     
+                <li class="nav-item">
+                  <i class="fa fa-tv text-danger wdth"></i> Total Parameters Monitored : {{parameterMoniter}}
+                </li>    
+              </ul> -->
+
+
+<div class="row mb-4" style="float:left;padding-left: 500px;">
+<div class="col-sm-4">
+                           
+</div>
+<div class="col-sm-12">
+    <div class="row">
+     <div class="col-sm-4">
+        <div class="form-group">
+            
+            <label>From Date <span class="text-danger">*</span></label>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <input id="fromdate" type="text"   [matDatepicker]="picker" class="form-control" placeholder="Select Date" >
+           
+        </div>
+         
+     </div>
+     
+     <div class="col-sm-4">
+         <div class="form-group">
+            <label>To Date <span class="text-danger">*</span></label>
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+            <input id="todate" type="text"  [matDatepicker]="picker1" class="form-control" placeholder="Select Date" >
+            
+        </div>
+        
+     </div>
+
+     <div class="col-sm-4 stndrop">
+         <div class="form-group">
+        <label>Station</label>
+        
+       <select class="form-control">
+                <option>CEMS1_DRI KILN 1-2</option>
+                <option>CEMS1_DRI KILN 3-4</option>
+                <option>All Stations</option>
+            </select> 
+     </div>
+            
+    </div>
+     </div>
+
+     <div class="row">
+     <div class="col-sm-6">
+         <div class="form-group">
+             <label>Frequency</label>
+        <select class="form-control">
+            <option>1 Minute</option>
+            <option>15 Minutes</option>
+            <option>Daily</option>
+            <option>Monthly</option>
+        </select>
+    </div>
+     </div>
+     <div class="col-sm-6" id="fetchbtn">
+         <div class="form-group">
+        <button class="btn btn-info mt-6" (click)="fetch()" id="">FETCH</button>
+    </div>
+     </div>
+     </div>
+
+</div>
+
+
+
+
+</div>
+  
+
+  <!-- Content Row -->
+
+                <div class="d-sm-flex align-items-center col-sm-12 justify-content-between mb-4">
+                    
+                    <div class="dropdown">
+                      <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mb-4 dropdown-toggle" data-toggle="dropdown">
+                        <i class="fas fa-download fa-sm text-white-50"></i> Download Reports
+                      </button>
+                      <div class="dropdown-menu">
+                        <a  class="dropdown-item" (click)="excel()"><i class="fa fa-file-excel-o"></i> As EXCEL</a>
+                        <a class="dropdown-item" (click)="printCanvas('chartContainer')"><i class="fa fa-file-pdf-o"></i> As Pdf</a>
+                        <a class="dropdown-item" (click)="printCanvas('print')"><i class="fa fa-file-pdf-o"></i> As Print</a>
+
+                      </div>
+                    </div> 
+                </div>                          
+
+<div class="col-sm-12" style="padding-left:2px;">
+
+<!-- Area Chart -->
+                    <div class="col-xl-12 col-lg-12">
+                        <div class="card shadow mb-4">
+                            <!-- Card Header - Dropdown -->
+                            <div
+                                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">{{stationname}} </h6>
+                                
+                            </div>
+                            <!-- Card Body -->
+                            <div class="card-body">
+                               
+                               <!--- <div style="display: block;">
+                                    <canvas baseChart width="2000" height="800"
+                                      [datasets]="lineChartData"
+                                      [labels]="lineChartLabels"
+                                    
+                                      [colors]="lineChartColors"
+                                      [legend]="lineChartLegend"
+                                      [chartType]="lineChartType"
+                                      [plugins]="lineChartPlugins">
+                                    </canvas>
+                                  </div> -->
+
+
+                                  <div id="chartContainer" style="height: 190px; width: 100%; margin:auto;" ></div><br><br>
+                                  <div class="legend"><button id="PM"  style="background-color: rgb(31, 119, 180); padding: 3px 10px; margin-left: 15px; margin-bottom: 8px;" (click)="PM()">PM(mg/Nm3)</button><button id="SO2"  style="background-color: rgb(255, 127, 14); padding: 3px 10px; margin-left: 15px; margin-bottom: 5px;" (click)="SO2()">SO2(mg/Nm3)</button></div>
+
+                                
+                                  
+                            </div>
+                            
+                            
+                        </div>
+                       
+                    </div>
+                   
+</div>                             
+
+            
+        
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white" style="padding-top: 50px;">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; Assam Polution Control Board | 2020</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+
+

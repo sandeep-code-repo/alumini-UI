@@ -1,0 +1,183 @@
+<div id="wrapper">
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <app-header></app-header>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+
+            <div class="container-fluid" style="position: relative; height: 80vh;">
+                <div><span><button type="button" tooltip="Goto Back " class="mr-3 btn btny btn-default buttom-prim buttonsToShow" id="backbtn"
+                    (click)="goback()" style="float: left;">
+                    <i class="fa fa-arrow-circle-left"></i></button>
+                </span>
+                <span>
+                    <ol class="breadcrumb" style="float: left;">
+                            
+                        <li class="breadcrumb-item"><a>Real Time Reports</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a href="#/trends">Trends</a></li> 
+                    </ol>
+                </span>
+            </div>
+                
+                    
+        
+                <br>
+
+                <div style="float: left;padding-left: 10px;">
+                    <h1 class="h4 text-gray-800">Power Plant India Ltd.
+                    </h1>
+                        <ul class="nav list">
+                                
+                            <li class="nav-item">
+                                <i class="fa fa-map-marker text-warning wdth"></i>Bhubaneswar,Khorda
+                            </li>
+                            <li class="nav-item">
+                                <i class="fa fa-globe text-secondary wdth"></i>Odisha
+                            </li>
+                            <li class="nav-item">
+                                <i class="fa fa-podcast text-primary wdth"></i> Power Plant
+                            </li>
+                            <li class="nav-item">
+                                <i class="fa fa-calendar text-info wdth"></i>Data fetched at : 28-Sep-2020 07:55
+                            </li>
+                            <li class="nav-item">
+                                <i class="fa fa-sitemap text-success wdth"></i> Monitoring Stations : 9
+                            </li>
+                            <li class="nav-item">
+                                <i class="fa fa-tv text-danger wdth"></i> Total Parameters Monitored : 38
+                            </li>
+                        </ul> 
+                </div> 
+                
+                       
+              
+                    <!-- Earnings (Monthly) Card Example -->
+
+                <ng-container *ngIf="userData">
+                    <div class="rowflex">
+                        <div class="d-flex col-sm-9 justify-content-between" *ngIf="polutionStationInfo">
+                            <div class="text-white p-3 text-center bg-info bbn">
+                                CEMS <br>
+                                {{polutionStationInfo.realTimeStationParamMapper.emissionListSize}}
+                            </div>
+                            <div class="text-white p-3 ml-2 text-center bg-warning bbn">
+                                EQMS <br>
+                                {{polutionStationInfo.realTimeStationParamMapper.effluentListSize}}
+                            </div>
+                            <div class="text-white p-3 ml-2 text-center bg-success bbn">
+                                AAQMS <br>
+                                {{polutionStationInfo.realTimeStationParamMapper.ambientListSize}}
+                            </div>
+
+                            <div class="text-white p-3 ml-2 text-center bg-dark bbn">
+                                Total Stations <br>
+                                {{polutionStationInfo.realTimeStationParamMapper.emissionListSize+polutionStationInfo.realTimeStationParamMapper.effluentListSize+polutionStationInfo.realTimeStationParamMapper.ambientListSize}}
+                            </div>
+                        </div>
+                    </div><br><br><br>
+
+                    <section class="pollution-info-bar">
+                        <div class="col-12 row my-5" id="polutioninfobar">
+                            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                                <button [ngClass]="selectedTab == 'emission' ? 'active-btn':''" (click)="getPollutionData('emission');" type="button"
+                                    class="btn btn-primary"><img src="assets/images/emission.svg" width="20" />
+                                    Emission</button>
+                                <button [ngClass]="selectedTab == 'effluent' ? 'active-btn':''"  (click)="getPollutionData('effluent');" type="button"
+                                    class="btn btn-primary"><img src="assets/images/efl.svg" width="20" />
+                                    Effluent</button>
+                                <button [ngClass]="selectedTab == 'ambient' ? 'active-btn':''" (click)="getPollutionData('ambient')" type="button" class="btn btn-primary"><img
+                                        src="assets/images/amb.svg" width="20" />
+                                    Ambient</button>
+                                <!-- <ng-container *ngIf="polutionStationInfo">
+                                    <select style="width: 150px;">
+                                        <option>All</option>
+                                        <option [value]="name" *ngFor="let name of polutionStationInfo.listStationName">
+                                            {{name}}
+                                        </option>
+                                    </select>
+                                </ng-container> -->
+
+                            </div>
+                        </div>
+
+                        <div class="row listData mb-5" id="listdata">
+                            <ng-container *ngIf="listData">
+
+                                <div class="col-4" *ngFor="let data of listData">
+                                    <div class="card shadow p-2">
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <img *ngIf="selectedTab === 'emission'" src="assets/images/ind.svg"
+                                                    class="img-fluid" width="">
+                                                <img *ngIf="selectedTab === 'effluent'" src="assets/images/ind.svg"
+                                                    class="img-fluid" width="">
+                                                <img *ngIf="selectedTab === 'ambient'" src="assets/images/ind.svg"
+                                                    class="img-fluid" width="">
+
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <h5 class="mb-1">{{data.stationName}} - {{data.parameter}}</h5>
+                                                <p class="mb-1">{{data.unit}} </p>
+                                                <p class="mb-1"><span class="text-primary">{{data.aggregation}}</span> :
+                                                    <span class="text-danger">{{data.recordedLevel}}
+                                                        {{data.unit}}</span></p>
+                                                <p class="mb-1">Limit: {{data.limit}} - 100 {{data.unit}} Range:
+                                                    {{data.range}}</p>
+                                            </div>
+                                        </div>
+                                        <span class="dot"></span>
+                                    </div>
+                                </div>
+
+                            </ng-container>
+
+
+                        </div>
+
+                    </section>
+                </ng-container>
+
+
+
+
+
+
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+
+
+            <!-- Footer -->
+            
+            <!-- End of Footer -->
+            
+        <!-- End of Content Wrapper -->
+        
+
+    
+    
+    <!-- End of Page Wrapper -->
+        <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Assam Polution Control Board | 2020</span>
+                    </div>
+                </div>
+        </footer>
+</div>
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    
