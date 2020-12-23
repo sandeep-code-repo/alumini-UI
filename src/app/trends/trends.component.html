@@ -91,92 +91,108 @@
               </ul> -->
 
 
-<div class="row mb-4" style="float:left;padding-left: 500px;">
-<div class="col-sm-4">
+
+              <div class="row mb-6" style="float:left;padding-right: 500px;">
+                <div class="col-sm-6">
+                                           
+                </div>
+                
+                <div class="col-xl-12">
+                
+                    <div class="row">
+
+                   <div class="col-md-2 pt-2 stndrop">
+                        <div class="form-group">
+                       <label>Station</label>
+                       
+                      <select class="form-control">
+                               <option>CEMS1_DRI KILN 1-2</option>
+                               <option>CEMS1_DRI KILN 3-4</option>
+                               <option>All Stations</option>
+                           </select> 
+                           </div>
                            
-</div>
-<div class="col-sm-12">
-    <div class="row">
-     <div class="col-sm-4">
-        <div class="form-group">
-            
-            <label>From Date <span class="text-danger">*</span></label>
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-            <input id="fromdate" type="text"   [matDatepicker]="picker" class="form-control" placeholder="Select Date" >
-           
-        </div>
-         
-     </div>
-     
-     <div class="col-sm-4">
-         <div class="form-group">
-            <label>To Date <span class="text-danger">*</span></label>
-            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-            <mat-datepicker #picker1></mat-datepicker>
-            <input id="todate" type="text"  [matDatepicker]="picker1" class="form-control" placeholder="Select Date" >
-            
-        </div>
-        
-     </div>
-
-     <div class="col-sm-4 stndrop">
-         <div class="form-group">
-        <label>Station</label>
-        
-       <select class="form-control">
-                <option>CEMS1_DRI KILN 1-2</option>
-                <option>CEMS1_DRI KILN 3-4</option>
-                <option>All Stations</option>
-            </select> 
-     </div>
-            
-    </div>
-     </div>
-
-     <div class="row">
-     <div class="col-sm-6">
-         <div class="form-group">
-             <label>Frequency</label>
-        <select class="form-control">
-            <option>1 Minute</option>
-            <option>15 Minutes</option>
-            <option>Daily</option>
-            <option>Monthly</option>
-        </select>
-    </div>
-     </div>
-     <div class="col-sm-6" id="fetchbtn">
-         <div class="form-group">
-        <button class="btn btn-info mt-6" (click)="fetch()" id="">FETCH</button>
-    </div>
-     </div>
-     </div>
-
-</div>
-
-
-
-
-</div>
+                           </div>
+                       <div class="col-md-2 pt-2 stndrop">
+                       <div class="form-group">
+                        <label>Parameter</label>
+                        
+                          <select class="form-control">
+                                <option>CEMS1_DRI KILN 1-2</option>
+                                <option>CEMS1_DRI KILN 3-4</option>
+                                <option>All Stations</option>
+                            </select> 
+                             </div>
+                              </div>
+                        <div class="col-md-2 pt-2 stndrop">
+                                <div class="form-group">
+                                 <label>Frequency</label>
+                             <select class="form-control">
+                                 <option>1 Minute</option>
+                                 <option>15 Minutes</option>
+                                 <option>Daily</option>
+                                 <option>Monthly</option>
+                                  </select>
+                                  </div>
+                                  </div>
+                
+                
+                                  <div class="col-md-2 pt-2 stndrop">
+                                    <div class="form-group">
+                                        
+                                        <label>From Date <span class="text-danger">*</span></label>
+                                       <!---- <mat-datepicker-toggle matSuffix></mat-datepicker-toggle> -->
+                                        
+                                        <input id="fromdate" type="text"   [matDatepicker]="picker" class="form-control" placeholder="Select Date" (click)="picker.open()" >
+                                        <mat-datepicker #picker></mat-datepicker>
+                                    </div>
+                                     
+                                 </div>
+                                 
+                                 <div class="col-md-2 pt-2 stndrop">
+                                    <div class="form-group">
+                                        
+                                        <label>To Date <span class="text-danger">*</span></label>
+                                       <!---- <mat-datepicker-toggle matSuffix></mat-datepicker-toggle> -->
+                                        
+                                        <input id="todate" type="text"   [matDatepicker]="picker1" class="form-control" placeholder="Select Date" (click)="picker1.open()" >
+                                        <mat-datepicker #picker1></mat-datepicker>
+                                    </div>
+                                     
+                
+                
+                                 </div>
+                
+                                 <div class="col-md-2 pt-5 stndrop">
+                                    <div class="form-group">
+                                   <button type="button" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm mt-7" (click)="fetch()">FETCH</button>
+                               </div>
+                                </div>
   
+                         
+                    </div>
+                </div>                  
+                </div>
 
   <!-- Content Row -->
 
-                <div class="d-sm-flex align-items-center col-sm-12 justify-content-between mb-4">
-                    
-                    <div class="dropdown">
-                      <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mb-4 dropdown-toggle" data-toggle="dropdown">
-                        <i class="fas fa-download fa-sm text-white-50"></i> Download Reports
-                      </button>
-                      <div class="dropdown-menu">
-                        <a  class="dropdown-item" (click)="excel()"><i class="fa fa-file-excel-o"></i> As EXCEL</a>
-                        <a class="dropdown-item" (click)="printCanvas('chartContainer')"><i class="fa fa-file-pdf-o"></i> As Pdf</a>
-                        <a class="dropdown-item" (click)="printCanvas('print')"><i class="fa fa-file-pdf-o"></i> As Print</a>
+  <div class="container">
+    <div class="d-sm-flex align-items-center col-sm-11 justify-content-between mb-4">
+        
+        <div class="dropdown">
+          <button type="button" class=" d-sm-inline-block btn btn-sm btn-primary shadow-sm mb-4 dropdown-toggle" data-toggle="dropdown">
+            <i class="fas fa-download fa-sm text-white-50"></i> Download Reports
+          </button>
+          <div class="dropdown-menu">
+            <a  class="dropdown-item" (click)="excel()"><i class="fa fa-file-excel-o"></i> As EXCEL</a>
+            <a class="dropdown-item" (click)="printCanvas('chartContainer')"><i class="fa fa-file-pdf-o"></i> As Pdf</a>
+            <a class="dropdown-item" (click)="printCanvas('print')"><i class="fa fa-file-pdf-o"></i> As Print</a>
 
-                      </div>
-                    </div> 
-                </div>                          
+          </div>
+        </div> 
+    </div>  
+</div>                        
+        
 
 <div class="col-sm-12" style="padding-left:2px;">
 

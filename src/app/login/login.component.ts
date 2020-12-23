@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
 			});	
 
 		this.loginForm = this.formBuilder.group({     
-			username: ['', [Validators.required]],
+			userName: ['', [Validators.required]],
 			password: ['', [Validators.required]],
 		});
 
@@ -111,10 +111,7 @@ $(".close_modal").click(function(){
 this.submitted = true;
 
 //--for validation page
-if(this.loginForm.invalid)
-{
 
-}
 if (this.loginForm.valid) {
 	
 	$(".modal").css("display","block");

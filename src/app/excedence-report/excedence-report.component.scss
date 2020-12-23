@@ -378,8 +378,8 @@ html {
 .row, .col-sm-6,.btn{
  text-emphasis:right;
  float: left;
- padding-left: 5px;
- padding: 2px 12px !important;
+ padding-left: 2px;
+ padding: 2px 16px !important;
  
 }
 .container-fluid,.row,.stndrop, .col-md-3 ,.form-group, .text-danger{
@@ -389,8 +389,12 @@ html {
 .dropdown{
     float:left;
     padding-left: 50px;
-    padding: 2px 870px !important;
+    padding: 1px 895px !important;
+
   
+}
+.dropdown-menu, .dropdown-item{
+    color:black;
 }
 
 
@@ -405,6 +409,7 @@ html {
  }
   .thead, .tr{
       float:right;
-      padding: 2px ;
+      padding: 2px 15px ;
      background-color: blue;
+     padding-left: 100px;
  }

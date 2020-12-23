@@ -348,9 +348,23 @@ html {
 .breadcrumb{                  
     padding-right: 10%;
 }
-.stndrop{
-    padding-top: 10px;
+.stndrop,.col-sm-6,.form-group{padding-top: 0px;}
+.row, .col-sm-6,.btn{
+ text-emphasis:right;
+ float: left;
+ padding-left: 2px;
+ padding: 2px 16px !important;
 }
 #fetchbtn{
     padding-top: 28px;
+}
+.dropdown{
+    float:left;
+    padding-left: 50px;
+    padding: 2px 830px !important;
+
+  
+}
+.dropdown-menu, .dropdown-item{
+    color:black;
 }

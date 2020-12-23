@@ -59,7 +59,7 @@ export class UserService {
    baseurl_password: string = "http://117.211.75.160:8086/rest/api/savePassword/";
    baseurl_send_query: string = "http://117.211.75.160:8086/rest/api/addFeedbackDetails";
    
-   gettableData(){
+   gettableData(): Observable<any>{
       return this.httpclient.get(this.url)
    }
    //send query
@@ -88,8 +88,7 @@ export class UserService {
          .set('Access-Control-Allow-Credentials', 'true');
 
       const body = JSON.stringify(sendquery);
-      console.log(body);
-      // alert(body);
+      
 
       return this.httpclient.post<any>(this.baseurl_send_query, {
          "feedbackStatus": "true",
@@ -119,9 +118,8 @@ export class UserService {
          .set('Access-Control-Allow-Headers', '*')
          .set('Access-Control-Allow-Credentials', 'true');
 
-      const body = JSON.stringify(password);
-      //console.log(body);
-      // alert(body);
+     
+      
 
       return this.httpclient.post<any>(this.baseurl_password, {
          email: password.email,
@@ -142,16 +140,13 @@ export class UserService {
 
 
 
-
+debugger
       const headers = { 'content-type': 'application/json' }
       const body = JSON.stringify(login);
-      console.log(body);
-      //alert(body);
-
-      return this.httpclient.post<any>('http://117.211.75.160:8086/rest/api/login/', {
-         userName: login.username,
-         password: login.password
-      },
+      
+      return this.httpclient.post<any>('http://117.211.75.160:8086/rest/api/login/', 
+         login
+      ,
          {
             'headers': headers
          });
@@ -163,9 +158,7 @@ export class UserService {
    {
 
       const headers = { 'content-type': 'application/json' }
-      // const body=JSON.stringify(homepage);
-      // console.log(body);
-      // alert(body); getPlantDetails/username
+      
 
       return this.httpclient.post<any>('http://117.211.75.160:8086/rest/api/getPlantDetails/', {
          'userName': 'Hari'
@@ -179,10 +172,7 @@ export class UserService {
    //realtime report parameter binding
    realtimereport_monitoring_type(id): Observable<any> {
 
-      // const headers = { 'content-type': 'application/json'}  
-      // const body=JSON.stringify(homepage);
-      // console.log(body);
-      // alert(body); getPlantDetails/username
+      
 
       return this.httpclient.get<any>('http://117.211.75.160:8086/rest/api/getPrameterFromStation?plantId=hindalco_lpng&stnType=' + id);
 
@@ -194,9 +184,7 @@ export class UserService {
    homepage(): Observable<any> {
 
       const headers = { 'content-type': 'application/json' }
-      // const body=JSON.stringify(homepage);
-      // console.log(body);
-      // alert(body);
+      
 
       return this.httpclient.post<any>('http://117.211.75.160:8086/rest/api/getRealPollutantLevelInfos/', {
          'plantId': 'hindalco_lpng'
@@ -216,9 +204,7 @@ export class UserService {
    dashboardpage(): Observable<any> {
 
       const headers = { 'content-type': 'application/json' }
-      // const body=JSON.stringify(homepage);
-      // console.log(body);
-      // alert(body);
+     
 
       return this.httpclient.post<any>('http://117.211.75.160:8086/rest/api/getRealPollutantLevelInfos/', {
          'plantId': 'hindalco_lpng'
@@ -233,9 +219,7 @@ export class UserService {
    home_page_graph_bind(): Observable<any> {
 
       const headers = { 'content-type': 'application/json' }
-      // const body=JSON.stringify(homepage);
-      // console.log(body);
-      // alert(body);
+      
 
       return this.httpclient.post<any>('http://117.211.75.160:8086/rest/api/getRealPollutantLevelGraphData', {
          "plantId": "hindalco_lpng",
@@ -258,8 +242,7 @@ export class UserService {
 
       const headers = { 'content-type': 'application/json' }
       const body = JSON.stringify(export_excel);
-      console.log(body);
-      //alert(body);
+    
 
       return this.httpclient.post<any>('http://117.211.75.160:8086/rest/api/saveExcelRegistration/', {},
          {
@@ -312,9 +295,7 @@ export class UserService {
          .set('Access-Control-Allow-Credentials', 'true');
 
       const body = JSON.stringify(plant);
-      console.log(body);
-
-      // alert(body);
+    
 
       return this.httpclient.post<any>(this.baseurl_insert, {
 

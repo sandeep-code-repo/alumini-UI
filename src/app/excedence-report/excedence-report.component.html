@@ -181,7 +181,7 @@
 
 <div class="col-sm-12" style="padding-right:2px;">
 
-<table class="table table-striped" >
+<table class="table table-striped" cellspacing="3" >
    
     <thead>
     <tr>
@@ -191,12 +191,18 @@
         </th>
     </tr>
 </thead>
+<tbody>
     <tr *ngFor="let row of tableData">
+        <td>{{row.id}}</td>
+        <td>{{row.industryCategory}}</td>
+    </tr>
+</tbody>
+    <!-- <tr *ngFor="let row of tableData">
         <td *ngFor="let column of  headers">
                
             {{row[column]}}
         </td>
-        </tr>
+        </tr> -->
 
        
     <!-- </tr> <td *ngFor="let column of  headers">
