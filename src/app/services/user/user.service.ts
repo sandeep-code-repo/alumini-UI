@@ -17,7 +17,16 @@ import { LocalServiceService } from '../common/local-service.service';
 @Injectable()
 export class UserService {
 
-   private baseURL: string = "http://117.211.75.160:8086/rest/api/";
+   
+   private baseURL: string = "http://117.211.75.160:8086/rest/api";
+   loginurl: string = this.baseURL+"/login/";
+   smsReporturl=this.baseURL+"/industry/getSMSReport"
+   getIndustryUrl: string = this.baseURL+"/industry/";
+   registrationUrl: string = this.baseURL+"/register";
+   passwordResetUrl: string = this.baseURL+"/savePassword";
+   helpUrl: string = this.baseURL+"/addFeedbackDetails";
+   plantDetailsUrl:string=this.baseURL+"/getPlantDetails"
+   getParameterByStationUrl:string=this.baseURL+"/getPrameterFromStation"
    public userData:any;
    private subject = new Subject<any>();
 
@@ -52,23 +61,19 @@ export class UserService {
    getMessage(): Observable<any> {
       return this.subject.asObservable();
    }
-   url="http://117.211.75.160:8086/rest/api/industry/getSMSReport"
-   baseurl_login: string = "http://117.211.75.160:8080/alumini/login/";
-   baseurl_show_list: string = "http://117.211.75.160:8086/rest/api/industry/";
-   baseurl_insert: string = "http://117.211.75.160:8086/rest/api/register";
-   baseurl_password: string = "http://117.211.75.160:8086/rest/api/savePassword/";
-   baseurl_send_query: string = "http://117.211.75.160:8086/rest/api/addFeedbackDetails";
+  
    
    gettableData(): Observable<any>{
-      return this.httpclient.get(this.url)
+      return this.httpclient.get(this.smsReporturl)
    }
-   //send query
-   baseurl_register: string = "http://117.211.75.160:8086/rest/api/register"
+
+   //*************Registration Service**************//
+  
    registrationService(industry: Industry): Observable<any> {
       const headers = { 'content-type': 'application/json' }
       const body = JSON.stringify(industry);
 
-      return this.httpclient.post<any>(this.baseurl_register, body, {
+      return this.httpclient.post<any>(this.registrationUrl, body, {
          'headers': headers
       });
 
@@ -90,7 +95,7 @@ export class UserService {
       const body = JSON.stringify(sendquery);
       
 
-      return this.httpclient.post<any>(this.baseurl_send_query, {
+      return this.httpclient.post<any>(this.helpUrl, {
          "feedbackStatus": "true",
          "query": sendquery.query,
          "comment": "No comments",
@@ -106,9 +111,9 @@ export class UserService {
 
    }
 
-   //Forget Password Api
+   //*************Forget Password Service***************//
 
-   Forget(password: Data): Observable<any> {
+   forgotPasswordService(password: Data): Observable<any> {
 
 
       const headers = new HttpHeaders()
@@ -121,7 +126,7 @@ export class UserService {
      
       
 
-      return this.httpclient.post<any>(this.baseurl_password, {
+      return this.httpclient.post<any>(this.passwordResetUrl, {
          email: password.email,
          tempPassword: password.password
       },
@@ -138,15 +143,10 @@ export class UserService {
 
    login(login: Login): Observable<any> {
 
-
-
-debugger
       const headers = { 'content-type': 'application/json' }
       const body = JSON.stringify(login);
       
-      return this.httpclient.post<any>('http://117.211.75.160:8086/rest/api/login/', 
-         login
-      ,
+      return this.httpclient.post<any>(this.loginurl, login,
          {
             'headers': headers
          });
@@ -160,7 +160,7 @@ debugger
       const headers = { 'content-type': 'application/json' }
       
 
-      return this.httpclient.post<any>('http://117.211.75.160:8086/rest/api/getPlantDetails/', {
+      return this.httpclient.post<any>(this.plantDetailsUrl,{
          'userName': 'Hari'
 
       },
@@ -170,13 +170,9 @@ debugger
    }
 
    //realtime report parameter binding
-   realtimereport_monitoring_type(id): Observable<any> {
+   realtimereport_monitoring_type(id: string,plantId: string): Observable<any> {
 
-      
-
-      return this.httpclient.get<any>('http://117.211.75.160:8086/rest/api/getPrameterFromStation?plantId=hindalco_lpng&stnType=' + id);
-
-
+      return this.httpclient.get<any>(this.getParameterByStationUrl+'?plantId='+plantId+'&stnType='+ id);
 
    }
 
@@ -186,7 +182,7 @@ debugger
       const headers = { 'content-type': 'application/json' }
       
 
-      return this.httpclient.post<any>('http://117.211.75.160:8086/rest/api/getRealPollutantLevelInfos/', {
+      return this.httpclient.post<any>(this.baseURL+'/getRealPollutantLevelInfos/', {
          'plantId': 'hindalco_lpng'
 
       },
@@ -195,9 +191,9 @@ debugger
          });
    }
 
-   public getRealPollutantStationInfos(param): Observable<any> {
+   public getRealPollutantStationInfos(param: { plantId: any; }): Observable<any> {
      
-      return this.httpclient.post<any>(this.baseURL + 'getRealPollutantStationParamLevelInfos/', param);
+      return this.httpclient.post<any>(this.baseURL + '/getRealPollutantStationParamLevelInfos/', param);
 
    }
 
@@ -233,7 +229,7 @@ debugger
    }
 
 
-   // for LOgin Api    
+   //*****Admin Excel Upload Sevice  **** */ 
 
    upload_excel(export_excel: Login): Observable<any> {
 
@@ -242,7 +238,7 @@ debugger
 
       const headers = { 'content-type': 'application/json' }
       const body = JSON.stringify(export_excel);
-    
+
 
       return this.httpclient.post<any>('http://117.211.75.160:8086/rest/api/saveExcelRegistration/', {},
          {
@@ -254,7 +250,7 @@ debugger
 
    //*******     DATA BIND  INDUSTRY CATEGORY  SHOW ******** */
 
-   display(name): Observable<any> {
+   display(name: string): Observable<any> {
 
       const headers = new HttpHeaders()
          .set('content-type', 'application/json')
@@ -268,178 +264,13 @@ debugger
 
 
 
-      return this.httpclient.get<any>(this.baseurl_show_list + "/" + name,
+      return this.httpclient.get<any>(this.getIndustryUrl + "/" + name,
          {
             'headers': headers
          }
       );
 
    }
-
-
-
-
-
-
-
-
-
-   // register insert
-   insert(plant: PlantInfoData): Observable<any> {
-
-      const headers = new HttpHeaders()
-         .set('content-type', 'application/json')
-         .set('Access-Control-Allow-Origin', '*')
-         .set('Access-Control-Allow-Methods', 'post')
-         .set('Access-Control-Allow-Headers', '*')
-         .set('Access-Control-Allow-Credentials', 'true');
-
-      const body = JSON.stringify(plant);
-    
-
-      return this.httpclient.post<any>(this.baseurl_insert, {
-
-         "plantInfo": {
-            "pid": 4,
-            "pin": plant.ind_gen_address_Pincode,
-            "typ": plant.ind_gen_name,
-            "plantUserName": plant.ind_gen_existing_part_id,
-            "district": plant.ind_gen_address_District,
-            "town": plant.ind_gen_address_Town,
-            "street": plant.ind_gen_address,
-            "state": plant.ind_gen_address_State,
-            "email": "demo123@123",
-            "web": "demoplant.com",
-            "zonal": "Assam",
-            "grdId": "12345",
-            "timeStamp": "2020-09-22T00:00:00.000+0000",
-
-            "authPerson": plant.ind_gen_prim_cont_pername,
-            "authoPerMob": plant.ind_gen_prim_phone,
-            "authPersonDesig": plant.ind_gen_prim_design,
-
-            "cpcbUser": "jaya",
-            "cpcbUserEmail": "demo@123",
-            "cpcbUserMob": "998789876",
-
-            "cpcbUsr2": "demo",
-            "cpcbUserEmail2": "demo123@gmail.com",
-            "cpcbUserMob2": "87654321",
-
-            "latLong": "34",
-            "connected": "456",
-            "deptEmail": plant.ind_gen_prim_email,
-            "category": plant.ind_gen_ddlcategory,
-            "plantName": "gggg",
-            "analyzerCount": "123",
-            "inletUrl": "http//demo@gmail.com",
-            "outletUrl": "http//demo123.il.com",
-            "roUser": "demo123@gmail.com",
-            "roUserEmail": "demo123@gmail.com",
-            "roUserMob": "7865432123",
-            "plantSlug": "yyyy",
-            "authReq": "hgtyh",
-            "stationCount": "678",
-            "plantVendor": plant.ind_gen_vender,
-            "caaqmsStation": "76543",
-            "cemsStation": "6789876",
-            "ceqmsStation": "6754321",
-
-            "secdPerson": plant.ind_gen_security_cont_person_name,
-            "secdPersonDesig": plant.ind_gen_security_cont_degn,
-            "secdPersonMob": plant.ind_gen_security_cont_phone,
-            "secdEmail": plant.ind_gen_security_cont_email,
-
-
-            "createdBy": null,
-            "lastModifiedBy": null,
-            "lastModifiedDt": null,
-            "hqoemail": "demo123@gmail.com"
-
-         },
-         "userInfo": {
-            "password": plant.ind_gen_password,
-            "email": plant.ind_gen_prim_email,
-            "mobNo": plant.ind_gen_prim_phone,
-            "department": "dept",
-            "userType": "Guwahati",
-            "plantType": "MK Street",
-            "category": plant.ind_gen_ddlcategory,
-            "designation": plant.ind_gen_prim_design,
-            "reportto": "demoplant.com",
-            "rsaPublicKey": null,
-            "rsaPrivateKey": null,
-            "createdBy": null,
-            "createdDt": null,
-            "lastModifiedBy": null,
-            "lastModifiedDt": null,
-            "userRole": [
-               {
-                  "roleId": 3
-               },
-               {
-                  "roleId": 1
-               }
-            ]
-         },
-         "stationInfo": {
-            "stationId": 2,
-            "analyzer": "ffffff",
-            "analyzerv2": "gggggg",
-            "location": "bbbsr",
-            "installDt": "2020-09-02",
-            "token": "ddffgdhtgsaerre",
-            "macNo": "ytggvdctrf",
-            "stationNo": "45678765",
-            "stnType": "dfrgth",
-            "hasThresold": "23456",
-            "stationVendor": "cccccc",
-            "latitude": "45",
-            "longitute": "87",
-            "measurementPrinciple": "fgdhgh",
-            "stackHeight": "yujhgfd",
-            "stackDiameter": "rfgttt",
-            "stackVelocity": "tgrrgfrdgv",
-            "gasDischargeRate": "rrr",
-            "remarks": "wwwwwwwwwwww",
-            "parameterInfo": [
-               {
-                  "paramter": "er4eftggg",
-                  "analyserMake": "fff",
-                  "analyserModel": "vvvv",
-                  "analyserSerialNo": "gggg",
-                  "devidceIMEINo": "hhhh",
-                  "macId": "yyyyy",
-                  "measurmentRange": "iiii",
-                  "Unit": "iiii"
-               },
-               {
-                  "paramter": "ppppppppppppppp",
-                  "analyserMake": "ffedrf",
-                  "analyserModel": "vvvffddv",
-                  "analyserSerialNo": "ggsssgg",
-                  "devidceIMEINo": "hhssahh",
-                  "macId": "yyyaassyy",
-                  "measurmentRange": "iissddii",
-                  "Unit": "erf"
-               }
-            ]
-         }
-
-
-      }
-         , { 'headers': headers }
-
-
-      );
-
-
-
-
-
-
-   }
-
 
 
 }

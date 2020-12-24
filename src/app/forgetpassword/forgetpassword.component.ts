@@ -189,8 +189,8 @@ return false;
      
         $(".modal").css("display","block");
 
-    const forget_api = this.user.Forget(this.addpassword.value).subscribe(data=>{
-      debugger;   
+     this.user.forgotPasswordService(this.addpassword.value).subscribe(data=>{
+      
     
       if(data.apiStatus.message === 'error') {
 

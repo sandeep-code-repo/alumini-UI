@@ -1,17 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { routerTransition } from '../services/config/config.service';
-import { RouterModule, Routes, Router } from '@angular/router';
-import { ChartDataSets, ChartOptions } from 'chart.js';
+import { Router } from '@angular/router';
+import { ChartDataSets } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 import { UserService } from '../services/user/user.service';
-import { Pipe, PipeTransform } from '@angular/core';
-import { isEmpty } from 'rxjs/operators';
 import { jsPDF } from "jspdf";
 import * as XLSX from 'xlsx';
 import * as CanvasJS from '../../../src/assets/js/canvas.min';
 //import{GlobalConstants} from '../common/global'
 
-import { dateInputsHaveChanged } from '@angular/material/datepicker/datepicker-input-base';
 
 @Component({
   selector: 'app-dashboard',
@@ -50,7 +46,6 @@ export class DashboardComponent implements OnInit {
       data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], label: 'Series A'
     }, { data: [54, 5, 8, 3, 78, 33, 10, 0], label: 'Series B' },
   ];
-  private eventsOnChartLimit = 0;
   countEventsChartType = "line";
   public lineChartLabels: Label[];//= ['11/11 12.26', '11/11 18.26', '11/11 24.26', '12/11 12.26', '12/11 18.26', '12/11 24.26', '13/11 12.26'];
 
@@ -284,16 +279,10 @@ export class DashboardComponent implements OnInit {
 
     // this.data=this.parameter;
     this.userService.homepage().subscribe(data => {
-
-      // alert(data.regstatus);
       if (data.apiStatus.message === 'success') {
-        console.log(data);
         this.sortedData = data.data;
         this.parameter = data.data.realParameterInfo;
         this.data = this.parameter;
-
-
-        console.log(data.data);
 
         // data bind graph 
         this.userService.home_page_graph_bind().subscribe(data => {
@@ -345,23 +334,24 @@ export class DashboardComponent implements OnInit {
 
 
   }
-  active(Value: Boolean) {
-    this.sortedData = this.parameter.filter((val) => val.parameterStatus === true)
-    //Searched Data
-    console.log(this.sortedData);
-    this.parameter = this.sortedData;
-
-    this.parameter = this.data;
-
-    //alert(Value);
-  }
-  Inactive(Value: Boolean) {
-    this.sortedData = this.parameter.filter((val) => val.parameterStatus === false)
-    //Searched Data
-    console.log(this.sortedData);
-    this.parameter = this.sortedData;
-    // alert('inactive');
-  }
+  active(Value:Boolean)
+{ 
+  this.sortedData = this.parameter.filter((val)=> val.parameterStatus===true)
+  
+  this.parameter=this.sortedData;
+ 
+  this.parameter=this.data;
+ 
+  
+}
+Inactive(Value:Boolean)
+{
+  this.sortedData = this.parameter.filter((val)=> val.parameterStatus===false)
+  //Searched Data
+  
+  this.parameter=this.sortedData;
+ 
+}
 
   previous(id) {
     $('#' + id).prop("disabled", "true")

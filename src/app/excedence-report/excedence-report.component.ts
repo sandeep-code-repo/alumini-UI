@@ -17,7 +17,7 @@ import { ITabledata } from '../model/tableData'
 export class ExcedenceReportComponent implements OnInit {
 
 
-  headers = ['SL.No', 'Category', 'Industry Code', 'Industry Name', 'Full Address', 'Contact in which SMSAlerts generated', 'State', 'Station Name', "Parameter Standard limit's", 'Parameter', 'Excedence', 'Total SMS', 'In Ganga Basin', 'Created By', 'Created Dt', 'LastModified By', 'LastModified Dt'];
+  headers = ['SL.No', 'Category', 'Industry Code', 'Industry Name', 'Full Address', 'Contact in which SMSAlerts generated', 'State', 'Station Name', "Parameter Standard limit's", 'Parameter', 'Excedence', 'Total SMS', 'In Ganga Basin'];
   // tableData =
   //   [
   //     {

@@ -80,11 +80,7 @@ $(".close_modal").click(function(){
 		
 	//	this.router.navigate(['/forgetpassword'], { queryParams: { order: 'popular' }});
 	}
-	forgetpasswordpage123()
-	{
-		
-		this.router.navigate(['/password']);
-	}
+	
 	regipage()
 	{
 		this.router.navigate(['/registration']);

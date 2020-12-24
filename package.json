@@ -34,7 +34,6 @@
     "crypto-js": "^4.0.0",
     "file-saver": "^2.0.5",
     "hammerjs": "^2.0.8",
-    "highcharts": "^8.2.2",
     "js-export-excel": "^1.1.4",
     "jspdf": "^2.1.1",
     "ng-connection-service": "^1.0.4",

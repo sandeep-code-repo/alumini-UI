@@ -2,27 +2,27 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
-import{RegistrationComponent} from './registration/registration.component';
-import{RegdetailsComponent} from './regdetails/regdetails.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { RegdetailsComponent } from './regdetails/regdetails.component';
 import { AuthService } from './services/auth/auth.service';
 import { LoginComponent } from './login/login.component';
 import { HelpComponent } from './help/help.component';
 import { ApidocComponent } from './apidoc/apidoc.component';
 import { EmployeeExcelComponent } from './employee-excel/employee-excel.component';
 import { AdminEmpExcelComponent } from './admin-emp-excel/admin-emp-excel.component';
-import{PasswordComponent} from './password/password.component';
-import{DashboardComponent} from './dashboard/dashboard.component';
+
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { from } from 'rxjs';
-import{RealtimeReportComponent} from './realtime-report/realtime-report.component';
+import { RealtimeReportComponent } from './realtime-report/realtime-report.component';
 import { TrendsComponent } from './trends/trends.component';
 import { ExcedenceReportComponent } from './excedence-report/excedence-report.component';
-import { RegComponent } from './reg/reg.component';
+
 // Parent Routes
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-        canActivate: [AuthService],
+    canActivate: [AuthService],
 
   },
   {
@@ -33,10 +33,7 @@ const routes: Routes = [
     path: 'regdetails',
     component: RegdetailsComponent
   },
-  {
-    path: 'reg',
-    component: RegComponent
-  },
+
   {
     path: 'help',
     component: HelpComponent
@@ -57,7 +54,7 @@ const routes: Routes = [
     path: 'forgetpassword',
     component: ForgetpasswordComponent
   },
-  
+
   {
     path: 'empexcel',
     component: EmployeeExcelComponent
@@ -72,33 +69,29 @@ const routes: Routes = [
 
   }
   ,
-  {
-    path: 'password',
-    component: PasswordComponent
 
-  }
-  ,
+
   {
     path: 'dashboard',
     component: DashboardComponent
 
   },
   {
-    path:'realtime-report',
-    component:RealtimeReportComponent
+    path: 'realtime-report',
+    component: RealtimeReportComponent
   },
   {
-    path:'trends',
-    component:TrendsComponent
+    path: 'trends',
+    component: TrendsComponent
   },
   {
-    path:'excedence-report',
-    component:ExcedenceReportComponent
+    path: 'excedence-report',
+    component: ExcedenceReportComponent
   }
 ];
 
 @NgModule({
-  imports: [RouterModule,RouterModule.forRoot(routes, { useHash: true })],
+  imports: [RouterModule, RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

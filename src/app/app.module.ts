@@ -14,7 +14,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { AuthService } from './services/auth/auth.service';
 import { UserService } from './services/user/user.service';
 import { StudentService } from './services/student/student.service';
-import {ExcelService} from './services/common/excel.service'
+import { ExcelService } from './services/common/excel.service'
 
 
 // Pipes
@@ -36,7 +36,7 @@ import { PlantInfoComponent } from './plant-info/plant-info.component';
 import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
 import { HelpComponent } from './help/help.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import{MatNativeDateModule } from '@angular/material/core'
+import { MatNativeDateModule } from '@angular/material/core'
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -47,10 +47,10 @@ import { EmployeeExcelComponent } from './employee-excel/employee-excel.componen
 import { ApidocComponent } from './apidoc/apidoc.component';
 import { PdfJsViewerModule } from 'ng2-pdfjs-viewer';
 import { AdminEmpExcelComponent } from './admin-emp-excel/admin-emp-excel.component';
-import { PasswordComponent } from './password/password.component';
+
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ChartsModule } from 'ng2-charts';
 import { FilterParentPipe } from './pipes/filter-parent.pipe';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -59,8 +59,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { RealtimeReportComponent } from './realtime-report/realtime-report.component';
 import { TrendsComponent } from './trends/trends.component';
 import { HeaderComponent } from './header/header.component';
-import {ExcedenceReportComponent} from './excedence-report/excedence-report.component';
-import { RegComponent } from './reg/reg.component'
+import { ExcedenceReportComponent } from './excedence-report/excedence-report.component';
+
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -75,14 +75,14 @@ import { RegComponent } from './reg/reg.component'
 		EmployeeExcelComponent,
 		ApidocComponent,
 		AdminEmpExcelComponent,
-		PasswordComponent,
+
 		FilterParentPipe,
 		DashboardComponent,
 		RealtimeReportComponent,
 		TrendsComponent,
 		HeaderComponent,
-		ExcedenceReportComponent,
-		RegComponent
+		ExcedenceReportComponent
+
 	],
 	imports: [
 		AppRoutingModule,
@@ -109,9 +109,9 @@ import { RegComponent } from './reg/reg.component'
 		MatProgressSpinnerModule,
 		CommonModule,
 		MatDatepickerModule,
-		MatNativeDateModule 
+		MatNativeDateModule
 	],
-	providers: [AuthService, UserService, StudentService, IndustryDropDown,ExcelService],
+	providers: [AuthService, UserService, StudentService, IndustryDropDown, ExcelService],
 	bootstrap: [AppComponent]
 })
 
