@@ -101,7 +101,7 @@
                 
                     <div class="row">
 
-                   <div class="col-md-2 pt-2 stndrop">
+                   <!-- <div class="col-md-2 pt-2 stndrop">
                         <div class="form-group">
                        <label>Station</label>
                        
@@ -123,8 +123,8 @@
                                 <option>All Stations</option>
                             </select> 
                              </div>
-                              </div>
-                        <div class="col-md-2 pt-2 stndrop">
+                              </div> -->
+                        <!-- <div class="col-md-2 pt-2 stndrop">
                                 <div class="form-group">
                                  <label>Frequency</label>
                              <select class="form-control">
@@ -134,14 +134,14 @@
                                  <option>Monthly</option>
                                   </select>
                                   </div>
-                                  </div>
+                                  </div> -->
                 
                 
-                                  <div class="col-md-2 pt-2 stndrop">
+                                  <!-- <div class="col-md-2 pt-2 stndrop">
                                     <div class="form-group">
                                         
                                         <label>From Date <span class="text-danger">*</span></label>
-                                       <!---- <mat-datepicker-toggle matSuffix></mat-datepicker-toggle> -->
+                                       
                                         
                                         <input id="fromdate" type="text"   [matDatepicker]="picker" class="form-control" placeholder="Select Date" (click)="picker.open()" >
                                         <mat-datepicker #picker></mat-datepicker>
@@ -153,7 +153,7 @@
                                     <div class="form-group">
                                         
                                         <label>To Date <span class="text-danger">*</span></label>
-                                       <!---- <mat-datepicker-toggle matSuffix></mat-datepicker-toggle> -->
+                                      
                                         
                                         <input id="todate" type="text"   [matDatepicker]="picker1" class="form-control" placeholder="Select Date" (click)="picker1.open()" >
                                         <mat-datepicker #picker1></mat-datepicker>
@@ -161,13 +161,13 @@
                                      
                 
                 
-                                 </div>
+                                 </div> -->
                 
-                                 <div class="col-md-2 pt-5 stndrop">
+                                 <!-- <div class="col-md-2 pt-5 stndrop">
                                     <div class="form-group">
                                    <button type="button" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm mt-7" (click)="fetch()">FETCH</button>
                                </div>
-                                </div>
+                                </div> -->
   
                          
                     </div>
@@ -193,47 +193,7 @@
     </div>  
 </div>                        
         
-
-<div class="col-sm-12" style="padding-left:2px;">
-
-<!-- Area Chart -->
-                    <div class="col-xl-12 col-lg-12">
-                        <div class="card shadow mb-4">
-                            <!-- Card Header - Dropdown -->
-                            <div
-                                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">{{stationname}} </h6>
-                                
-                            </div>
-                            <!-- Card Body -->
-                            <div class="card-body">
-                               
-                               <!--- <div style="display: block;">
-                                    <canvas baseChart width="2000" height="800"
-                                      [datasets]="lineChartData"
-                                      [labels]="lineChartLabels"
-                                    
-                                      [colors]="lineChartColors"
-                                      [legend]="lineChartLegend"
-                                      [chartType]="lineChartType"
-                                      [plugins]="lineChartPlugins">
-                                    </canvas>
-                                  </div> -->
-
-
-                                  <div id="chartContainer" style="height: 190px; width: 100%; margin:auto;" ></div><br><br>
-                                  <div class="legend"><button id="PM"  style="background-color: rgb(31, 119, 180); padding: 3px 10px; margin-left: 15px; margin-bottom: 8px;" (click)="PM()">PM(mg/Nm3)</button><button id="SO2"  style="background-color: rgb(255, 127, 14); padding: 3px 10px; margin-left: 15px; margin-bottom: 5px;" (click)="SO2()">SO2(mg/Nm3)</button></div>
-
-                                
-                                  
-                            </div>
-                            
-                            
-                        </div>
-                       
-                    </div>
-                   
-</div>                             
+<app-linechart></app-linechart>                          
 
             
         

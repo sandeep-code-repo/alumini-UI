@@ -1,19 +1,14 @@
-/**
- * Created By : Sangwin Gawande (http://sangw.in)
- */
-import { Industry } from 'src/app/model/industry.model';
-import { Injectable, Type } from '@angular/core';
+
+import { Industry } from '../../model/industry.model';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, from } from 'rxjs';
-import { HttpParams } from "@angular/common/http";
-import { getMaxListeners } from 'process';
+import { Observable } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
-import { PlantInfoData } from 'src/app/plant-info-data';
 import { Login } from 'src/app/login';
 import { Subject } from 'rxjs';
 import { Data } from '@angular/router';
 import { LocalServiceService } from '../common/local-service.service';
-
+import { FilterChart } from '../../model/filterchart.model';
 @Injectable()
 export class UserService {
 
@@ -30,7 +25,7 @@ export class UserService {
    public userData:any;
    private subject = new Subject<any>();
 
-   constructor(private httpclient: HttpClient, private localService:LocalServiceService) { 
+   constructor(private httpclient: HttpClient) { 
    }
 
 
@@ -92,7 +87,6 @@ export class UserService {
          .set('Access-Control-Allow-Headers', '*')
          .set('Access-Control-Allow-Credentials', 'true');
 
-      const body = JSON.stringify(sendquery);
       
 
       return this.httpclient.post<any>(this.helpUrl, {
@@ -144,7 +138,6 @@ export class UserService {
    login(login: Login): Observable<any> {
 
       const headers = { 'content-type': 'application/json' }
-      const body = JSON.stringify(login);
       
       return this.httpclient.post<any>(this.loginurl, login,
          {
@@ -196,7 +189,11 @@ export class UserService {
       return this.httpclient.post<any>(this.baseURL + '/getRealPollutantStationParamLevelInfos/', param);
 
    }
+   public getTrendsGraphdata(filter:FilterChart): Observable<any> {
+     
+      return this.httpclient.post<any>(this.baseURL + '/getRealPoulltantStationDateLevelGraphData/',filter );
 
+   }
    dashboardpage(): Observable<any> {
 
       const headers = { 'content-type': 'application/json' }
@@ -237,7 +234,6 @@ export class UserService {
 
 
       const headers = { 'content-type': 'application/json' }
-      const body = JSON.stringify(export_excel);
 
 
       return this.httpclient.post<any>('http://117.211.75.160:8086/rest/api/saveExcelRegistration/', {},

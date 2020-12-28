@@ -1,0 +1,71 @@
+<div class="box marginTop">
+    <div class="row spacer-out-top-sm">
+         <div class="col-md-2 pt-2 stndrop">
+            <div class="form-group">
+           <label>Station</label>
+           
+          <select class="form-control">
+                   <option>CEMS1_DRI KILN 1-2</option>
+                   <option>CEMS1_DRI KILN 3-4</option>
+                   <option>All Stations</option>
+               </select> 
+               </div>
+               
+               </div>
+           <div class="col-md-2 pt-2 stndrop">
+           <div class="form-group">
+            <label>Parameter</label>
+            
+              <select class="form-control">
+                    <option>CEMS1_DRI KILN 1-2</option>
+                    <option>CEMS1_DRI KILN 3-4</option>
+                    <option>All Stations</option>
+                </select> 
+                 </div>
+                  </div>
+        <div class="col-sm-6">
+            <div>
+                <div class="spacer-out-top-base spacer-out-bottom-base">
+                    <div class="panel-label">
+                        <label translate>Start Date: </label>
+                    </div>
+                    <div class="panel-class">
+                        <p-calendar [(ngModel)]="dateFrom" showTime="showTime" dateFormat="dd.mm.yy" hourFormat="24"
+                            [showIcon]="true">
+                        </p-calendar>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="spacer-out-top-base spacer-out-bottom-base">
+                    <div class="panel-label">
+                        <label translate>End Date: </label>
+                    </div>
+                    <div class="panel-class">
+                        <p-calendar [(ngModel)]="dateTo" showTime="showTime" dateFormat="dd.mm.yy" hourFormat="24"
+                            [showIcon]="true">
+                        </p-calendar>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <p-dropdown [options]="filterOption" [(ngModel)]="selectedOption" optionLabel="name" optionValue="code">
+                </p-dropdown>
+                <!-- <button class="btn" (click)="populateChart(1)"><i class="fa fa-get-pocket"
+                        aria-hidden="true"></i></button> -->
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="card">
+            <p-chart type="line" width="700px" height="300px" [data]="data" [options]="options"></p-chart>
+        </div>
+        <div class="col-md-2 pt-5 stndrop">
+            <div class="form-group">
+           <button type="button" class="btn btn-sm btn-primary" (click)=populateChart()>FETCH</button>
+       </div>
+        </div>
+    </div>
+    
+</div>

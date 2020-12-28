@@ -47,7 +47,7 @@ import { EmployeeExcelComponent } from './employee-excel/employee-excel.componen
 import { ApidocComponent } from './apidoc/apidoc.component';
 import { PdfJsViewerModule } from 'ng2-pdfjs-viewer';
 import { AdminEmpExcelComponent } from './admin-emp-excel/admin-emp-excel.component';
-
+import {CalendarModule} from 'primeng/calendar';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -60,7 +60,9 @@ import { RealtimeReportComponent } from './realtime-report/realtime-report.compo
 import { TrendsComponent } from './trends/trends.component';
 import { HeaderComponent } from './header/header.component';
 import { ExcedenceReportComponent } from './excedence-report/excedence-report.component';
-
+import { LinechartComponent } from './linechart/linechart.component';
+import {DropdownModule} from 'primeng/dropdown'
+import {ChartModule} from 'primeng/chart'
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -75,13 +77,14 @@ import { ExcedenceReportComponent } from './excedence-report/excedence-report.co
 		EmployeeExcelComponent,
 		ApidocComponent,
 		AdminEmpExcelComponent,
-
+		LinechartComponent,
 		FilterParentPipe,
 		DashboardComponent,
 		RealtimeReportComponent,
 		TrendsComponent,
 		HeaderComponent,
-		ExcedenceReportComponent
+		ExcedenceReportComponent,
+		
 
 	],
 	imports: [
@@ -94,7 +97,7 @@ import { ExcedenceReportComponent } from './excedence-report/excedence-report.co
 		BrowserAnimationsModule,
 		MatTableModule,
 		MatSortModule,
-		//TooltipModule,
+		CalendarModule,
 		NgbModule,
 		MatPaginatorModule,
 		PdfJsViewerModule,
@@ -109,7 +112,9 @@ import { ExcedenceReportComponent } from './excedence-report/excedence-report.co
 		MatProgressSpinnerModule,
 		CommonModule,
 		MatDatepickerModule,
-		MatNativeDateModule
+		MatNativeDateModule,
+		DropdownModule,ChartModule
+		
 	],
 	providers: [AuthService, UserService, StudentService, IndustryDropDown, ExcelService],
 	bootstrap: [AppComponent]
