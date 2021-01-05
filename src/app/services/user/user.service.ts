@@ -24,6 +24,7 @@ export class UserService {
    getParameterByStationUrl:string=this.baseURL+"/getPrameterFromStation"
    public userData:any;
    private subject = new Subject<any>();
+   responseData: any;
 
    constructor(private httpclient: HttpClient) { 
    }
@@ -190,8 +191,9 @@ export class UserService {
 
    }
    public getTrendsGraphdata(filter:FilterChart): Observable<any> {
-     
-      return this.httpclient.post<any>(this.baseURL + '/getRealPoulltantStationDateLevelGraphData/',filter );
+      
+      return this.httpclient.post<any>(this.baseURL + '/getRealPoulltantStationDateLevelGraphData/',filter )
+  ;
 
    }
    dashboardpage(): Observable<any> {

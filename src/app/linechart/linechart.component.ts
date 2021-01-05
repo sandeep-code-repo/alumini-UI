@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FilterChart } from '../model/filterchart.model';
 import { UserService } from '../services/user/user.service';
@@ -5,7 +6,8 @@ import { UserService } from '../services/user/user.service';
 @Component({
   selector: 'app-linechart',
   templateUrl: './linechart.component.html',
-  styleUrls: ['./linechart.component.scss']
+  styleUrls: ['./linechart.component.scss'],
+  providers:[DatePipe]
 })
 export class LinechartComponent implements OnInit {
 
@@ -17,90 +19,94 @@ export class LinechartComponent implements OnInit {
   public selectedOption: ChartFilterOption;
   filterData:FilterChart
   responseData;
-  constructor(private userService: UserService) { }
+  view;
+  showTime:Boolean;
+  parameterOption: any[];
+  stationOption:any[]
+  constructor(private userService: UserService,public datepipe: DatePipe) { }
 
   populateChart() {
     this.selectionChange(this.selectedOption, this.dateFrom, this.dateTo)
   }
+  changeDatepicker(){
+    
+    const selected:any=this.selectedOption
+    debugger
+  switch (selected) {
+    case "Monthly":
+      {
+        //this.view="month"
+        this.showTime=false;
+        break;
+      }
+      
+      case "Daily":
+      {
+        this.showTime=false;
+        break;
+      }
+        
+    default:{
+      this.showTime=true;
+      break;
+    }
+      
+  }
+}
   selectionChange(chartType: any, dateRangeFrom: Date, dateRangeTo: Date) {
     var labelArray: string[];
     var dataArray: number[];
+   
     this.filterData=
     {frequency: chartType,
-    fromDate: "2020-11-12 11:17:03",
-    toDate: "2020-11-14 11:17:03",
+    fromDate: this.datepipe.transform(dateRangeFrom, 'yyyy-MM-dd hh:mm:ss'),
+    toDate: this.datepipe.transform(dateRangeTo, 'yyyy-MM-dd hh:mm:ss'),
     plantId: "hindalco_lpng",
     stationId: "CEMS-5",
     parameter: "PM"
     }
+    
+   
     this.userService.getTrendsGraphdata(this.filterData).subscribe(res=>{
+    
 			if(res.apiStatus.message === 'success') 
     {
-    this.responseData=res.data;
+      this.responseData=res.data;
+      labelArray =  this.responseData.labels
+      dataArray =this.responseData.events
+      this.data = {
+        labels: labelArray,
+        datasets: [
+          {
+            label: "Test Label",
+            data: dataArray,
+            fill: false,
+            borderColor: '#4bc0c0',
+            hidden: false
+          }
+        ]
+      }
+    }
    
-    }
+  
     })
-    labelArray =  this.responseData.labels
-    dataArray =this.responseData.events
-    // switch (chartType) {
-    //   case 1: {
-
-    //     //var mlist = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    //     labelArray = //mlist.slice(dateRangeFrom.getMonth(), dateRangeTo.getMonth() + 1);
-    //     this.responseData.labels
-    //     dataArray = //this.getRandomNumberBetween(10, 100, labelArray.length);
-    //     this.responseData.events
-    //     break;
-    //   }
-    //   case 2: {
-    //     var one_day = 1000 * 60 * 60 * 24
-    //     var noOfDays = Math.round(dateRangeTo.getTime() - dateRangeFrom.getTime()) / (one_day);
-    //     var iCount = 0;
-    //     labelArray = new Array(0);
-    //     var futureDate = dateRangeFrom;
-    //     for (iCount = 0; iCount < noOfDays; iCount++) {
-    //       futureDate.setTime(futureDate.getTime() + one_day);
-    //       labelArray.push((String)(futureDate.getDate()));
-    //     }
-    //     dataArray = this.getRandomNumberBetween(10, 100, noOfDays);
-    //     break;
-    //   }
-    //   default: {
-    //     break;
-    //   }
-    // }
-    this.data = {
-      labels: labelArray,
-      datasets: [
-        {
-          label: "Test Label",
-          data: dataArray,
-          fill: false,
-          borderColor: '#4bc0c0',
-          hidden: false
-        }
-      ]
-    }
+  
+   
+  
   }
 
 
-  getRandomNumberBetween(min: number, max: number, len: number): number[] {
-    var returnVals = new Array(0);
-    var iCount: number;
-    iCount = 0;
-    for (iCount = 0; iCount < len; iCount++) {
-      returnVals.push(Math.floor(Math.random() * (max - min + 1) + min));
-    }
-    return returnVals;
-  }
   ngOnInit(): void {
     this.filterOption = [
-      {name: '1 Minute', code: 1},
-      {name: '15 Minutes', code: 2},
-      { name: 'Monthly', code: 4 },
-      { name: 'Daily', code: 3 },
+      {name: '1 Minute'},
+      {name: '15 Minute'},
+      { name: 'Monthly' },
+      { name: 'Daily'},
     ];
-
+this.parameterOption=[ {name: 'PM'},{name: 'ALL'}
+ ]
+ this.stationOption=[ {name: 'CEMS-5'},{name: 'ALL'}
+]
    // this.selectionChange(2, new Date("2019-01-8"), new Date("2019-02-15"))
 
     this.options = {
@@ -134,5 +140,5 @@ export class LinechartComponent implements OnInit {
 }
 interface ChartFilterOption {
   name: string;
-  code: number;
+ // code: number;
 }
