@@ -1,7 +1,7 @@
 <div id="wrapper">
 
     <!-- Sidebar -->
-    
+
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
@@ -16,49 +16,52 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid" style="position: relative; height: 100vh;">
-                 <!-- Page Heading -->
-                 <div>
-                    <span><button type="button" tooltip="Goto Back " class="mr-3 btn btny btn-default buttom-prim buttonsToShow" id="backbtn"
-                        (click)="goback()" style="float: left;">
-                        <i class="fa fa-arrow-circle-left"></i></button>
+                <!-- Page Heading -->
+                <div>
+                    <span><button type="button" tooltip="Goto Back "
+                            class="mr-3 btn btny btn-default buttom-prim buttonsToShow" id="backbtn" (click)="goback()"
+                            style="float: left;">
+                            <i class="fa fa-arrow-circle-left"></i></button>
                     </span>
-                <span>
-                    <ol class="breadcrumb" style="float: left;">
-                            
-                        <li class="breadcrumb-item active" aria-current="page"><a href="#/realtime-report">Real Time Reports</a></li>
-                        <li class="breadcrumb-item active"><a>Trends</a></li> 
-                    </ol><br>
-                </span></div>
-                       <!-- Sidebar -->
-<div style="float: left;padding-left: 10px;">
-    <h1 class="h4 text-gray-800">Power Plant India Ltd.
-    </h1>
-        <ul class="nav list">
-                
-            <li class="nav-item">
-                <i class="fa fa-map-marker text-warning wdth"></i>Bhubaneswar,Khorda
-            </li>
-            <li class="nav-item">
-                <i class="fa fa-globe text-secondary wdth"></i>Odisha
-            </li>
-            <li class="nav-item">
-                <i class="fa fa-podcast text-primary wdth"></i> Power Plant
-            </li>
-            <li class="nav-item">
-                <i class="fa fa-calendar text-info wdth"></i>Data fetched at : 28-Sep-2020 07:55
-            </li>
-            <li class="nav-item">
-                <i class="fa fa-sitemap text-success wdth"></i> Monitoring Stations : 9
-            </li>
-            <li class="nav-item">
-                <i class="fa fa-tv text-danger wdth"></i> Total Parameters Monitored : 38
-            </li>
-        </ul> 
-</div> 
-                       
-    
+                    <span>
+                        <ol class="breadcrumb" style="float: left;">
 
-<!--<div> 
+                            <li class="breadcrumb-item active" aria-current="page"><a href="#/realtime-report">Real Time
+                                    Reports</a></li>
+                            <li class="breadcrumb-item active"><a>Trends</a></li>
+                        </ol><br>
+                    </span>
+                </div>
+                <!-- Sidebar -->
+                <div style="float: left;padding-left: 10px;">
+                    <h1 class="h4 text-gray-800">Power Plant India Ltd.
+                    </h1>
+                    <ul class="nav list">
+
+                        <li class="nav-item">
+                            <i class="fa fa-map-marker text-warning wdth"></i>Bhubaneswar,Khorda
+                        </li>
+                        <li class="nav-item">
+                            <i class="fa fa-globe text-secondary wdth"></i>Odisha
+                        </li>
+                        <li class="nav-item">
+                            <i class="fa fa-podcast text-primary wdth"></i> Power Plant
+                        </li>
+                        <li class="nav-item">
+                            <i class="fa fa-calendar text-info wdth"></i>Data fetched at : 28-Sep-2020 07:55
+                        </li>
+                        <li class="nav-item">
+                            <i class="fa fa-sitemap text-success wdth"></i> Monitoring Stations : 9
+                        </li>
+                        <li class="nav-item">
+                            <i class="fa fa-tv text-danger wdth"></i> Total Parameters Monitored : 38
+                        </li>
+                    </ul>
+                </div>
+
+
+
+                <!--<div> 
     <h3 class="mb-4"style="float:none;">{{powerplant}}</h3>
 </div>
 
@@ -92,91 +95,114 @@
 
 
 
-              <div class="row mb-6" style="float:left;padding-right: 500px;">
-                <div class="col-sm-6">
-                                           
-                </div>
-                
-                <div class="col-xl-12">
-                
-                    <div class="row">
-                        <app-linechart></app-linechart>    
-                   <!-- <div class="col-md-2 pt-2 stndrop">
-                        <div class="form-group">
-                       <label>Station</label>
-                       
-                      <select class="form-control">
-                               <option>CEMS1_DRI KILN 1-2</option>
-                               <option>CEMS1_DRI KILN 3-4</option>
-                               <option>All Stations</option>
-                           </select> 
-                           </div>
-                           
-                           </div>
-                       <div class="col-md-2 pt-2 stndrop">
-                       <div class="form-group">
-                        <label>Parameter</label>
-                        
-                          <select class="form-control">
-                                <option>CEMS1_DRI KILN 1-2</option>
-                                <option>CEMS1_DRI KILN 3-4</option>
-                                <option>All Stations</option>
-                            </select> 
-                             </div>
-                              </div> -->
-                        <!-- <div class="col-md-2 pt-2 stndrop">
+                <div class="row mb-6" style="float:left;padding-right: 500px;">
+                    <!-- <div class="col-sm-6">
+
+                    </div> -->
+
+                    <div class="col-xl-12">
+
+                        <div class="row">
+                            <!-- <app-linechart></app-linechart>     -->
+                            <div class="col-md-2 pt-2 stndrop">
                                 <div class="form-group">
-                                 <label>Frequency</label>
-                             <select class="form-control">
-                                 <option>1 Minute</option>
-                                 <option>15 Minutes</option>
-                                 <option>Daily</option>
-                                 <option>Monthly</option>
-                                  </select>
-                                  </div>
-                                  </div> -->
-                
-                
-                                  <!-- <div class="col-md-2 pt-2 stndrop">
-                                    <div class="form-group">
-                                        
-                                        <label>From Date <span class="text-danger">*</span></label>
-                                       
-                                        
-                                        <input id="fromdate" type="text"   [matDatepicker]="picker" class="form-control" placeholder="Select Date" (click)="picker.open()" >
-                                        <mat-datepicker #picker></mat-datepicker>
-                                    </div>
-                                     
-                                 </div>
-                                 
-                                 <div class="col-md-2 pt-2 stndrop">
-                                    <div class="form-group">
-                                        
-                                        <label>To Date <span class="text-danger">*</span></label>
-                                      
-                                        
-                                        <input id="todate" type="text"   [matDatepicker]="picker1" class="form-control" placeholder="Select Date" (click)="picker1.open()" >
-                                        <mat-datepicker #picker1></mat-datepicker>
-                                    </div>
-                                     
-                
-                
-                                 </div> -->
-                
-                                 <!-- <div class="col-md-2 pt-5 stndrop">
-                                    <div class="form-group">
-                                   <button type="button" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm mt-7" (click)="fetch()">FETCH</button>
-                               </div>
-                                </div> -->
-  
-                         
+                                    <label>Station</label>
+                                    <select class="form-control" [(ngModel)]="selectedStation" (change)=addParam()>
+
+                                        <option *ngFor="let title of stationList" [ngValue]="title">
+                                            {{title.stationInfo.stationId}}
+                                        </option>
+                                        <option value="ALL Stations">ALL Stations</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="col-md-2 pt-2 stndrop">
+                                <div class="form-group">
+                                    <label>Parameter</label>
+                                    <select class="form-control" [(ngModel)]="selectedParam">
+
+                                        <option *ngFor="let param of paramList" [value]="param">
+                                            {{param.paramter}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-2 pt-2 stndrop">
+                                <div class="form-group">
+                                    <label>Frequency</label>
+                                    <p-dropdown [options]="filterOption" [(ngModel)]="selectedOption" optionLabel="name"
+                                        optionValue="name" (onChange)=changeDatepicker()>
+                                    </p-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-md-3 pt-2 stndrop">
+                                <div class="form-group">
+
+                                    <label>From Date <span class="text-danger">*</span></label>
+
+                                    <p-calendar [(ngModel)]="dateFrom" [showTime]="showTime" dateFormat="dd.mm.yy"
+                                        hourFormat="24" [showIcon]="true">
+                                    </p-calendar>
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-3 pt-2 stndrop">
+                                <div class="form-group">
+
+                                    <label>To Date <span class="text-danger">*</span></label>
+
+                                    <p-calendar [(ngModel)]="dateTo" [showTime]="showTime" dateFormat="dd.mm.yy"
+                                        hourFormat="24" [showIcon]="true">
+                                    </p-calendar>
+
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                        <div class="col-md-2 pt-5 stndrop">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-sm btn-primary"
+                                    (click)=populateChart()>FETCH</button>
+                            </div>
+                        </div>
                     </div>
-                </div>                  
+
                 </div>
+                <div class="row mb-6" style="float:left;padding-right: 500px;">
+                    <!-- <div class="col-md-5 pt-5 stndrop"></div> -->
+                    
+                    <div class="col-md-2">
+                      <div class="dropdown">
+                        <button type="button"
+                            class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mb-4 dropdown-toggle"
+                            data-toggle="dropdown">
+                            <i class="fas fa-download fa-sm text-white-50"></i> Download Report:
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" ><i class="fa fa-file-excel-o"></i>
+                                As Excel</a>
+                                <a class="dropdown-item" href="http://117.211.75.160:8086/rest/api/industry/getSMSReport/downloadpdf?from=2020-11-12%2011:17:02&to=2020-11-12%2011:17:03">
+                                    <i class="fa fa-file-pdf-o"></i> As PDF</a>
+                            <a class="dropdown-item" ><i class="fa fa-file-pdf-o"></i> As
+                                Print</a>
+                    
+                        </div>
+                        &nbsp; &nbsp; &nbsp; &nbsp;
+                    </div>
+                </div>
+               
+                </div>
+                <div class="row" *ngFor="let filterData of filtersList; let i = index">
+                    <app-linechart [filterData]="filterData"></app-linechart>
+                </div>
+                <!-- Content Row -->
 
-  <!-- Content Row -->
-
-  <!-- <div class="container">
+                <!-- <div class="container">
     <div class="d-sm-flex align-items-center col-sm-11 justify-content-between mb-4">
         
         <div class="dropdown">
@@ -192,11 +218,11 @@
         </div> 
     </div>  
 </div>                         -->
-        
-                      
 
-            
-        
+
+
+
+
             </div>
             <!-- /.container-fluid -->
 
@@ -223,6 +249,3 @@
 <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
 </a>
-
-
-
