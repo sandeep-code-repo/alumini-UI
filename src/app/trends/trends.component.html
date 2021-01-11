@@ -142,7 +142,7 @@
                                     <label>From Date <span class="text-danger">*</span></label>
 
                                     <p-calendar [(ngModel)]="dateFrom" [showTime]="showTime" dateFormat="dd.mm.yy"
-                                        hourFormat="24" [showIcon]="true">
+                                        hourFormat="24" [showIcon]="true" [minDate]="minDate">
                                     </p-calendar>
 
                                 </div>
@@ -155,7 +155,7 @@
                                     <label>To Date <span class="text-danger">*</span></label>
 
                                     <p-calendar [(ngModel)]="dateTo" [showTime]="showTime" dateFormat="dd.mm.yy"
-                                        hourFormat="24" [showIcon]="true">
+                                        hourFormat="24" [showIcon]="true" [maxDate]="maxDate">
                                     </p-calendar>
 
                                 </div>
@@ -173,7 +173,7 @@
                     </div>
 
                 </div>
-                <div class="row mb-6" style="float:left;padding-right: 500px;">
+                <div class="row">
                     <!-- <div class="col-md-5 pt-5 stndrop"></div> -->
                     
                     <div class="col-md-2">

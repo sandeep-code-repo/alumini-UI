@@ -18,7 +18,7 @@ export class TrendsComponent implements OnInit {
   selectedStation:any;
   selectedParam:any;
   industryData:Industry;
-  paramList:[]
+  paramList:any[]
 
 public filterOption: ChartFilterOption[];
 public selectedOption: ChartFilterOption;
@@ -26,6 +26,8 @@ public options: any;
   public data: any;
   public dateFrom: Date;
   public dateTo: Date;
+  public minDate: Date;
+  public maxDate: Date;
 filterData:FilterChart;
 filtersList:FilterChart[]=[]
 
@@ -57,7 +59,12 @@ stationOption:any[]
     { name: 'Daily'},
   ];
 
-  
+  let today = new Date();
+let month = today.getMonth()+3;
+this.maxDate = new Date();
+this.maxDate.setMonth(month);
+this.minDate = new Date();
+this.minDate.setMonth(today.getMonth()-3)
 }
 changeDatepicker(){
     
@@ -86,24 +93,27 @@ switch (selected) {
 }
 } 
 addParam(){
-  console.log(this.selectedStation)
+  //console.log(this.selectedStation)
+  this.paramList=[]
   if(this.selectedStation=='ALL Stations')
   
   //this.stationList.filter(item => item === 'parameterInfo');
  this.stationList.forEach(element => {
-    console.log(element.parameterInfo)
+    element.parameterInfo.forEach(param=>{ this.paramList.push(param)})
+   
   });
   else
   this.paramList=this.selectedStation.parameterInfo
+  //console.log(this.paramList)
 }
  
 populateChart(){
    this.selectedfreq=this.selectedOption
-   console.log(this.selectedStation)
+   //console.log(this.selectedStation)
    this.filtersList=[]
    if(this.selectedStation=='ALL Stations'){
     this.stationList.forEach(element => {
-      console.log(element.parameterInfo)
+      //console.log(element.parameterInfo)
       this.filterData=
     {frequency: this.selectedfreq,
     fromDate: this.datepipe.transform(this.dateFrom,'yyyy-MM-dd hh:mm:ss'),
@@ -117,15 +127,16 @@ populateChart(){
    }
   else{
   this.filterData=
-    {frequency: this.selectedfreq,
-    fromDate: this.datepipe.transform(this.dateFrom,'yyyy-MM-dd hh:mm:ss'),
-    toDate: this.datepipe.transform(this.dateTo, 'yyyy-MM-dd hh:mm:ss'),
-    plantId: "hindalco_lpng",
-    stationId: this.selectedStation.stationInfo.stationId,
-    parameter: "NO2"
+    {
+      frequency: this.selectedfreq,
+      fromDate: this.datepipe.transform(this.dateFrom,'yyyy-MM-dd hh:mm:ss'),
+      toDate: this.datepipe.transform(this.dateTo, 'yyyy-MM-dd hh:mm:ss'),
+      plantId: "hindalco_lpng",
+      stationId: this.selectedStation.stationInfo.stationId,
+      parameter: "NO2"
     }
     this.filtersList.push(this.filterData)
-    console.log(this.filtersList)
+    //console.log(this.filtersList)
   }
 }
   goback() {

@@ -2,14 +2,16 @@
 <div class="regristartion  container-fluid top py-2">
    <img class="logo" src="assets/images/cpcb.png">
    <h1 class="text-center text-white">Assam Pollution Control Board </h1>
-   <button type="button" tooltip="Goto Back " class="mr-3 btn btny btn-default buttom-prim buttonsToShow" id="backbtn"
-      (click)="goback()"><i class="fa fa-arrow-circle-left"></i> BACK</button>
+   <!-- <button type="button" tooltip="Goto Back " class="mr-3 btn btny btn-default buttom-prim buttonsToShow" id="backbtn"
+      (click)="goback()"><i class="fa fa-arrow-circle-left"></i></button> -->
 </div>
 <div class="container uk-card uk-card-default uk-card-body my-3">
    <div class="text-center nbox">
       <h2>Industry Registration
          <br><span>(Integration with Central Server for Real Time Monitoring)</span>
       </h2>
+      <button type="button" tooltip="Goto Back " class="mr-3 btn btny btn-default buttom-prim buttonsToShow" id="backbtn"
+(click)="goback()"><i class="fa fa-arrow-circle-left"></i></button>
    </div>
 </div>
 
@@ -380,10 +382,15 @@
          <button type="button" class="btn-mini btn-success" tooltip="Add Process Details" autoPlacement="true"
             data-toggle="modal" data-target="#addProcess">
             <i class="fa fa-plus"></i></button>
+           
       </h2>
    </div>
 
    <div *ngFor="let station of stationinfomap" class="container forms ">
+      <button type="button" class="btn-mini btn-success" tooltip="Remove Edit"
+      (click)="removeEdit(i)" autoPlacement="true" data-toggle="modal" data-target="#removeEdit">
+      <i class="fa fa-minus"></i></button>
+      
       <button class="d-block mb-4 ml-auto  link btn btn-info" type="button" data-toggle="modal"
          (click)=editProcess(station) data-target="#addProcess"> <i class="fa fa-pen"></i> EDIT</button>
       <div class="row">
@@ -399,7 +406,7 @@
             <label class="name1">Station Name<span style="color:red;">*</span></label>
             <input type="text" class="form-control texbsize" placeholder="Station Name"
                value="{{station.stationInfo.stationId}}" readonly>
-
+ 
          </div>
          <div class="form-group col-md-2 smallpad">
             <label class="name1">Process Attached<span style="color:red;">*</span></label>

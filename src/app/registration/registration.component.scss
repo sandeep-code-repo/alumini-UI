@@ -85,15 +85,15 @@ border-top-right-radius: 5px;
         color: #2d3188;
     }
     .btny  {
-        background: #fff;
+        background: #a6a6ff;
         color: #2d3188;
         padding: 7px 15px;
         line-height: 15px;
-        margin: 0;
+        margin: 0px 3px 13px 10px;
         transition: .5s all linear;
         position: absolute;
-        right: 90px;
-        top: 9px;
+        right: 4%;
+        top: 75%;
         font-size: 14px;
     }
     .btny:hover {
@@ -101,6 +101,18 @@ border-top-right-radius: 5px;
         color: #fff;
         margin: 0 0 5px 0px;
     }
+    // .btny {
+    //     background: #a6a6ff;
+    //     color: #2d3188;
+    //     margin: 0px 3px 13px 10px;
+    //     transition: .5s all linear;
+    //     line-height: 12px;
+            
+    // }
+    // .btny:hover {
+    //     background: #2f2f91;
+    //     color: #fff;
+    // }
     .col
     {
    font-size: 12px;
@@ -284,6 +296,7 @@ border: 2px solid rgb(255, 251, 251);
     background: #009432 !important;
     border-color: #009439 !important;
 }
+
 .div80{
     margin: 0 auto;
     width: 80%;
@@ -349,11 +362,11 @@ input:-moz-read-only { /* For Firefox */
     .nbox, .div80{
         width: 95%;
     }
-    .btny{
-        position: static !important;
-        display: block;
-        margin: 8px auto 0 auto !important;
-    }
+    // .btny{
+    //     position: static !important;
+    //     display: block;
+    //     margin: 8px auto 0 auto !important;
+    // }
     .top h1 {
         margin: 5px 0;
         font-size: 23px;

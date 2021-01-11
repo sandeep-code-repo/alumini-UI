@@ -35,7 +35,7 @@ export class LinechartComponent implements OnInit {
     var dataArray: number[];
     var thresholdLevel:number[];
    
-   console.log(this.filterData)
+   //console.log(this.filterData)
     this.userService.getTrendsGraphdata(this.filterData).subscribe(res=>{
     
 			if(res.apiStatus.message === 'success') 
@@ -48,7 +48,7 @@ export class LinechartComponent implements OnInit {
         labels: labelArray,
         datasets: [
           {
-            label: "Test Label",
+            label: "Parameters",
             data: dataArray,
             fill: false,
             borderColor: '#4bc0c0',
@@ -75,16 +75,12 @@ export class LinechartComponent implements OnInit {
 
   ngOnInit(): void {
     
-// this.parameterOption=[ {name: 'PM'},{name: 'ALL'}
-//  ]
-//  this.stationOption=[ {name: 'CEMS-5'},{name: 'ALL'}
-// ]
-   // this.selectionChange(2, new Date("2019-01-8"), new Date("2019-02-15"))
 this.populateChart()
     this.options = {
       //display labels on data elements in graph
-      responsive: true,
+      responsive: false,
       maintainAspectRatio: false,
+      
       plugins: {
         datalabels: {
           display: true,

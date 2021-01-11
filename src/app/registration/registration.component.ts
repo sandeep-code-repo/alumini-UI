@@ -12,6 +12,7 @@ import { Industry, StationInfo, StationInfoMapper, UserInfo, Role } from '../mod
 import * as $ from "jquery";
 import * as uuid from 'uuid';
 import { UserService } from '../services/user/user.service';
+import { removeData } from 'jquery';
 
 @Component({
   selector: 'app-registration',
@@ -30,12 +31,13 @@ export class RegistrationComponent implements OnInit {
   add_industry: FormGroup;
   processForm: FormGroup;
   plant: PlantInfoData;
-  stationInfo: StationInfo;
+  //stationInfo: StationInfo;
   submitted: Boolean = false;
   stationinfomap: StationInfoMapper[] = []
   userInfo: UserInfo;
   message: any;
   addProcesssubmitted: boolean;
+  
 
   role: Role;
   userRole: Role[] = []
@@ -72,6 +74,7 @@ export class RegistrationComponent implements OnInit {
     //this.parameterinfo.push(this.createParameterInfo().value)
 
     //this.stationinfomap.push(this.processForm.value)
+    
     this.stationinfomap.push(this.processForm.value)
     this.add_industry = this.formBuilder.group({
       plantInfo: this.formBuilder.group({
@@ -180,7 +183,9 @@ export class RegistrationComponent implements OnInit {
   get processf() { return this.processForm.controls }
   get stationinfoV() { return (this.processForm.get('stationInfo') as FormGroup).controls }
   // get parameterinfoV(){return (this.processForm.get('i') as FormGroup).control}
-
+get stationInfo() {
+     return this.processForm.get('stationInfo') as FormGroup;
+   }
   addProcess() {
 
     this.addProcesssubmitted = true;
@@ -208,9 +213,13 @@ export class RegistrationComponent implements OnInit {
     } else {
       this.stationinfomap.push(this.processForm.value);
     }
+    
 //this.hideModal()
     // this.processForm.reset();
     // this.addProcesssubmitted = false;
+  }
+  removeEdit(index) {
+    this.stationinfomap.splice(index);
   }
   register() {
 
