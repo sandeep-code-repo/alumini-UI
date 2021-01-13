@@ -87,6 +87,16 @@ h2.heading{font-size: 25px;
     padding: 5px 20px;
     width: 100%;
 }
+.fileupload{
+    float: right;
+    margin: 3px;
+    color:#5bc45b ;
+}
+#button{
+    position: relative;
+    left:-1px;
+    background-color:#446655;
+    }
 table {
     width: 100%;
   }
@@ -102,10 +112,6 @@ table {
     list-style: none;
     margin: 0 0 0px 0;
     padding: 0;
-  }
-  
-  .list li {
-    
   }
     h4.heading1{
         color: #fff;
@@ -126,7 +132,7 @@ border-top-right-radius: 5px;
 border: 2px solid #ccc;
     }
     .form-control.texbsize{
-        padding: 7px 8px;
+        padding: 4px 8px;
         font-size:12px;
     }
     .form-control.texbsize1{
@@ -190,10 +196,10 @@ border: 2px solid #ccc;
 .btny {
     background: #a6a6ff;
     color: #2d3188;
-    padding: 10px;
-    line-height: 15px;
-    margin: 0px 3px 13px 0px;
+    margin: 0px 3px 13px 10px;
     transition: .5s all linear;
+    line-height: 12px;
+        
 }
 .btny:hover {
     background: #2f2f91;

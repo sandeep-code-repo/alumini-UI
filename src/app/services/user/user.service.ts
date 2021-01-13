@@ -185,8 +185,8 @@ export class UserService {
          });
    }
 
-   public getRealPollutantStationInfos(param: { plantId: any; }): Observable<any> {
-     
+   public getRealPollutantStationInfos(param: any): Observable<any> {
+     console.log(param)
       return this.httpclient.post<any>(this.baseURL + '/getRealPollutantStationParamLevelInfos/', param);
 
    }

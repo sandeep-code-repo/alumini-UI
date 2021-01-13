@@ -16,12 +16,11 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid" style="position: relative; height: 100vh;">
-                <!-- Page Heading -->
-                <div>
-                    <span><button type="button" tooltip="Goto Back "
-                            class="mr-3 btn btny btn-default buttom-prim buttonsToShow" id="backbtn" (click)="goback()"
-                            style="float: left;">
-                            <i class="fa fa-arrow-circle-left"></i></button>
+                 <!-- Page Heading -->
+                 <div>
+                    <span><button type="button" tooltip="Goto Back " class="mr-3 btn btny btn-default buttom-prim buttonsToShow" id="backbtn"
+                        (click)="goback()" style="float: left;">
+                        <i class="fa fa-arrow-circle-left"></i></button>
                     </span>
                     <span>
                         <ol class="breadcrumb" style="float: left;">
@@ -104,8 +103,8 @@
 
                         <div class="row">
                             <!-- <app-linechart></app-linechart>     -->
-                            <div class="col-md-2 pt-2 stndrop">
-                                <div class="form-group">
+                            <div class="col-md-4 pt-2 stndrop">
+                                <!-- <div class="form-group">
                                     <label>Station</label>
                                     <select class="form-control" [(ngModel)]="selectedStation" (change)=addParam()>
 
@@ -114,36 +113,61 @@
                                         </option>
                                         <option value="ALL Stations">ALL Stations</option>
                                     </select>
-                                </div>
-
+                                </div> -->
+                                
+                                  <mat-form-field appearance="fill">
+                                    <mat-label>Station</mat-label>
+                                    <mat-select [(ngModel)]="selectedStation" multiple (selectionChange)="addParam()">
+                                      <mat-option *ngFor="let station of stationList" [value]="station">{{station.stationInfo.stationId}}</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
                             </div>
-                            <div class="col-md-2 pt-2 stndrop">
+                            <div class="col-md-4 pt-2 stndrop">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Parameter</mat-label>
+                                    <mat-select [(ngModel)]="selectedParam" multiple >
+                                      <mat-option *ngFor="let param of paramList" [value]="param">{{param.paramter}}</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                            </div>
+                            <div class="col-md-4 pt-2 stndrop">
                                 <div class="form-group">
-                                    <label>Parameter</label>
-                                    <select class="form-control" [(ngModel)]="selectedParam">
-
-                                        <option *ngFor="let param of paramList" [value]="param">
-                                            {{param.paramter}}
-                                        </option>
-                                    </select>
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>Frequency</mat-label>
+                                        <mat-select [(ngModel)]="selectedOption" (selectionChange)="changeDatepicker()">
+                                          <mat-option *ngFor="let frequency of filterOption" [value]="frequency.name">{{frequency.name}}</mat-option>
+                                        </mat-select>
+                                      </mat-form-field>
+                                    <!-- <p-dropdown [options]="filterOption" [(ngModel)]="selectedOption" optionLabel="name"
+                                    placeholder="Select Frequency" optionValue="name" (onChange)=changeDatepicker()>
+                                    </p-dropdown> -->
                                 </div>
                             </div>
-                            <div class="col-md-2 pt-2 stndrop">
-                                <div class="form-group">
-                                    <label>Frequency</label>
-                                    <p-dropdown [options]="filterOption" [(ngModel)]="selectedOption" optionLabel="name"
-                                        optionValue="name" (onChange)=changeDatepicker()>
-                                    </p-dropdown>
-                                </div>
-                            </div>
+                           
+                           
+                        </div>
+                        <div class="row">
                             <div class="col-md-3 pt-2 stndrop">
                                 <div class="form-group">
 
                                     <label>From Date <span class="text-danger">*</span></label>
-
-                                    <p-calendar [(ngModel)]="dateFrom" [showTime]="showTime" dateFormat="dd.mm.yy"
+                                    <div *ngIf="this.iCalView==1">
+                                <p-calendar [(ngModel)]="dateFrom" [showTime]="showTime" dateFormat="dd.mm.yy"
+                                    hourFormat="24" [showIcon]="true"  [minDate]="minDate">
+                                </p-calendar>
+                            </div>
+                            <div *ngIf="this.iCalView==2">
+                                <p-calendar [(ngModel)]="dateFrom" view="month" dateFormat="mm/yy"
+                                    [yearNavigator]="true" yearRange="2000:2030" [showIcon]="true"  [minDate]="minDate"></p-calendar>
+                            </div>
+                            <div *ngIf="this.iCalView==3">
+                                <p-calendar [(ngModel)]="dateFrom" dateFormat="dd.mm.yy" hourFormat="24" [showTime]="showTime"
+                                    [showIcon]="true"  [minDate]="minDate">
+                                </p-calendar>
+                            </div>
+                                    <!-- <p-calendar [(ngModel)]="dateFrom" [showTime]="showTime" dateFormat="dd.mm.yy"
                                         hourFormat="24" [showIcon]="true" [minDate]="minDate">
-                                    </p-calendar>
+                                    </p-calendar> -->
 
                                 </div>
 
@@ -153,23 +177,37 @@
                                 <div class="form-group">
 
                                     <label>To Date <span class="text-danger">*</span></label>
-
-                                    <p-calendar [(ngModel)]="dateTo" [showTime]="showTime" dateFormat="dd.mm.yy"
+                                    <div *ngIf="this.iCalView==1">
+                                        <p-calendar [(ngModel)]="dateTo" [showTime]="showTime" dateFormat="dd.mm.yy"
+                                            hourFormat="24" [showIcon]="true">
+                                        </p-calendar>
+                                    </div>
+                                    <div *ngIf="this.iCalView==2">
+                                        <p-calendar [(ngModel)]="dateTo" view="month" dateFormat="mm/yy"
+                                            [yearNavigator]="true" yearRange="2000:2030" [showIcon]="true"></p-calendar>
+                                    </div>
+                                    <div *ngIf="this.iCalView==3">
+                                        <p-calendar [(ngModel)]="dateTo" dateFormat="dd.mm.yy" hourFormat="24" [showTime]="showTime"
+                                            [showIcon]="true">
+                                        </p-calendar>
+                                    </div>
+                                    <!-- <p-calendar [(ngModel)]="dateTo" [showTime]="showTime" dateFormat="dd.mm.yy"
                                         hourFormat="24" [showIcon]="true" [maxDate]="maxDate">
-                                    </p-calendar>
+                                    </p-calendar> -->
 
                                 </div>
 
 
 
                             </div>
-                        </div>
-                        <div class="col-md-2 pt-5 stndrop">
-                            <div class="form-group">
-                                <button type="button" class="btn btn-sm btn-primary"
-                                    (click)=populateChart()>FETCH</button>
+                            <div class="col-md-2 pt-5 stndrop">
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-sm btn-primary"
+                                        (click)=populateChart()>FETCH</button>
+                                </div>
                             </div>
                         </div>
+                        
                     </div>
 
                 </div>

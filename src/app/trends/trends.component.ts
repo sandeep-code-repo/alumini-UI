@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 //import {GlobalConstants} from '../common/global';
 import { IndustryService } from '../services/user/industry.service';
@@ -6,6 +6,8 @@ import { LocalServiceService } from '../services/common/local-service.service';
 import { Industry, StationInfoMapper } from '../model/industry.model';
 import { FilterChart } from '../model/filterchart.model';
 import { DatePipe } from '@angular/common';
+import { MatSelect } from '@angular/material/select';
+import { MatOption } from '@angular/material/core';
 @Component({
   selector: 'app-trends',
   templateUrl: './trends.component.html',
@@ -21,7 +23,7 @@ export class TrendsComponent implements OnInit {
   paramList:any[]
 
 public filterOption: ChartFilterOption[];
-public selectedOption: ChartFilterOption;
+public selectedOption: any;
 public options: any;
   public data: any;
   public dateFrom: Date;
@@ -30,12 +32,14 @@ public options: any;
   public maxDate: Date;
 filterData:FilterChart;
 filtersList:FilterChart[]=[]
-
-view;
+iCalView:number=1
+view: any;
 showTime:Boolean;
 parameterOption: any[];
 stationOption:any[]
   selectedfreq: any;
+  allSelected=false;
+ 
   constructor(private router: Router,public datepipe: DatePipe,private industryService:IndustryService,private storageService:LocalServiceService) { }
 
   ngOnInit(): void {
@@ -66,14 +70,17 @@ this.maxDate.setMonth(month);
 this.minDate = new Date();
 this.minDate.setMonth(today.getMonth()-3)
 }
+
 changeDatepicker(){
-    
+    //alert("xcv")
   const selected:any=this.selectedOption
+  console.log(selected)
   
 switch (selected) {
  
   case "Monthly":
     {
+      this.iCalView=2;
       //this.view="month"
       this.showTime=false;
       break;
@@ -81,11 +88,13 @@ switch (selected) {
     
     case "Daily":
     {
+      this.iCalView=1
       this.showTime=false;
       break;
     }
       
   default:{
+    this.iCalView=1
     this.showTime=true;
     break;
   }
@@ -93,55 +102,77 @@ switch (selected) {
 }
 } 
 addParam(){
-  //console.log(this.selectedStation)
-  this.paramList=[]
-  if(this.selectedStation=='ALL Stations')
   
-  //this.stationList.filter(item => item === 'parameterInfo');
- this.stationList.forEach(element => {
-    element.parameterInfo.forEach(param=>{ this.paramList.push(param)})
+  this.paramList=[]
+//   if(this.selectedStation=='ALL Stations')
+  
+//   //this.stationList.filter(item => item === 'parameterInfo');
+//  this.stationList.forEach(element => {
+//     element.parameterInfo.forEach(param=>{ this.paramList.push(param)})
    
+//   });
+//   else
+
+this.selectedStation.forEach(element => {
+  element.parameterInfo.forEach(element => {
+    this.paramList.push(element)
+    //console.log(this.paramList)
   });
-  else
-  this.paramList=this.selectedStation.parameterInfo
-  //console.log(this.paramList)
+ 
+});
 }
  
 populateChart(){
+  var pararmeters=new String()
    this.selectedfreq=this.selectedOption
-   //console.log(this.selectedStation)
+  console.log(this.selectedParam)
+  console.log(this.selectedStation)
+  
    this.filtersList=[]
-   if(this.selectedStation=='ALL Stations'){
-    this.stationList.forEach(element => {
-      //console.log(element.parameterInfo)
-      this.filterData=
-    {frequency: this.selectedfreq,
-    fromDate: this.datepipe.transform(this.dateFrom,'yyyy-MM-dd hh:mm:ss'),
-    toDate: this.datepipe.transform(this.dateTo, 'yyyy-MM-dd hh:mm:ss'),
-    plantId: "hindalco_lpng",
-    stationId: element.stationInfo.stationId,
-    parameter: "NO2"
-    }
-    this.filtersList.push(this.filterData)
-    });
-   }
-  else{
-  this.filterData=
+   this.selectedParam.forEach(element => {
+    // element.forEach(element => {
+      pararmeters+=element.paramter+",";
+    // });
+  
+  });
+   this.selectedStation.forEach(satation => {
+    
+    this.filterData=
     {
       frequency: this.selectedfreq,
       fromDate: this.datepipe.transform(this.dateFrom,'yyyy-MM-dd hh:mm:ss'),
       toDate: this.datepipe.transform(this.dateTo, 'yyyy-MM-dd hh:mm:ss'),
       plantId: "hindalco_lpng",
-      stationId: this.selectedStation.stationInfo.stationId,
-      parameter: "NO2"
+      stationId: satation.stationInfo.stationId,
+      parameter: pararmeters.replace(/,(\s+)?$/, '')
     }
     this.filtersList.push(this.filterData)
+      console.log(this.filtersList)
+  });
+  //  if(this.selectedStation=='ALL Stations'){
+  //   this.stationList.forEach(element => {
+  //     //console.log(element.parameterInfo)
+  //     this.filterData=
+  //   {
+  //     frequency: this.selectedfreq,
+  //   fromDate: this.datepipe.transform(this.dateFrom,'yyyy-MM-dd hh:mm:ss'),
+  //   toDate: this.datepipe.transform(this.dateTo, 'yyyy-MM-dd hh:mm:ss'),
+  //   plantId: "hindalco_lpng",
+  //   stationId: element.stationInfo.stationId,
+  //   parameter: pararmeters.replace(/,(\s+)?$/, '')
+  //   }
+  //   this.filtersList.push(this.filterData)
+  //   });
+  //  }
+  // else{
+  
     //console.log(this.filtersList)
-  }
+  // }
 }
   goback() {
     this.router.navigateByUrl("/regdetails");
   }
+ 
 }
 interface ChartFilterOption {
   name: string;

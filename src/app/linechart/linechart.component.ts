@@ -19,8 +19,9 @@ export class LinechartComponent implements OnInit {
   //public selectedOption: ChartFilterOption;
   @Input() filterData:FilterChart;
   
-  responseData;
+  responseData:ResponseGraph[]=[];
   view;
+
   showTime:Boolean;
   parameterOption: any[];
   stationOption:any[]
@@ -34,35 +35,56 @@ export class LinechartComponent implements OnInit {
     var labelArray: string[];
     var dataArray: number[];
     var thresholdLevel:number[];
-   
+    var  datasets:any[]=[];
    //console.log(this.filterData)
     this.userService.getTrendsGraphdata(this.filterData).subscribe(res=>{
     
 			if(res.apiStatus.message === 'success') 
     {
       this.responseData=res.data;
-      labelArray =  this.responseData.labels
-      dataArray =this.responseData.events
-      thresholdLevel=this.responseData.thresholdLevel
+      //console.log(this.responseData)
+      this.responseData.forEach(element => {
+        labelArray =  element.labels
+      dataArray =element.events
+      //thresholdLevel=element.thresholdLevel
+      const a={
+        label: element.parameter,
+        data: dataArray,
+        fill: false,
+        borderColor: this.getRandomColor(element.parameter),
+        hidden: false
+      }
+      datasets.push(a);
+      }
+       
+      );
+      //console.log(datasets)
       this.data = {
         labels: labelArray,
-        datasets: [
-          {
-            label: "Parameters",
-            data: dataArray,
-            fill: false,
-            borderColor: '#4bc0c0',
-            hidden: false
-          },
-          {
-            label: "Threshold Level",
-            data: thresholdLevel,
-            fill: false,
-            borderColor: '#f44336',
-            hidden: false
-          }
-        ]
+        datasets:datasets
       }
+      // labelArray =  this.responseData.labels
+      // dataArray =this.responseData.events
+      // thresholdLevel=this.responseData.thresholdLevel
+      // this.data = {
+      //   labels: labelArray,
+      //   datasets: [
+      //     {
+      //       label: "Parameters",
+      //       data: dataArray,
+      //       fill: false,
+      //       borderColor: '#4bc0c0',
+      //       hidden: false
+      //     },
+      //     {
+      //       label: "Threshold Level",
+      //       data: thresholdLevel,
+      //       fill: false,
+      //       borderColor: '#f44336',
+      //       hidden: false
+      //     }
+      //   ]
+      // }
     }
    
   
@@ -72,7 +94,12 @@ export class LinechartComponent implements OnInit {
   
   }
 
-
+  getRandomColor(string) {
+    var colors = ['green', 'blue', 'orange', 'yellow','#4bc0c0'];
+    //var color = Math.floor(0x1000000 * Math.random()).toString(16);
+    //return '#' + ('000000' + color).slice(-6);
+    return  colors[Math.floor(Math.random() * colors.length)];
+    }
   ngOnInit(): void {
     
 this.populateChart()
@@ -106,7 +133,10 @@ this.populateChart()
     };
   }
 }
-// interface ChartFilterOption {
-//   name: string;
-//  // code: number;
-// }
+interface ResponseGraph {
+  labels: string[],
+  events:number[],
+  parameter:string
+    
+ // code: number;
+}

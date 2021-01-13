@@ -64,18 +64,30 @@
         visibility: hidden;
     }
 }
-.btn-default {
-    border: 1px solid rgb(145, 139, 139);
-    width: 70px;
-    text-align: center;
-    position: relative;
-    background: #fff;
-    color: #4e73df;
-    padding-left: 10px;
+.btny {
+    background: #a6a6ff;
+    color: #2d3188;
+    padding: 10px;
+    line-height: 30px;
+    margin: 0 0 5px 0px;
+    transition: .5s all linear;
   }
-  .btn-default:hover{
-    background: #4e73df;
+  .btny:hover {
+    background: #2f2f91;
     color: #fff;
+    padding: 10px;
+    line-height: 30px;
+    margin: 0 0 5px 0px;
+  }
+  .btn.btn-default.style{
+    margin-top: 25px;
+  border-radius: 25px;
+  margin-bottom: 15px;
+  transition:1s ease all;
+  }
+  .btn.btn-default.style:hover{
+    background:#5710cb;
+    color:#fff;
   }
 .box22 h5 {
     margin: 0;
@@ -243,12 +255,6 @@ thead {
     vertical-align: top;
     border-top: 1px solid #e3e6f0;
 }
-
-.btny {
-    padding: 5px;
-    line-height: 30px;
-}
-
 .form-control:focus {
     color: #6e707e;
     background-color: #fff;

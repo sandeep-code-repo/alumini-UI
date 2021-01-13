@@ -114,6 +114,7 @@ import {ChartModule} from 'primeng/chart'
 		MatDatepickerModule,
 		MatNativeDateModule,
 		DropdownModule,ChartModule
+	
 		
 	],
 	providers: [AuthService, UserService, StudentService, IndustryDropDown, ExcelService],
