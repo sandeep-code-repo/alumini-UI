@@ -8,6 +8,9 @@ import { FilterChart } from '../model/filterchart.model';
 import { DatePipe } from '@angular/common';
 import { MatSelect } from '@angular/material/select';
 import { MatOption } from '@angular/material/core';
+import * as CanvasJS from '../../assets/js/canvas.min';
+import * as XLSX from 'xlsx';
+import { jsPDF } from "jspdf";
 @Component({
   selector: 'app-trends',
   templateUrl: './trends.component.html',
@@ -21,6 +24,7 @@ export class TrendsComponent implements OnInit {
   selectedParam:any;
   industryData:Industry;
   paramList:any[]
+  blob:any;
 
 public filterOption: ChartFilterOption[];
 public selectedOption: any;
@@ -39,6 +43,7 @@ parameterOption: any[];
 stationOption:any[]
   selectedfreq: any;
   allSelected=false;
+  //blob: URL;
  
   constructor(private router: Router,public datepipe: DatePipe,private industryService:IndustryService,private storageService:LocalServiceService) { }
 
@@ -171,6 +176,85 @@ populateChart(){
 }
   goback() {
     this.router.navigateByUrl("/regdetails");
+  }
+
+  printCanvas(id) {
+
+    if (id == 'print') {
+      var canvas = <HTMLCanvasElement>$("#chartContainer .canvasjs-chart-canvas").get(0);
+      var dataURL = canvas.toDataURL();
+      // var canvas = <HTMLCanvasElement>  document.querySelector("#random-chart");
+      var canvas_img = canvas.toDataURL("image/png", 1.0); //JPEG will not match background color
+
+      var pdf = new jsPDF('landscape', 'in', 'letter'); //orientation, units, page size
+      pdf.addImage(canvas_img, 'png', .5, 1.75, 10, 5); //image, type, padding left, padding top, width, height
+      pdf.autoPrint(); //print window automatically opened with pdf
+      this.blob = pdf.output("bloburl");
+      window.open(this.blob);
+    }
+
+
+    if (id == 'chartContainer') {
+      var canvas = <HTMLCanvasElement>$("#chartContainer .canvasjs-chart-canvas").get(0);
+      var dataURL = canvas.toDataURL();
+
+
+
+
+
+      //var canvas =<HTMLCanvasElement>  document.querySelector("#chartContainer");
+      var canvas_img = canvas.toDataURL("image/png", 1.0); //JPEG will not match background color
+      var pdf = new jsPDF('landscape', 'in', 'letter'); //orientation, units, page size
+      pdf.addImage(canvas_img, 'png', .5, 1.75, 10, 5); //image, type, padding left, padding top, width, height
+
+      this.blob = pdf.output("bloburl");
+      window.open(this.blob);
+
+    }
+
+    if (id == 'excel') {
+
+
+      var canvas = <HTMLCanvasElement>document.querySelector("#random-chart");
+
+      var canvas = <HTMLCanvasElement>$("#chartContainer .canvasjs-chart-canvas").get(0);
+      var dataURL = canvas.toDataURL();
+
+      var dataURL = canvas.toDataURL("image/jpeg", 1.0);
+
+      // this.downloadImage(dataURL, 'my-canvas.jpeg');
+
+
+
+      this.downloadAsExcel({
+        filename: "chart-data",
+        chart: dataURL
+      })
+
+
+
+    }
+
+
+
+  }
+
+  pdf() {
+
+  }
+
+  downloadAsExcel(args) {
+    var dataPoints, filename;
+    filename = args.filename || 'chart-data';
+
+    dataPoints = args.chart.data[0].dataPoints;
+    dataPoints.unshift({ x: "X Value", y: "Y-Value" });
+    var ws = XLSX.utils.json_to_sheet(dataPoints, { skipHeader: true, dateNF: 'YYYYMMDD HH:mm:ss' });
+    if (!ws['!cols']) ws['!cols'] = [];
+    ws['!cols'][0] = { wch: 17 };
+    var wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, filename);
+    XLSX.writeFile(wb, filename + ".xlsx");
   }
  
 }

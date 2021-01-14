@@ -7,7 +7,6 @@ import { HttpHeaders } from '@angular/common/http';
 import { Login } from 'src/app/login';
 import { Subject } from 'rxjs';
 import { Data } from '@angular/router';
-import { LocalServiceService } from '../common/local-service.service';
 import { FilterChart } from '../../model/filterchart.model';
 @Injectable()
 export class UserService {
@@ -186,7 +185,7 @@ export class UserService {
    }
 
    public getRealPollutantStationInfos(param: any): Observable<any> {
-     console.log(param)
+     //console.log(param)
       return this.httpclient.post<any>(this.baseURL + '/getRealPollutantStationParamLevelInfos/', param);
 
    }
@@ -230,7 +229,7 @@ export class UserService {
 
    //*****Admin Excel Upload Sevice  **** */ 
 
-   upload_excel(export_excel: Login): Observable<any> {
+   upload_excel(): Observable<any> {
 
 
 

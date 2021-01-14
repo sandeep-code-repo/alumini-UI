@@ -103,53 +103,35 @@
 
                         <div class="row">
                             <!-- <app-linechart></app-linechart>     -->
-                            <div class="col-md-4 pt-2 stndrop">
-                                <!-- <div class="form-group">
-                                    <label>Station</label>
-                                    <select class="form-control" [(ngModel)]="selectedStation" (change)=addParam()>
-
-                                        <option *ngFor="let title of stationList" [ngValue]="title">
-                                            {{title.stationInfo.stationId}}
-                                        </option>
-                                        <option value="ALL Stations">ALL Stations</option>
-                                    </select>
-                                </div> -->
-                                
-                                  <mat-form-field appearance="fill">
-                                    <mat-label>Station</mat-label>
-                                    <mat-select [(ngModel)]="selectedStation" multiple (selectionChange)="addParam()">
+                            <div class="col-md-2 pt-2 stndrop">
+                                <mat-label>Station</mat-label>
+                                  <mat-form-field class="form-group" appearance="none">
+                                    <mat-select class="form-control" [(ngModel)]="selectedStation" multiple (selectionChange)="addParam()">
                                       <mat-option *ngFor="let station of stationList" [value]="station">{{station.stationInfo.stationId}}</mat-option>
                                     </mat-select>
                                   </mat-form-field>
                             </div>
-                            <div class="col-md-4 pt-2 stndrop">
-                                <mat-form-field appearance="fill">
-                                    <mat-label>Parameter</mat-label>
-                                    <mat-select [(ngModel)]="selectedParam" multiple >
+                            <div class="col-md-2 pt-2 stndrop">
+                                <mat-label>Parameter</mat-label>
+                                <mat-form-field appearance="none" class="form-group">
+                                    <mat-select class="form-control" [(ngModel)]="selectedParam" multiple >
                                       <mat-option *ngFor="let param of paramList" [value]="param">{{param.paramter}}</mat-option>
                                     </mat-select>
                                   </mat-form-field>
                             </div>
-                            <div class="col-md-4 pt-2 stndrop">
-                                <div class="form-group">
-                                    <mat-form-field appearance="fill">
-                                        <mat-label>Frequency</mat-label>
-                                        <mat-select [(ngModel)]="selectedOption" (selectionChange)="changeDatepicker()">
+                            <div class="col-md-2 pt-2 stndrop">
+                                <mat-label>Frequency</mat-label>
+                                    <mat-form-field appearance="none" class="form-group">
+                                        <mat-select class="form-control" [(ngModel)]="selectedOption" (selectionChange)="changeDatepicker()">
                                           <mat-option *ngFor="let frequency of filterOption" [value]="frequency.name">{{frequency.name}}</mat-option>
                                         </mat-select>
                                       </mat-form-field>
                                     <!-- <p-dropdown [options]="filterOption" [(ngModel)]="selectedOption" optionLabel="name"
                                     placeholder="Select Frequency" optionValue="name" (onChange)=changeDatepicker()>
                                     </p-dropdown> -->
-                                </div>
+                                
                             </div>
-                           
-                           
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3 pt-2 stndrop">
-                                <div class="form-group">
-
+                            <div class="col-md-2 pt-2 stndrop">
                                     <label>From Date <span class="text-danger">*</span></label>
                                     <div *ngIf="this.iCalView==1">
                                 <p-calendar [(ngModel)]="dateFrom" [showTime]="showTime" dateFormat="dd.mm.yy"
@@ -169,13 +151,8 @@
                                         hourFormat="24" [showIcon]="true" [minDate]="minDate">
                                     </p-calendar> -->
 
-                                </div>
-
                             </div>
-
-                            <div class="col-md-3 pt-2 stndrop">
-                                <div class="form-group">
-
+                            <div class="col-md-2 pt-2 stndrop">
                                     <label>To Date <span class="text-danger">*</span></label>
                                     <div *ngIf="this.iCalView==1">
                                         <p-calendar [(ngModel)]="dateTo" [showTime]="showTime" dateFormat="dd.mm.yy"
@@ -194,11 +171,6 @@
                                     <!-- <p-calendar [(ngModel)]="dateTo" [showTime]="showTime" dateFormat="dd.mm.yy"
                                         hourFormat="24" [showIcon]="true" [maxDate]="maxDate">
                                     </p-calendar> -->
-
-                                </div>
-
-
-
                             </div>
                             <div class="col-md-2 pt-5 stndrop">
                                 <div class="form-group">
@@ -206,6 +178,8 @@
                                         (click)=populateChart()>FETCH</button>
                                 </div>
                             </div>
+                           
+                           
                         </div>
                         
                     </div>
@@ -221,16 +195,19 @@
                             data-toggle="dropdown">
                             <i class="fas fa-download fa-sm text-white-50"></i> Download Report:
                         </button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" ><i class="fa fa-file-excel-o"></i>
-                                As Excel</a>
+                        <!-- <div class="dropdown-menu">
+                            
                                 <a class="dropdown-item" href="http://117.211.75.160:8086/rest/api/industry/getSMSReport/downloadpdf?from=2020-11-12%2011:17:02&to=2020-11-12%2011:17:03">
-                                    <i class="fa fa-file-pdf-o"></i> As PDF</a>
-                            <a class="dropdown-item" ><i class="fa fa-file-pdf-o"></i> As
-                                Print</a>
+                                    
                     
-                        </div>
-                        &nbsp; &nbsp; &nbsp; &nbsp;
+                        </div> -->
+                        <div class="dropdown-menu">
+                            <a  class="dropdown-item" (click)="printCanvas('excel')"><i class="fa fa-file-excel-o"></i> As EXCEL</a>
+                            <a class="dropdown-item" (click)="printCanvas('chartContainer')"><i class="fa fa-file-pdf-o"></i> As Pdf</a>
+                            <a class="dropdown-item" (click)="printCanvas('print')"><i class="fa fa-file-pdf-o"></i> As Print</a>
+    
+                          </div>
+                        <!-- &nbsp; &nbsp; &nbsp; &nbsp; -->
                     </div>
                 </div>
                
@@ -238,24 +215,7 @@
                 <div class="row" *ngFor="let filterData of filtersList; let i = index">
                     <app-linechart [filterData]="filterData"></app-linechart>
                 </div>
-                <!-- Content Row -->
-
-                <!-- <div class="container">
-    <div class="d-sm-flex align-items-center col-sm-11 justify-content-between mb-4">
-        
-        <div class="dropdown">
-          <button type="button" class=" d-sm-inline-block btn btn-sm btn-primary shadow-sm mb-4 dropdown-toggle" data-toggle="dropdown">
-            <i class="fas fa-download fa-sm text-white-50"></i> Download Reports
-          </button>
-          <div class="dropdown-menu">
-            <a  class="dropdown-item" (click)="excel()"><i class="fa fa-file-excel-o"></i> As EXCEL</a>
-            <a class="dropdown-item" (click)="printCanvas('chartContainer')"><i class="fa fa-file-pdf-o"></i> As Pdf</a>
-            <a class="dropdown-item" (click)="printCanvas('print')"><i class="fa fa-file-pdf-o"></i> As Print</a>
-
-          </div>
-        </div> 
-    </div>  
-</div>                         -->
+                           
 
 
 

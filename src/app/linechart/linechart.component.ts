@@ -15,8 +15,7 @@ export class LinechartComponent implements OnInit {
   public data: any;
   public dateFrom: Date;
   public dateTo: Date;
-  //public filterOption: ChartFilterOption[];
-  //public selectedOption: ChartFilterOption;
+  
   @Input() filterData:FilterChart;
   
   responseData:ResponseGraph[]=[];
@@ -27,26 +26,24 @@ export class LinechartComponent implements OnInit {
   stationOption:any[]
   constructor(private userService: UserService) { }
 
-  // populateChart() {
-  //   this.selectionChange(this.selectedOption, this.dateFrom, this.dateTo)
-  // }
+  
  
   populateChart() {
     var labelArray: string[];
     var dataArray: number[];
-    var thresholdLevel:number[];
+    //var thresholdLevel:number[];
     var  datasets:any[]=[];
-   //console.log(this.filterData)
+ 
     this.userService.getTrendsGraphdata(this.filterData).subscribe(res=>{
     
 			if(res.apiStatus.message === 'success') 
     {
       this.responseData=res.data;
-      //console.log(this.responseData)
+      
       this.responseData.forEach(element => {
         labelArray =  element.labels
       dataArray =element.events
-      //thresholdLevel=element.thresholdLevel
+     
       const a={
         label: element.parameter,
         data: dataArray,
@@ -63,28 +60,7 @@ export class LinechartComponent implements OnInit {
         labels: labelArray,
         datasets:datasets
       }
-      // labelArray =  this.responseData.labels
-      // dataArray =this.responseData.events
-      // thresholdLevel=this.responseData.thresholdLevel
-      // this.data = {
-      //   labels: labelArray,
-      //   datasets: [
-      //     {
-      //       label: "Parameters",
-      //       data: dataArray,
-      //       fill: false,
-      //       borderColor: '#4bc0c0',
-      //       hidden: false
-      //     },
-      //     {
-      //       label: "Threshold Level",
-      //       data: thresholdLevel,
-      //       fill: false,
-      //       borderColor: '#f44336',
-      //       hidden: false
-      //     }
-      //   ]
-      // }
+     
     }
    
   
