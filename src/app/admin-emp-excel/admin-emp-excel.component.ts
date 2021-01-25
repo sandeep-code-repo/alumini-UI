@@ -11,8 +11,11 @@ import { FormBuilder } from '@angular/forms';
 
 export class AdminEmpExcelComponent implements OnInit {
 
-  @Input() multiple: boolean = false;
-    @ViewChild('fileInput') inputEl: ElementRef;
+ // @Input() multiple: boolean = false;
+   
+
+    @ViewChild('fileInput') fileInput: ElementRef;
+  fileAttr = 'Choose File';
     uploadForm;
   filename:string="";
   message;
@@ -51,6 +54,10 @@ incomingfile(event)
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.uploadForm.get('profile').setValue(file);
+      this.fileAttr = '';
+      Array.from(event.target.files).forEach((file: File) => {
+        this.fileAttr += file.name + ' - ';
+      });
     }
   }
   exportexcel(): void 
@@ -69,12 +76,12 @@ incomingfile(event)
              {
               this.message="Data Upload Successfully";
               $('.modal_invalid').css('display','block');
-               console.log(data);
+               //console.log(data);
              }
                
              else
              {
-              this.message="Upload Failed!!! Invalid Data Found";
+              this.message=data.data;
               $('.modal_invalid').css('display','block');
              }
              

@@ -85,18 +85,19 @@ h2.heading{font-size: 25px;
     font-size: 14px;
     font-weight: 300;
     padding: 5px 20px;
-    width: 100%;
+    width: 72%;
 }
-.fileupload{
-    float: right;
-    margin: 3px;
-    color:#5bc45b ;
+.btn-toolbar{
+    
+    float: left;
+    padding:9px 1px;
+    width:200%;
+    font-weight: 12px;
+    border-radius: 0px;
+    
+
 }
-#button{
-    position: relative;
-    left:-1px;
-    background-color:#446655;
-    }
+
 table {
     width: 100%;
   }
@@ -132,7 +133,7 @@ border-top-right-radius: 5px;
 border: 2px solid #ccc;
     }
     .form-control.texbsize{
-        padding: 4px 8px;
+        padding: 7px 8px;
         font-size:12px;
     }
     .form-control.texbsize1{
@@ -183,6 +184,7 @@ border: 2px solid #ccc;
     background: #5bc45b;
     border-color: #5bc45b;
     transition: .5s all linear;
+    margin: 0px;
 }
 .btns:focus
 {
@@ -196,14 +198,18 @@ border: 2px solid #ccc;
 .btny {
     background: #a6a6ff;
     color: #2d3188;
-    margin: 0px 3px 13px 10px;
-    transition: .5s all linear;
     line-height: 12px;
-        
+    margin: 0px 3px 13px 0px;
+    transition: .5s all linear;
 }
 .btny:hover {
     background: #2f2f91;
     color: #fff;
+}
+.fileupload{
+    float: right;
+    margin: 3px;
+    color:#5bc45b ;
 }
 select.form-control{
     appearance: none;

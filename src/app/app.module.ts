@@ -42,6 +42,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { AlertComponent } from './alert/alert.component';
 import { EmployeeExcelComponent } from './employee-excel/employee-excel.component';
 import { ApidocComponent } from './apidoc/apidoc.component';
@@ -113,8 +114,8 @@ import {ChartModule} from 'primeng/chart'
 		CommonModule,
 		MatDatepickerModule,
 		MatNativeDateModule,
-		DropdownModule,ChartModule
-	
+		DropdownModule,ChartModule,
+		MatToolbarModule
 		
 	],
 	providers: [AuthService, UserService, StudentService, IndustryDropDown, ExcelService],

@@ -1,47 +1,51 @@
+<mat-form-field>
+  <div>
+    <mat-toolbar>
+      <!-- Display files names -->
+      <input matInput [(ngModel)]="fileAttr" readonly name="name" />
 
+      <!-- Browse Button -->
+      <button mat-flat-button color="primary">
+        Browse File
+      </button>
+    </mat-toolbar>
 
-
-<div class="limiter" style="background-image: url('assets/images/bg-201.jpg');">
-
-    <div class="fog-container">
-      <div class="fog-img fog-img-first"></div>
-      <div class="fog-img fog-img-first"></div>
-      <div class="fog-img fog-img-second"></div>
+    <!-- Fetch selected filed on change -->
+    <input type="file" #fileInput id="uploadFile" (change)="upload($event)" name="uploadFile" multiple="multiple"
+     />
   </div>
-  
-      <div class="container">
-      <div class="row">      
-      <div class="container-login100" >
-      <div class="wrap-login100">
-      <form>
+ 
+</mat-form-field>
+
+<button class="btn btn-primary" (click)="exportexcel()">Upload </button>
+     <!-- <form>
         
-        <button type="button" tooltip="Goto Back " class="btn btny btn-default buttom-prim buttonsToShow" 
-        id="backbtn" (click)="goback()"><i class="fa fa-arrow-circle-left"></i> </button>     
+         
             <div style="text-align: center;color:blue;font-style:normal;">
              
-          Browse   Emp Data (Excel Format)
-              <br>
+         Upload  Emp Data (Excel Format)
+             
             </div>  
-            <hr> 
+             
             <div style="text-align: center;color:blue;font-style:normal;">
              
-          <input type="file"  (change)="upload($event)" [multiple]="true" #fileInput>
+          <input type="file" class="form-control-file" (change)="upload($event)" [multiple]="true" #fileInput>
 
            
 
 
            
-                    <br>
+                   
                   </div>
-                  <hr>
-        <div style="text-align: center;">
+                 
+        <div >
         
           <button class="btn btn-primary" (click)="exportexcel()">Upload </button>
         </div>
        
-
+      </form> -->
         
-        <table id="excel-table" hidden> 
+        <!-- <table id="excel-table" hidden> 
           <tr>       
              <th>EMPNAME</th> 
              <th>MOBILENO</th>  
@@ -84,22 +88,16 @@
                              
                           </tr> 
         </table>
-        
+         -->
         
   
-      </form>
-      </div>
-      </div>
-      </div>
-      </div>
-      </div>
-  
-      
+      <!-- --> 
+     
   
       <div  class="modal_invalid">
 
         <!-- Modal content -->
-        <div class="modal-content1">
+         <div class="modal-content1">
           
           <i class="close fa fa-times-circle" style="font-size:30px;color:red;text-align: right;"></i>
          
@@ -110,3 +108,4 @@
             <button class="btn btn-success close_modal">CLOSE</button>
           </div>
         </div>
+        </div> 

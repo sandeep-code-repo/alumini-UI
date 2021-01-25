@@ -5,10 +5,11 @@ import { UserService } from '../services/user/user.service';
 import {MatSort } from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient , HttpEventType} from '@angular/common/http';
 import { IndustryDropDown } from '../services/common/dropdown.service';
 import { LocalServiceService } from '../services/common/local-service.service';
 import { Industry, UserInfo } from '../model/industry.model';
+import * as XLSX from 'xlsx';
 export interface IndustryDetails {
   id:number,
   name: string;
@@ -26,8 +27,9 @@ export interface IndustryDetails {
 
 export class RegdetailsComponent implements OnInit{
   //regdetails: FormGroup;
- 
-  dataSource: MatTableDataSource<IndustryDetails>;
+
+selectedFile: File = null;
+dataSource: MatTableDataSource<IndustryDetails>;
   industryCategory:any[];
   userName:string
   displayedColumns: string[] 
@@ -65,7 +67,29 @@ export class RegdetailsComponent implements OnInit{
   //  this.isLogin=true;
   
   }
-   
+
+OnFileSelected(event:any){
+  this.selectedFile = <File> event.target.files [0];
+     
+   }
+  onSubmit(){
+    const fd = new FormData();
+    fd.append('Excel',this.selectedFile, this.selectedFile.name);
+  this.http.post('http://117.211.75.160:8086/rest/api/saveExcelRegistration',fd,{
+    reportProgress:true,
+    observe:'events'
+  })
+     .subscribe(event=>{ 
+       if (event.type === HttpEventType.UploadProgress ){
+         console.log('Upload Progress:' +Math.round (event.loaded/ event.total * 100) +'%' );
+       } else if (event.type ===HttpEventType.Response){
+          console.log(event);
+       }
+      
+     });
+  }
+
+
 
 filterForIndustry(filterVal: any) {
   this.isLoading = true

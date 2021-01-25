@@ -3,31 +3,30 @@
       <div class="row">
          <div class="col-xs-12 col-sm-6 col-md-8"> 
             <img class="logo" src="assets/images/cpcb.png">
-            <h1 class="text-right text-white">Assam Pollution Control Board </h1>
-         </div>
-         <ul class="navbar-nav ml-auto" *ngIf=isLogin>
-            <li class="nav-item dropdown no-arrow ml-auto">
-               <a class="nav-link" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                  aria-expanded="false">
-                  <i style='font-size:24px' class='fas'>&#xf2bd;</i>
-                  <span class="mr-2 d-none d-lg-inline text-white">{{userName}}</span>
-                  <i style="font-size:24px" class="fa">&#xf150;</i>
-                  <!-- <img class="img-profile rounded-circle" src="assets/images/undraw_profile.svg"> -->
-               </a>
-               <!-- Dropdown - User Information -->
-               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-
-                  <!-- <div class="dropdown-divider"></div> -->
-                  <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal"
-                     [routerLink]="['/login']">
-                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                     Logout
+            <h1 class="text-right text-white">Assam Pollution Control Board </h1></div>
+            <ul class="navbar-nav ml-auto" *ngIf=isLogin>
+               <li class="nav-item dropdown no-arrow ml-auto">
+                  <a class="nav-link" href="#" id="userDropdown" role="button"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i style='font-size:24px' class='fas'>&#xf2bd;</i>
+                      <span class="mr-2 d-none d-lg-inline text-white">{{userName}}</span>
+                      <i style="font-size:24px" class="fa">&#xf150;</i>
+                      <!-- <img class="img-profile rounded-circle" src="assets/images/undraw_profile.svg"> -->
                   </a>
-               </div>
-            </li>
-         </ul>
-         <!-- <div class="py-3 px-3"> -->
-         <!-- <div class="col-md-4">
+                  <!-- Dropdown - User Information -->
+                  <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                      aria-labelledby="userDropdown">
+                     
+                      <!-- <div class="dropdown-divider"></div> -->
+                      <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal" [routerLink]="['/login']">
+                          <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                          Logout
+                      </a>
+                  </div>
+              </li>
+               </ul>
+      <!-- <div class="py-3 px-3"> -->
+ <!-- <div class="col-md-4">
            
             </div> -->
       </div>
@@ -53,17 +52,23 @@
                class="fa fa-arrow-circle-left"></i></button>
       </div> -->
       <div class="clearfix"></div>
+     <app-admin-emp-excel></app-admin-emp-excel>
+   </div>
+   <div class="container uk-card uk-card-default uk-card-body my-3">
+      <!-- <div class="div80">
+         <button type="button" tooltip="Goto Back "
+            class=" float-left btn btny btn-default buttom-prim buttonsToShow"><i
+               class="fa fa-arrow-circle-left"></i></button>
+      </div> -->
+      <div class="clearfix"></div>
       <div class="div80">
-         <div class="row py-3 px-3 pn">
-
-
-
+         <div class="row py-3 px-3">
             <div class="text-right">
                <label class="control-label pl-0" style="padding: 5px; padding-bottom: 5px;">Industry Category :</label>
             </div>
-            <div class="form-group  col-sm-2 smallpad opt" style="float:left;">
-               <select #myDropDownList class="form-control texbsize">
-                  <option value="">Select</option>
+          <div class="box  col-sm-3  "> 
+               <select #myDropDownList class="form-control">
+                  <option value="" >Select</option>
                   <!-- <option>power plant</option>
           <option>Integrated Steels</option> -->
 
@@ -80,32 +85,27 @@
                   <i _ngcontent-hel-c18="" class="fas fa-user fa-fw"></i>
                   Show</button>
             </div>
-            <div class="form-group ml-5 col-sm-2 p-0 ml-1" *ngIf="isLogin; else elseTemplate" style="display: flex;">
-               <!-- <a class="nav-link dropdown-toggle">Excel Upload</a> -->
-               <!-- <select><option value="0" hidden>Excel Upload</option>
-               </select> -->
-               <!-- <label>Upload Excel:<input type="file"><button type="submit" class="btn btn-success">Submit</button></label> -->
-               <!-- <input type="file"> -->
-
-
+            <div class="form-group ml-auto col-sm-2 p-0 ml-5" *ngIf="isLogin; else elseTemplate" >
                <button type="submit" class="btn btns btn-success" [routerLink]="['/dashboard']">DashBoard</button>
-               <!-- <label class="btn btn-success"> File Upload <input type="file" name="file" style="display: none"></label><br/><br/> -->
-               <input type="file" class="fileupload"><br><button type="submit" class="btn btns btn-success">Submit</button>
+               
+            <!-- <div class="btn-toolbar" role="toolbar">   
+                  <div class="btn-group mr-2" role="group"> 
+                <input style="display:none" type="file" (change)="OnFileSelected($event)"#fileInput>
+                <button  type="submit" class="btn btns btn-success"  (click)="fileInput.click()">Upload Excel</button>
+                  </div>
+                  <div class="btn-group mr-2" role="group">
+                 <button type="submit" class="btn btns btn-success" (click)="onSubmit()">Submit</button>
+                 </div>
+                 </div> -->
+      
             </div>
             <ng-template #elseTemplate>
                <div class="form-group ml-auto col-sm-2 p-0 ml-5">
                   <button type="submit" class="btn btns btn-success" [routerLink]="['/registration']">New
                      Register</button>
                </div>
-               <div class="col-sm-2 smallpad"> <button type="button" tooltip="Goto Back"
-                     class=" float-right btn btny btn-default buttom-prim buttonsToShow" id="backbtn"
-                     (click)="goback()">
-                     <i class="fa fa-arrow-circle-left"></i></button></div>
-
-               <!-- <button type="button" tooltip="Goto Back " class="mr-3 btn btny btn-default buttom-prim buttonsToShow" id="backbtn"
-                      (click)="goback()">
-                      <i class="fa fa-arrow-circle-left"></i></button>
-                      -->
+               <div class="col-sm-2 smallpad"> <button type="button" tooltip="Goto Back" class=" float-right btn btny btn-default buttom-prim buttonsToShow" id="backbtn" (click)="goback()">
+                  <i class="fa fa-arrow-circle-left"></i></button></div>
             </ng-template>
          </div>
       </div>
@@ -160,8 +160,7 @@
                   <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
                   <td mat-cell *matCellDef="let element">
                      <button [disabled]="element.userId!=userName" class="btn btns btn-success  ml-1"
-                        [routerLink]="['/registration']">Update</button>
-                  </td>
+                        [routerLink]="['/registration']">Update</button> </td>
                </ng-container>
 
 
