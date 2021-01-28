@@ -72,8 +72,6 @@ export class UserService {
          'headers': headers
       });
 
-
-
    }
 
 
@@ -147,14 +145,14 @@ export class UserService {
 
    //realtime-report
 
-   realtimereport(): Observable<any> 
+   realtimereport(userName): Observable<any> 
    {
 
       const headers = { 'content-type': 'application/json' }
       
 
       return this.httpclient.post<any>(this.plantDetailsUrl,{
-         'userName': 'Hari'
+         'userName': userName
 
       },
          {
@@ -185,7 +183,7 @@ export class UserService {
    }
 
    public getRealPollutantStationInfos(param: any): Observable<any> {
-     //console.log(param)
+    
       return this.httpclient.post<any>(this.baseURL + '/getRealPollutantStationParamLevelInfos/', param);
 
    }

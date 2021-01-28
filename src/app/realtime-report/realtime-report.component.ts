@@ -37,15 +37,13 @@ export class RealtimeReportComponent implements OnInit {
   powerplant: any;
   company: any;
 
-  constructor(private UserService: UserService,private router:Router, private localService: LocalServiceService) {
+  constructor(private userService: UserService,private router:Router, private localService: LocalServiceService) {
     this.userData = this.localService.getJsonValue('loggedInUserData');
 
     let param = {
       plantId: this.userData.userName
     }
-    this.UserService.getRealPollutantStationInfos(param).subscribe(res => {
-      
-
+    this.userService.getRealPollutantStationInfos(param).subscribe(res => {
       if (res.apiStatus.message === 'success') {
         this.polutionStationInfo = res.data;
         this.listData = this.polutionStationInfo.realTimeStationParamMapper.emissionList;
@@ -56,7 +54,7 @@ export class RealtimeReportComponent implements OnInit {
   ngOnInit(): void {
 
     
-    this.UserService.realtimereport().subscribe(data => {
+    this.userService.realtimereport(this.userData.userName).subscribe(data => {
 
       if (data.apiStatus.message === 'success') {
         // alert(JSON.stringify(data.data));
@@ -102,7 +100,7 @@ export class RealtimeReportComponent implements OnInit {
   monitoring_type(id) {
     this.type = id;
 
-    const home = this.UserService.realtimereport_monitoring_type(id,this.userData.userName).subscribe(data => {
+    const home = this.userService.realtimereport_monitoring_type(id,this.userData.userName).subscribe(data => {
       
       if (data.apiStatus.message === 'success') {
         this.emission = data.data;

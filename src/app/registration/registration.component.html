@@ -386,9 +386,9 @@
       </h2>
    </div>
 
-   <div *ngFor="let station of stationinfomap" class="container forms ">
-      <button type="button" class="btn-mini btn-success" tooltip="Remove Edit"
-      (click)="removeEdit(i)" autoPlacement="true" data-toggle="modal" data-target="#removeEdit">
+   <div *ngFor="let station of stationinfomap; let j=index" class="container forms ">
+      <button type="button" class="btn-mini btn-success" tooltip="Remove Station"
+      (click)="removeStationInfo(j)" autoPlacement="true">
       <i class="fa fa-minus"></i></button>
       
       <button class="d-block mb-4 ml-auto  link btn btn-info" type="button" data-toggle="modal"
@@ -567,7 +567,7 @@
          </div> 
          <div class="form-group col-md-2 ml-2">
             <button type="button"  
-                tooltip="Register" data-target="#modalMessage"
+                tooltip="Register" data-toggle="modal"  data-target="#modalMessage"
                (click)=register() class="btn btns btn-success" 
                >Register</button>
          </div>
@@ -630,7 +630,7 @@
                            [ngClass]="{'is-invalid':addProcesssubmitted && stationinfoV.stnType.errors}"
                            (change)="stack($event.target.value)" >
                            <option value="">Select</option>
-                           <option selected>Ambient</option>
+                           <option >Ambient</option>
                            <option>Emission</option>
                            <option>Effluent</option>
                         </select>

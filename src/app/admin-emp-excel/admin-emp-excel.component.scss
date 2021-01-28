@@ -1177,7 +1177,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
     box-shadow: none!important;
 }
 .stretch {
-    width:100%;
+    width:150%;
     height:100%;
 }
 label.color{color:#fff;}
@@ -1192,15 +1192,22 @@ transition:1s ease all;
     background:#5710cb;
     color:#fff;
 }
-.btn-suc
+.btns
 {
-    padding: 5px 25px;
+    padding: 5px;
     font-size: 14px;
-    font-weight: 300;
+    font-weight: 10;
     text-transform: uppercase;
     background: #5bc45b;
     border-color: #5bc45b;
     transition: .5s all linear;
+    margin: 0px;
+    width: 10%;
+}
+.btns:hover
+{
+    background: #009432 !important;
+    border-color: #009439 !important;
 }
 .btn-suc:focus
 {
@@ -1239,10 +1246,13 @@ a:hover.txt1{
 .mat-toolbar-single-row {
     height: auto !important;
     background: transparent;
+    font-size: 14px;
+        color: #666
 }
 
 .mat-toolbar-single-row button {
-    width: 200px;
+    width: 130px;
+    
 }
 
 .mat-form-field {

@@ -85,19 +85,8 @@ h2.heading{font-size: 25px;
     font-size: 14px;
     font-weight: 300;
     padding: 5px 20px;
-    width: 72%;
+    width: 100%;
 }
-.btn-toolbar{
-    
-    float: left;
-    padding:9px 1px;
-    width:200%;
-    font-weight: 12px;
-    border-radius: 0px;
-    
-
-}
-
 table {
     width: 100%;
   }
@@ -113,6 +102,10 @@ table {
     list-style: none;
     margin: 0 0 0px 0;
     padding: 0;
+  }
+  
+  .list li {
+    
   }
     h4.heading1{
         color: #fff;
@@ -161,9 +154,7 @@ border: 2px solid #ccc;
         padding-left: 5px;
     }
     .nopad{padding-left:0;}
-    select.form-control:not([size]):not([multiple]){
-        height: calc(2.10rem + 0px);
-    }
+   
     .fontpassword { 
         position: relative; 
     } 
@@ -184,7 +175,6 @@ border: 2px solid #ccc;
     background: #5bc45b;
     border-color: #5bc45b;
     transition: .5s all linear;
-    margin: 0px;
 }
 .btns:focus
 {
@@ -198,18 +188,14 @@ border: 2px solid #ccc;
 .btny {
     background: #a6a6ff;
     color: #2d3188;
-    line-height: 12px;
+    padding: 10px;
+    line-height: 15px;
     margin: 0px 3px 13px 0px;
     transition: .5s all linear;
 }
 .btny:hover {
     background: #2f2f91;
     color: #fff;
-}
-.fileupload{
-    float: right;
-    margin: 3px;
-    color:#5bc45b ;
 }
 select.form-control{
     appearance: none;

@@ -178,8 +178,6 @@ export class RegistrationComponent implements OnInit {
   get f() { return this.add_industry.controls; }
   get plantInfof() { return (this.add_industry.get('plantInfo') as FormGroup).controls }
   get userInfof() { return (this.add_industry.get('userInfoMapper.userInfo') as FormGroup).controls }
-
-
   get processf() { return this.processForm.controls }
   get stationinfoV() { return (this.processForm.get('stationInfo') as FormGroup).controls }
   // get parameterinfoV(){return (this.processForm.get('i') as FormGroup).control}
@@ -218,7 +216,11 @@ get stationInfo() {
     // this.processForm.reset();
     // this.addProcesssubmitted = false;
   }
-  removeEdit(index) {
+  removeStationInfo(index) {
+    console.log(index)
+    if(index==0)
+    this.stationinfomap=[]
+    else
     this.stationinfomap.splice(index);
   }
   register() {
@@ -252,6 +254,8 @@ get stationInfo() {
         //console.log(data.apiStatus.message);
         // this.route.navigate(['/home']);
         this.add_industry.reset();
+        this.processForm.reset();
+        this.submitted=false;
       } else {
         this.message = "Registration Failed"
         //console.log(data);
@@ -275,7 +279,7 @@ get stationInfo() {
     else
       if (str == "Emission") {
         // this.stackDisplay=true;
-        this.addProcesssubmitted = true;
+        
         // $('.stackDisplay').css('display','block');
         $('#stack_123').css('display', 'block');
 

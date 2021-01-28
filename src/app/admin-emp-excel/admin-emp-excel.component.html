@@ -2,11 +2,11 @@
   <div>
     <mat-toolbar>
       <!-- Display files names -->
-      <input matInput [(ngModel)]="fileAttr" readonly name="name" />
+      <input matInput [(ngModel)]="fileAttr" readonly name="name" /> 
 
       <!-- Browse Button -->
-      <button mat-flat-button color="primary">
-        Browse File
+      <button type="submit" class="btn btns btn-success">
+        BROWSE FILE
       </button>
     </mat-toolbar>
 
@@ -17,7 +17,12 @@
  
 </mat-form-field>
 
-<button class="btn btn-primary" (click)="exportexcel()">Upload </button>
+<button type="submit"  class="btn btns btn-success" (click)="exportexcel()"> UPLOAD </button>
+
+
+
+
+
      <!-- <form>
         
          
@@ -43,7 +48,7 @@
           <button class="btn btn-primary" (click)="exportexcel()">Upload </button>
         </div>
        
-      </form> -->
+      </form> 
         
         <!-- <table id="excel-table" hidden> 
           <tr>       
