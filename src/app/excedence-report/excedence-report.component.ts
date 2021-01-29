@@ -8,6 +8,7 @@ import * as CanvasJS from '../../assets/js/canvas.min';
 import * as XLSX from 'xlsx';
 import { jsPDF } from "jspdf";
 import { ITabledata } from '../model/tableData'
+import { LocalServiceService } from '../services/common/local-service.service';
 
 @Component({
   selector: 'app-excedence-report',
@@ -18,65 +19,7 @@ export class ExcedenceReportComponent implements OnInit {
 
 
   headers = ['SL.No', 'Category', 'Industry Code', 'Industry Name', 'Full Address', 'Contact in which SMSAlerts generated', 'State', 'Station Name', "Parameter Standard limit's", 'Parameter', 'Excedence', 'Total SMS', 'In Ganga Basin'];
-  // tableData =
-  //   [
-  //     {
-  //       "SL.No": "1",
-  //       "Category": "Iron & Steel",
-  //       "Industry Code": "08OD183",
-  //       "Industry Name": "M/S ROURKELA STEEL PLANT",
-  //       "Full Address": "Sundergarh,Odisha",
-  //       "Contact in which SMSAlerts generated": "918895500627",
-  //       "State": "Odisha",
-  //       "Station Name": "CEMS-10",
-  //       "Parameter Standard limit's": "100 mg/Nm3",
-  //       "Parameter": "PM",
-  //       "Excedence": "34",
-  //       "Total SMS": "164",
-  //       "In Ganga Basin": "NO",
-  //       "Created By": "System",
-  //       "Created Dt": "2020-11-12T05:47:03.000+0000",
-  //       "LastModified By": "null",
-  //       "LastModified Dt": "null"
-  //     },
-  //     {
-  //       "SL.No": "2",
-  //       "Category": "Iron & Steel",
-  //       "Industry Code": "08OD183",
-  //       "Industry Name": "M/S ROURKELA STEEL PLANT",
-  //       "Full Address": "Sundergarh,Odisha",
-  //       "Contact in which SMSAlerts generated": "918895500627",
-  //       "State": "Odisha",
-  //       "Station Name": "CEMS-11",
-  //       "Parameter Standard limit's": "100 mg/Nm3",
-  //       "Parameter": "PM",
-  //       "Excedence": "49",
-  //       "Total SMS": "164",
-  //       "In Ganga Basin": "NO", "Created By": "System",
-  //       "Created Dt": "2020-11-12T05:47:03.000+0000",
-  //       "LastModified By": "null",
-  //       "LastModified Dt": "null"
-  //     },
-  //     {
-  //       "SL.No": "3",
-  //       "Category": "Iron & Steel",
-  //       "Industry Code": "08OD183",
-  //       "Industry Name": "M/S ROURKELA STEEL PLANT",
-  //       "Full Address": "Sundergarh,Odisha",
-  //       "Contact in which SMSAlerts generated": "918895500627",
-  //       "State": "Odisha",
-  //       "Station Name": "CEMS-12",
-  //       "Parameter Standard limit's": "100 mg/Nm3",
-  //       "Parameter": "PM",
-  //       "Excedence": "81",
-  //       "Total SMS": "164",
-  //       "In Ganga Basin": "NO", "Created By": "System",
-  //       "Created Dt": "2020-11-12T05:47:03.000+0000",
-  //       "LastModified By": "null",
-  //       "LastModified Dt": "null"
-  //     }
-
-  //   ]
+ 
 tableData:ITabledata[]
   parameter; chart: any = [];
   powerplant; blob: any;
@@ -99,55 +42,37 @@ tableData:ITabledata[]
       backgroundColor: 'rgba(255,0,0,0.3)',
     },
   ];
+  profilename: string;
   
 
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private router: Router, private userService: UserService,private storageService:LocalServiceService) { }
 
   ngOnInit(): void {
-
+    if(localStorage.isLogin){
+      //this.isLogin= this.storageService.getJsonValue('isLogin')
+      this.profilename=this.storageService.getJsonValue('loggedInUserData').userName;
+     }
     this.userService.gettableData().subscribe(result => {
-  debugger
+  
       this.tableData= result.data
     })
 
 
-    const dashboard = this.userService.homepage().subscribe(data => {
+    const dashboard = this.userService.homepage(this.profilename).subscribe(data => {
 
 
       if (data.apiStatus.message === 'success') {
         //call graph
 
         this.fetch();
-
-
         this.parameter = data.data.realParameterInfo;
-
-
-
-
         this.company = data.data.district;
-
         this.powerplant = data.data.plantName;
-
-
         this.city = data.data.city;
-
-
         this.stateName = data.data.state;
-
-        ;
         this.industryCategory = data.data.industryCategory;
-
-
-
         this.calendar = data.data.realParameterInfo;
-
-
-
-
         this.monitoringStation = data.data.countStation;
-
-
         this.parameterMoniter = data.data.countParameter;
 
       }

@@ -25,6 +25,15 @@ export class TrendsComponent implements OnInit {
   industryData:Industry;
   paramList:any[]
   blob:any;
+  city: any;
+  stateName: any;
+  industryCategory: any;
+  calendar: any;
+  monitoringStation: any;
+  parameterMoniter: any;
+  parameterCode:any;
+  powerplant: any;
+  company: any;
 
 public filterOption: ChartFilterOption[];
 public selectedOption: any;
@@ -57,6 +66,7 @@ stationOption:any[]
     if(res.apiStatus.message === 'success') 
     {
       this.industryData=res.data;
+      //console.log(this.industryData.plantInfo)
       this.stationList=this.industryData.stationInfoMapper
     }
    });
@@ -68,10 +78,9 @@ stationOption:any[]
     { name: 'Daily'},
   ];
 
-  let today = new Date();
+let today = new Date();
 let month = today.getMonth()+3;
 this.maxDate = new Date();
-this.maxDate.setMonth(month);
 this.minDate = new Date();
 this.minDate.setMonth(today.getMonth()-3)
 }
@@ -79,7 +88,7 @@ this.minDate.setMonth(today.getMonth()-3)
 changeDatepicker(){
     //alert("xcv")
   const selected:any=this.selectedOption
-  console.log(selected)
+  
   
 switch (selected) {
  
@@ -109,14 +118,7 @@ switch (selected) {
 addParam(){
   
   this.paramList=[]
-//   if(this.selectedStation=='ALL Stations')
-  
-//   //this.stationList.filter(item => item === 'parameterInfo');
-//  this.stationList.forEach(element => {
-//     element.parameterInfo.forEach(param=>{ this.paramList.push(param)})
-   
-//   });
-//   else
+
 
 this.selectedStation.forEach(element => {
   element.parameterInfo.forEach(element => {
@@ -130,8 +132,7 @@ this.selectedStation.forEach(element => {
 populateChart(){
   var pararmeters=new String()
    this.selectedfreq=this.selectedOption
-  console.log(this.selectedParam)
-  console.log(this.selectedStation)
+  
   
    this.filtersList=[]
    this.selectedParam.forEach(element => {
@@ -147,12 +148,12 @@ populateChart(){
       frequency: this.selectedfreq,
       fromDate: this.datepipe.transform(this.dateFrom,'yyyy-MM-dd hh:mm:ss'),
       toDate: this.datepipe.transform(this.dateTo, 'yyyy-MM-dd hh:mm:ss'),
-      plantId: "hindalco_lpng",
+      plantId:  this.profilename,
       stationId: satation.stationInfo.stationId,
       parameter: pararmeters.replace(/,(\s+)?$/, '')
     }
     this.filtersList.push(this.filterData)
-      console.log(this.filtersList)
+    
   });
   //  if(this.selectedStation=='ALL Stations'){
   //   this.stationList.forEach(element => {

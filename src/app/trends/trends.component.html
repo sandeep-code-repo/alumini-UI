@@ -30,67 +30,39 @@
                             <li class="breadcrumb-item active"><a>Trends</a></li>
                         </ol><br>
                     </span>
-                </div>
+                </div><br><br>
                 <!-- Sidebar -->
-                <div style="float: left;padding-left: 10px;">
-                    <h1 class="h4 text-gray-800">Power Plant India Ltd.
+                <app-plant-info></app-plant-info>
+                <!-- <div *ngIf=industryData>
+                    <h1 class="h4 text-gray-800">{{industryData.plantInfo.plantName}}
                     </h1>
                     <ul class="nav list">
 
                         <li class="nav-item">
-                            <i class="fa fa-map-marker text-warning wdth"></i>Bhubaneswar,Khorda
+                            <i class="fa fa-map-marker text-warning wdth"></i> {{city}},{{company}}
                         </li>
                         <li class="nav-item">
-                            <i class="fa fa-globe text-secondary wdth"></i>Odisha
+                            <i class="fa fa-globe text-secondary wdth"></i> {{stateName}}
                         </li>
                         <li class="nav-item">
-                            <i class="fa fa-podcast text-primary wdth"></i> Power Plant
+                            <i class="fa fa-podcast text-primary wdth"></i> {{industryCategory}}
                         </li>
                         <li class="nav-item">
-                            <i class="fa fa-calendar text-info wdth"></i>Data fetched at : 28-Sep-2020 07:55
+                            <i class="fa fa-calendar text-info wdth"></i>Data fetched at :<span
+                                    *ngFor="let x of calendar;let i= index">
+                                    <i *ngIf="i==0">
+                                        {{x.recordedTime}}
+                                    </i>
+                                </span>
                         </li>
                         <li class="nav-item">
-                            <i class="fa fa-sitemap text-success wdth"></i> Monitoring Stations : 9
+                            <i class="fa fa-sitemap text-success wdth"></i>Total Monitoring Stations : {{monitoringStation}}
                         </li>
                         <li class="nav-item">
-                            <i class="fa fa-tv text-danger wdth"></i> Total Parameters Monitored : 38
+                            <i class="fa fa-tv text-danger wdth"></i>Total Parameters Monitored : {{parameterMoniter}}
                         </li>
                     </ul>
-                </div>
-
-
-
-                <!--<div> 
-    <h3 class="mb-4"style="float:none;">{{powerplant}}</h3>
-</div>
-
-          
-            <ul class="nav list" style="float: left;">
-                
-                <li class="nav-item">
-                  <i class="fa fa-map-marker text-warning wdth"></i>{{city}},{{company}}
-                </li>
-                <li class="nav-item">
-                  <i class="fa fa-globe text-secondary wdth"></i>{{stateName}}
-                </li>  
-                <li class="nav-item">
-                  <i class="fa fa-podcast text-primary wdth"></i> {{industryCategory}}
-                </li>   
-                <li class="nav-item">
-                    <i class="fa fa-calendar text-info wdth"></i>Data fetched at : <span *ngFor="let x of calendar;let i= index">
-                      <i *ngIf="i==0">
-                        {{x.recordedTime}}
-                      </i> 
-                     
-                    </span> 
-                </li>  
-                <li class="nav-item">
-                  <i class="fa fa-sitemap text-success wdth"></i>Total Monitoring Stations : {{monitoringStation}}
-                </li>     
-                <li class="nav-item">
-                  <i class="fa fa-tv text-danger wdth"></i> Total Parameters Monitored : {{parameterMoniter}}
-                </li>    
-              </ul> -->
+                </div> -->
 
 
 
@@ -126,19 +98,17 @@
                                           <mat-option *ngFor="let frequency of filterOption" [value]="frequency.name">{{frequency.name}}</mat-option>
                                         </mat-select>
                                       </mat-form-field>
-                                    <!-- <p-dropdown [options]="filterOption" [(ngModel)]="selectedOption" optionLabel="name"
-                                    placeholder="Select Frequency" optionValue="name" (onChange)=changeDatepicker()>
-                                    </p-dropdown> -->
+                                   
                                 
                             </div>
                             <div class="col-md-2 pt-2 stndrop">
                                     <label>From Date <span class="text-danger">*</span></label>
-                                    <div *ngIf="this.iCalView==1">
+                                    <div *ngIf="this.iCalView==1" style="margin-top: 10px;">
                                 <p-calendar [(ngModel)]="dateFrom" [showTime]="showTime" dateFormat="dd.mm.yy"
                                     hourFormat="24" [showIcon]="true"  [minDate]="minDate">
                                 </p-calendar>
                             </div>
-                            <div *ngIf="this.iCalView==2">
+                            <div *ngIf="this.iCalView==2" style="margin-top: 10px;">
                                 <p-calendar [(ngModel)]="dateFrom" view="month" dateFormat="mm/yy"
                                     [yearNavigator]="true" yearRange="2000:2030" [showIcon]="true"  [minDate]="minDate"></p-calendar>
                             </div>
@@ -147,34 +117,31 @@
                                     [showIcon]="true"  [minDate]="minDate">
                                 </p-calendar>
                             </div>
-                                    <!-- <p-calendar [(ngModel)]="dateFrom" [showTime]="showTime" dateFormat="dd.mm.yy"
-                                        hourFormat="24" [showIcon]="true" [minDate]="minDate">
-                                    </p-calendar> -->
+                                   
 
                             </div>
                             <div class="col-md-2 pt-2 stndrop">
-                                    <label>To Date <span class="text-danger">*</span></label>
-                                    <div *ngIf="this.iCalView==1">
-                                        <p-calendar [(ngModel)]="dateTo" [showTime]="showTime" dateFormat="dd.mm.yy"
-                                            hourFormat="24" [showIcon]="true">
-                                        </p-calendar>
-                                    </div>
-                                    <div *ngIf="this.iCalView==2">
-                                        <p-calendar [(ngModel)]="dateTo" view="month" dateFormat="mm/yy"
-                                            [yearNavigator]="true" yearRange="2000:2030" [showIcon]="true"></p-calendar>
-                                    </div>
-                                    <div *ngIf="this.iCalView==3">
-                                        <p-calendar [(ngModel)]="dateTo" dateFormat="dd.mm.yy" hourFormat="24" [showTime]="showTime"
-                                            [showIcon]="true">
-                                        </p-calendar>
-                                    </div>
-                                    <!-- <p-calendar [(ngModel)]="dateTo" [showTime]="showTime" dateFormat="dd.mm.yy"
-                                        hourFormat="24" [showIcon]="true" [maxDate]="maxDate">
-                                    </p-calendar> -->
-                            </div>
+                                <label>To Date <span class="text-danger">*</span></label>
+                                <div *ngIf="this.iCalView==1" style="margin-top: 10px;">
+                                    <p-calendar [(ngModel)]="dateTo" [showTime]="showTime" dateFormat="dd.mm.yy"
+                                        hourFormat="24" [showIcon]="true" [maxDate]= "maxDate">
+                                    </p-calendar>
+                                </div>
+                                <div *ngIf="this.iCalView==2" style="margin-top: 10px;">
+                                    <p-calendar [(ngModel)]="dateTo" view="month" dateFormat="mm/yy"
+                                        [yearNavigator]="true" yearRange="2000:2030" [showIcon]="true"  [maxDate]= "maxDate"></p-calendar>
+                                </div>
+                                <div *ngIf="this.iCalView==3">
+                                    <p-calendar [(ngModel)]="dateTo" dateFormat="dd.mm.yy" hourFormat="24" [showTime]="showTime"
+                                        [showIcon]="true">
+                                    </p-calendar>
+                                </div>
+                               
+                        </div>
+
                             <div class="col-md-2 pt-5 stndrop">
                                 <div class="form-group">
-                                    <button type="button" class="btn btn-sm btn-primary"
+                                    <button type="button" class="btn btn-sm btn-primary" id="fetchbtn"
                                         (click)=populateChart()>FETCH</button>
                                 </div>
                             </div>
@@ -185,13 +152,13 @@
                     </div>
 
                 </div>
-                <div class="row">
+                <div class="row mb-6">
                     <!-- <div class="col-md-5 pt-5 stndrop"></div> -->
                     
                     <div class="col-md-2">
                       <div class="dropdown">
                         <button type="button"
-                            class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mb-4 dropdown-toggle"
+                            class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mb-3 dropdown-toggle"
                             data-toggle="dropdown">
                             <i class="fas fa-download fa-sm text-white-50"></i> Download Report:
                         </button>
@@ -202,8 +169,9 @@
                     
                         </div> -->
                         <div class="dropdown-menu">
-                            <a  class="dropdown-item" (click)="printCanvas('excel')"><i class="fa fa-file-excel-o"></i> As EXCEL</a>
-                            <a class="dropdown-item" (click)="printCanvas('chartContainer')"><i class="fa fa-file-pdf-o"></i> As Pdf</a>
+                            <!-- <a class="dropdown-item" href="http://117.211.75.160:8086/rest/api/industry/getSMSReport/downloadpdf?from=2020-11-12%2011:17:02&to=2020-11-12%2011:17:03"><i class="fa fa-file-excel-o"></i> As EXCEL</a> -->
+                           <a  class="dropdown-item" (click)="printCanvas('excel')"><i class="fa fa-file-excel-o"></i> As EXCEL</a>
+                            <a class="dropdown-item"  href="http://117.211.75.160:8086/rest/api/industry/getSMSReport/downloadpdf?from=2020-11-12%2011:17:02&to=2020-11-12%2011:17:03"><i class="fa fa-file-pdf-o"></i> As Pdf</a>
                             <a class="dropdown-item" (click)="printCanvas('print')"><i class="fa fa-file-pdf-o"></i> As Print</a>
     
                           </div>

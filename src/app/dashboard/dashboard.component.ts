@@ -6,6 +6,7 @@ import { UserService } from '../services/user/user.service';
 import { jsPDF } from "jspdf";
 import * as XLSX from 'xlsx';
 import * as CanvasJS from '../../../src/assets/js/canvas.min';
+import { LocalServiceService } from '../services/common/local-service.service';
 //import{GlobalConstants} from '../common/global'
 
 
@@ -15,7 +16,7 @@ import * as CanvasJS from '../../../src/assets/js/canvas.min';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  profilename:string;
+  profilename: string;
   fileName = 'ExcelSheet.xlsx';
   blob: any;
   k = 0;
@@ -33,6 +34,7 @@ export class DashboardComponent implements OnInit {
   parameterMoniter: any;
   powerplant: any;
   sortedData: any;
+
   //parameter: any;
   data: any;
   //value: string[];
@@ -66,292 +68,61 @@ export class DashboardComponent implements OnInit {
   public lineChartPlugins = [];
 
 
-  mouse_standard(id, name, range, j, t) {
-    if (j == 1) {
-
-
-      // $("#"+j).css("background","red");
-      this.k = j;
-      $("#" + j).css("font", "bold");
-      // $("#"+j).css("background","white");
-
-      $("#" + j).css("background", "red");
-      for (let i = 0; i < this.parameter.length; i++) {
-        if (j == 1 && i == 1) {
-          // alert(name);
-          $("#" + j).css("background", "red");
-          $("#" + j).attr("disabled", "disabled");
-          //$(".heighf").css("color","white");
-        }
-        else {
-          // $(".heighf").css("color","black");
-          $("#" + i).css("background", "");
-        }
-      }
-    }
-    else {
-
-      this.parameterCode = id;
-      this.parametername = name;
-      this.standardNg = range;
-      this.stationname = t;
-    }
-  }
-
-
-  standard(id, name, range, j, t) {
-
-
-
-    this.parameterCode = id;
-    this.parametername = name;
-    this.standardNg = range;
-    this.stationname = t;
-
-    //this.graph(name);
-
-    if (j == 0) {
-
-      // alert(name);
-      $("#" + j).css("background", "");
-      this.k = j;
-      $("#" + j).css("font", "bold");
-      // $("#"+j).css("background","white");
-
-      $("#" + j).css("background", "#1cc88a");
-      for (let i = j; i < this.parameter.length; i++) {
-        if (j == i) {
-          $("#" + j).css("background", "#1cc88a");
-          //$(".heighf").css("color","white");
-        }
-        else {
-          // $(".heighf").css("color","black");
-          $("#" + i).css("background", "");
-        }
-      }
-    }
-    else
-      if (j == 1) {
-        this.parameterCode = '';
-        this.parametername = '';
-        this.standardNg = '';
-        this.stationname = '';
-
-        $("#" + j).css("background", "red");
-        this.k = j;
-        $("#" + j).css("font", "bold");
-        // $("#"+j).css("background","white");
-
-        $("#" + j).css("background", "red");
-        for (let i = 0; i < this.parameter.length; i++) {
-          if (j == 1 && i == 1) {
-            // alert(name);
-            $("#" + j).css("background", "red");
-            $("#" + j).attr("disabled", "disabled");
-            //$(".heighf").css("color","white");
-          }
-          else {
-            // $(".heighf").css("color","black");
-            $("#" + i).css("background", "");
-          }
-        }
-      }
-      else {
-        this.graph('PH EQMS-1 NCRP 2-3');
-
-        this.k = j;
-        $("#" + j).css("font", "bold");
-        $("#" + j).css("background", "");
-        $("#" + j).css("background", "#1cc88a");
-
-        for (let i = 0; i < this.parameter.length; i++) {
-          if (j == i) {
-            $("#" + j).css("background", "#1cc88a");
-            // $(".heighf").css("color","white");
-          }
-          else {
-            // $(".heighf").css("color","black");
-            $("#" + i).css("background", "");
-          }
-        }
-
-      }
-
-
-  }
-
-
-  printCanvas(id) {
-
-    if (id == 'print') {
-      var canvas = <HTMLCanvasElement>$("#chartContainer .canvasjs-chart-canvas").get(0);
-      var dataURL = canvas.toDataURL();
-      // var canvas = <HTMLCanvasElement>  document.querySelector("#random-chart");
-      var canvas_img = canvas.toDataURL("image/png", 1.0); //JPEG will not match background color
-
-      var pdf = new jsPDF('landscape', 'in', 'letter'); //orientation, units, page size
-      pdf.addImage(canvas_img, 'png', .5, 1.75, 10, 5); //image, type, padding left, padding top, width, height
-      pdf.autoPrint(); //print window automatically opened with pdf
-      this.blob = pdf.output("bloburl");
-      window.open(this.blob);
-    }
-
-
-    if (id == 'chartContainer') {
-      var canvas = <HTMLCanvasElement>$("#chartContainer .canvasjs-chart-canvas").get(0);
-      var dataURL = canvas.toDataURL();
-
-
-
-
-
-      //var canvas =<HTMLCanvasElement>  document.querySelector("#chartContainer");
-      var canvas_img = canvas.toDataURL("image/png", 1.0); //JPEG will not match background color
-      var pdf = new jsPDF('landscape', 'in', 'letter'); //orientation, units, page size
-      pdf.addImage(canvas_img, 'png', .5, 1.75, 10, 5); //image, type, padding left, padding top, width, height
-
-      this.blob = pdf.output("bloburl");
-      window.open(this.blob);
-
-    }
-
-    if (id == 'excel') {
-
-
-      var canvas = <HTMLCanvasElement>document.querySelector("#random-chart");
-
-      var canvas = <HTMLCanvasElement>$("#chartContainer .canvasjs-chart-canvas").get(0);
-      var dataURL = canvas.toDataURL();
-
-      var dataURL = canvas.toDataURL("image/jpeg", 1.0);
-
-      // this.downloadImage(dataURL, 'my-canvas.jpeg');
-
-
-
-      this.downloadAsExcel({
-        filename: "chart-data",
-        chart: dataURL
-      })
-
-
-
-    }
-
-
-
-  }
-
-  downloadAsExcel(args) {
-    var dataPoints, filename;
-    filename = args.filename || 'chart-data';
-    dataPoints = args.chart[0].dataPoints;
-    dataPoints.unshift({
-      y: "X Value",
-      z: "Y-Value"
-    });
-    var ws = XLSX.utils.json_to_sheet(dataPoints, {
-      skipHeader: true,
-      dateNF: 'YYYYMMDD HH:mm:ss'
-    });
-    if (!ws['!cols']) ws['!cols'] = [];
-    ws['!cols'][0] = {
-      wch: 17
-    };
-    var wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, filename);
-    XLSX.writeFile(wb, filename + ".xlsx");
-  }
-
-  downloadImage(data, filename = 'untitled.jpeg') {
-    var a = document.createElement('a');
-    a.href = data;
-    a.download = filename;
-    document.body.appendChild(a);
-    //a.click();
-  }
-
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private router: Router, private userService: UserService, private storageService: LocalServiceService) { }
 
   ngOnInit(): void {
 
-    
+    if (localStorage.isLogin) {
+      //this.isLogin= this.storageService.getJsonValue('isLogin')
+      this.profilename = this.storageService.getJsonValue('loggedInUserData').userName;
+    }
 
     // this.data=this.parameter;
-    this.userService.homepage().subscribe(data => {
+    this.userService.homepage(this.profilename).subscribe(data => {
       if (data.apiStatus.message === 'success') {
         this.sortedData = data.data;
         this.parameter = data.data.realParameterInfo;
         this.data = this.parameter;
-
         // data bind graph 
         this.userService.home_page_graph_bind().subscribe(data => {
 
           if (data.apiStatus.message === 'success') {
             //alert(JSON.stringify(data.data.labels));
             this.lineChartLabels = data.data.labels;
-
-
-
           }
         });
 
-
-
         this.graph('NO2 AAQMS-1 KPMI 3-4 NO2NO2');
-
-
-        //alert(JSON.stringify(data.data.plantName));
         this.company = data.data.district;
-
         this.powerplant = data.data.plantName;
-
-        //alert(JSON.stringify(data.data.city));
         this.city = data.data.city;
-
-        //alert(JSON.stringify(data.data.state));
         this.stateName = data.data.state;
-
-        //alert(JSON.stringify(data.data.industryCategory));
         this.industryCategory = data.data.industryCategory;
-
-
-        //alert(JSON.stringify(data.data.calendar));
         this.calendar = data.data.realParameterInfo;
-
-
-
-        //alert(JSON.stringify(data.data.monitoringStation));
         this.monitoringStation = data.data.countStation;
-
-        //alert(JSON.stringify(data.data.parameterMoniter));
         this.parameterMoniter = data.data.countParameter;
-
-
       }
 
     });
 
 
   }
-  active(Value:Boolean)
-{ 
-  this.sortedData = this.parameter.filter((val)=> val.parameterStatus===true)
-  
-  this.parameter=this.sortedData;
- 
-  this.parameter=this.data;
- 
-  
-}
-Inactive(Value:Boolean)
-{
-  this.sortedData = this.parameter.filter((val)=> val.parameterStatus===false)
-  //Searched Data
-  
-  this.parameter=this.sortedData;
- 
-}
+  active(Value: Boolean) {
+    this.sortedData = this.parameter.filter((val) => val.parameterStatus === true)
+
+    this.parameter = this.sortedData;
+
+    this.parameter = this.data;
+
+
+  }
+  Inactive(Value: Boolean) {
+    this.sortedData = this.parameter.filter((val) => val.parameterStatus === false)
+    //Searched Data
+
+    this.parameter = this.sortedData;
+
+  }
 
   previous(id) {
     $('#' + id).prop("disabled", "true")
@@ -504,9 +275,205 @@ Inactive(Value:Boolean)
 
   }
 
-  
+
   goback() {
     this.router.navigateByUrl("/regdetails");
+  }
+
+  mouse_standard(id, name, range, j, t) {
+    if (j == 1) {
+
+
+      // $("#"+j).css("background","red");
+      this.k = j;
+      $("#" + j).css("font", "bold");
+      // $("#"+j).css("background","white");
+
+      $("#" + j).css("background", "red");
+      for (let i = 0; i < this.parameter.length; i++) {
+        if (j == 1 && i == 1) {
+          // alert(name);
+          $("#" + j).css("background", "red");
+          $("#" + j).attr("disabled", "disabled");
+          //$(".heighf").css("color","white");
+        }
+        else {
+          // $(".heighf").css("color","black");
+          $("#" + i).css("background", "");
+        }
+      }
+    }
+    else {
+
+      this.parameterCode = id;
+      this.parametername = name;
+      this.standardNg = range;
+      this.stationname = t;
+    }
+  }
+
+
+  standard(id, name, range, j, t) {
+
+
+
+    this.parameterCode = id;
+    this.parametername = name;
+    this.standardNg = range;
+    this.stationname = t;
+
+    
+
+    if (j == 0) {
+
+     
+      $("#" + j).css("background", "");
+      this.k = j;
+      $("#" + j).css("font", "bold");
+      
+      $("#" + j).css("background", "#1cc88a");
+      for (let i = j; i < this.parameter.length; i++) {
+        if (j == i) {
+          $("#" + j).css("background", "#1cc88a");
+         
+        }
+        else {
+         
+          $("#" + i).css("background", "");
+        }
+      }
+    }
+    else
+      if (j == 1) {
+        this.parameterCode = '';
+        this.parametername = '';
+        this.standardNg = '';
+        this.stationname = '';
+
+        $("#" + j).css("background", "red");
+        this.k = j;
+        $("#" + j).css("font", "bold");
+       
+        $("#" + j).css("background", "red");
+        for (let i = 0; i < this.parameter.length; i++) {
+          if (j == 1 && i == 1) {
+            
+            $("#" + j).css("background", "red");
+            $("#" + j).attr("disabled", "disabled");
+            //$(".heighf").css("color","white");
+          }
+          else {
+            // $(".heighf").css("color","black");
+            $("#" + i).css("background", "");
+          }
+        }
+      }
+      else {
+        this.graph('PH EQMS-1 NCRP 2-3');
+
+        this.k = j;
+        $("#" + j).css("font", "bold");
+        $("#" + j).css("background", "");
+        $("#" + j).css("background", "#1cc88a");
+
+        for (let i = 0; i < this.parameter.length; i++) {
+          if (j == i) {
+            $("#" + j).css("background", "#1cc88a");
+            // $(".heighf").css("color","white");
+          }
+          else {
+            // $(".heighf").css("color","black");
+            $("#" + i).css("background", "");
+          }
+        }
+
+      }
+
+
+  }
+
+
+  printCanvas(id) {
+
+    if (id == 'print') {
+      var canvas = <HTMLCanvasElement>$("#chartContainer .canvasjs-chart-canvas").get(0);
+      var dataURL = canvas.toDataURL();
+     
+      var canvas_img = canvas.toDataURL("image/png", 1.0); //JPEG will not match background color
+
+      var pdf = new jsPDF('landscape', 'in', 'letter'); //orientation, units, page size
+      pdf.addImage(canvas_img, 'png', .5, 1.75, 10, 5); //image, type, padding left, padding top, width, height
+      pdf.autoPrint(); //print window automatically opened with pdf
+      this.blob = pdf.output("bloburl");
+      window.open(this.blob);
+    }
+
+
+    if (id == 'chartContainer') {
+      var canvas = <HTMLCanvasElement>$("#chartContainer .canvasjs-chart-canvas").get(0);
+      var dataURL = canvas.toDataURL();
+
+      //var canvas =<HTMLCanvasElement>  document.querySelector("#chartContainer");
+      var canvas_img = canvas.toDataURL("image/png", 1.0); //JPEG will not match background color
+      var pdf = new jsPDF('landscape', 'in', 'letter'); //orientation, units, page size
+      pdf.addImage(canvas_img, 'png', .5, 1.75, 10, 5); //image, type, padding left, padding top, width, height
+
+      this.blob = pdf.output("bloburl");
+      window.open(this.blob);
+
+    }
+
+    if (id == 'excel') {
+
+
+      var canvas = <HTMLCanvasElement>document.querySelector("#random-chart");
+
+      var canvas = <HTMLCanvasElement>$("#chartContainer .canvasjs-chart-canvas").get(0);
+      var dataURL = canvas.toDataURL();
+
+      var dataURL = canvas.toDataURL("image/jpeg", 1.0);
+
+      // this.downloadImage(dataURL, 'my-canvas.jpeg');
+      this.downloadAsExcel({
+        filename: "chart-data",
+        chart: dataURL
+      })
+
+
+
+    }
+
+
+
+  }
+
+  downloadAsExcel(args) {
+    var dataPoints, filename;
+    filename = args.filename || 'chart-data';
+    dataPoints = args.chart[0].dataPoints;
+    dataPoints.unshift({
+      y: "X Value",
+      z: "Y-Value"
+    });
+    var ws = XLSX.utils.json_to_sheet(dataPoints, {
+      skipHeader: true,
+      dateNF: 'YYYYMMDD HH:mm:ss'
+    });
+    if (!ws['!cols']) ws['!cols'] = [];
+    ws['!cols'][0] = {
+      wch: 17
+    };
+    var wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, filename);
+    XLSX.writeFile(wb, filename + ".xlsx");
+  }
+
+  downloadImage(data, filename = 'untitled.jpeg') {
+    var a = document.createElement('a');
+    a.href = data;
+    a.download = filename;
+    document.body.appendChild(a);
+    //a.click();
   }
 
 }

@@ -29,32 +29,35 @@
                     
         
                 <br>
-
-                <div style="float: left;padding-left: 10px;">
-                    <h1 class="h4 text-gray-800">Power Plant India Ltd.
-                    </h1>
-                        <ul class="nav list">
-                                
+<br>
+                <div>
+                    <h3 class="mb-4"style="float:none;">{{powerplant}}</h3><br>
+                        <ul class="nav list">    
                             <li class="nav-item">
-                                <i class="fa fa-map-marker text-warning wdth"></i>Bhubaneswar,Khorda
+                                <i class="fa fa-map-marker text-warning wdth"></i> {{city}},{{company}}
                             </li>
                             <li class="nav-item">
-                                <i class="fa fa-globe text-secondary wdth"></i>Odisha
+                                <i class="fa fa-globe text-secondary wdth"></i> {{stateName}}
                             </li>
                             <li class="nav-item">
-                                <i class="fa fa-podcast text-primary wdth"></i> Power Plant
+                                <i class="fa fa-podcast text-primary wdth"></i> {{industryCategory}}
                             </li>
                             <li class="nav-item">
-                                <i class="fa fa-calendar text-info wdth"></i>Data fetched at : 28-Sep-2020 07:55
+                                <i class="fa fa-calendar text-info wdth"></i>Data fetched at :<span
+                                    *ngFor="let x of calendar;let i= index">
+                                    <i *ngIf="i==0">
+                                        {{x.recordedTime}}
+                                    </i>
+                                </span>
                             </li>
                             <li class="nav-item">
-                                <i class="fa fa-sitemap text-success wdth"></i> Monitoring Stations : 9
+                                <i class="fa fa-sitemap text-success wdth"></i>Total Monitoring Stations : {{monitoringStation}}
                             </li>
                             <li class="nav-item">
-                                <i class="fa fa-tv text-danger wdth"></i> Total Parameters Monitored : 38
+                                <i class="fa fa-tv text-danger wdth"></i>Total Parameters Monitored : {{parameterMoniter}}
                             </li>
                         </ul> 
-                </div> 
+                    </div> 
                 
                        
               

@@ -52,7 +52,7 @@
                class="fa fa-arrow-circle-left"></i></button>
       </div> -->
       <div class="clearfix"></div>
-     <app-admin-emp-excel></app-admin-emp-excel>
+     <app-admin-emp-excel style="padding-left: 341px;"></app-admin-emp-excel>
    </div>
    <div class="container uk-card uk-card-default uk-card-body my-3">
       <!-- <div class="div80">
@@ -104,8 +104,10 @@
                   <button type="submit" class="btn btns btn-success" [routerLink]="['/registration']">New
                      Register</button>
                </div>
-               <div class="col-sm-2 smallpad"> <button type="button" tooltip="Goto Back" class=" float-right btn btny btn-default buttom-prim buttonsToShow" id="backbtn" (click)="goback()">
-                  <i class="fa fa-arrow-circle-left"></i></button></div>
+               <span><button type="button" tooltip="Goto Back " class="mr-3 btn btny btn-default buttom-prim buttonsToShow" id="backbtn"
+                  (click)="goback()" style="float: left;">
+                  <i class="fa fa-arrow-circle-left"></i></button>
+              </span>
             </ng-template>
          </div>
       </div>

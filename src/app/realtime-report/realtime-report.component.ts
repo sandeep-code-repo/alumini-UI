@@ -23,6 +23,8 @@ export class RealtimeReportComponent implements OnInit {
   calendar: any;
   monitoringStation: any;
   parameterMoniter: any;
+  data:any;
+  parameterCode:any;
 
   type: string;
   emission: any = [];

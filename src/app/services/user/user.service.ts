@@ -168,13 +168,13 @@ export class UserService {
    }
 
    ////////// homepage /////////////////
-   homepage(): Observable<any> {
+   homepage(plantId: string): Observable<any> {
 
       const headers = { 'content-type': 'application/json' }
       
 
       return this.httpclient.post<any>(this.baseURL+'/getRealPollutantLevelInfos/', {
-         'plantId': 'hindalco_lpng'
+         'plantId': plantId
 
       },
          {

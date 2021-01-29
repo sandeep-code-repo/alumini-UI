@@ -217,9 +217,14 @@ get stationInfo() {
     // this.addProcesssubmitted = false;
   }
   removeStationInfo(index) {
-    console.log(index)
-    if(index==0)
-    this.stationinfomap=[]
+    //console.log(index)
+   
+    if(index==0){
+      this.stationinfomap=[]
+      //this.processForm.reset()
+      this.stationinfomap.push( this.processForm.value)
+    }
+    
     else
     this.stationinfomap.splice(index);
   }

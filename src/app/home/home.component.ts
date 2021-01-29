@@ -60,8 +60,8 @@ export class HomeComponent implements OnInit {
 
    // this.data=this.parameter;
 
-    const home = this.userService.homepage().subscribe(data=>{
-			debugger;
+    const home = this.userService.homepage('a').subscribe(data=>{
+		
 		 // alert(data.regstatus);
 			if(data.apiStatus.message === 'success') 
 			{
