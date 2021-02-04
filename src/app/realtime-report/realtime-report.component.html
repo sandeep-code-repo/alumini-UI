@@ -24,13 +24,13 @@
                         <li class="breadcrumb-item active" aria-current="page"><a href="#/trends">Trends</a></li> 
                     </ol>
                 </span>
-            </div>
-                
-                    
-        
+            </div>   
+                 <br>
                 <br>
-<br>
-                <div>
+                <br>
+               <app-plant-info></app-plant-info>
+
+                <!-- <div>
                     <h3 class="mb-4"style="float:none;">{{powerplant}}</h3><br>
                         <ul class="nav list">    
                             <li class="nav-item">
@@ -57,7 +57,7 @@
                                 <i class="fa fa-tv text-danger wdth"></i>Total Parameters Monitored : {{parameterMoniter}}
                             </li>
                         </ul> 
-                    </div> 
+                 </div>  -->
                 
                        
               
@@ -126,7 +126,7 @@
 
                                             </div>
                                             <div class="col-sm-9">
-                                                <h5 class="mb-1">{{data.stationName}} - {{data.parameter}}</h5>
+                                                <h5 class="mb-1">{{data.stationName}}</h5>
                                                 <p class="mb-1">{{data.unit}} </p>
                                                 <p class="mb-1"><span class="text-primary">{{data.aggregation}}</span> :
                                                     <span class="text-danger">{{data.recordedLevel}}

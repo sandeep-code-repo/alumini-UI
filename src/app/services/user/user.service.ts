@@ -14,7 +14,7 @@ export class UserService {
    
    private baseURL: string = "http://117.211.75.160:8086/rest/api";
    loginurl: string = this.baseURL+"/login/";
-   smsReporturl=this.baseURL+"/industry/getSMSReport"
+   smsReporturl=this.baseURL+"/getSMSReport"
    getIndustryUrl: string = this.baseURL+"/industry/";
    registrationUrl: string = this.baseURL+"/register";
    passwordResetUrl: string = this.baseURL+"/savePassword";

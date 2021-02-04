@@ -92,7 +92,7 @@ export class DashboardComponent implements OnInit {
           }
         });
 
-        this.graph('NO2 AAQMS-1 KPMI 3-4 NO2NO2');
+        this.graph('AAQMS-1 KPMI 3-4 NO2');
         this.company = data.data.district;
         this.powerplant = data.data.plantName;
         this.city = data.data.city;
