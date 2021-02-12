@@ -58,8 +58,8 @@ export class UserService {
    }
   
    
-   gettableData(): Observable<any>{
-      return this.httpclient.get(this.smsReporturl)
+   gettableData(filterData:FilterChart): Observable<any>{
+      return this.httpclient.post<any>(this.smsReporturl,filterData)
    }
 
    //*************Registration Service**************//

@@ -13,7 +13,7 @@ import { MatDividerModule } from '@angular/material/divider';
 // Services
 import { AuthService } from './services/auth/auth.service';
 import { UserService } from './services/user/user.service';
-import { StudentService } from './services/student/student.service';
+
 import { ExcelService } from './services/common/excel.service'
 
 
@@ -52,6 +52,7 @@ import {CalendarModule} from 'primeng/calendar';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatTabsModule } from '@angular/material/tabs';
 import { ChartsModule } from 'ng2-charts';
 import { FilterParentPipe } from './pipes/filter-parent.pipe';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -63,7 +64,10 @@ import { HeaderComponent } from './header/header.component';
 import { ExcedenceReportComponent } from './excedence-report/excedence-report.component';
 import { LinechartComponent } from './linechart/linechart.component';
 import {DropdownModule} from 'primeng/dropdown'
-import {ChartModule} from 'primeng/chart'
+import {ChartModule} from 'primeng/chart';
+//import { SmsReportTableComponent } from './excedence-report/sms-report-table/sms-report-table.component';
+import { SmsTableComponent } from './excedence-report/sms-table/sms-table.component';
+import { BarChartComponent } from './excedence-report/bar-chart/bar-chart.component'
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -85,6 +89,10 @@ import {ChartModule} from 'primeng/chart'
 		TrendsComponent,
 		HeaderComponent,
 		ExcedenceReportComponent,
+		
+		SmsTableComponent,
+		
+		BarChartComponent,
 		
 
 	],
@@ -115,10 +123,11 @@ import {ChartModule} from 'primeng/chart'
 		MatDatepickerModule,
 		MatNativeDateModule,
 		DropdownModule,ChartModule,
-		MatToolbarModule
+		MatToolbarModule,
+		MatTabsModule
 		
 	],
-	providers: [AuthService, UserService, StudentService, IndustryDropDown, ExcelService],
+	providers: [AuthService, UserService, IndustryDropDown, ExcelService],
 	bootstrap: [AppComponent]
 })
 

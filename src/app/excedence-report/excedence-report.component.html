@@ -1,9 +1,5 @@
 <div id="wrapper">
 
-    <!-- Sidebar -->
-    
-    <!-- End of Sidebar -->
-
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
@@ -27,140 +23,92 @@
                        
     
        </div>      
-<!--<ul class="nav list mb-5" style="float: left;">
-    <li class="nav-item">
-        <i class="fa fa-map-marker text-warning wdth"></i>Bhubaneswar, Khorda
-    </li>
-    <li class="nav-item">
-        <i class="fa fa-globe text-secondary wdth"></i> Odisha
-    </li>
-    <li class="nav-item">
-        <i class="fa fa-podcast text-primary wdth"></i> Power Plant
-    </li>
-    <li class="nav-item">
-        <i class="fa fa-calendar text-info wdth"></i>Data fetched at :  28-Sep-2020 07:55<span
-            *ngFor="let x of calendar;let i= index">
-            <i *ngIf="i==0">
-                {{x.recordedTime}}
-            </i>
-        </span>
-    </li>
-    <li class="nav-item">
-        <i class="fa fa-sitemap text-success wdth"></i>Total Monitoring Stations :8
-    </li>
-    <li class="nav-item">
-        <i class="fa fa-tv text-danger wdth"></i>Total Parameters Monitored : 38
-    </li>
-</ul>     -->
+
+
 
 
 <div class="row mb-6" style="float:left;padding-right: 500px;">
-<div class="col-sm-6">
-                           
-</div>
-
-<div class="col-xl-12">
-
-    <div class="row">
-
-        <div class="col-md-2 pt-2 stndrop">
-            <div class="form-group">
-           <label>Site Name</label>
-           
-          <select class="form-control">
-                   <option>Grewal Associates (p) Ltd.</option>
-                 
-               </select> 
-        </div>
-               
-       </div>
-
-       <div class="col-md-2 pt-2 stndrop">
-        <div class="form-group">
-       <label>Station</label>
-       
-      <select class="form-control">
-               <option>CEMS1_DRI KILN 1-2</option>
-               <option>CEMS1_DRI KILN 3-4</option>
-               <option>All Stations</option>
-           </select> 
-           </div>
-           
-           </div>
-       <div class="col-md-2 pt-2 stndrop">
-       <div class="form-group">
-        <label>Parameter</label>
-        
-          <select class="form-control">
-                <option>CEMS1_DRI KILN 1-2</option>
-                <option>CEMS1_DRI KILN 3-4</option>
-                <option>All Stations</option>
-            </select> 
+    
+    
+    <div class="col-xl-12">
+      <form #excedenceForm="ngForm" (ngSubmit)="fetchSmsdata()">
+        <div class="row" *ngIf=industryData>
+            <div class="col-md-2 pt-2 stndrop">
+                <mat-label>Site Name <span class="text-danger">*</span></mat-label>
+                <mat-form-field appearance="none" class="form-group">
+                    <mat-select class="form-control" [(ngModel)]="model.plant" name="plant" #plant="ngModel" required >
+                      <mat-option  [value]="plantInfo.plantName">{{plantInfo.plantName}}</mat-option>
+                    </mat-select>
+                  </mat-form-field> 
+                  <div [hidden]="plant.valid || plant.pristine"
+                  class="alert alert-danger">
+              Plant  is required
              </div>
-              </div>
-<!----   <div class="col-md-2 pt-2 stndrop">
-                <div class="form-group">
-                 <label>Frequency</label>
-             <select class="form-control">
-                 <option>1 Minute</option>
-                 <option>15 Minutes</option>
-                 <option>Daily</option>
-                 <option>Monthly</option>
-                  </select>
-                  </div>
-                  </div>-->
-
-
-                  <div class="col-md-2 pt-2 stndrop">
-                    <div class="form-group">
-                        
-                        <label>From Date <span class="text-danger">*</span></label>
-                       <!---- <mat-datepicker-toggle matSuffix></mat-datepicker-toggle> -->
-                        
-                        <input id="fromdate" type="text"   [matDatepicker]="picker" class="form-control" placeholder="Select Date" (click)="picker.open()" >
-                        <mat-datepicker #picker></mat-datepicker>
-                    </div>
-                     
-                 </div>
-                 
-                 <div class="col-md-2 pt-2 stndrop">
-                    <div class="form-group">
-                        
-                        <label>To Date <span class="text-danger">*</span></label>
-                       <!---- <mat-datepicker-toggle matSuffix></mat-datepicker-toggle> -->
-                        
-                        <input id="todate" type="text"   [matDatepicker]="picker1" class="form-control" placeholder="Select Date" (click)="picker1.open()" >
-                        <mat-datepicker #picker1></mat-datepicker>
-                    </div>
-                     
-
-
-                 </div>
-
-                 <div class="col-md-2 pt-5 stndrop">
-                    <div class="form-group">
-                   <button type="button" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm mt-7" (click)="fetch()">FETCH</button>
-               </div>
-                </div>
-                <!----<div class="col-md-2 pt-3 stndrop">
-                
-                    <div class="form-group">
-                   <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mb-2 mt-6" (click)="fetch()">FETCH</button>
-                </div> -->
+           </div>
+           
+            <div class="col-md-2 pt-2 stndrop">
+                <mat-label>Station <span class="text-danger">*</span></mat-label>
                
-            
-            
+                  <mat-form-field class="form-group" appearance="none">
+                    <mat-select class="form-control" [(ngModel)]="model.station"  name="station" #station="ngModel" required multiple (selectionChange)="addParam()">
+                      <mat-option *ngFor="let station of stationList" [value]="station">{{station.stationInfo.stationId}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <div [hidden]="station.valid || station.pristine"
+                  class="alert alert-danger">
+              Station  is required
+             </div>
+            </div>
+            <div class="col-md-2 pt-2 stndrop">
+              
+                <mat-label>Parameter <span class="text-danger">*</span></mat-label>
+                <mat-form-field appearance="none" class="form-group">
+                    <mat-select class="form-control" [(ngModel)]="model.param" name="param" #param="ngModel" required multiple >
+                      <mat-option *ngFor="let param of paramList" [value]="param">{{param.paramter}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <div [hidden]="param.valid || param.pristine"
+                  class="alert alert-danger">
+              Parameter is required
+             </div>
+            </div>
+           
+            <div class="col-md-2 pt-2 stndrop">
+                    <label>From Date <span class="text-danger">*</span></label>
+                    <div style="margin-top: 10px;">
+                <p-calendar [(ngModel)]="model.dateFrom" name="dateFrom"  #dateFrom="ngModel" required dateFormat="dd.mm.yy"
+                     [showIcon]="true"  [minDate]="minDate">
+                </p-calendar>
+            </div>
+            <div [hidden]="dateFrom.valid || dateFrom.pristine"
+            class="alert alert-danger">
+        From Date is required
+       </div>
+            </div>
+            <div class="col-md-2 pt-2 stndrop">
+                <label>To Date <span class="text-danger">*</span></label>
+                <div  style="margin-top: 10px;">
+                    <p-calendar [(ngModel)]="model.dateTo" name="dateTo" #dateTo="ngModel" required  dateFormat="dd.mm.yy"
+                        [showIcon]="true" [maxDate]= "maxDate">
+                    </p-calendar>
+                </div> 
+                <div [hidden]="dateTo.valid || dateTo.pristine"
+            class="alert alert-danger">
+        To Date is required
+       </div>
+        </div>
 
-                             
-
-         
+            <div class="col-md-2 pt-5 stndrop">
+                <div class="form-group">
+                    <button type="submit" [disabled]="!excedenceForm.form.valid" class="btn btn-sm btn-primary" id="fetchbtn"
+                   >FETCH</button>
+                </div>
+            </div>
+        </div>
+        </form>
     </div>
+    <!-- </form> -->
 </div>
-
-
-        
-</div>
-
   <!-- Content Row -->
  <div class="container">
                 <div class="d-sm-flex align-items-center col-sm-11 justify-content-between mb-4">
@@ -177,85 +125,17 @@
                       </div>
                     </div> 
                 </div>  
- </div>                        
-
-<div class="col-sm-12" style="padding-right:2px;">
-
-<table class="table table-striped" cellspacing="3" >
+ </div> 
+ 
+ 
+ 
+  <mat-tab-group *ngIf=tableData>
+    <mat-tab label="Chart View"><app-bar-chart  [chartData]="tableData"></app-bar-chart> </mat-tab>
+    <mat-tab label="Table View"><app-sms-table [tableData]="tableData"></app-sms-table></mat-tab>
    
-    <thead>
-    <tr>
-        <th *ngFor="let column of headers">
-            {{column}}
-
-        </th>
-    </tr>
-</thead>
-<tbody>
-    <tr *ngFor="let row of tableData">
-        <td>{{row.id}}</td>
-        <td>{{row.industryCategory}}</td>
-        <td>{{row.industryCode}}</td>
-        <td>{{row.industryName}}</td>
-        <td>{{row.address}}</td>
-        <td>{{row.smsContactNo}}</td>
-        <td>{{row.state}}</td>
-        <td>{{row.stationName}}</td>
-        <td>{{row.paramLimit}}</td>
-        <td>{{row.parameter}}</td>
-        <td>{{row.exceedence}}</td>
-        <td>{{row. totalSMS}}</td> 
-        <td>{{row.inGangaBasinStatus}}</td>
-        <!-- <td>{{row.createdBy}}</td>
-        <td>{{row.createdDt}}</td>
-        <td>{{row.lastModifiedBy}}</td>
-        <td>{{row.lastModifiedDt}}</td> -->
-    </tr>
-</tbody>
-  
-</table>
-<!-- Area Chart -->
-                <!---- <div class="col-xl-12 col-lg-12">
-                        <div class="card shadow mb-4">-->
-                            <!-- Card Header - Dropdown -->
-                     <!---- <div
-                                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">{{stationname}} </h6>
-                                
-                            </div> -->
-                            <!-- Card Body -->
-                     <!----      <div class="card-body">-->
-                               
-                           <!----     <div style="display: block;">
-                                    <canvas baseChart width="2000" height="800"
-                                      [datasets]="lineChartData"
-                                      [labels]="lineChartLabels"
-                                    
-                                      [colors]="lineChartColors"
-                                      [legend]="lineChartLegend"
-                                      [chartType]="lineChartType"
-                                      [plugins]="lineChartPlugins">
-                                    </canvas>
-                                  </div> -->
-
-
-                            <!----   <div id="chartContainer" style="height: 190px; width: 100%; margin:auto;" ></div><br><br>
-                                  <div class="legend"><button id="PM"  style="background-color: rgb(31, 119, 180); padding: 3px 10px; margin-left: 15px; margin-bottom: 8px;" (click)="PM()">PM(mg/Nm3)</button><button id="SO2"  style="background-color: rgb(255, 127, 14); padding: 3px 10px; margin-left: 15px; margin-bottom: 5px;" (click)="SO2()">SO2(mg/Nm3)</button></div>
-
-                                
-                                  
-                            </div>
-                            
-                            
-                        </div>
-                       
-                    </div> -->
-                   
-</div>                             
-
-            
-        
-            </div>
+  </mat-tab-group>
+ 
+        </div>
             <!-- /.container-fluid -->
 
         </div>
@@ -281,6 +161,6 @@
 <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
 </a>
-
+<router-outlet></router-outlet>
 
 

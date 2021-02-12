@@ -9,287 +9,105 @@ import * as XLSX from 'xlsx';
 import { jsPDF } from "jspdf";
 import { ITabledata } from '../model/tableData'
 import { LocalServiceService } from '../services/common/local-service.service';
+import { StationInfoMapper, Industry, PlantInfo } from '../model/industry.model';
+import { IndustryService } from '../services/user/industry.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FilterChart } from '../model/filterchart.model';
+import { DatePipe } from '@angular/common';
+import { ExcedenceModel } from '../model/excedence.model';
 
 @Component({
   selector: 'app-excedence-report',
   templateUrl: './excedence-report.component.html',
-  styleUrls: ['./excedence-report.component.scss']
+  styleUrls: ['./excedence-report.component.scss'],providers:[DatePipe]
 })
 export class ExcedenceReportComponent implements OnInit {
 
-
-  headers = ['SL.No', 'Category', 'Industry Code', 'Industry Name', 'Full Address', 'Contact in which SMSAlerts generated', 'State', 'Station Name', "Parameter Standard limit's", 'Parameter', 'Excedence', 'Total SMS', 'In Ganga Basin'];
- 
 tableData:ITabledata[]
   parameter; chart: any = [];
   powerplant; blob: any;
-  stationname = "CEMS1_DRI KILN 1-2"; city; company; stateName; industryCategory; calendar; monitoringStation; parameterMoniter;
-  public lineChartLegend = true;
-  public lineChartType = 'line';
-  public lineChartPlugins = [];
-
-
-  public lineChartData: ChartDataSets[] = [
-    { data: [100, 97, 88, 10, 78, 33, 10, 0], label: 'Series A' },
-  ];
-  private eventsOnChartLimit = 50;
-  countEventsChartType = "line";
-  public lineChartLabels: Label = ['11/11 12.26', '11/11 18.26', '11/11 24.26', '12/11 12.26', '12/11 18.26', '12/11 24.26', '13/11 12.26'];
-
-  public lineChartColors: Color[] = [
-    {
-      borderColor: 'black',
-      backgroundColor: 'rgba(255,0,0,0.3)',
-    },
-  ];
-  profilename: string;
+  public dateFrom: Date;
+  public dateTo: Date;
+  public minDate: Date;
+  public maxDate: Date;
+  public filterOption: ChartFilterOption[];
   
-
-  constructor(private router: Router, private userService: UserService,private storageService:LocalServiceService) { }
+  
+  profilename: string;
+  stationList:StationInfoMapper[]=[];
+  plantInfo:PlantInfo
+  industryData:Industry;
+  paramList:any[]
+  filterOptionForm: FormGroup;
+  model=new ExcedenceModel("","","",new Date(),new Date());
+ submitted = false;
+  constructor(private router: Router, public datepipe: DatePipe,private formBuilder: FormBuilder, private userService: UserService,private industryService:IndustryService,private storageService:LocalServiceService) { }
 
   ngOnInit(): void {
+   
     if(localStorage.isLogin){
-      //this.isLogin= this.storageService.getJsonValue('isLogin')
+      
       this.profilename=this.storageService.getJsonValue('loggedInUserData').userName;
      }
-    this.userService.gettableData().subscribe(result => {
-  
-      this.tableData= result.data
-    })
-
-
-    const dashboard = this.userService.homepage(this.profilename).subscribe(data => {
-
-
-      if (data.apiStatus.message === 'success') {
-        //call graph
-
-        this.fetch();
-        this.parameter = data.data.realParameterInfo;
-        this.company = data.data.district;
-        this.powerplant = data.data.plantName;
-        this.city = data.data.city;
-        this.stateName = data.data.state;
-        this.industryCategory = data.data.industryCategory;
-        this.calendar = data.data.realParameterInfo;
-        this.monitoringStation = data.data.countStation;
-        this.parameterMoniter = data.data.countParameter;
-
+   
+    this.industryService.getIndustryData(this.profilename).subscribe(res =>{
+      if(res.apiStatus.message === 'success') 
+      {
+        this.industryData=res.data;
+       this.plantInfo = this.industryData.plantInfo;
+        this.stationList=this.industryData.stationInfoMapper
       }
-    })
-
-
+     });
   }
-
-
-
-
-
-
-  PM() {
-
-    $('#PM').addClass('c3-legend-item-hidden');
-    $('#SO2').removeClass('c3-legend-item-hidden');
-    this.fetch_pm();
-
+  addParam(){
+  this.paramList=[]
+  this.model.station.forEach(element => {
+    element.parameterInfo.forEach(element => {
+      this.paramList.push(element)
+      
+    });
+   
+  });
   }
-
-  SO2() {
-    this.fetch_so2()
-    $('#SO2').addClass('c3-legend-item-hidden');
-    $('#PM').removeClass('c3-legend-item-hidden');
-  }
-
   excel() {
     this.downloadAsExcel({ filename: "chart-data", chart: this.chart });
   }
 
+  filterData:FilterChart;
+  fetchSmsdata() {
+    var pararmeters=new String()
+    var stations=new String()
+    this.model.param.forEach(element => {
+    
+      pararmeters+=element.paramter+",";
+   
+  
+  });
+  this.model.station.forEach(element => {
+    
+    stations+=element.stationInfo.stationId+",";
+ 
 
-  fetch() {
+});
 
-
-    var d = new Date();
-    var strDate = d.getFullYear() + "/" + (d.getMonth() - 1) + "/" + d.getDate();
-    var strDate1 = d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate();
-    $("#fromdate").val(strDate);
-
-    $("#todate").val(strDate1);
-    //alert(strDate1);
-
-    $(".card-body").css("display", "block")
-    this.chart = new CanvasJS.Chart("chartContainer", {
-      axisY:
-      {
-        gridThickness: 0,
-
-
-      },
-      theme: "light1", // "light2", "dark1", "dark2"
-      title: {
-        text: ""
-      },
-      data: [
-        {
-          type: "spline", // Change type to "bar", "area", "spline", "pie",etc.
-          dataPoints: [
-            { y: 10.0 },
-            { y: 10.15 },
-            { y: 10.56 },
-            { y: 80.0 },
-            { y: 80.20 },
-            { y: 10.0 },
-            { y: 10.25 },
-            { y: 25.0 },
-            { y: 80.15 },
-            { y: 28.20 },
-            { y: 10.0 },
-            { y: 20.25 },
-            { y: 25.56 },
-            { y: 80.23 },
-            { y: 28.20 }
-          ],
-
-
-        },
-        {
-          type: "area", // Change type to "bar", "area", "spline", "pie",etc.
-          dataPoints: [
-            { label: "2/12 15:23", y: 1 },
-            { label: "2/12 21:23", y: 1 },
-            { label: "3/12 03:16", y: 1 },
-            { label: "3/12 09:12", y: 1 },
-            { label: "3/12 09:21", y: 1 },
-            { label: "2/12 15:23", y: 1 },
-            { label: "2/12 21:23", y: 1 },
-            { label: "3/12 03:16", y: 1 },
-            { label: "3/12 09:12", y: 1 },
-            { label: "3/12 09:21", y: 1 },
-            { label: "2/12 15:23", y: 1 },
-            { label: "2/12 21:23", y: 1 },
-            { label: "3/12 03:16", y: 1 },
-            { label: "3/12 09:12", y: 1 },
-            { label: "3/12 09:21", y: 1 }
-
-          ],
-
-
-        }
-      ],
-
-
-
-    });
-    this.chart.render();
-
-
-
+    this.filterData=
+    {
+      
+      fromDate: this.datepipe.transform(this.model.dateFrom,'yyyy-MM-dd'),
+      toDate: this.datepipe.transform(this.model.dateTo, 'yyyy-MM-dd'),
+      plantId:  this.profilename,
+      stationId: stations.replace(/,(\s+)?$/, ''),
+      parameter: pararmeters.replace(/,(\s+)?$/, '')
+    }
+    this.userService.gettableData(this.filterData).subscribe(result => {
+  
+      this.tableData= result.data
+    })
+    
   }
 
-  fetch_pm() {
-
-
-
-    $(".card-body").css("display", "block")
-    this.chart = new CanvasJS.Chart("chartContainer", {
-      axisY:
-      {
-        gridThickness: 0,
-
-
-      },
-      theme: "light1", // "light2", "dark1", "dark2"
-      title: {
-        text: ""
-      },
-      data: [
-        {
-
-
-        },
-        {
-          type: "area", // Change type to "bar", "area", "spline", "pie",etc.
-          dataPoints: [
-            { label: "2/12 15:23", y: 0 },
-            { label: "2/12 21:23", y: 0 },
-            { label: "3/12 03:16", y: 0 },
-            { label: "3/12 09:12", y: 0 },
-            { label: "3/12 09:21", y: 0 },
-            { label: "2/12 15:23", y: 0 },
-            { label: "2/12 21:23", y: 0 },
-            { label: "3/12 03:16", y: 0 },
-            { label: "3/12 09:12", y: 0 },
-            { label: "3/12 09:21", y: 0 },
-            { label: "2/12 15:23", y: 0 },
-            { label: "2/12 21:23", y: 0 },
-            { label: "3/12 03:16", y: 0 },
-            { label: "3/12 09:12", y: 0 },
-            { label: "3/12 09:21", y: 0 }
-
-          ],
-
-
-        }
-      ],
-
-
-
-    });
-    this.chart.render();
-
-
-
-  }
-
-  fetch_so2() {
-
-
-
-    $(".card-body").css("display", "block")
-    this.chart = new CanvasJS.Chart("chartContainer", {
-      axisY:
-      {
-        gridThickness: 0,
-
-
-      },
-      theme: "light1", // "light2", "dark1", "dark2"
-      title: {
-        text: ""
-      },
-      data: [
-        {
-          type: "spline", // Change type to "bar", "area", "spline", "pie",etc.
-          dataPoints: [
-            { label: "2/12 10:23", y: 10.0 },
-            { label: "2/12 11:23", y: 10.15 },
-            { label: "2/12 12:23", y: 10.56 },
-            { label: "2/12 18:23", y: 80.0 },
-            { label: "2/12 5:23", y: 80.20 },
-            { label: "2/12 15:23", y: 10.0 },
-            { label: "2/12 15:23", y: 10.25 },
-            { label: "2/12 15:23", y: 25.0 },
-            { label: "2/12 15:23", y: 80.15 },
-            { label: "2/12 15:23", y: 28.20 },
-            { label: "2/12 15:23", y: 10.0 },
-            { label: "2/12 15:23", y: 20.25 },
-            { label: "2/12 15:23", y: 25.56 },
-            { label: "2/12 15:23", y: 80.23 },
-            { label: "2/12 15:23", y: 28.20 }
-          ],
-
-
-        },
-
-      ],
-
-
-
-    });
-    this.chart.render();
-
-
-
-  }
+  
+ 
 
   printCanvas(id) {
 
@@ -352,10 +170,7 @@ tableData:ITabledata[]
 
   }
 
-  pdf() {
-
-  }
-
+ 
   downloadAsExcel(args) {
     var dataPoints, filename;
     filename = args.filename || 'chart-data';
@@ -372,4 +187,8 @@ tableData:ITabledata[]
   goback() {
     this.router.navigateByUrl("/regdetails");
   }
+}
+interface ChartFilterOption {
+  name: string;
+ // code: number;
 }

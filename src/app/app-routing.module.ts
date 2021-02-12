@@ -12,10 +12,11 @@ import { EmployeeExcelComponent } from './employee-excel/employee-excel.componen
 import { AdminEmpExcelComponent } from './admin-emp-excel/admin-emp-excel.component';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { from } from 'rxjs';
 import { RealtimeReportComponent } from './realtime-report/realtime-report.component';
 import { TrendsComponent } from './trends/trends.component';
 import { ExcedenceReportComponent } from './excedence-report/excedence-report.component';
+//import { SmsReportTableComponent } from './excedence-report/sms-report-table/sms-report-table.component';
+import { SmsTableComponent } from './excedence-report/sms-table/sms-table.component';
 
 // Parent Routes
 const routes: Routes = [
@@ -86,8 +87,19 @@ const routes: Routes = [
   },
   {
     path: 'excedence-report',
-    component: ExcedenceReportComponent
-  }
+    component: ExcedenceReportComponent,
+    children: [
+      {
+        path: 'smsDatatable', // child route path
+        component: SmsTableComponent, // child route component that the router renders
+      },
+      // {
+      //   path: 'child-b',
+      //   component: ChildBComponent, // another child route component that the router renders
+      // },
+    ],
+  },
+ 
 ];
 
 @NgModule({

@@ -212,9 +212,7 @@ get stationInfo() {
       this.stationinfomap.push(this.processForm.value);
     }
     
-//this.hideModal()
-    // this.processForm.reset();
-    // this.addProcesssubmitted = false;
+
   }
   removeStationInfo(index) {
     //console.log(index)

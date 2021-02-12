@@ -33,37 +33,7 @@
                 </div><br><br>
                 <!-- Sidebar -->
                 <app-plant-info></app-plant-info>
-                <!-- <div *ngIf=industryData>
-                    <h1 class="h4 text-gray-800">{{industryData.plantInfo.plantName}}
-                    </h1>
-                    <ul class="nav list">
-
-                        <li class="nav-item">
-                            <i class="fa fa-map-marker text-warning wdth"></i> {{city}},{{company}}
-                        </li>
-                        <li class="nav-item">
-                            <i class="fa fa-globe text-secondary wdth"></i> {{stateName}}
-                        </li>
-                        <li class="nav-item">
-                            <i class="fa fa-podcast text-primary wdth"></i> {{industryCategory}}
-                        </li>
-                        <li class="nav-item">
-                            <i class="fa fa-calendar text-info wdth"></i>Data fetched at :<span
-                                    *ngFor="let x of calendar;let i= index">
-                                    <i *ngIf="i==0">
-                                        {{x.recordedTime}}
-                                    </i>
-                                </span>
-                        </li>
-                        <li class="nav-item">
-                            <i class="fa fa-sitemap text-success wdth"></i>Total Monitoring Stations : {{monitoringStation}}
-                        </li>
-                        <li class="nav-item">
-                            <i class="fa fa-tv text-danger wdth"></i>Total Parameters Monitored : {{parameterMoniter}}
-                        </li>
-                    </ul>
-                </div> -->
-
+                
 
 
                 <div class="row mb-6" style="float:left;padding-right: 500px;">
@@ -74,16 +44,23 @@
                     <div class="col-xl-12">
 
                         <div class="row">
+                            <form #heroForm="ngForm" (ngSubmit)="populateChart()">
                             <!-- <app-linechart></app-linechart>     -->
-                            <div class="col-md-2 pt-2 stndrop">
+                            <div class="col-md-5 pt-2 stndrop">
                                 <mat-label>Station</mat-label>
                                   <mat-form-field class="form-group" appearance="none">
-                                    <mat-select class="form-control" [(ngModel)]="selectedStation" multiple (selectionChange)="addParam()">
+                                    <mat-select class="form-control" [(ngModel)]="model.station" name="station" #station="ngModel" required multiple (selectionChange)="addParam()">
                                       <mat-option *ngFor="let station of stationList" [value]="station">{{station.stationInfo.stationId}}</mat-option>
                                     </mat-select>
                                   </mat-form-field>
+                                  
+        <div [hidden]="station.valid || station.pristine"
+             class="alert alert-danger">
+          Station is required
+        </div>
                             </div>
-                            <div class="col-md-2 pt-2 stndrop">
+                           
+                            <!-- <div class="col-md-2 pt-2 stndrop">
                                 <mat-label>Parameter</mat-label>
                                 <mat-form-field appearance="none" class="form-group">
                                     <mat-select class="form-control" [(ngModel)]="selectedParam" multiple >
@@ -137,15 +114,15 @@
                                     </p-calendar>
                                 </div>
                                
-                        </div>
+                        </div> -->
 
                             <div class="col-md-2 pt-5 stndrop">
                                 <div class="form-group">
-                                    <button type="button" class="btn btn-sm btn-primary" id="fetchbtn"
-                                        (click)=populateChart()>FETCH</button>
+                                    <button type="submit" class="btn btn-sm btn-primary" id="fetchbtn"
+                                    [disabled]="!heroForm.form.valid">FETCH</button>
                                 </div>
                             </div>
-                           
+                           </form>
                            
                         </div>
                         

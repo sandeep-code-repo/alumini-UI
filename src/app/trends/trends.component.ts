@@ -53,7 +53,8 @@ stationOption:any[]
   selectedfreq: any;
   allSelected=false;
   //blob: URL;
- 
+ model=new Hero("");
+ submitted = false;
   constructor(private router: Router,public datepipe: DatePipe,private industryService:IndustryService,private storageService:LocalServiceService) { }
 
   ngOnInit(): void {
@@ -130,15 +131,17 @@ this.selectedStation.forEach(element => {
 }
  
 populateChart(){
+  this.submitted=true;
+  alert("")
   var pararmeters=new String()
    this.selectedfreq=this.selectedOption
   
   
    this.filtersList=[]
    this.selectedParam.forEach(element => {
-    // element.forEach(element => {
+    
       pararmeters+=element.paramter+",";
-    // });
+   
   
   });
    this.selectedStation.forEach(satation => {
@@ -155,25 +158,7 @@ populateChart(){
     this.filtersList.push(this.filterData)
     
   });
-  //  if(this.selectedStation=='ALL Stations'){
-  //   this.stationList.forEach(element => {
-  //     //console.log(element.parameterInfo)
-  //     this.filterData=
-  //   {
-  //     frequency: this.selectedfreq,
-  //   fromDate: this.datepipe.transform(this.dateFrom,'yyyy-MM-dd hh:mm:ss'),
-  //   toDate: this.datepipe.transform(this.dateTo, 'yyyy-MM-dd hh:mm:ss'),
-  //   plantId: "hindalco_lpng",
-  //   stationId: element.stationInfo.stationId,
-  //   parameter: pararmeters.replace(/,(\s+)?$/, '')
-  //   }
-  //   this.filtersList.push(this.filterData)
-  //   });
-  //  }
-  // else{
   
-    //console.log(this.filtersList)
-  // }
 }
   goback() {
     this.router.navigateByUrl("/regdetails");
@@ -182,16 +167,22 @@ populateChart(){
   printCanvas(id) {
 
     if (id == 'print') {
-      var canvas = <HTMLCanvasElement>$("#chartContainer .canvasjs-chart-canvas").get(0);
-      var dataURL = canvas.toDataURL();
-      // var canvas = <HTMLCanvasElement>  document.querySelector("#random-chart");
-      var canvas_img = canvas.toDataURL("image/png", 1.0); //JPEG will not match background color
-
-      var pdf = new jsPDF('landscape', 'in', 'letter'); //orientation, units, page size
-      pdf.addImage(canvas_img, 'png', .5, 1.75, 10, 5); //image, type, padding left, padding top, width, height
-      pdf.autoPrint(); //print window automatically opened with pdf
-      this.blob = pdf.output("bloburl");
-      window.open(this.blob);
+      let printContents, popupWin;
+      printContents = document.getElementById('print').innerHTML;
+      popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
+      popupWin.document.open();
+      popupWin.document.write(`
+        <html>
+          <head>
+            <title>Print tab</title>
+            <style>
+            //........Customized style.......
+            </style>
+          </head>
+      <body onload="window.print();window.close()">${printContents}</body>
+        </html>`
+      );
+      //popupWin.document.close();
     }
 
 
@@ -262,4 +253,14 @@ populateChart(){
 interface ChartFilterOption {
   name: string;
  // code: number;
+}
+export class Hero {
+
+  constructor(
+    //public id: number,
+    public station: string,
+    //public power: string,
+    //public alterEgo?: string
+  ) {  }
+
 }

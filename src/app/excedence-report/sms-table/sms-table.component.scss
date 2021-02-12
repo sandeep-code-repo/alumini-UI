@@ -1,0 +1,45 @@
+@import "../../../assets/css/sb-admin-2.scss";
+
+
+
+thead {
+    background: #406ca4;
+    color: #fff;
+}
+
+.table th, .table td {
+    padding: 5px 5px !important;
+    vertical-align: top;
+    border-top: 1px solid #e3e6f0;
+}
+
+
+.table-responsive {
+    scrollbar-color: #4e73df #e4effb;
+    -moz-scrollbar-color: #4e73df #e4effb;
+    -ms-scrollbar-color: #4e73df #e4effb;
+    -webkit-scrollbar-color: #4e73df #e4effb;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .thead, .tr{
+      float:right;
+      padding: 2px 15px ;
+     background-color: blue;
+     padding-left: 100px;
+ }

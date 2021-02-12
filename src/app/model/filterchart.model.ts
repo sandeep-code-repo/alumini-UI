@@ -1,8 +1,9 @@
 export interface FilterChart{
-    frequency: string,
+    frequency?: string,
     fromDate: string,
     toDate: string,
     plantId: string,
     stationId: string,
-    parameter: string
+    parameter: string,
+    
 }
