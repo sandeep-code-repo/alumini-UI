@@ -13,6 +13,8 @@ import * as $ from "jquery";
 import * as uuid from 'uuid';
 import { UserService } from '../services/user/user.service';
 import { removeData } from 'jquery';
+import { LocalServiceService } from '../services/common/local-service.service';
+import { IndustryService } from '../services/user/industry.service';
 
 @Component({
   selector: 'app-registration',
@@ -43,14 +45,26 @@ export class RegistrationComponent implements OnInit {
   userRole: Role[] = []
   types$: { Category: string; }[];
   stackDisplay: Boolean = false
-  constructor(private route: Router, private formBuilder: FormBuilder,private userService: UserService) {
+  constructor(private route: Router,private storageService:LocalServiceService,private industryService:IndustryService, private formBuilder: FormBuilder,private userService: UserService) {
     this.role = { roleId: 0 }
   }
 
 
 
   ngOnInit(): void {
-
+    if(localStorage.isLogin){
+      //this.isLogin= this.storageService.getJsonValue('isLogin')
+      const userName=this.storageService.getJsonValue('loggedInUserData').userName;
+      this.industryService.getIndustryData(userName).subscribe(res =>{
+        if(res.apiStatus.message === 'success') 
+        {
+          this.industry=res.data;
+         
+         
+        }
+       });
+     }
+     
     this.processForm = this.formBuilder.group({
       stationInfo: this.formBuilder.group({
         stnType: ['', [Validators.required]],
@@ -125,13 +139,7 @@ export class RegistrationComponent implements OnInit {
   //   return this.processForm.get('stationInfo') as FormGroup;
   // }
 
- hideModal() {
-   this.processForm.reset()
-   //console.log(this.stationinfoV)
-   this.addProcesssubmitted = false;
-  //this.closeModal.nativeElement.click();  
-    
-  }
+
   get parameterInfo() {
     return this.processForm.get('parameterInfo') as FormArray;
   }
@@ -184,6 +192,13 @@ export class RegistrationComponent implements OnInit {
 get stationInfo() {
      return this.processForm.get('stationInfo') as FormGroup;
    }
+   hideModal() {
+    this.processForm.reset()
+    //console.log(this.stationinfoV)
+    this.addProcesssubmitted = false;
+   //this.closeModal.nativeElement.click();  
+     
+   }
   addProcess() {
 
     this.addProcesssubmitted = true;
@@ -211,8 +226,9 @@ get stationInfo() {
     } else {
       this.stationinfomap.push(this.processForm.value);
     }
-    
-
+   
+  // this.processForm.reset();
+   //this.addProcesssubmitted=false
   }
   removeStationInfo(index) {
     //console.log(index)
@@ -237,39 +253,39 @@ get stationInfo() {
 
 
     this.industry = this.add_industry.value
-
+   
+if 
+(this.stationinfomap.length>0 && this.stationinfomap[0].stationInfo.stationId!='')
     this.industry.stationInfoMapper = this.stationinfomap;
+    if (!this.industry.stationInfoMapper)
+    this.industry.userInfoMapper.userInfo.regStatus = false
+  else
+    this.industry.userInfoMapper.userInfo.regStatus = true
     this.role.roleId = this.add_industry.get('userInfoMapper.userInfo.roleId').value
     this.userRole.push(this.role)
     Object.assign(this.industry.userInfoMapper, { userRole: this.userRole })
-
-    //console.log(this.industry);
     this.industry.regstatus = 'Register'
-    if (this.industry.stationInfoMapper.length < 0)
-      this.industry.userInfoMapper.userInfo.regStatus = false
-
-    else
-      this.industry.userInfoMapper.userInfo.regStatus = true
+   
     const register = this.userService.registrationService(this.industry).subscribe(data => {
 
       if (data.apiStatus.message === 'success') {
         this.message = "Registration Successfull"
-        //console.log(data.apiStatus.message);
-        // this.route.navigate(['/home']);
         this.add_industry.reset();
         this.processForm.reset();
+        this.stationinfomap=[]
+        this.stationinfomap.push(this.processForm.value);
         this.submitted=false;
       } else {
         this.message = "Registration Failed"
-        //console.log(data);
+        
       }
 
     });
   }
-  stack(str: string) {
+  stack(option: string) {
 
 
-    if (str == "Ambient") {
+    if (option == "Ambient") {
       //this.stackDisplay=false;
 
       $('#stack_123').css('display', 'none');
@@ -280,7 +296,7 @@ get stationInfo() {
       }];
     }
     else
-      if (str == "Emission") {
+      if (option == "Emission") {
         // this.stackDisplay=true;
         
         // $('.stackDisplay').css('display','block');
@@ -293,7 +309,7 @@ get stationInfo() {
         }];
       }
       else
-        if (str == "Effluent") {
+        if (option == "Effluent") {
 
           //this.stackDisplay=false;
           $('#stack_123').css('display', 'none');

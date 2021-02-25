@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-bar-chart',
@@ -20,9 +21,27 @@ export class BarChartComponent implements OnInit {
   }
  
   dateLabel: any[];
-  constructor() {
+  constructor(private userService: UserService) {
     
   }
+
+  print(chartImage: any) {
+    var sBase64 = chartImage.getBase64Image();
+    // console.log(sBase64);
+    let newWindow;
+    newWindow = window.open();
+    newWindow.document.write(`
+      <html>
+        <head>
+          <title>Print</title>
+        </head>
+        <body onload="window.print();window.close()">
+        <img src="${sBase64}" />
+      </html>`
+    );
+    newWindow.document.close();
+  }
+
   ngOnInit(): void {
    //this.prepareChart()
   }
@@ -60,7 +79,7 @@ export class BarChartComponent implements OnInit {
   }
   getRandomColor() {
     var colors = [ 'orange','#4bc0c0','#29215c','#f66342','#63256a'];
-    return  colors[Math.floor(Math.random() * colors.length)];
+    return colors[Math.floor(Math.random() * colors.length)];
     }
 }
 export interface Param{

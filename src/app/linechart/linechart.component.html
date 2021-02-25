@@ -1,10 +1,34 @@
 <!-- <div class="box marginTop"> -->
+    <div class="row mb-6">
+        <!-- <div class="col-md-5 pt-5 stndrop"></div> -->
+        
+        <div class="col-md-2">
+          <div class="dropdown">
+            <button type="button" class=" d-sm-inline-block btn btn-sm btn-primary shadow-sm mb-4 dropdown-toggle" data-toggle="dropdown">
+                <i class="fas fa-download fa-sm text-white-50"></i> Download Reports
+              </button>
+            <!-- <div class="dropdown-menu">
+                
+                    <a class="dropdown-item" href="http://117.211.75.160:8086/rest/api/industry/getSMSReport/downloadpdf?from=2020-11-12%2011:17:02&to=2020-11-12%2011:17:03">
+                        
+        
+            </div> -->
+            <div class="dropdown-menu">
+                
+               <a  class="dropdown-item" href="http://117.211.75.160:8086/rest/api/getRelPollutantReport/download?frequency=15%20Minutes&from=2020-11-12%2011:17:03&to=2021-11-15%2011:17:03&plantId=hindalco_lpng&stationId=AAQMS-1&parameter=NO2,PM"><i class="fa fa-file-excel-o"></i> As EXCEL</a>  
+               <a class="dropdown-item" (click)="print(chartImage)"><i class="fa fa-file-pdf-o"></i> As Print</a>
     
-       
+            </div>
+            <!-- &nbsp; &nbsp; &nbsp; &nbsp; -->
+        </div>
+    </div>
+   
+    </div>
+    
     <!-- </div> -->
-     <div class="row" id="myDivToPrint"> 
+     <div class="row"> 
         <div class="card-body">
-            <p-chart type="line" width="900" height="400" [data]="data" [options]="options"></p-chart>
+            <p-chart #chartImage type="line" width="900" height="400" [data]="data" [options]="options"></p-chart>
         </div>
        
      </div> 

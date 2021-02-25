@@ -1,6 +1,6 @@
 
 export interface Industry{
-    stationInfoMapper:StationInfoMapper[],
+    stationInfoMapper?:StationInfoMapper[],
     userInfoMapper:UserInfoMapper,
     plantInfo:PlantInfo,
     regstatus?:string

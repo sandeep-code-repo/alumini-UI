@@ -123,26 +123,16 @@ if (this.loginForm.valid) {
 					this.router.navigate(['/regdetails']);
 				else
 				this.router.navigate(['/registration']);
-				// if(data.apiStatus.userRole === true) {
-				// 	this.router.navigate(['/regdetails'],{ queryParams: { status: 'active',username:this.loginForm.get('username').value }});
-				// }
-				// else
-				// {
-				// 	this.router.navigate(['/registration'],{ queryParams: { status: 'Register',username:this.loginForm.get('username').value}});
-				// }
-			    // //	this.router.navigate(['/registration'],{ queryParams: { status: 'Register'}});
-				// this.router.navigate(['/regdetails'],{ queryParams: { status: 'active',username:'umakanta' }});
 				
 
 				$(".modal").css("display","none");
-			 //	window.localStorage.setItem('token', data.result.token);
-			//	this.router.navigate(['/home']);
+			
 				
 			  }
 			  else {
 				$(".modal").css("display","none");
 				$(".modal_invalid").css("display","block");
-				console.log(data);
+				//console.log(data);
 			  }
 			  
 			});

@@ -375,6 +375,7 @@ html {
 }
 .copyright{
     color:black;
+
     
 }
 .breadcrumb{                  
@@ -395,14 +396,16 @@ html {
 .dropdown{
     float:left;
     padding-left: 50px;
-    padding: 1px 895px !important;
+    padding: 1px 1000px !important;
 
   
 }
 .dropdown-menu, .dropdown-item{
     color:black;
 }
-
+#fetchbtn{
+    margin-top: 8px !important;
+}
 
  .d-none{
      float:right;

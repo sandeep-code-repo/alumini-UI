@@ -42,7 +42,7 @@
                   </mat-form-field> 
                   <div [hidden]="plant.valid || plant.pristine"
                   class="alert alert-danger">
-              Plant  is required
+              Plant is required
              </div>
            </div>
            
@@ -54,9 +54,9 @@
                       <mat-option *ngFor="let station of stationList" [value]="station">{{station.stationInfo.stationId}}</mat-option>
                     </mat-select>
                   </mat-form-field>
-                  <div [hidden]="station.valid || station.pristine"
-                  class="alert alert-danger">
-              Station  is required
+                   <div [hidden]="station.valid || station.pristine"
+                   class="alert alert-danger">
+              Station is required
              </div>
             </div>
             <div class="col-md-2 pt-2 stndrop">
@@ -96,7 +96,7 @@
             class="alert alert-danger">
         To Date is required
        </div>
-        </div>
+           </div>
 
             <div class="col-md-2 pt-5 stndrop">
                 <div class="form-group">
@@ -112,28 +112,17 @@
   <!-- Content Row -->
  <div class="container">
                 <div class="d-sm-flex align-items-center col-sm-11 justify-content-between mb-4">
-                    
-                    <div class="dropdown">
-                      <button type="button" class=" d-sm-inline-block btn btn-sm btn-primary shadow-sm mb-4 dropdown-toggle" data-toggle="dropdown">
-                        <i class="fas fa-download fa-sm text-white-50"></i> Download Reports
-                      </button>
-                      <div class="dropdown-menu">
-                        <a  class="dropdown-item" href="http://117.211.75.160:8086/rest/api/industry/getSMSReport/download?from=2020-11-12%2011:17:02&to=2020-11-12%2011:17:03" ><i class="fa fa-file-excel-o"></i> As EXCEL</a>
-                      <!----<a class="dropdown-item" (click)="printCanvas('chartContainer')"><i class="fa fa-file-pdf-o"></i> As Pdf</a>-->
-                        <a class="dropdown-item" (click)="printCanvas('print')"><i class="fa fa-file-pdf-o"></i> As Print</a>
-
-                      </div>
-                    </div> 
                 </div>  
  </div> 
- 
- 
  
   <mat-tab-group *ngIf=tableData>
     <mat-tab label="Chart View"><app-bar-chart  [chartData]="tableData"></app-bar-chart> </mat-tab>
     <mat-tab label="Table View"><app-sms-table [tableData]="tableData"></app-sms-table></mat-tab>
-   
   </mat-tab-group>
+  
+  <div class="row" *ngFor="let filterData of filtersList; let i = index">
+    <app-linechart [filterData]="filterData"></app-linechart>
+</div>
  
         </div>
             <!-- /.container-fluid -->
@@ -141,15 +130,7 @@
         </div>
         <!-- End of Main Content -->
 
-        <!-- Footer -->
-        <footer class="sticky-footer bg-white">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Assam Polution Control Board | 2020</span>
-                </div>
-            </div>
-        </footer>
-        <!-- End of Footer -->
+       
 
     </div>
     <!-- End of Content Wrapper -->

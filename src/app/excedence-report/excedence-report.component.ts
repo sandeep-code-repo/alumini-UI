@@ -41,6 +41,7 @@ tableData:ITabledata[]
   filterOptionForm: FormGroup;
   model=new ExcedenceModel("","","",new Date(),new Date());
  submitted = false;
+ filtersList:FilterChart[]=[]
   constructor(private router: Router, public datepipe: DatePipe,private formBuilder: FormBuilder, private userService: UserService,private industryService:IndustryService,private storageService:LocalServiceService) { }
 
   ngOnInit(): void {
@@ -59,6 +60,7 @@ tableData:ITabledata[]
       }
      });
   }
+
   addParam(){
   this.paramList=[]
   this.model.station.forEach(element => {
@@ -69,6 +71,11 @@ tableData:ITabledata[]
    
   });
   }
+
+
+
+
+  
   excel() {
     this.downloadAsExcel({ filename: "chart-data", chart: this.chart });
   }

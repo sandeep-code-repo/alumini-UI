@@ -27,7 +27,23 @@ export class LinechartComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   
- 
+  print(chartImage: any) {
+    var sBase64 = chartImage.getBase64Image();
+    // console.log(sBase64);
+    let newWindow;
+    newWindow = window.open();
+    newWindow.document.write(`
+      <html>
+        <head>
+          <title>Print</title>
+        </head>
+        <body onload="window.print();window.close()">
+        <img src="${sBase64}" />
+      </html>`
+    );
+    newWindow.document.close();
+  }
+
   populateChart() {
     var labelArray: string[];
     var dataArray: number[];
