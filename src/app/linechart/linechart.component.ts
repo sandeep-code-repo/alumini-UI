@@ -97,7 +97,7 @@ export class LinechartComponent implements OnInit {
 this.populateChart()
     this.options = {
       //display labels on data elements in graph
-      responsive: false,
+     responsive: true,
       maintainAspectRatio: false,
       
       plugins: {

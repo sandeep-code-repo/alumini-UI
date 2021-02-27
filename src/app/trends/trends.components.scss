@@ -365,3 +365,15 @@ html {
 .select-all{
     margin: 5px 17px;
   } 
+  .invalid-feedback{
+      
+    display: block;
+    position: absolute;
+    top: 100px;
+    background: #fd7272;
+    padding: 3px;
+    color: #fff;
+    box-shadow: 1px 1px 3px 2px #ccc;
+    z-index: 1;
+    left: 10px;
+    width: 90%;}
