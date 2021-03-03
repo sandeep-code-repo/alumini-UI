@@ -39,7 +39,7 @@ export class RegistrationComponent implements OnInit {
   userInfo: UserInfo;
   message: any;
   addProcesssubmitted: boolean;
-  
+  mode:boolean=true;
 
   role: Role;
   userRole: Role[] = []
@@ -52,24 +52,93 @@ export class RegistrationComponent implements OnInit {
 
 
   ngOnInit(): void {
+    
     if(localStorage.isLogin){
       //this.isLogin= this.storageService.getJsonValue('isLogin')
       const userName=this.storageService.getJsonValue('loggedInUserData').userName;
       this.industryService.getIndustryData(userName).subscribe(res =>{
+       
         if(res.apiStatus.message === 'success') 
         {
           this.industry=res.data;
-         
-         
+         console.log(this.industry)
+          this.processForm = this.formBuilder.group({
+            
+            stationInfo: this.formBuilder.group({
+              stnType: ['', [Validators.required]],
+              stationId: ['',[Validators.required]],
+              processAttached: ['', [Validators.required]],
+              stationVendor: ['', [Validators.required]],
+              longitute: ['', [Validators.required, Validators.pattern(/^(\d*\.)?\d+$/)]],
+              latitude: ['', [Validators.required, Validators.pattern(/^(\d*\.)?\d+$/)]],
+              measurementPrinciple: [''],
+              stackHeight: [''],
+              stackDiameter: [''],
+              stackVelocity: [''],
+              gasDischargeRate: [''],
+              remarks: [''],
+              //uuid: [uuid.v4()],
+      
+            }),
+            parameterInfo: this.formBuilder.array([this.createParameterInfo()]),
+          })
+          // this.stationinfomap.push(this.industry.)
+          this.stationinfomap=this.industry.stationInfoMapper
+
+      this.add_industry = this.formBuilder.group({
+      plantInfo: this.formBuilder.group({
+        plantVendor: [this.industry.plantInfo.plantVendor, [Validators.required]],
+        //plantUserName: [this.industry.plantInfo.plantName, [Validators.required]],
+        category: [this.industry.plantInfo.category],
+        plantName: [this.industry.plantInfo.plantName, [Validators.required]],
+        //plantType: [],
+        zonal: [this.industry.plantInfo.zonal, [Validators.required]],
+        caaqmsStation: [this.industry.plantInfo.caaqmsStation, [Validators.pattern(/^[0-9]\d*$/)]],
+        cemsStation: [this.industry.plantInfo.cemsStation, [Validators.pattern(/^[0-9]\d*$/)]],
+        ceqmsStation: [this.industry.plantInfo.ceqmsStation, [Validators.pattern(/^[0-9]\d*$/)]],
+
+
+      }),
+
+      // role: ['',],
+      userInfoMapper: this.formBuilder.group({
+        userInfo: this.formBuilder.group({
+          userName: [{value: this.industry.userInfoMapper.userInfo.userName, disabled: true}, [Validators.required]],
+          password: [this.industry.userInfoMapper.userInfo.password, [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&].{8,}')]],
+          roleId: [this.industry.userInfoMapper.userRole[0].roleId],
+          pin: [this.industry.userInfoMapper.userInfo.pin, [Validators.required, Validators.pattern("[0-9]{6}")]],
+          //typ: [this.industry.userInfoMapper.userInfo.typ],
+          district: [this.industry.userInfoMapper.userInfo.district, [Validators.required]],
+          town: [this.industry.userInfoMapper.userInfo.town, [Validators.required]],
+          street: [this.industry.userInfoMapper.userInfo.street, [Validators.required]],
+          state: [this.industry.userInfoMapper.userInfo.state, [Validators.required]],
+          email: [this.industry.userInfoMapper.userInfo.email, [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+          authPerson: [this.industry.userInfoMapper.userInfo.authPerson, [Validators.required]],
+          //selectmobNo: ['', Validators.required],
+          mobNo: [this.industry.userInfoMapper.userInfo.mobNo, [Validators.required, Validators.pattern("[0-9]{10}")]],
+          designation: [this.industry.userInfoMapper.userInfo.designation, [Validators.required]],
+          secdPerson: [this.industry.userInfoMapper.userInfo.secdPerson, [Validators.required]],
+          secdPersonDesig: [this.industry.userInfoMapper.userInfo.secdPersonDesig, [Validators.required]],
+          //selectsecdPersonMob: ['', Validators.required],
+          secdPersonMob: [this.industry.userInfoMapper.userInfo.secdPersonMob, [Validators.pattern("[0-9]{10}")]],
+          secdEmail: [this.industry.userInfoMapper.userInfo.secdEmail, [Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+        }),
+
+
+      })
+    });
+    this.mode=false;
         }
        });
      }
      
+else{
+
     this.processForm = this.formBuilder.group({
       stationInfo: this.formBuilder.group({
         stnType: ['', [Validators.required]],
         stationId: ['', [Validators.required]],
-        location: ['', [Validators.required]],
+        processAttached: ['', [Validators.required]],
         stationVendor: ['', [Validators.required]],
         longitute: ['', [Validators.required, Validators.pattern(/^(\d*\.)?\d+$/)]],
         latitude: ['', [Validators.required, Validators.pattern(/^(\d*\.)?\d+$/)]],
@@ -79,7 +148,7 @@ export class RegistrationComponent implements OnInit {
         stackVelocity: [''],
         gasDischargeRate: [''],
         remarks: [''],
-        uuid: [uuid.v4()],
+        //uuid: [uuid.v4()],
 
       }),
       parameterInfo: this.formBuilder.array([this.createParameterInfo()]),
@@ -121,7 +190,7 @@ export class RegistrationComponent implements OnInit {
           authPerson: ['', [Validators.required]],
           //selectmobNo: ['', Validators.required],
           mobNo: ['', [Validators.required, Validators.pattern("[0-9]{10}")]],
-          authPersonDesig: ['', [Validators.required]],
+          designation: ['', [Validators.required]],
           secdPerson: ['', [Validators.required]],
           secdPersonDesig: ['', [Validators.required]],
           //selectsecdPersonMob: ['', Validators.required],
@@ -132,7 +201,8 @@ export class RegistrationComponent implements OnInit {
 
       })
     });
-
+    this.mode=true;
+  }
 
   }
   // get stationInfo() {
@@ -210,7 +280,7 @@ get stationInfo() {
 
 
     let index = this.stationinfomap.findIndex(item => {
-      return item.stationInfo.uuid == this.processForm.get('stationInfo.uuid').value;
+      return item.stationInfo.stationId == this.processForm.get('stationInfo.stationId').value;
     });
 
 
@@ -265,7 +335,7 @@ if
     this.userRole.push(this.role)
     Object.assign(this.industry.userInfoMapper, { userRole: this.userRole })
     this.industry.regstatus = 'Register'
-   
+    //console.log(this.industry)
     const register = this.userService.registrationService(this.industry).subscribe(data => {
 
       if (data.apiStatus.message === 'success') {
@@ -281,6 +351,47 @@ if
       }
 
     });
+  }
+  update(){
+    this.submitted = true;
+    //console.log(this.add_industry)
+    // if (this.add_industry.invalid) {
+
+    //   return;
+    // }
+
+
+    this.industry = this.add_industry.value
+   
+if 
+(this.stationinfomap.length>0 && this.stationinfomap[0].stationInfo.stationId!='')
+    this.industry.stationInfoMapper = this.stationinfomap;
+    console.log(this.industry)
+    if (!this.industry.stationInfoMapper)
+    this.industry.userInfoMapper.userInfo.regStatus = false
+  else
+    this.industry.userInfoMapper.userInfo.regStatus = true
+    this.role.roleId = this.add_industry.get('userInfoMapper.userInfo.roleId').value
+    this.userRole.push(this.role)
+    Object.assign(this.industry.userInfoMapper, { userRole: this.userRole })
+    this.industry.regstatus = 'Register'
+   
+    // const register = this.userService.updatePlantService(this.industry).subscribe(data => {
+
+    //   if (data.apiStatus.message === 'success') {
+    //     this.message = "Update Successfull"
+    //     this.add_industry.reset();
+    //     this.processForm.reset();
+    //     this.stationinfomap=[]
+    //     this.stationinfomap.push(this.processForm.value);
+    //     this.submitted=false;
+    //   } else {
+    //     this.message = "Update Failed"
+        
+    //   }
+
+    // });
+    
   }
   stack(option: string) {
 

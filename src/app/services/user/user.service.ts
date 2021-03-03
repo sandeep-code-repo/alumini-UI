@@ -17,6 +17,8 @@ export class UserService {
    smsReporturl=this.baseURL+"/getSMSReport"
    getIndustryUrl: string = this.baseURL+"/industry/";
    registrationUrl: string = this.baseURL+"/register";
+   updateUserUrl: string = this.baseURL+"/updateUser";
+   
    passwordResetUrl: string = this.baseURL+"/savePassword";
    helpUrl: string = this.baseURL+"/addFeedbackDetails";
    plantDetailsUrl:string=this.baseURL+"/getPlantDetails"
@@ -73,7 +75,16 @@ export class UserService {
       });
 
    }
+updatePlantService(industry: Industry):
+Observable<any> {
+   const headers = { 'content-type': 'application/json' }
+   const body = JSON.stringify(industry);
 
+   return this.httpclient.post<any>(this.updateUserUrl, body, {
+      'headers': headers
+   });
+
+}
 
    //************help page************
 

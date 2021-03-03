@@ -19,7 +19,7 @@ export interface StationInfo{
     stationId?:string,
     analyzer?:string,
     analyzerv2?:string,
-    location?:string,
+    processAttached?:string,
     installDt?:string,
     token?:string,
     macNo?:string,
@@ -38,6 +38,7 @@ export interface StationInfo{
    
 }
 export interface PlantInfo{
+    zonal: any;
     plantName:string,
     plantVendor?:string,
     plantType?:string,
@@ -46,6 +47,7 @@ export interface PlantInfo{
     caaqmsStation:number,
     cemsStation:number,
     ceqmsStation:number,
+    
     
 }
 export interface UserInfo{
@@ -58,7 +60,7 @@ export interface UserInfo{
     street: string,
    state: string,                      
    authPerson: string,
-   authPersonDesig: string,
+   designation: string,
     secdPerson?: string,
     secdPersonDesig: string,
     secdPersonMob:string ,

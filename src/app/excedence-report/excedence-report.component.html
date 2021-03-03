@@ -41,7 +41,7 @@
                     </mat-select>
                   </mat-form-field> 
                   <div [hidden]="plant.valid || plant.pristine"
-                  class="alert alert-danger">
+                  class="invalid-feedback">
               Plant is required
              </div>
            </div>
@@ -55,7 +55,7 @@
                     </mat-select>
                   </mat-form-field>
                    <div [hidden]="station.valid || station.pristine"
-                   class="alert alert-danger">
+                   class="invalid-feedback">
               Station is required
              </div>
             </div>
@@ -68,7 +68,7 @@
                     </mat-select>
                   </mat-form-field>
                   <div [hidden]="param.valid || param.pristine"
-                  class="alert alert-danger">
+                  class="invalid-feedback">
               Parameter is required
              </div>
             </div>
@@ -81,7 +81,7 @@
                 </p-calendar>
             </div>
             <div [hidden]="dateFrom.valid || dateFrom.pristine"
-            class="alert alert-danger">
+            class="invalid-feedback">
         From Date is required
        </div>
             </div>
@@ -93,7 +93,7 @@
                     </p-calendar>
                 </div> 
                 <div [hidden]="dateTo.valid || dateTo.pristine"
-            class="alert alert-danger">
+            class="invalid-feedback">
         To Date is required
        </div>
            </div>

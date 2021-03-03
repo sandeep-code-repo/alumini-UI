@@ -16,11 +16,12 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid" style="position: relative; height: 100vh;">
-                 <!-- Page Heading -->
-                 <div>
-                    <span><button type="button" tooltip="Goto Back " class="mr-3 btn btny btn-default buttom-prim buttonsToShow" id="backbtn"
-                        (click)="goback()" style="float: left;">
-                        <i class="fa fa-arrow-circle-left"></i></button>
+                <!-- Page Heading -->
+                <div>
+                    <span><button type="button" tooltip="Goto Back "
+                            class="mr-3 btn btny btn-default buttom-prim buttonsToShow" id="backbtn" (click)="goback()"
+                            style="float: left;">
+                            <i class="fa fa-arrow-circle-left"></i></button>
                     </span>
                     <span>
                         <ol class="breadcrumb" style="float: left;">
@@ -33,127 +34,142 @@
                 </div><br><br>
                 <!-- Sidebar -->
                 <app-plant-info></app-plant-info>
-            
+
 
 
 
                 <div class="row mb-6" style="float:left;padding-right: 500px;">
                     <div class="col-sm-6">
 
-                   </div>
+                    </div>
 
-                   <div class="col-xl-12">
-                       <form #heroForm="ngForm" (ngSubmit)="populateChart()">
-                       <div class="row">
-                          
-                           <!-- <app-linechart></app-linechart>     -->
-                           <div class="col-md-2 pt-2 stndrop">
-                               <mat-label>Station<span class="text-danger">*</span></mat-label>
-                                 <mat-form-field class="form-group" appearance="none">
-                                   <mat-select class="form-control" [(ngModel)]="model.station" name="station" #station="ngModel" required multiple (selectionChange)="addParam()">
-                                     <mat-option *ngFor="let station of stationList" [value]="station">{{station.stationInfo.stationId}}</mat-option>
-                                   </mat-select>
-                                 </mat-form-field>
-                                 
-                                  <div [hidden]="station.valid || station.pristine"
-                                            class="invalid-feedback">
-                                                      Station is required
-                                                     </div>
-                           </div>
-                          
-                           <div class="col-md-2 pt-2 stndrop">
-                               <mat-label>Parameter<span class="text-danger">*</span></mat-label>
-                               <mat-form-field appearance="none" class="form-group">
-                                   <mat-select class="form-control" [(ngModel)]="model.parameter" name="parameter" #parameter="ngModel" required multiple >
-                                     <mat-option *ngFor="let parameter of paramList" [value]="parameter">{{parameter.paramter}}</mat-option>
-                                   </mat-select>
-                                 </mat-form-field>
-                                  <div [hidden]="parameter.valid || parameter.pristine"
-                                 class="invalid-feedback">
-                                      Parameter is required
-                                      </div> 
-                                     
-                           </div>
-                           
-                           <div class="col-md-2 pt-2 stndrop">
-                               <mat-label>Frequency<span class="text-danger">*</span></mat-label>
-                                   <mat-form-field appearance="none" class="form-group">
-                                       <mat-select class="form-control" [(ngModel)]="model.frequency" name="frequency" #frequency="ngModel" required  (selectionChange)="changeDatepicker()">
-                                         <mat-option *ngFor="let frequency of filterOption" [value]="frequency.name">{{frequency.name}}</mat-option>
-                                       </mat-select>
-                                     </mat-form-field>
+                    <div class="col-xl-12">
+                        <form #heroForm="ngForm" (ngSubmit)="populateChart()">
+                            <div class="row">
 
-                                      <div [hidden]="frequency.valid || frequency.pristine"
-                                     class="invalid-feedback">
-                                          Frequency is required
-                                          </div>  
-                                          
+                                <!-- <app-linechart></app-linechart>     -->
+                                <div class="col-md-2 pt-2 stndrop">
+                                    <mat-label>Station<span class="text-danger">*</span></mat-label>
+                                    <mat-form-field class="form-group" appearance="none">
+                                        <mat-select class="form-control" [(ngModel)]="model.station" name="station"
+                                            #station="ngModel" required multiple (selectionChange)="addParam()">
+                                            <mat-option *ngFor="let station of stationList" [value]="station">
+                                                {{station.stationInfo.stationId}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+
+                                    <div [hidden]="station.valid || station.pristine" class="invalid-feedback">
+                                        Station is required
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2 pt-2 stndrop">
+                                    <mat-label>Parameter<span class="text-danger">*</span></mat-label>
+                                    <mat-form-field appearance="none" class="form-group">
+                                        <mat-select class="form-control" [(ngModel)]="model.parameter" name="parameter"
+                                            #parameter="ngModel" required multiple>
+                                            <mat-option *ngFor="let parameter of paramList" [value]="parameter">
+                                                {{parameter.paramter}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                    <div [hidden]="parameter.valid || parameter.pristine" class="invalid-feedback">
+                                        Parameter is required
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-2 pt-2 stndrop">
+                                    <mat-label>Frequency<span class="text-danger">*</span></mat-label>
+                                    <mat-form-field appearance="none" class="form-group">
+                                        <mat-select class="form-control" [(ngModel)]="model.frequency" name="frequency"
+                                            #frequency="ngModel" required (selectionChange)="changeDatepicker()">
+                                            <mat-option *ngFor="let frequency of filterOption" [value]="frequency.name">
+                                                {{frequency.name}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+
+                                    <div [hidden]="frequency.valid || frequency.pristine" class="invalid-feedback">
+                                        Frequency is required
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-2 pt-2 stndrop">
+                                    <label>From Date <span class="text-danger">*</span></label>
+                                    <div *ngIf="this.iCalView==1" style="margin-top: 10px;">
+                                        <p-calendar [(ngModel)]="model.fromDate" [showTime]="showTime" name="fromDate"
+                                            #fromDate="ngModel" required dateFormat="dd.mm.yy" hourFormat="24"
+                                            [showIcon]="true" [minDate]="minDate">
+                                        </p-calendar>
+                                        <div [hidden]="fromDate.valid || fromDate.pristine" class="invalid-feedback">
+                                            Fromdate is required
                                         </div>
-                               
-                          
-                           
-                           <div class="col-md-2 pt-2 stndrop">
-                                   <label>From Date <span class="text-danger">*</span></label>
-                                   <div *ngIf="this.iCalView==1" style="margin-top: 10px;">
-                               <p-calendar [(ngModel)]="model.fromDate" [showTime]="showTime" name="fromDate" #fromDate="ngModel" required dateFormat="dd.mm.yy"
-                                   hourFormat="24" [showIcon]="true"  [minDate]="minDate">
-                               </p-calendar>
-                           </div>
-                           <div *ngIf="this.iCalView==2" style="margin-top: 10px;">
-                               <p-calendar [(ngModel)]="model.fromDate" view="month" required dateFormat="mm/yy" name="fromDate" #fromDate="ngModel"
-                                   [yearNavigator]="true" yearRange="2000:2030" [showIcon]="true" [minDate]="minDate"></p-calendar>
-                           </div>
-                           <div *ngIf="this.iCalView==3">
-                               <p-calendar [(ngModel)]="model.fromDate" name="fromDate" #fromDate="ngModel" required dateFormat="dd.mm.yy" hourFormat="24" [showTime]="showTime"
-                                   [showIcon]="true"  [minDate]="minDate">
-                               </p-calendar>
-                           </div>
-                                  
-                           <!-- <div [hidden]="fromDate.valid || fromDate.pristine"
-                           class="alert alert-danger">
-                                Fromdate is required
-                           </div>  -->
-                           </div> 
-                           
-                           <div class="col-md-2 pt-2 stndrop">
-                               <label>To Date <span class="text-danger">*</span></label>
-                               <div *ngIf="this.iCalView==1" style="margin-top: 10px;">
-                                   <p-calendar [(ngModel)]="model.toDate" [showTime]="showTime" name="toDate" #toDate="ngModel" required dateFormat="dd.mm.yy"
-                                       hourFormat="24" [showIcon]="true" [maxDate]= "maxDate">
-                                   </p-calendar>
-                               </div>
-                               <div *ngIf="this.iCalView==2" style="margin-top: 10px;">
-                                   <p-calendar [(ngModel)]="model.toDate" view="month" name="toDate" #toDate="ngModel" required dateFormat="mm/yy"
-                                       [yearNavigator]="true" yearRange="2000:2030" [showIcon]="true"  [maxDate]= "maxDate"></p-calendar>
-                               </div>
-                               <div *ngIf="this.iCalView==3">
-                                   <p-calendar [(ngModel)]="model.toDate" name="toDate" #toDate="ngModel" required dateFormat="dd.mm.yy" hourFormat="24" [showTime]="showTime"
-                                       [showIcon]="true">
-                                   </p-calendar>
-                               </div>
-                               <!-- <div [hidden]="toDate.valid || toDate.pristine"
-                           class="alert alert-danger">
-                                Todate is required
-                           </div> -->
-                              
-                          </div> 
+                                    </div>
+                                    <div *ngIf="this.iCalView==2" style="margin-top: 10px;">
+                                        <p-calendar [(ngModel)]="model.fromDate" view="month" required
+                                            dateFormat="mm/yy" name="fromDate" #fromDate="ngModel"
+                                            [yearNavigator]="true" yearRange="2000:2030" [showIcon]="true"
+                                            [minDate]="minDate"></p-calendar>
+                                        <div [hidden]="fromDate.valid || fromDate.pristine" class="invalid-feedback">
+                                            Fromdate is required
+                                        </div>
+                                    </div>
+                                    <div *ngIf="this.iCalView==3">
+                                        <p-calendar [(ngModel)]="model.fromDate" name="fromDate" #fromDate="ngModel"
+                                            required dateFormat="dd.mm.yy" hourFormat="24" [showTime]="showTime"
+                                            [showIcon]="true" [minDate]="minDate">
+                                        </p-calendar>
+                                        <div [hidden]="fromDate.valid || fromDate.pristine" class="invalid-feedback">
+                                            Fromdate is required
+                                        </div>
+                                    </div>
+                                </div>
 
-                           <div class="col-md-2 pt-5 stndrop">
-                               <div class="form-group">
-                                   <button type="submit" class="btn btn-sm btn-primary" id="fetchbtn"
-                                   [disabled]="!heroForm.form.valid">FETCH</button>
-                               </div>
-                           </div> 
-                       </div>
-                   </form>
-                   </div>
+                                <div class="col-md-2 pt-2 stndrop">
+                                    <label>To Date <span class="text-danger">*</span></label>
+                                    <div *ngIf="this.iCalView==1" style="margin-top: 10px;">
+                                        <p-calendar [(ngModel)]="model.toDate" [showTime]="showTime" name="toDate"
+                                            #toDate="ngModel" required dateFormat="dd.mm.yy" hourFormat="24"
+                                            [showIcon]="true" [maxDate]="maxDate">
+                                        </p-calendar>
+                                        <div [hidden]="toDate.valid" class="invalid-feedback">
+                                            Todate is required
+                                        </div>
+                                    </div>
+                                    <div *ngIf="this.iCalView==2" style="margin-top: 10px;">
+                                        <p-calendar [(ngModel)]="model.toDate" view="month" name="toDate"
+                                            #toDate="ngModel" required dateFormat="mm/yy" [yearNavigator]="true"
+                                            yearRange="2000:2030" [showIcon]="true" [maxDate]="maxDate"></p-calendar>
+                                        <div [hidden]="toDate.valid" class="invalid-feedback">
+                                            Todate is required
+                                        </div>
+                                    </div>
+                                    <div *ngIf="this.iCalView==3">
+                                        <p-calendar [(ngModel)]="model.toDate" name="toDate" #toDate="ngModel" required
+                                            dateFormat="dd.mm.yy" hourFormat="24" [showTime]="showTime"
+                                            [showIcon]="true">
+                                        </p-calendar>
+                                        <div [hidden]="toDate.valid" class="invalid-feedback">
+                                            Todate is required
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 pt-5 stndrop">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-sm btn-primary" id="fetchbtn"
+                                            [disabled]="!heroForm.form.valid">FETCH</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
 
-               </div>
-               
-               <div class="card" *ngFor="let filterData of filtersList; let i = index">
-                   <app-linechart [filterData]="filterData"></app-linechart>
-               </div>
-                           
+                </div>
+
+                <div class="card" *ngFor="let filterData of filtersList; let i = index">
+                    <app-linechart [filterData]="filterData"></app-linechart>
+                </div>
+
 
 
 

@@ -15,7 +15,7 @@
    </div>
 </div>
 
-<form [formGroup]="add_industry">
+<form *ngIf="add_industry" [formGroup]="add_industry">
 
    <div class="container  px-0">
       <h2 class="lighter blue mt-4 headg">
@@ -208,12 +208,12 @@
                      </div>
                      <div class="col-sm-6 nopad">
                         <div class="fontpassword ">
-                           <input class="form-control texbsize1" type="text" formControlName="authPersonDesig"
+                           <input class="form-control texbsize1" type="text" formControlName="designation"
                               placeholder="Enter Designation"
-                              [ngClass]="{ 'is-invalid': submitted && userInfof.authPersonDesig.errors }">
-                           <div style="top: 28px;" *ngIf="submitted && userInfof.authPersonDesig.errors"
+                              [ngClass]="{ 'is-invalid': submitted && userInfof.designation.errors }">
+                           <div style="top: 28px;" *ngIf="submitted && userInfof.designation.errors"
                               class="invalid-feedback">
-                              <div *ngIf="userInfof.authPersonDesig.errors.required">*Designation Required</div>
+                              <div *ngIf="userInfof.designation.errors.required">*Designation Required</div>
                            </div>
                         </div>
                      </div>
@@ -411,7 +411,7 @@
          <div class="form-group col-md-2 smallpad">
             <label class="name1">Process Attached<span style="color:red;">*</span></label>
             <input type="text" class="form-control texbsize" placeholder="Process Attached"
-               value="{{station.stationInfo.location}}" readonly>
+               value="{{station.stationInfo.processAttached}}" readonly>
 
          </div>
          <div class="form-group col-md-2 smallpad">
@@ -492,7 +492,7 @@
          <div class="form-group col-md-2 smallpad">
             <label class="name1">Analyser Make<span style="color:red;">*</span></label>
             <input type="text" class="form-control texbsize" placeholder="Analyser Make"
-               value="{{stationparam.alyserMake}}" readonly>
+               value="{{stationparam.analyserMake}}" readonly>
 
          </div>
          <div class="form-group col-md-2 smallpad">
@@ -561,12 +561,20 @@
             <!-- <button type="button" tooltip="save" class="btn btns btn-success">Save</button> &nbsp; -->
 
          </div> 
-         <div class="form-group col-md-2 ml-2">
+         <div  *ngIf =" mode ; else UpdateButton" class="form-group col-md-2 ml-2">
             <button type="button"  
                 tooltip="Register" data-toggle="modal"  data-target="#modalMessage"
                (click)=register() class="btn btns btn-success" 
                >Register</button>
          </div>
+         <ng-template #UpdateButton >
+            <div class="form-group col-md-2 ml-2">
+            <button type="button"  
+            tooltip="Update" data-toggle="modal"  data-target="#modalMessage"
+           (click)=update() class="btn btns btn-success" 
+           >Update</button>
+         </div>
+         </ng-template>
       </div>
    </div>
    <!-- </div> -->
@@ -619,7 +627,7 @@
             <form [formGroup]="processForm">
                <div formGroupName="stationInfo">
                   <div class="row px-3">
-                     <input type='hidden' formControlName="uuid"/> 
+                     <!-- <input type='hidden' formControlName="uuid"/>  -->
                      <div class="form-group col-md-4 smallpad opt">
                         <label class="name1">Monitoring Type<span style="color:red;">*</span></label>
                         <select class="form-control texbsize" formControlName="stnType"
@@ -647,10 +655,10 @@
                      <div class="form-group col-md-4 smallpad">
                         <label class="name1">Process Attached<span style="color:red;">*</span></label>
                         <input type="text" class="form-control texbsize" placeholder="Process Attached"
-                           formControlName="location"
-                           [ngClass]="{'is-invalid':addProcesssubmitted && stationinfoV.location.errors }" >
-                        <div *ngIf="addProcesssubmitted && stationinfoV.location.errors" class="invalid-feedback">
-                           <div *ngIf="stationinfoV.location.errors.required">*Process Attached Required</div>
+                           formControlName="processAttached"
+                           [ngClass]="{'is-invalid':addProcesssubmitted && stationinfoV.processAttached.errors }" >
+                        <div *ngIf="addProcesssubmitted && stationinfoV.processAttached.errors" class="invalid-feedback">
+                           <div *ngIf="stationinfoV.processAttached.errors.required">*Process Attached Required</div>
                         </div>
                      </div>
 
