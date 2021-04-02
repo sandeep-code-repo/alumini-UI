@@ -49,11 +49,11 @@
             </div>
         </li>
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle"  id="navbardrop">
+            <a class="nav-link dropdown-toggle"  id="navbardrop" data-toggle="dropdown">
                 <i class="fa fa-eye text-danger blink pr-2"></i> Live Status</a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" >Site Status</a>
-                    <a class="dropdown-item" >Map View</a>
+                <div class="dropdown-menu" >
+                    <a class="dropdown-item" routerLink="/site-status">Site Status</a>
+                    <!-- <a class="dropdown-item"  routerLink="/mapview" >Map View</a> -->
                   </div>
         </li>
         <li class="nav-item dropdown">
@@ -67,7 +67,7 @@
                 <i class="fa fa-tasks pr-2 text-success"></i> Workflow
             </a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" >Work Flow</a>
+                <a class="dropdown-item" routerLink="/workflow" >Work Flow</a>
                 <a class="dropdown-item" >Completed Workflow</a>
                 
             </div>

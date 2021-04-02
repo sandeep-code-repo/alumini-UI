@@ -14,7 +14,8 @@ export class IndustryService {
    this.industrydata=industry;
   }
   getIndustryData(userName:string): Observable<any>{
-    return this.httpclient.post<any>('http://117.211.75.160:8086/rest/api/getPlantDetails/', {
+    return this.httpclient.post<any>('http://117.211.75.160:8086
+/rest/api/getPlantDetails/', {
          'userName': userName
 
       },

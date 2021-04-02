@@ -39,6 +39,7 @@ dataSource: MatTableDataSource<IndustryDetails>;
     @ViewChild(MatSort, {static: false}) sort: MatSort;
      
     @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  profilename: any;
    
     
 	constructor(private router: Router, private storageService:LocalServiceService,private http:HttpClient,private industryDropDownService:IndustryDropDown) {
@@ -62,10 +63,7 @@ dataSource: MatTableDataSource<IndustryDetails>;
    this.userName=this.storageService.getJsonValue('loggedInUserData').userName;
   }
  
-  
-  //  if(this.industryData!=null) 
-  //  this.isLogin=true;
-  
+ 
   }
 
 OnFileSelected(event:any){
@@ -123,7 +121,11 @@ filterForIndustry(filterVal: any) {
   //this.sortedData.filter = filterValue.trim().toLowerCase();
   }
   
-  
+  logout() {
+    window.location.href = '/login';
+    this.profilename=null;
+    this.storageService.clearToken();
+  }
   goback()
   {
     this.router.navigate(['/login']);

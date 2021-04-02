@@ -17,6 +17,9 @@ import { TrendsComponent } from './trends/trends.component';
 import { ExcedenceReportComponent } from './excedence-report/excedence-report.component';
 //import { SmsReportTableComponent } from './excedence-report/sms-report-table/sms-report-table.component';
 import { SmsTableComponent } from './excedence-report/sms-table/sms-table.component';
+import { AddworkflowComponent } from './addworkflow/addworkflow.component';
+import { SiteStatusComponent } from './site-status/site-status.component';
+import { WorkflowComponent } from './workflow/workflow.component';
 
 // Parent Routes
 const routes: Routes = [
@@ -99,7 +102,23 @@ const routes: Routes = [
       // },
     ],
   },
- 
+  {
+    path: 'site-status',
+  component:SiteStatusComponent
+  },
+  // {
+  //   path:'mapview',
+  //   component:MapviewComponent
+  // },
+  {
+    path:'workflow',
+    component:WorkflowComponent
+  },
+  {
+    path:'addworkflow',
+    component:AddworkflowComponent
+  }
+  
 ];
 
 @NgModule({

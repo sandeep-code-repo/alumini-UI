@@ -67,7 +67,12 @@ import {DropdownModule} from 'primeng/dropdown'
 import {ChartModule} from 'primeng/chart';
 //import { SmsReportTableComponent } from './excedence-report/sms-report-table/sms-report-table.component';
 import { SmsTableComponent } from './excedence-report/sms-table/sms-table.component';
-import { BarChartComponent } from './excedence-report/bar-chart/bar-chart.component'
+import { BarChartComponent } from './excedence-report/bar-chart/bar-chart.component';
+import { SiteStatusComponent } from './site-status/site-status.component';
+import { WorkflowComponent } from './workflow/workflow.component';
+import { AddworkflowComponent } from './addworkflow/addworkflow.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import {RecordviewComponent} from './site-status/recordview/recordview.component'
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -89,10 +94,13 @@ import { BarChartComponent } from './excedence-report/bar-chart/bar-chart.compon
 		TrendsComponent,
 		HeaderComponent,
 		ExcedenceReportComponent,
-		
 		SmsTableComponent,
-		
 		BarChartComponent,
+		SiteStatusComponent,
+		//MapviewComponent,
+		WorkflowComponent,
+		AddworkflowComponent,
+		RecordviewComponent
 		
 
 	],
@@ -124,7 +132,8 @@ import { BarChartComponent } from './excedence-report/bar-chart/bar-chart.compon
 		MatNativeDateModule,
 		DropdownModule,ChartModule,
 		MatToolbarModule,
-		MatTabsModule
+		MatTabsModule,
+		NgMultiSelectDropDownModule
 		
 	],
 	providers: [AuthService, UserService, IndustryDropDown, ExcelService],

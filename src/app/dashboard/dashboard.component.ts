@@ -79,17 +79,21 @@ export class DashboardComponent implements OnInit {
 
     // this.data=this.parameter;
     this.userService.homepage(this.profilename).subscribe(data => {
+     
       if (data.apiStatus.message === 'success') {
         this.sortedData = data.data;
         this.parameter = data.data.realParameterInfo;
         this.data = this.parameter;
         // data bind graph 
-        this.userService.home_page_graph_bind().subscribe(data => {
+        this.userService.home_page_graph_bind(this.profilename).subscribe(data => {
 
           if (data.apiStatus.message === 'success') {
             //alert(JSON.stringify(data.data.labels));
             this.lineChartLabels = data.data.labels;
           }
+          else
+          this.lineChartLabels=[]
+          
         });
 
         this.graph('AAQMS-1 KPMI 3-4 NO2');

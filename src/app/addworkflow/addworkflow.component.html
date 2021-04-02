@@ -1,0 +1,119 @@
+<div id="wrapper">
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <app-header></app-header>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid" style="position: relative; height: 100vh;">
+                 <!-- Page Heading -->
+                 <div><span><button type="button" tooltip="Goto Back " class="mr-3 btn btny btn-default buttom-prim buttonsToShow"
+                  (click)="goback()" style="float: right ;">
+                    <i class="fa fa-arrow-circle-left"></i></button>
+                </span>
+                    <h4 class="mb-4">Add Workflows</h4>
+                       <!-- Sidebar -->
+                       
+                       <form>
+                        <div class="card">
+                          <div class="card-body">
+                            <div class="row" style="float: revert;padding-left: 6px;">
+                              <div class="col-md-3">
+                               <label>Event <span class="text-danger">*</span></label><br>
+                                 <input class="form-control">
+                              </div>
+                              <div class="col-md-3">
+                               <label>Site Name<span class="text-danger">*</span></label><br>
+                               <select class="form-control">
+                                 <option value="">Power Plant India Ltd</option>
+                               </select>
+                              </div>
+                              <div class="col-md-3">
+                               <label>Site Category<span class="text-danger">*</span></label><br>
+                               <select class="form-control">
+                                 <option value="all">All</option>
+                                 <option value="">Site Down</option>
+                                 <option value="">Analyser Maintenance</option>
+                                 <option value="">Analyser Calibration</option>
+                                 <option value="">Parameter Excedence</option>
+                                 <option value="">Site Maintenance</option>
+                                 <option value="">Power failure</option>
+                                 <option value="">Data Validation</option>
+                                 <option value="">Site Shutdown</option>
+                                 <option value="">Configuration Update</option>
+                               </select>
+                              </div>
+                              <div class="col-md-3">
+                                <label>Assigned To<span class="text-danger">*</span></label>
+                                <select class="form-control">
+                                 <option value="">All</option>
+                               <option value="">EpicCell</option>
+                               <option value="">OSPCB_Regulator</option>
+                               <option value="">OSPCB</option>
+                             </select>
+                            </div>
+                            </div><br><br>
+                            <div class="row" style="float: revert;padding-left: 6px;">
+                              <div class="col-md-3">
+                                <label>Start Time <span class="text-danger">*</span></label>
+                                <div style="margin-top: 10px" >
+                                    <p-calendar [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" showTime="true" hourFormat="12"></p-calendar>
+                                </div>
+                              </div>
+                            
+                            <div class="col-md-3">
+                                <label>End Time<span class="text-danger">*</span></label>
+                                <div style="margin-top: 10px;">
+                                  <p-calendar [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" showTime="true" hourFormat="12"></p-calendar>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                              <label>Time To Respond<span class="text-danger">*</span></label>
+                              <div style="margin-top: 10px;">
+                                <p-calendar [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" showTime="true" hourFormat="12"></p-calendar>
+                              </div>
+                          </div>
+                          <div class="col-md-3">
+                              <label>Time To Action<span class="text-danger">*</span></label>
+                              <div style="margin-top: 10px;">
+                                <p-calendar [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" showTime="true" hourFormat="12"></p-calendar>
+                              </div>
+                          </div>
+                        </div><br><br>
+                        <div class="row">
+                          <div class="col-md-3" style="margin-left:25px;">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                              Send a copy to Monitoring Cell
+                            </label>
+                          </div>
+                          <div class="col-md-3" style="margin-left:-1% !important;">
+                            <label>Description <span class="text-danger">*</span></label>
+                            <textarea class="form-control" id="floatingTextarea" style="width: 210%;"></textarea>
+                          </div>
+                          
+                        </div>
+                          </div>
+                        </div>
+                        <span><button type="button" class="mr-3 btn btny btn-default buttom-prim buttonsToShow" id="backbtn"
+                           style="float: right ;">save</button>
+                        </span>
+                       </form>
+                 </div>      
+
+        </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- End of Main Content -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->

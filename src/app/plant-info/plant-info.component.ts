@@ -27,12 +27,9 @@ export class PlantInfoComponent implements OnInit {
       this.profilename = this.storageService.getJsonValue('loggedInUserData').userName;
     }
     this.userService.homepage(this.profilename).subscribe(data => {
+      debugger
       if (data.apiStatus.message === 'success') {
-       
-       
       
-
-       
          this.company = data.data.district;
       this.powerplant = data.data.plantName;
         this.city = data.data.city;

@@ -1,0 +1,291 @@
+
+<div id="wrapper">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+         <!-- Main Content -->
+        <div id="content">
+             <!-- Topbar -->
+            <app-header></app-header>
+           <!--end of topbar-->
+
+            <div class="container-fluid" style="position: relative; height: 100vh;">
+                <!-- Page Heading -->
+                <div>
+                   
+                   
+               <div><span><button type="button" tooltip="Goto Back " routerLink="/regdetails" class="mr-3 btn btny btn-default buttom-prim buttonsToShow" id="backbtn"
+                (click)="goback()" style="float: left;">
+                <i class="fa fa-arrow-circle-left"></i></button>
+            </span>
+            
+                   <!-- Sidebar -->
+                </div>   
+             <h3 class="mb-4">Site Status</h3>
+                      <!-- Sidebar -->
+                      <div class="col-lg-12">
+                          <div class="row">
+                      <div class="col-md-3 pt-4 stndrop">
+                       
+                       <label>Site Status:</label><br>
+                       
+                      <select class="form-group" role="listbox" style="height: 40px; width: 100%;">
+                               <option>Active</option>
+                               <option>Delay</option>
+                               <option>Site Inactive</option>
+                               <option>Site Shoutdown</option>
+                               <option>All</option>
+                             
+                           </select>           
+                   </div>
+                   <div class="col-md-3 pt-4 stndrop">
+                
+                   <label>Exceedance Status:</label><br>
+                   
+                  <select class="form-group" role="listbox" style="height: 40px; width: 100%; padding-right: 20px;">
+                           <option>Excedence Detected</option>
+                           <option>No Excedence</option>
+                           <option>All</option>
+                       </select> 
+                       </div>
+                          </div>
+                    <div class="row-from-group">
+                        <div class="row">
+                      <div class="col-md-6">
+                        <ng-multiselect-dropdown
+                        [settings]="dropdownSettings"
+                        [data]="dropdownList"
+                        [(ngModel)]="selectedItems"
+                    >
+                    </ng-multiselect-dropdown>
+                     </div>
+                    
+                     <div class="col-md-2">
+                        <div class="dropdown">
+                          <button type="button" class=" d-sm-inline-block btn btn-sm btn-primary shadow-sm mb-4 dropdown-toggle" data-toggle="dropdown" style="background-color: #406ca4;">
+                              <i class="fas fa-download fa-sm text-white-50"></i> Download Reports
+                            </button>
+
+                          <div class="dropdown-menu">
+                              
+                             <a  class="dropdown-item"><i class="fa fa-file-excel-o"></i> As EXCEL</a>  
+                             <a class="dropdown-item"><i class="fa fa-file-pdf-o"></i> As Print</a>
+                  
+                          </div>
+                          <!-- &nbsp; &nbsp; &nbsp; &nbsp; -->
+                      </div>
+                  </div>
+      </div>
+    </div>
+                     <hr>
+                     <!-- <div class="table-responsive" style="padding-right:2px;">
+
+                        <table id="dtHorizontalExample" class="table table-striped table-bordered table-sm" cellspacing="0"
+                        width="100%">
+                           
+                            <thead>
+                            <tr>
+                                <th  *ngFor="let column of headers">
+                                        {{column}}
+                                </th>
+                            </tr>      
+                        </thead>
+                        <tbody >
+                           <tr>  
+                               <th class="snum-cell"></th>
+                                    <td  class="action-td" style="width: 100px;"></td>
+                                
+                                    <td  style="width: 300px;"><input  class=" form-control " placeholder="Search..." style="width: calc(100% - 0%); margin-top: 10px; margin-bottom: 10px;" type="text" id="siteName"></td>
+                                  <td><input  class="form-control" placeholder="Search..." style=" margin-top: 10px; margin-bottom: 10px;" type="text" id="siteLabel"></td>
+                                  <td><input  class="form-control" placeholder="Search..." style="margin-top: 10px; margin-bottom: 10px;" type="text" id="Street"></td>
+                                  <td><input  class="form-control" placeholder="Search..." style="margin-top: 10px; margin-bottom: 10px;" type="text" id="City"></td>
+                                  <td><input  class="form-control" placeholder="Search..." style=" margin-top: 10px; margin-bottom: 10px;" type="text" id="District"></td>
+                                  <td><input  class="form-control" placeholder="Search..." style=" margin-top: 10px; margin-bottom: 10px;" type="text" id="State"></td>
+                                  <td><input  class="form-control" placeholder="Search..." style=" margin-top: 10px; margin-bottom: 10px;" type="text" id="Industry Type"></td>
+                                  <td><input  class="form-control" placeholder="Search..." style=" margin-top: 10px; margin-bottom: 10px;" type="text" id="Last Synchronized"></td>
+                                  <td><input  class="form-control" placeholder="Search..." style=" margin-top: 10px; margin-bottom: 10px;" type="text" id="Site Status"></td>
+                                  <td><input  class="form-control" placeholder="Search..." style="margin-top: 10px; margin-bottom: 10px;" type="text" id="Excedence"></td>
+                                  <td><input  class="form-control" placeholder="Search..." style="margin-top: 10px; margin-bottom: 10px;" type="text" id="Vendor"></td>
+                                  <td><input  class="form-control" placeholder="Search..." style="margin-top: 10px; margin-bottom: 10px;" type="text" id="Site ID"></td>
+                                </tr>
+                        </tbody>
+                        <tr >
+                            <td>1</td>
+                            <td style="width:5%;"><button class=" btn-sm  btn-primary" title="View Data" data-toggle="modal" data-target="#myModal">
+                                <i class="fa fa-desktop"></i> </button> 
+                                <button class=" btn-sm  btn-primary" title="Real Time Dashboard" routerLink="/realtime-report">
+                                    <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                                </button> 
+                                
+                            </td>
+                            <td>		
+                                Grewal Associates (P) Ltd.</td>
+                                <td>gapl_keon</td>
+                                <td>Matkambeda</td>
+                                <td>Matkambeda</td>
+                                <td>Keonjhar</td>
+                                <td>Odisha</td>
+                                <td>IRON AND STEEL</td>
+                                <td>8 minutes ago</td>
+                                <td>Active</td>
+                                <td>Exceedence Detected</td>
+                                <td>Sunjray</td>
+                                <td>site_2944</td>
+                    
+                        </tr>
+                        
+                        </table>
+                        
+                     </div> -->
+                     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                        
+                         <!-- Position Column -->
+               <ng-container matColumnDef="id">
+                <th  class="header" mat-header-cell *matHeaderCellDef >Sl No</th>
+                <td *matCellDef="let element; let i = index;">{{element.id}}</td>
+
+             </ng-container>
+                        
+                        
+                        <ng-container matColumnDef="siteName">
+                          <th class="header" mat-header-cell *matHeaderCellDef>
+                            Site Name
+                            <mat-form-field class="filter" floatLabel="never">
+                              <mat-label>Search</mat-label>
+                              <input matInput [formControl]="nameFilter">
+                            </mat-form-field>
+                          </th>
+                          <td mat-cell *matCellDef="let element">{{element.siteName}}</td>
+                        </ng-container>
+                         <ng-container matColumnDef="street">
+                          <th class="header" mat-header-cell *matHeaderCellDef>
+                            Street
+                            <mat-form-field class="filter" floatLabel="never">
+                              <mat-label>Search</mat-label>
+                              <input matInput [formControl]="streetFilter">
+                            </mat-form-field>
+                          </th>
+                          <td mat-cell *matCellDef="let element">{{element.street}}</td>
+                        </ng-container> 
+                        <!-- <ng-container matColumnDef="favouriteColour">
+                          <th class="header" mat-header-cell *matHeaderCellDef>
+                            Favourite Colour
+                            <mat-form-field class="filter" floatLabel="never">
+                              <mat-label>Search</mat-label>
+                              <input matInput [formControl]="colourFilter">
+                            </mat-form-field>
+                          </th>
+                          <td mat-cell *matCellDef="let person">{{person.colour}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="pet">
+                          <th class="header" mat-header-cell *matHeaderCellDef>
+                            Pet
+                            <mat-form-field class="filter" floatLabel="never">
+                              <mat-label>Search</mat-label>
+                              <input matInput [formControl]="petFilter">
+                            </mat-form-field>
+                          </th>
+                          <td mat-cell *matCellDef="let person">{{person.pet}}</td>
+                        </ng-container> -->
+                        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+                        <tr mat-row *matRowDef="let person; columns: columnsToDisplay"></tr>
+                      </table>
+                    
+                        
+                        <div class="container">
+                            <style>
+                                @media screen and (min-width: 776px) {
+                                    .modal-dialog {
+                                      max-width: 1500px; /* New width for default modal */
+                                      max-height: 100%;
+                                      margin-right: 100px;
+                                      margin-left: 100px;
+                                    }
+                                }
+                            </style>
+                            
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal" role="dialog"  style="position: relative; height: 100vh;">
+                                <div class="modal fade show" data-backdrop="static" id="realtime-details-popup" aria-modal="true" style="display: block;">
+                              
+                                <!-- Modal content-->
+                                <div  class="modal-dialog full-screen">
+                                <div class="modal-content" >
+                                  <div class="modal-header">
+                                   
+                                    <button type="button" class="btn bar-chart-icon p-0" data-dismiss="modal" title="bar-chart" tabindex="0">
+                                        <i  class="fa fa-bar-chart"></i></button>
+                                        <button type="button" class="btn dashboard-icon p-0" data-dismiss="modal" title="Alarms Notification"  tabindex="0">
+                                        <i  class="fa fa-bell"></i></button>
+                                       
+                                    
+                                    <h4 class="modal-title"> Grewal Associates (P) Ltd. </h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                  </div>
+                                  <div class="modal-body">
+                                 
+                                        <div class="row">
+                                            <div class="col-md-10">
+                                                <div class="row">
+                                                    <div class="col-md-2">
+                                                        <label class="site-label" style="color: black;"> City
+
+                                                        </label>
+                                                    </div><div class="col-md-9"> Matkambeda </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-2">
+                                                        <label class="site-label" style="color: black;"> District
+
+                                                        </label>
+                                                    </div><div class="col-md-9"> Keonjhar </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-2">
+                                                        <label class="site-label" style="color: black;"> Message <br>
+
+                                                        </label> <br>
+                                                    </div><br><div class="col-md-9"> Site is active.<br>
+                                                        1/4 Parameters are active.
+                                                        <br>
+                                                        Site is active.
+                                                        <br>
+                                                        Alarms are detected. </div>
+                                                </div>
+                                            </div>
+                                        </div>
+           
+                                 <app-recordview></app-recordview>
+                                  </div>
+                                  
+                                  
+                                </div>
+                                </div>
+                              </div>
+                            </div>
+                            
+                          </div>
+                             
+ 
+                     </div>
+                        
+
+</div>
+ </div>
+   <!-- End of Main Content -->
+   <!-- Footer -->
+ <footer class="sticky-footer bg-white" style="padding-top: 50px;">
+    <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Assam Polution Control Board | 2020</span>
+        </div>
+    </div>
+
+</footer>
+
+
+<!-- End of Footer -->
+</div>
+<!-- End of Content Wrapper -->
+</div>
+

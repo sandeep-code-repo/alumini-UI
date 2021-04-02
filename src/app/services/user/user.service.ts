@@ -8,6 +8,7 @@ import { Login } from 'src/app/login';
 import { Subject } from 'rxjs';
 import { Data } from '@angular/router';
 import { FilterChart } from '../../model/filterchart.model';
+import {ISitestatus} from '../../model/siteStatus'
 @Injectable()
 export class UserService {
 
@@ -18,7 +19,7 @@ export class UserService {
    getIndustryUrl: string = this.baseURL+"/industry/";
    registrationUrl: string = this.baseURL+"/register";
    updateUserUrl: string = this.baseURL+"/updateUser";
-   
+   liveStatusUrl:string = this.baseURL+"/getAllLiveStatus"
    passwordResetUrl: string = this.baseURL+"/savePassword";
    helpUrl: string = this.baseURL+"/addFeedbackDetails";
    plantDetailsUrl:string=this.baseURL+"/getPlantDetails"
@@ -26,7 +27,9 @@ export class UserService {
    public userData:any;
    private subject = new Subject<any>();
    responseData: any;
-
+   httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' ,'Access-Control-Allow-Origin':'*',})
+    };
    constructor(private httpclient: HttpClient) { 
    }
 
@@ -75,16 +78,22 @@ export class UserService {
       });
 
    }
-updatePlantService(industry: Industry):
-Observable<any> {
-   const headers = { 'content-type': 'application/json' }
+updatePlantService(industry: Industry):Observable<any> {
+   const headers = new HttpHeaders()
+         .set('content-type', 'application/json')
+         .set('Access-Control-Allow-Origin', '*')
+         .set('Access-Control-Allow-Methods', 'put')
+         .set('Access-Control-Allow-Headers', '*')
+         .set('Access-Control-Allow-Credentials', 'true');
+   
+   //const headers = { 'content-type': 'application/json' }
    const body = JSON.stringify(industry);
 
-   return this.httpclient.post<any>(this.updateUserUrl, body, {
-      'headers': headers
-   });
+   return this.httpclient.put<any>(this.updateUserUrl, body, this.httpOptions
+      );
 
 }
+   
 
    //************help page************
 
@@ -209,7 +218,7 @@ Observable<any> {
       const headers = { 'content-type': 'application/json' }
      
 
-      return this.httpclient.post<any>('http://117.211.75.160:8086/rest/api/getRealPollutantLevelInfos/', {
+      return this.httpclient.post<any>(this.baseURL +'/getRealPollutantLevelInfos/', {
          'plantId': 'hindalco_lpng'
 
       },
@@ -219,13 +228,13 @@ Observable<any> {
    }
 
 
-   home_page_graph_bind(): Observable<any> {
+   home_page_graph_bind(plantId:string): Observable<any> {
 
       const headers = { 'content-type': 'application/json' }
       
 
-      return this.httpclient.post<any>('http://117.211.75.160:8086/rest/api/getRealPollutantLevelGraphData', {
-         "plantId": "hindalco_lpng",
+      return this.httpclient.post<any>(this.baseURL +'/getRealPollutantLevelGraphData', {
+         "plantId": plantId,
          "parameterCode": "NO2",
          "recordedTime": "2020-11-14 03:46:00"
 
@@ -246,7 +255,7 @@ Observable<any> {
       const headers = { 'content-type': 'application/json' }
 
 
-      return this.httpclient.post<any>('http://117.211.75.160:8086/rest/api/saveExcelRegistration/', {},
+      return this.httpclient.post<any>(this.baseURL +'/saveExcelRegistration/', {},
          {
             'headers': headers
          });
@@ -277,7 +286,9 @@ Observable<any> {
       );
 
    }
-
+   getsiteStatus(plantId:string,siteStatus:string,exceedanceStatus:string){
+      return this.httpclient.get<any>(this.liveStatusUrl+'?plantId='+plantId+'&plantStatus='+ siteStatus+'&exceedanceStatus='+ exceedanceStatus)
+   }
 
 }
 

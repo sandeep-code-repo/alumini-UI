@@ -191,7 +191,7 @@
 
 
             <!-- Content Row -->
-            <div class="container-fluid">
+            <div class="container-fluid" *ngIf="lineChartLabels?.length ; else elseTemplate">
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 
 
@@ -231,7 +231,7 @@
 
                             </div>
 
-                            <div>
+                            <div >
                                 <canvas id="random-chart" baseChart width="400" height="65" [datasets]="lineChartData"
                                     [labels]="lineChartLabels" [colors]="lineChartColors" [chartType]="lineChartType"
                                     chart-options="options" hidden>
@@ -724,7 +724,14 @@
                     </div>
                 </div>
             </div>
+            <ng-template #elseTemplate class="container-fluid">
+                <div class="form-group ml-auto col-sm-2 p-0 ml-5">
 
+                    No Data For Now
+                </div>
+                  
+                
+             </ng-template>
 
         </div>
 

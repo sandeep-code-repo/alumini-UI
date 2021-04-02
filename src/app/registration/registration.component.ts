@@ -61,7 +61,7 @@ export class RegistrationComponent implements OnInit {
         if(res.apiStatus.message === 'success') 
         {
           this.industry=res.data;
-         console.log(this.industry)
+         
           this.processForm = this.formBuilder.group({
             
             stationInfo: this.formBuilder.group({
@@ -336,7 +336,7 @@ if
     Object.assign(this.industry.userInfoMapper, { userRole: this.userRole })
     this.industry.regstatus = 'Register'
     //console.log(this.industry)
-    const register = this.userService.registrationService(this.industry).subscribe(data => {
+     this.userService.registrationService(this.industry).subscribe(data => {
 
       if (data.apiStatus.message === 'success') {
         this.message = "Registration Successfull"
@@ -354,19 +354,19 @@ if
   }
   update(){
     this.submitted = true;
-    //console.log(this.add_industry)
+    
     // if (this.add_industry.invalid) {
 
     //   return;
     // }
 
 
-    this.industry = this.add_industry.value
-   
+    this.industry = this.add_industry.getRawValue()
+    
 if 
 (this.stationinfomap.length>0 && this.stationinfomap[0].stationInfo.stationId!='')
     this.industry.stationInfoMapper = this.stationinfomap;
-    console.log(this.industry)
+   
     if (!this.industry.stationInfoMapper)
     this.industry.userInfoMapper.userInfo.regStatus = false
   else
@@ -376,21 +376,21 @@ if
     Object.assign(this.industry.userInfoMapper, { userRole: this.userRole })
     this.industry.regstatus = 'Register'
    
-    // const register = this.userService.updatePlantService(this.industry).subscribe(data => {
+    this.userService.updatePlantService(this.industry).subscribe(data => {
 
-    //   if (data.apiStatus.message === 'success') {
-    //     this.message = "Update Successfull"
-    //     this.add_industry.reset();
-    //     this.processForm.reset();
-    //     this.stationinfomap=[]
-    //     this.stationinfomap.push(this.processForm.value);
-    //     this.submitted=false;
-    //   } else {
-    //     this.message = "Update Failed"
+      if (data.apiStatus.message === 'success') {
+        this.message = "Update Successfull"
+        this.add_industry.reset();
+        this.processForm.reset();
+        this.stationinfomap=[]
+        this.stationinfomap.push(this.processForm.value);
+        this.submitted=false;
+      } else {
+        this.message = "Update Failed"
         
-    //   }
+      }
 
-    // });
+    });
     
   }
   stack(option: string) {
