@@ -28,7 +28,7 @@
 
 
 
-<div class="row mb-6" style="float:left;padding-right: 500px;">
+<!-- <div class="row mb-6" style="float:left;padding-right: 500px;">
     <div class="col-xl-12">
       <form #excedenceForm="ngForm">
         <div class="row" *ngIf=industryData>
@@ -109,9 +109,9 @@
         </form>
     </div>
     <!-- </form> -->
-</div>
+<!-- </div> --> 
   <!-- Content Row -->
-  <div class="d-sm-flex align-items-center col-sm-11 justify-content-between mb-4">
+  <!-- <div class="d-sm-flex align-items-center col-sm-11 justify-content-between mb-4">
                     
     <div class="dropdown">
         <button type="button" class="btn btn-sm btn-primary shadow-sm mb-4" id="addworkflow" (click)="addworkflow()">
@@ -126,70 +126,110 @@
 
       </div>
     </div> 
-</div> 
+</div>  -->
 <!-- table start -->
-    <ng-multiselect-dropdown
-    [placeholder]="'custom placeholder'"
-    [settings]="dropdownSettings"
-    [data]="dropdownList"
-    [(ngModel)]="selectedItems"
-    (onSelect)="onItemSelect($event)"
-    (onSelectAll)="onSelectAll($event)" class="multidropdown">
-  </ng-multiselect-dropdown>
+<!-- <div class="card" style="height: 60px;">-->
+<!-- <form [formGroup]="form">  -->
+   <mat-form-field class="form-group" appearance="none" >
+    <mat-select class="form-control"  [formControl]="columnsChecked" multiple (selectionChange)="onSelcetColumn()" >
+      <mat-option *ngFor="let cd of columnDefinitions" [value]="cd.def">{{cd.label}}</mat-option>
+    </mat-select>
+  </mat-form-field> 
+  <!-- <mat-checkbox *ngFor="let cd of columnDefinitions"  [formControlName]="cd.def">{{cd.label}}</mat-checkbox> -->
 
-  <div class="table-responsive" style="padding-right:2px;">
-    <div class="row my-3">
-        <mat-form-field>
-           <mat-label>Filter</mat-label>
-           <input matInput placeholder="Ex. ium" #input>
-        </mat-form-field>
-     </div>
-  <table id="dtHorizontalExample" class="table table-striped table-bordered table-sm" cellspacing="0"
-  width="100%">
-  <thead>
-    <tr>
-      <th>S.No</th>
-        <th>Action </th> 
-        <th>Site Name</th>
-        <th>City</th>
-        <th>Station Type</th>
-        <th>Station Name</th>
-        <th>Event</th>
-        <th>Category</th>
-        <th>End time</th>
-        <th>Time To Respond</th>
-        <th>Time To Action</th>
-        <th>Status</th>
-        <th>Assigned To</th>
-        <th>Last Acted By</th>
-        <th>Visibility</th>
-        <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td><button class="btn-primary" routerLink="/updateworkflow"><i class="fa fa-eye"></i></button></td>
-      <td>Grewal Associates (P)Ltd.</td>
-      <td>Matkambeda</td>
-      <td>Emission</td>
-      <td>CEMS_1</td>
-      <td>bb</td>
-      <td>Site Down</td>
-      <td>3/22/2021,4:18 PM</td>
-      <td>3/27/2021,4:18 PM</td>
-      <td>3/27/2021,4:18 PM</td>
-      <td>Not Started</td>
-      <td>EpicCell</td>
-      <td>GrewalAPL</td>
-      <td></td>
-      <td>bnb</td>
-    </tr>
-  </tbody>
-</table>
-  <p style="float: right;">Total Record:1</p>
-</div>
- <!-- Table end -->
+
+
+
+<!-- </form><br><br> -->
+<!-- </div> -->
+
+<mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+</mat-form-field>
+<mat-table class="mat-table" [dataSource]="dataSource">
+
+<ng-container matColumnDef="slno">
+  <mat-header-cell *matHeaderCellDef class="table-heading" >S.No</mat-header-cell>
+  <mat-cell *matCellDef="let row;" class="matcell">{{row.slno}}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="action">
+  <mat-header-cell *matHeaderCellDef class="table-heading">Action</mat-header-cell>
+  <mat-cell *matCellDef="let row;" class="matcell"><a href="#/updateworkflow"><i class="fa fa-eye" aria-hidden="true"></i></a></mat-cell>
+</ng-container>
+<ng-container matColumnDef="siteName">
+  <mat-header-cell *matHeaderCellDef class="table-heading">Site Name</mat-header-cell>
+  <mat-cell *matCellDef="let row;" class="matcell">{{row.siteName}}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="city">
+  <mat-header-cell *matHeaderCellDef class="table-heading">	City</mat-header-cell>
+  <mat-cell *matCellDef="let row;" class="matcell">{{row.city}}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="stationType">
+  <mat-header-cell *matHeaderCellDef class="table-heading">Station Type</mat-header-cell>
+  <mat-cell *matCellDef="let row;" class="matcell">{{row.stationType}}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="stationName">
+  <mat-header-cell *matHeaderCellDef class="table-heading">Station Name</mat-header-cell>
+  <mat-cell *matCellDef="let row;" class="matcell">{{row.stationName}}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="event">
+  <mat-header-cell *matHeaderCellDef class="table-heading">Event</mat-header-cell>
+  <mat-cell *matCellDef="let row;" class="matcell">{{row.event}}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="category">
+  <mat-header-cell *matHeaderCellDef class="table-heading">Category</mat-header-cell>
+  <mat-cell *matCellDef="let row;" class="matcell">{{row.category}}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="startTime">
+  <mat-header-cell *matHeaderCellDef class="table-heading">Start Time</mat-header-cell>
+  <mat-cell *matCellDef="let row;" class="matcell">{{row.startTime}}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="endTime">
+  <mat-header-cell *matHeaderCellDef class="table-heading">End time</mat-header-cell>
+  <mat-cell *matCellDef="let row;" class="matcell">{{row.endTime}}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="timetoRespond">
+  <mat-header-cell *matHeaderCellDef class="table-heading">Time To Respond</mat-header-cell>
+  <mat-cell *matCellDef="let row;" class="matcell">{{row.timetoRespond}}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="timetoAction">
+  <mat-header-cell *matHeaderCellDef class="table-heading">Time To Action</mat-header-cell>
+  <mat-cell *matCellDef="let row;" class="matcell">{{row.timetoAction}}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="status">
+  <mat-header-cell *matHeaderCellDef class="table-heading">Status</mat-header-cell>
+  <mat-cell *matCellDef="let row;" class="matcell">{{row.status}}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="assignedTo">
+  <mat-header-cell *matHeaderCellDef class="table-heading">Assigned To</mat-header-cell>
+  <mat-cell *matCellDef="let row;" class="matcell">{{row.assignedTo}}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="lastActBy">
+  <mat-header-cell *matHeaderCellDef class="table-heading">Last Acted By</mat-header-cell>
+  <mat-cell *matCellDef="let row;" class="matcell">{{row.lastActBy}}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="visibility">
+  <mat-header-cell *matHeaderCellDef class="table-heading">Visibility</mat-header-cell>
+  <mat-cell *matCellDef="let row;" class="matcell">{{row.visibility}}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="description">
+  <mat-header-cell *matHeaderCellDef class="table-heading">Description</mat-header-cell>
+  <mat-cell *matCellDef="let row;" class="matcell">{{row.description}}</mat-cell>
+</ng-container>
+<mat-header-row *matHeaderRowDef="columns">
+</mat-header-row>
+<mat-row *matRowDef="let row; columns: columns"></mat-row>
+</mat-table>
+
+<mat-paginator [length]="100"
+[pageSize]="5"
+[pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator>
+
+
+
+<!-- Table end -->
 
 
         </div>

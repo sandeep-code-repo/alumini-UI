@@ -7,8 +7,7 @@
             <i class="fas fa-download fa-sm text-white-50"></i> Download Reports
           </button>
           <div class="dropdown-menu">
-            <a  class="dropdown-item" href="http://117.211.75.160:8086
-/rest/api/getSMSReport/download?from=2020-11-12%2011:17:02&to=2020-11-12%2011:17:03" ><i class="fa fa-file-excel-o"></i> As EXCEL</a>
+            <a  class="dropdown-item"(click)="downloadExcelreport()" ><i class="fa fa-file-excel-o"></i> As EXCEL</a>
             <a class="dropdown-item" (click)="print(chartImage)"><i class="fa fa-file-pdf-o"></i> As Print</a>
    
           </div>
@@ -20,11 +19,11 @@
 <p-chart #chartImage  type="bar" [data]="dataSource" [options]="chartOptions"></p-chart>
 </div>
  <!-- Footer -->
- <footer class="sticky-footer bg-white" style="padding-top: 50px;">
+ <!-- <footer class="sticky-footer bg-white" style="padding-top: 50px;">
   <div class="container my-auto">
       <div class="copyright text-center my-auto">
           <span>Copyright &copy; Assam Polution Control Board | 2020</span>
       </div>
   </div>
-</footer>
+</footer> -->
 <!-- End of Footer -->

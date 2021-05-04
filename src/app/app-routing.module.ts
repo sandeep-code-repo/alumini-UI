@@ -20,15 +20,19 @@ import { SmsTableComponent } from './excedence-report/sms-table/sms-table.compon
 import { AddworkflowComponent } from './addworkflow/addworkflow.component';
 import { SiteStatusComponent } from './site-status/site-status.component';
 import { WorkflowComponent } from './workflow/workflow.component';
-
+import {UpdateworkflowComponent} from './updateworkflow/updateworkflow.component';
+import{ NotfoundComponent} from './notfound/notfound.component'
+import { AuthGuard } from './auth.guard';
 // Parent Routes
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
-    canActivate: [AuthService],
+    pathMatch: "full", 
+    redirectTo: 'login'
+    //canActivate: [AuthGuard],
 
   },
+  
   {
     path: 'login',
     component: LoginComponent
@@ -46,14 +50,14 @@ const routes: Routes = [
     path: 'registration',
     component: RegistrationComponent
   },
-  {
-    path: 'add',
-    component: HomeComponent
-  },
-  {
-    path: 'home',
-    component: HomeComponent
-  },
+  // {
+  //   path: 'add',
+  //   component: HomeComponent
+  // },
+  // {
+  //   path: 'home',
+  //   component: HomeComponent
+  // },
   {
     path: 'forgetpassword',
     component: ForgetpasswordComponent
@@ -73,24 +77,26 @@ const routes: Routes = [
 
   }
   ,
-
-
   {
     path: 'dashboard',
-    component: DashboardComponent
+    component: DashboardComponent,
+    canActivate:  [AuthGuard]
 
   },
   {
     path: 'realtime-report',
-    component: RealtimeReportComponent
+    component: RealtimeReportComponent,
+    canActivate:  [AuthGuard]
   },
   {
     path: 'trends',
-    component: TrendsComponent
+    component: TrendsComponent,
+    canActivate:  [AuthGuard]
   },
   {
     path: 'excedence-report',
     component: ExcedenceReportComponent,
+    canActivate:  [AuthGuard],
     children: [
       {
         path: 'smsDatatable', // child route path
@@ -104,7 +110,8 @@ const routes: Routes = [
   },
   {
     path: 'site-status',
-  component:SiteStatusComponent
+  component:SiteStatusComponent,
+  canActivate:  [AuthGuard]
   },
   // {
   //   path:'mapview',
@@ -112,13 +119,22 @@ const routes: Routes = [
   // },
   {
     path:'workflow',
-    component:WorkflowComponent
+    component:WorkflowComponent,
+    canActivate:  [AuthGuard]
   },
   {
     path:'addworkflow',
-    component:AddworkflowComponent
-  }
-  
+    component:AddworkflowComponent,
+    canActivate:  [AuthGuard]
+  },
+  {
+    path:'updateworkflow',
+    component:UpdateworkflowComponent,
+    canActivate:  [AuthGuard]
+  },
+  //This will be always in last
+  {path: '404', component: NotfoundComponent},
+   {path: '**', redirectTo: '/404'},
 ];
 
 @NgModule({

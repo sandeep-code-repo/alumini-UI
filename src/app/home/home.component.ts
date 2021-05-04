@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { routerTransition } from '../services/config/config.service';
+//import { routerTransition } from '../services/config/config.service';
 import { RouterModule, Routes, Router } from '@angular/router';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 import { UserService } from '../services/user/user.service';
-import {Pipe, PipeTransform} from '@angular/core';
+//import {Pipe, PipeTransform} from '@angular/core';
 
 
 

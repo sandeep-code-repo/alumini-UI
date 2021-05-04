@@ -72,7 +72,12 @@ import { SiteStatusComponent } from './site-status/site-status.component';
 import { WorkflowComponent } from './workflow/workflow.component';
 import { AddworkflowComponent } from './addworkflow/addworkflow.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-import {RecordviewComponent} from './site-status/recordview/recordview.component'
+import {RecordviewComponent} from './site-status/recordview/recordview.component';
+import { FooterComponent } from './footer/footer.component'
+import { UpdateworkflowComponent } from './updateworkflow/updateworkflow.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { NotfoundComponent } from './notfound/notfound.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -100,8 +105,10 @@ import {RecordviewComponent} from './site-status/recordview/recordview.component
 		//MapviewComponent,
 		WorkflowComponent,
 		AddworkflowComponent,
-		RecordviewComponent
-		
+		RecordviewComponent,
+		FooterComponent,
+		UpdateworkflowComponent,
+		NotfoundComponent
 
 	],
 	imports: [
@@ -133,7 +140,9 @@ import {RecordviewComponent} from './site-status/recordview/recordview.component
 		DropdownModule,ChartModule,
 		MatToolbarModule,
 		MatTabsModule,
-		NgMultiSelectDropDownModule
+		NgMultiSelectDropDownModule,
+		MatProgressBarModule
+
 		
 	],
 	providers: [AuthService, UserService, IndustryDropDown, ExcelService],

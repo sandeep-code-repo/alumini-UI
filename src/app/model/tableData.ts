@@ -1,3 +1,5 @@
+import { FilterChart } from "./filterchart.model";
+
 export interface ITabledata{
   "id": number;
   "industryCategory": string;
@@ -16,4 +18,5 @@ export interface ITabledata{
 "createdDt":number;
 "lastModifiedBy":string;
 "lastModifiedDt":string;
+"filter":FilterChart
 }

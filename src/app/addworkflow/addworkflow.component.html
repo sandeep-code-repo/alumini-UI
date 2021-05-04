@@ -26,17 +26,17 @@
                             <div class="row" style="float: revert;padding-left: 6px;">
                               <div class="col-md-3">
                                <label>Event <span class="text-danger">*</span></label><br>
-                                 <input class="form-control">
+                                 <input class="form-control" name="Event">
                               </div>
                               <div class="col-md-3">
                                <label>Site Name<span class="text-danger">*</span></label><br>
-                               <select class="form-control">
+                               <select class="form-control" name="sitename">
                                  <option value="">Power Plant India Ltd</option>
                                </select>
                               </div>
                               <div class="col-md-3">
                                <label>Site Category<span class="text-danger">*</span></label><br>
-                               <select class="form-control">
+                               <select class="form-control" name="sitecategory">
                                  <option value="all">All</option>
                                  <option value="">Site Down</option>
                                  <option value="">Analyser Maintenance</option>
@@ -51,7 +51,7 @@
                               </div>
                               <div class="col-md-3">
                                 <label>Assigned To<span class="text-danger">*</span></label>
-                                <select class="form-control">
+                                <select class="form-control" name="assignto">
                                  <option value="">All</option>
                                <option value="">EpicCell</option>
                                <option value="">OSPCB_Regulator</option>
@@ -63,26 +63,26 @@
                               <div class="col-md-3">
                                 <label>Start Time <span class="text-danger">*</span></label>
                                 <div style="margin-top: 10px" >
-                                    <p-calendar [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" showTime="true" hourFormat="12"></p-calendar>
+                                    <p-calendar [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" showTime="true" hourFormat="12" name="starttime"></p-calendar>
                                 </div>
                               </div>
                             
                             <div class="col-md-3">
                                 <label>End Time<span class="text-danger">*</span></label>
                                 <div style="margin-top: 10px;">
-                                  <p-calendar [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" showTime="true" hourFormat="12"></p-calendar>
+                                  <p-calendar [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" showTime="true" hourFormat="12" name="endtime"></p-calendar>
                                 </div>
                             </div>
                             <div class="col-md-3">
                               <label>Time To Respond<span class="text-danger">*</span></label>
                               <div style="margin-top: 10px;">
-                                <p-calendar [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" showTime="true" hourFormat="12"></p-calendar>
+                                <p-calendar [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" showTime="true" hourFormat="12" name="timetorespond"></p-calendar>
                               </div>
                           </div>
                           <div class="col-md-3">
                               <label>Time To Action<span class="text-danger">*</span></label>
                               <div style="margin-top: 10px;">
-                                <p-calendar [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" showTime="true" hourFormat="12"></p-calendar>
+                                <p-calendar [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" showTime="true" hourFormat="12" name="timetoaction"></p-calendar>
                               </div>
                           </div>
                         </div><br><br>
@@ -95,15 +95,19 @@
                           </div>
                           <div class="col-md-3" style="margin-left:-1% !important;">
                             <label>Description <span class="text-danger">*</span></label>
-                            <textarea class="form-control" id="floatingTextarea" style="width: 210%;"></textarea>
+                            <textarea class="form-control" id="floatingTextarea" style="width: 210%;" name="textarea"></textarea>
                           </div>
                           
                         </div>
                           </div>
                         </div>
+                        
                         <span><button type="button" class="mr-3 btn btny btn-default buttom-prim buttonsToShow" id="backbtn"
                            style="float: right ;">save</button>
                         </span>
+                        <span><button type="button" class="mr-3 btn btny btn-default buttom-prim buttonsToShow" id="cancelbtn"
+                          style="float: right ;">cancel</button>
+                       </span>
                        </form>
                  </div>      
 

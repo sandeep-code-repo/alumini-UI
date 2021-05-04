@@ -4,6 +4,7 @@ import { WorkflowModel } from '../model/workflow.model';
 import { Router } from '@angular/router';
 
 
+
 @Component({
   selector: 'app-addworkflow',
   templateUrl: './addworkflow.component.html',
@@ -11,15 +12,15 @@ import { Router } from '@angular/router';
   providers:[DatePipe]
 })
 export class AddworkflowComponent implements OnInit {
-  model=new WorkflowModel("","","","",new Date(),new Date());
-
-
+    model=new WorkflowModel("","","","",new Date(),new Date());
   constructor(private router: Router, public datepipe: DatePipe) { }
 
   ngOnInit(): void {
-    
+   
   }
   goback() {
     this.router.navigateByUrl("/workflow");
   }
 }
+
+

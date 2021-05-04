@@ -8,10 +8,9 @@ export class IndustryDropDown {
   industryList: any;
   constructor(private http: HttpClient) {}
  
-  private getCategoryURL: string = 'http://117.211.75.160:8086
-/rest/api/industry/dropdownIndustryList'
-  private getIndustryByCategoryURL: string ='http://117.211.75.160:8086
-/rest/api/getAllPlants/?category='
+  private getCategoryURL: string = 'http://117.211.75.160:8086/rest/api/industry/dropdownIndustryList';
+  private getIndustryByCategoryURL: string ='http://117.211.75.160:8086/rest/api/getAllPlants/?category=';
+  
   getIndustryCategory(){
     return this.http.get(this.getCategoryURL).map(data => {
       

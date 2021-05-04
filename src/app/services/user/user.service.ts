@@ -16,6 +16,7 @@ export class UserService {
    private baseURL: string = "http://117.211.75.160:8086/rest/api";
    loginurl: string = this.baseURL+"/login/";
    smsReporturl=this.baseURL+"/getSMSReport"
+   smsReportexcelDownload=this.baseURL+"/getSMSReport/download"
    getIndustryUrl: string = this.baseURL+"/industry/";
    registrationUrl: string = this.baseURL+"/register";
    updateUserUrl: string = this.baseURL+"/updateUser";
@@ -24,6 +25,8 @@ export class UserService {
    helpUrl: string = this.baseURL+"/addFeedbackDetails";
    plantDetailsUrl:string=this.baseURL+"/getPlantDetails"
    getParameterByStationUrl:string=this.baseURL+"/getPrameterFromStation"
+   getWorkflowDetailsUrl:string=this.baseURL+"/getWorkflowDetails";
+   
    public userData:any;
    private subject = new Subject<any>();
    responseData: any;
@@ -66,7 +69,10 @@ export class UserService {
    gettableData(filterData:FilterChart): Observable<any>{
       return this.httpclient.post<any>(this.smsReporturl,filterData)
    }
-
+   getExcelReportSMS(filterData:FilterChart): Observable<any>{
+      return this.httpclient.get(this.smsReportexcelDownload+'?plantId='+filterData.plantId+'&stationId='+filterData.stationId+'&parameter='+filterData.parameter+'&from='+filterData.fromDate+'&to='+filterData.toDate,{ responseType: 'blob'})
+     
+   }
    //*************Registration Service**************//
   
    registrationService(industry: Industry): Observable<any> {
@@ -129,6 +135,9 @@ updatePlantService(industry: Industry):Observable<any> {
 
 
       const headers = new HttpHeaders()
+
+
+
          .set('content-type', 'application/json')
          .set('Access-Control-Allow-Origin', '*')
          .set('Access-Control-Allow-Methods', 'post')
@@ -288,6 +297,17 @@ updatePlantService(industry: Industry):Observable<any> {
    }
    getsiteStatus(plantId:string,siteStatus:string,exceedanceStatus:string){
       return this.httpclient.get<any>(this.liveStatusUrl+'?plantId='+plantId+'&plantStatus='+ siteStatus+'&exceedanceStatus='+ exceedanceStatus)
+   }
+   //for workflow api
+   workflowpage():Observable<any>{
+      const headers={'content-type':'application/json'}
+
+      return this.httpclient.post<any>(this.baseURL + '/getWorkflowDetails/',{
+
+      },
+         {
+            'headers':headers
+         })
    }
 
 }

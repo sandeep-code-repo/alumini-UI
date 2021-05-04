@@ -1,0 +1,32 @@
+.card-holder{
+    /* other base styles go here */
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+.example-card {
+    max-width: 400px;
+    //justify-content: center;
+    //align-items: center;
+  }
+  .mat-card-title{
+    margin-left: 40px !important; 
+  }
+  .mat-card-image{
+    margin-left: 60px !important;
+    height: 80px;
+    width: 80px;
+  }
+//   .mat-card-title{
+//     justify-content: center;
+//   }
+  .example-header-image {
+      
+    //background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+  .button-container{
+    margin-left: 70px !important; 
+  }
+  

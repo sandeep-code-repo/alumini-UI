@@ -71,7 +71,7 @@ export class DashboardComponent implements OnInit {
   constructor(private router: Router, private userService: UserService, private storageService: LocalServiceService) { }
 
   ngOnInit(): void {
-
+   
     if (localStorage.isLogin) {
       //this.isLogin= this.storageService.getJsonValue('isLogin')
       this.profilename = this.storageService.getJsonValue('loggedInUserData').userName;
@@ -81,21 +81,24 @@ export class DashboardComponent implements OnInit {
     this.userService.homepage(this.profilename).subscribe(data => {
      
       if (data.apiStatus.message === 'success') {
+        
         this.sortedData = data.data;
         this.parameter = data.data.realParameterInfo;
         this.data = this.parameter;
+       
         // data bind graph 
         this.userService.home_page_graph_bind(this.profilename).subscribe(data => {
 
           if (data.apiStatus.message === 'success') {
             //alert(JSON.stringify(data.data.labels));
             this.lineChartLabels = data.data.labels;
+            console.log(this.lineChartLabels)
           }
           else
           this.lineChartLabels=[]
           
         });
-
+        
         this.graph('AAQMS-1 KPMI 3-4 NO2');
         this.company = data.data.district;
         this.powerplant = data.data.plantName;

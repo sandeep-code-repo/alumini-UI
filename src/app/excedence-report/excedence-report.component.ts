@@ -106,6 +106,7 @@ tableData:ITabledata[]
       stationId: stations.replace(/,(\s+)?$/, ''),
       parameter: pararmeters.replace(/,(\s+)?$/, '')
     }
+    //this.tableData[0].filter=this.filterData;
     this.userService.gettableData(this.filterData).subscribe(result => {
   
       this.tableData= result.data

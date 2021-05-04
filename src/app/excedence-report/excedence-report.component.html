@@ -116,7 +116,7 @@
  </div> 
  
   <mat-tab-group *ngIf=tableData>
-    <mat-tab label="Chart View"><app-bar-chart  [chartData]="tableData"></app-bar-chart> </mat-tab>
+    <mat-tab label="Chart View"><app-bar-chart [filters]="filterData"  [chartData]="tableData"></app-bar-chart> </mat-tab>
     <mat-tab label="Table View"><app-sms-table [tableData]="tableData"></app-sms-table></mat-tab>
   </mat-tab-group>
   
@@ -134,14 +134,14 @@
 
     </div>
     <!-- End of Content Wrapper -->
-
+   
 </div>
 <!-- End of Page Wrapper -->
-
+<app-footer></app-footer>
 <!-- Scroll to Top Button-->
 <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
 </a>
-<router-outlet></router-outlet>
+ <router-outlet></router-outlet>
 
 

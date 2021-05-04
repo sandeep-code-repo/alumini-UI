@@ -1,14 +1,23 @@
+import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
+import { FilterChart } from 'src/app/model/filterchart.model';
 import { UserService } from 'src/app/services/user/user.service';
-
+import { ExcelService } from '../../services/common/excel.service';
+import * as FileSaver from 'file-saver';
+const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';  
+const EXCEL_EXTENSION = '.xlsx'; 
 @Component({
   selector: 'app-bar-chart',
   templateUrl: './bar-chart.component.html',
-  styleUrls: ['./bar-chart.component.scss']
+  styleUrls: ['./bar-chart.component.scss'],
+  providers:[DatePipe]
 })
+
 export class BarChartComponent implements OnInit {
   dataSource: any;
+  excel=[];
   @Input() chartData:Param[];
+  @Input() filters:FilterChart;
   public chartOptions = {
     scales: {
       yAxes: [{
@@ -21,7 +30,7 @@ export class BarChartComponent implements OnInit {
   }
  
   dateLabel: any[];
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService,public datepipe: DatePipe,private excelService:ExcelService) {
     
   }
 
@@ -43,14 +52,24 @@ export class BarChartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   //this.prepareChart()
+
+   
   }
   ngOnChanges(){
+    
     this.prepareChart()
-    //console.log(this.chartData)
+  
+  }
+  downloadExcelreport(){
+    this.userService.getExcelReportSMS(this.filters).subscribe(result => {
+      FileSaver.saveAs(result,'sms_report_' + new  Date().getTime() + EXCEL_EXTENSION);  
+     
+    })
+    
+   
   }
   prepareChart(){
-    this.dateLabel = this.chartData.map(emp => emp.createdDt)
+    this.dateLabel = this.chartData.map(emp => this.datepipe.transform(emp.createdDt,'dd-MM-yyyy hh:mm:ss'))
     var outObject = this.chartData.reduce(function(a, param) {
      
      
@@ -78,7 +97,7 @@ export class BarChartComponent implements OnInit {
     
   }
   getRandomColor() {
-    var colors = [ 'orange','#4bc0c0','#29215c','#f66342','#63256a'];
+    var colors = [ 'orange','#4bc0c0','#29215c','#f66342','#63256a','yellow','pink'];
     return colors[Math.floor(Math.random() * colors.length)];
     }
 }
@@ -87,6 +106,7 @@ export interface Param{
       exceedence: string,
       parameter: string,
       stationName?: string,
+      
      
 }
 export class ChartObj{

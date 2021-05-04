@@ -382,26 +382,6 @@ html {
     left: 10px;
     width: 90%;}
 
-
-
-
-
-    .dtHorizontalExampleWrapper {
-        max-width: 500px;
-        margin: 0 auto;
-        }
-        #dtHorizontalExample th, td {
-        white-space: nowrap;
-        }
-        .table-scroll {
-            height:15px;
-            overflow:scroll;  
-            margin-top:20px;
-          }
-
-
-
-
 #addworkflow{
     margin-left: -50px;
 }
@@ -409,5 +389,20 @@ html {
     position: absolute;
     width: 50%;
     font-size: inherit;
-    margin-top: -20px;
+    margin-top: -40px;
 }
+.table-heading{
+    background-color: #6610f2;
+    text-align: center;
+    color: white;
+    padding: 8px;
+}
+
+mat-checkbox {
+    margin: 1rem;
+  }
+  
+  mat-table { 
+    margin-top: 1rem; 
+    width: 100%;
+  }

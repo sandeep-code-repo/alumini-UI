@@ -30,11 +30,13 @@
                        <label>Site Status:</label><br>
                        
                       <select class="form-group" role="listbox" style="height: 40px; width: 100%;">
-                               <option>Active</option>
+                               <option>All</option>
+                              
+                        <option>Active</option>
                                <option>Delay</option>
                                <option>Site Inactive</option>
                                <option>Site Shoutdown</option>
-                               <option>All</option>
+                               
                              
                            </select>           
                    </div>
@@ -43,21 +45,26 @@
                    <label>Exceedance Status:</label><br>
                    
                   <select class="form-group" role="listbox" style="height: 40px; width: 100%; padding-right: 20px;">
-                           <option>Excedence Detected</option>
+                    <option>All</option>
+                           
+                    <option>Excedence Detected</option>
                            <option>No Excedence</option>
-                           <option>All</option>
+                        
                        </select> 
                        </div>
                           </div>
                     <div class="row-from-group">
                         <div class="row">
                       <div class="col-md-6">
-                        <ng-multiselect-dropdown
+                      <!----  <ng-multiselect-dropdown
                         [settings]="dropdownSettings"
                         [data]="dropdownList"
                         [(ngModel)]="selectedItems"
                     >
-                    </ng-multiselect-dropdown>
+                    </ng-multiselect-dropdown>-->
+                      <form [formGroup]="form">
+                      <mat-checkbox *ngFor="let cd of columnDefinitions"  [formControlName]="cd.def">{{cd.label}}</mat-checkbox>
+                  </form>
                      </div>
                     
                      <div class="col-md-2">
@@ -137,37 +144,156 @@
                         </table>
                         
                      </div> -->
-                     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-                        
+                     
+                        <div class="table-responsive" style="padding-right:2px;">
+                        <div class="row my-3">
+                           
+                         </div>
+                     <table mat-table [dataSource]="dataSource" matSort
+                     class="table22  table-striped table-bordered table-sm table  dataTable no-footer">
+                     
                          <!-- Position Column -->
                <ng-container matColumnDef="id">
-                <th  class="header" mat-header-cell *matHeaderCellDef >Sl No</th>
-                <td *matCellDef="let element; let i = index;">{{element.id}}</td>
+                <th  class="header" mat-header-cell *matHeaderCellDef style="width: 200%;"  class="table-heading"  mat-sort-header >Sl No</th>
+                <td *matCellDef="let element; let i = index;" class="matcell">{{element.id}}</td>
 
              </ng-container>
-                        
-                        
-                        <ng-container matColumnDef="siteName">
-                          <th class="header" mat-header-cell *matHeaderCellDef>
+             <ng-container matColumnDef="action" class="action-td" style="width: 150px;" >
+                <th class="header" mat-header-cell *matHeaderCellDef   class="table-heading" style="column-width: 100%;">Action
+                  <br>    <button class=" btn-sm  btn-primary" title="View Data" data-toggle="modal" data-target="#myModal" >
+                            <i class="fa fa-desktop"></i> </button>
+                            <button class=" btn-sm  btn-primary" title="Real Time Dashboard" routerLink="/realtime-report">
+                                <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                            </button>  
+                            <input matInput [formControl]="buttonFilter">
+                           </th>
+                          <td *matCellDef="let element; let i = index;" class="matcell">{{element.action}}
+                      </ng-container>
+                     <ng-container matColumnDef="siteName">
+                          <th class="header" mat-header-cell *matHeaderCellDef  class="table-heading">
                             Site Name
                             <mat-form-field class="filter" floatLabel="never">
                               <mat-label>Search</mat-label>
                               <input matInput [formControl]="nameFilter">
                             </mat-form-field>
                           </th>
-                          <td mat-cell *matCellDef="let element">{{element.siteName}}</td>
+                          <td mat-cell *matCellDef="let element" class="matcell">{{element.siteName}}</td>
                         </ng-container>
+                        <ng-container matColumnDef="siteLabel">
+                            <th class="header" mat-header-cell *matHeaderCellDef  class="table-heading">
+                                Site Label
+                              <mat-form-field class="filter" floatLabel="never">
+                                <mat-label>Search</mat-label>
+                                <input matInput [formControl]="siteLabelFilter">
+                              </mat-form-field>
+                            </th>
+                            <td mat-cell *matCellDef="let element" class="matcell">{{element.siteLabel}}</td>
+                          </ng-container> 
                          <ng-container matColumnDef="street">
-                          <th class="header" mat-header-cell *matHeaderCellDef>
+                          <th class="header" mat-header-cell *matHeaderCellDef  class="table-heading">
                             Street
                             <mat-form-field class="filter" floatLabel="never">
                               <mat-label>Search</mat-label>
                               <input matInput [formControl]="streetFilter">
                             </mat-form-field>
                           </th>
-                          <td mat-cell *matCellDef="let element">{{element.street}}</td>
+                          <td mat-cell *matCellDef="let element" class="matcell">{{element.street}}</td>
                         </ng-container> 
-                        <!-- <ng-container matColumnDef="favouriteColour">
+                        <ng-container matColumnDef="city">
+                            <th class="header" mat-header-cell *matHeaderCellDef  class="table-heading">
+                              City
+                              <mat-form-field class="filter" floatLabel="never">
+                                <mat-label>Search</mat-label>
+                                <input matInput [formControl]="cityFilter">
+                              </mat-form-field>
+                            </th>
+                            <td mat-cell *matCellDef="let element" class="matcell">{{element.city}}</td>
+                          </ng-container> 
+                          <ng-container matColumnDef="district">
+                            <th class="header" mat-header-cell *matHeaderCellDef>
+                                District
+                              <mat-form-field class="filter" floatLabel="never">
+                                <mat-label>Search</mat-label>
+                                <input matInput [formControl]="districtFilter">
+                              </mat-form-field>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.district}}</td>
+                          </ng-container> 
+                          <ng-container matColumnDef="state">
+                            <th class="header" mat-header-cell *matHeaderCellDef>
+                                State
+                              <mat-form-field class="filter" floatLabel="never">
+                                <mat-label>Search</mat-label>
+                                <input matInput [formControl]="stateFilter">
+                              </mat-form-field>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.state}}</td>
+                          </ng-container> 
+                          
+                          <ng-container matColumnDef="industryType">
+                            <th class="header" mat-header-cell *matHeaderCellDef>
+                                Industry Type
+                              <mat-form-field class="filter" floatLabel="never">
+                                <mat-label>Search</mat-label>
+                                <input matInput [formControl]="industryFilter">
+                              </mat-form-field>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.industryType}}</td>
+                          </ng-container> 
+                          <ng-container matColumnDef="lastSynchronized">
+                            <th class="header" mat-header-cell *matHeaderCellDef>
+                                Last Synchronized 
+                              <mat-form-field class="filter" floatLabel="never">
+                                <mat-label>Search</mat-label>
+                                <input matInput [formControl]="SynchronizedFilter">
+                              </mat-form-field>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.lastSynchronized}}</td>
+                          </ng-container> 
+                          <ng-container matColumnDef="siteStatus">
+                            <th class="header" mat-header-cell *matHeaderCellDef>
+                                Site Status 
+                              <mat-form-field class="filter" floatLabel="never">
+                                <mat-label>Search</mat-label>
+                                <input matInput [formControl]="StatusFilter">
+                              </mat-form-field>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.siteStatus}}</td>
+                          </ng-container> 
+                          <ng-container matColumnDef="exceedance">
+                            <th class="header" mat-header-cell *matHeaderCellDef>
+                                Exceedance
+                              <mat-form-field class="filter" floatLabel="never">
+                                <mat-label>Search</mat-label>
+                                <input matInput [formControl]="exceedanceFilter">
+                              </mat-form-field>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.exceedance}}</td>
+                          </ng-container> 
+                          <ng-container matColumnDef="vendor">
+                            <th class="header" mat-header-cell *matHeaderCellDef>
+                                Vendor
+                              <mat-form-field class="filter" floatLabel="never">
+                                <mat-label>Search</mat-label>
+                                <input matInput [formControl]="vendorFilter">
+                              </mat-form-field>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.vendor}}</td>
+                          </ng-container> 
+                          <ng-container matColumnDef="siteId">
+                            <th class="header" mat-header-cell *matHeaderCellDef>
+                                Site Id
+                              <mat-form-field class="filter" floatLabel="never">
+                                <mat-label>Search</mat-label>
+                                <input matInput [formControl]="siteIdFilter">
+                              </mat-form-field>
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{element.siteId}}</td>
+                          </ng-container> 
+                          
+                          
+                         
+                         <ng-container matColumnDef="favouriteColour">
                           <th class="header" mat-header-cell *matHeaderCellDef>
                             Favourite Colour
                             <mat-form-field class="filter" floatLabel="never">
@@ -186,12 +312,14 @@
                             </mat-form-field>
                           </th>
                           <td mat-cell *matCellDef="let person">{{person.pet}}</td>
-                        </ng-container> -->
+                        </ng-container> 
                         <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
                         <tr mat-row *matRowDef="let person; columns: columnsToDisplay"></tr>
                       </table>
+                    </div>
+                         <mat-paginator [pageSize]="1" [pageSizeOptions]="[2, 4, 6, 10, 20]">
+                      </mat-paginator>
                     
-                        
                         <div class="container">
                             <style>
                                 @media screen and (min-width: 776px) {

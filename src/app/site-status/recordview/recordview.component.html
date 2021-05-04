@@ -1,72 +1,122 @@
-<div class="row">
+<div class="container-fluid" style="position: relative; height: 100vh;">
+<div class="row" >
     <div class="col-md-12">
         <div class="tab-content">
-        <nav class="navbar navbar-expand-sm hovStyle">
-           <ul class="navbar-nav">
+        <nav class="navbar navbar-expand-sm ">
+           <ul class="nav nav-tabs">
                <li class="nav-item">
-                   <a class="nav-link" > Record View</a>
-                   
+                   <a class="nav-link active" routerLink="recordview" routerLinkActive="active" > Record View</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" >Trends</a>
+                      <a class="nav-link" routerLink="trendsv" style="padding-left: 40px;">Trends</a>
             </li>
-            <li  style="padding-left: 450px;"> Monitoring Type: 
+            <li style="padding-left: 740px;"> Monitoring  Type : 
                 <select id="paramData" name="paramData">
                     <option value="All">All</option>
                     <option value="Emission">Emission</option>
-                    <option value="Effluent">Effluent</option>
-                    <option value="Ambient">Ambient</option>
+                    <option value="No record">Effluent</option>
+                    <option value="No record">Ambient</option>
            </select></li>
-               
-               
-
            
-       </ul>
+        </ul>
         </nav>
-      
+        <router-outlet></router-outlet>
+
+
+
+
         <div class="tab-content">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="row form-group">
-                     
-                         <div class="col-md-6">
-                           <ng-multiselect-dropdown
-                           [settings]="dropdownSettings"
-                           [data]="dropdownList"
-                           [(ngModel)]="selectedItems"
-                       >
-                       </ng-multiselect-dropdown>
-                        </div>
-                  <div class="col-md-6">
-                        <div class="row">
-                          
-                     <div class="col-md-2">
-                        <div class="dropdown">
-                          <button type="button" class=" d-sm-inline-block btn btn-sm btn-primary shadow-sm mb-4 dropdown-toggle" data-toggle="dropdown" style="background-color: #406ca4;">
-                              <i class="fas fa-download fa-sm text-white-50"></i> Download Reports
-                            </button>
-
-                          <div class="dropdown-menu">
-                              
-                             <a  class="dropdown-item"><i class="fa fa-file-excel-o"></i> As EXCEL</a>  
-                             <a class="dropdown-item"><i class="fa fa-file-pdf-o"></i> As Print</a>
-                  
-                          </div>
-                          <!-- &nbsp; &nbsp; &nbsp; &nbsp; -->
+          <div class="row">
+              <div class="col-md-12">
+                <div class="row-from-group">
+        <div class="row">
+         <div class="col-md-6">
+            <!--<ng-multiselect-dropdown
+            [settings]="dropdownSettings"
+            [data]="dropdownList"
+            [(ngModel)]="selectedItems"
+        >
+        </ng-multiselect-dropdown>-->
+        <form [formGroup]="form">
+          <mat-checkbox *ngFor="let cd of columnDefinitions"  [formControlName]="cd.def">{{cd.label}}</mat-checkbox>
+      </form>
+         </div>
+         <div class="col-md-6">
+             <div class="row">
+                <div class="col-md-5">
+                  <div class="dropdown">
+                    <button type="button" class=" d-sm-inline-block btn btn-sm btn-primary shadow-sm mb-4 dropdown-toggle" data-toggle="dropdown" style="background-color: #406ca4;">
+                        <i class="fas fa-download fa-sm text-white-50"></i> Download Reports
+                      </button>
+                      <div class="dropdown-menu">
+                       <a  class="dropdown-item"><i class="fa fa-file-excel-o"></i> As EXCEL</a>  
+                       <a class="dropdown-item"><i class="fa fa-file-pdf-o"></i> As Print</a>
                       </div>
-                  </div>  
-                        </div>
-
-                  </div>
-                     
-                    </div>
+                    <!-- &nbsp; &nbsp; &nbsp; &nbsp; -->
                 </div>
+              </div>
+              <div class="col-md-7" >
+                <input class="form-control" name="serach" (keyup)="applyFilter($event)" placeholder="Search..." #input type="text" style="margin-right: 500px;">
             </div>
-           </div>
-           </div>
-         
-       
+
+             </div>
+         </div>
+          
+       </div>
         </div>
     </div>
+  </div>
+  </div>
+     
 
+<hr>
+
+<table mat-table [dataSource]="dataSource" matSort
+class="table22  table-striped table-bordered table-sm table  dataTable no-footer" style="border-color: cornflowerblue;">
+	<ng-container matColumnDef="slno">
+		<th mat-header-cell *matHeaderCellDef class="table-heading" mat-sort-header>S.No</th>
+		<th mat-header-cell *matHeaderCellDef class="table-heading" mat-sort-header>S.No</th>
+
+		<td mat-cell *matCellDef="let row; let i = index;" class="matcell">{{row.slno}}</td>
+	</ng-container>
+    <ng-container matColumnDef="parameterName">
+		<th mat-header-cell *matHeaderCellDef class="table-heading" mat-sort-header>Parameter Name</th>
+		<td mat-cell *matCellDef="let row;" class="matcell">{{row.parameterName}}</td>
+	</ng-container>
+    <ng-container matColumnDef="currentValue">
+		<th mat-header-cell *matHeaderCellDef class="table-heading" mat-sort-header>Current Value</th>
+		<td mat-cell *matCellDef="let row;" class="matcell" >{{row.currentValue}}</td>
+	</ng-container> <ng-container matColumnDef="Threshold">
+		<th mat-header-cell *matHeaderCellDef class="table-heading" mat-sort-header>Threshold</th>
+		<td mat-cell *matCellDef="let row;" class="matcell">{{row.Threshold}}</td>
+	</ng-container> 
+    <ng-container matColumnDef="AvgValue">
+		<th mat-header-cell *matHeaderCellDef class="table-heading" mat-sort-header>Avg. Value</th>
+		<td mat-cell *matCellDef="let row;" class="matcell">{{row.AvgValue}}</td>
+	</ng-container> 
+    <ng-container matColumnDef="MinValue">
+		<th mat-header-cell *matHeaderCellDef class="table-heading" mat-sort-header>Min Value</th>
+		<td mat-cell *matCellDef="let row;" class="matcell">{{row.MinValue}}</td>
+	</ng-container>
+    <ng-container matColumnDef="MaxValue">
+		<th mat-header-cell *matHeaderCellDef class="table-heading" mat-sort-header>MaxValue</th>
+		<td mat-cell *matCellDef="let row;" class="matcell">{{row.MaxValue}}</td>
+	</ng-container>
+    
   
+	<tr mat-header-row *matHeaderRowDef="columns">
+	</tr>
+	<tr mat-row *matRowDef="let row; columns: columns"></tr>
+ 
+</table>
+</div>
+<mat-paginator [pageSize]="4" [pageSizeOptions]="[2, 4, 6, 10, 20]">
+</mat-paginator>
+
+
+
+
+   
+</div>
+</div>
+</div>

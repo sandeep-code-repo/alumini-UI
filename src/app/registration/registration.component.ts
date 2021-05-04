@@ -4,7 +4,7 @@ import { Validators, FormBuilder, FormGroup, FormArray, FormControl } from '@ang
 
 import { routerTransition } from '../services/config/config.service';
 
-import { PlantInfoData } from 'src/app/plant-info-data';
+//import { PlantInfoData } from 'src/app/plant-info-data';
 
 
 
@@ -32,7 +32,7 @@ export class RegistrationComponent implements OnInit {
   industry: Industry;
   add_industry: FormGroup;
   processForm: FormGroup;
-  plant: PlantInfoData;
+  //plant: PlantInfoData;
   //stationInfo: StationInfo;
   submitted: Boolean = false;
   stationinfomap: StationInfoMapper[] = []
